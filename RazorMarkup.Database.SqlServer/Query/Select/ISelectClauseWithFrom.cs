@@ -1,0 +1,9 @@
+﻿using RazorMarkup.Database.SqlServer.Query.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Query.Select
+{
+    public interface ISelectClauseWithFrom<TEndType> : ISelectClause<TEndType>, IHasEnd<TEndType>
+    {
+        IFromClause<TEndType> From();
+    }
+}

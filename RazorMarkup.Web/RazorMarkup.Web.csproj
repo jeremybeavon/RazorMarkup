@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A0389800-F458-48D4-B69C-2D628E3C3F18}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RazorMarkup.Web</RootNamespace>
+    <AssemblyName>RazorMarkup.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractFluentHtmlString.cs" />
+    <Compile Include="AbstractHtmlString.cs" />
+    <Compile Include="AngularJs\AnchorBinding.cs" />
+    <Compile Include="AngularJs\AngularJsAttributes.cs" />
+    <Compile Include="AngularJs\AppBinding.cs" />
+    <Compile Include="AngularJs\BindTo.cs" />
+    <Compile Include="AngularJs\DateTimeExtensions.cs" />
+    <Compile Include="AngularJs\DetailsBinding.cs" />
+    <Compile Include="AngularJs\ExpressionExtensions.cs" />
+    <Compile Include="AngularJs\ExpressionTextGenerator.cs" />
+    <Compile Include="AngularJs\FormBinding.cs" />
+    <Compile Include="AngularJs\HtmlHelperExtensions.cs" />
+    <Compile Include="AngularJs\IAnchorBinding.cs" />
+    <Compile Include="AngularJs\IAppBinding.cs" />
+    <Compile Include="AngularJs\IBindTo.cs" />
+    <Compile Include="AngularJs\IDetailsBinding.cs" />
+    <Compile Include="AngularJs\IFormBinding.cs" />
+    <Compile Include="AngularJs\IInputBinding.cs" />
+    <Compile Include="AngularJs\IInputCheckboxBinding.cs" />
+    <Compile Include="AngularJs\IInputDateTimeLocalBinding.cs" />
+    <Compile Include="AngularJs\InputBinding.cs" />
+    <Compile Include="AngularJs\InputCheckboxBinding.cs" />
+    <Compile Include="AngularJs\InputDateTimeLocalBinding.cs" />
+    <Compile Include="AttributeHelper.cs" />
+    <Compile Include="CssClass.cs" />
+    <Compile Include="Css\AbstractProperties.cs" />
+    <Compile Include="Css\Css1\CssSelector.cs" />
+    <Compile Include="Css\Css1\DescendentsSelection.cs" />
+    <Compile Include="Css\Css2\AbstractAttributeSelector.cs" />
+    <Compile Include="Css\Css2\AbstractCss2Selector.cs" />
+    <Compile Include="Css\Css2\AbstractCssSelection.cs" />
+    <Compile Include="Css\Css2\AttributeSelector.cs" />
+    <Compile Include="Css\Css2\CssSelector.cs" />
+    <Compile Include="Css\Css2\ChildrenSelection.cs" />
+    <Compile Include="Css\Css2\DescendentsSelection.cs" />
+    <Compile Include="Css\Css2\NextElementSelection.cs" />
+    <Compile Include="Css\Css3\AbstractCss3AttributeSelector.cs" />
+    <Compile Include="Css\Css3\AbstractCss3Selector.cs" />
+    <Compile Include="Css\Css3\AbstractCssSelection.cs" />
+    <Compile Include="Css\Css3\AttributeSelector.cs" />
+    <Compile Include="Css\Css3\ChildrenSelection.cs" />
+    <Compile Include="Css\Css3\CssSelector.cs" />
+    <Compile Include="Css\Css3\DescendentsSelection.cs" />
+    <Compile Include="Css\Css3\NextElementSelection.cs" />
+    <Compile Include="Css\Css3\NextElementsSelection.cs" />
+    <Compile Include="Css\CssColor.cs" />
+    <Compile Include="Css\AbstractCssSelector.cs" />
+    <Compile Include="Css\IBackgroundProperties.cs" />
+    <Compile Include="Css\ICss.cs" />
+    <Compile Include="Css\ICssProperties.cs" />
+    <Compile Include="Css\InsertContentOption.cs" />
+    <Compile Include="Css\ITextProperties.cs" />
+    <Compile Include="Css\MatchDirection.cs" />
+    <Compile Include="Css\MatchFormula.cs" />
+    <Compile Include="Css\MatchSpecialType.cs" />
+    <Compile Include="Css\SelectionText.cs" />
+    <Compile Include="Css\TextProperties.cs" />
+    <Compile Include="HtmlId.cs" />
+    <Compile Include="HtmlName.cs" />
+    <Compile Include="IFluentHtmlString.cs" />
+    <Compile Include="IHideObjectMethods.cs" />
+    <Compile Include="KnockoutJs\IBindTo.cs" />
+    <Compile Include="KnockoutJs\KnockoutObservable.cs" />
+    <Compile Include="KnockoutJs\KnockoutObservableArray.cs" />
+    <Compile Include="KnockoutJs\Optional.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RawHtml\AbstractHtmlElement.cs" />
+    <Compile Include="RawHtml\AbstractInputElement.cs" />
+    <Compile Include="RawHtml\BaseElement.cs" />
+    <Compile Include="RawHtml\BlockElements.cs" />
+    <Compile Include="RawHtml\BlockQuoteElement.cs" />
+    <Compile Include="RawHtml\ButtonElement.cs" />
+    <Compile Include="RawHtml\ButtonElements.cs" />
+    <Compile Include="RawHtml\ButtonType.cs" />
+    <Compile Include="RawHtml\CircleAreaElement.cs" />
+    <Compile Include="RawHtml\DefaultAreaElement.cs" />
+    <Compile Include="RawHtml\DeletedTextElement.cs" />
+    <Compile Include="RawHtml\DescriptionListElements.cs" />
+    <Compile Include="RawHtml\DocType.cs" />
+    <Compile Include="RawHtml\DropDown.cs" />
+    <Compile Include="RawHtml\EmbeddedObjectElements.cs" />
+    <Compile Include="RawHtml\FieldsetElement.cs" />
+    <Compile Include="RawHtml\FieldsetElements.cs" />
+    <Compile Include="RawHtml\FileExtensions.cs" />
+    <Compile Include="RawHtml\FormElement.cs" />
+    <Compile Include="RawHtml\HeadElements.cs" />
+    <Compile Include="RawHtml\Html5\BidirectionalTextOverrideElement.cs" />
+    <Compile Include="BrowserCompatibilityAttribute.cs" />
+    <Compile Include="BrowserType.cs" />
+    <Compile Include="RawHtml\Html5\BlockElementsExtensions.cs" />
+    <Compile Include="RawHtml\Html5\ButtonElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\CanvasElement.cs" />
+    <Compile Include="RawHtml\Html5\DetailsElement.cs" />
+    <Compile Include="RawHtml\Html5\DraggableBehaviour.cs" />
+    <Compile Include="RawHtml\Html5\EmbeddedObjectElementsExtensions.cs" />
+    <Compile Include="RawHtml\Html5\EmbedElement.cs" />
+    <Compile Include="RawHtml\Html5\FieldsetElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\FigureElements.cs" />
+    <Compile Include="RawHtml\Html5\FluentHtmlStringExtensions.cs" />
+    <Compile Include="RawHtml\FormEncodingType.cs" />
+    <Compile Include="RawHtml\FormMethod.cs" />
+    <Compile Include="RawHtml\Html5\FormElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\HeadElementsExtensions.cs" />
+    <Compile Include="RawHtml\Html5\HtmlDocumentElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\IBiDirectionalTextOverrideElement.cs" />
+    <Compile Include="RawHtml\Html5\ICanvasElement.cs" />
+    <Compile Include="RawHtml\Html5\IDetailsElement.cs" />
+    <Compile Include="RawHtml\Html5\IEmbedElement.cs" />
+    <Compile Include="RawHtml\Html5\IFigureElements.cs" />
+    <Compile Include="RawHtml\Html5\IInputColorPickerElement.cs" />
+    <Compile Include="RawHtml\Html5\IInputDateElement.cs" />
+    <Compile Include="RawHtml\Html5\IInputDateTimeElement.cs" />
+    <Compile Include="RawHtml\Html5\IInputDateTimeLocalElement.cs" />
+    <Compile Include="RawHtml\Html5\IInputEmailAddressElement.cs" />
+    <Compile Include="RawHtml\Html5\IInputMonthElement.cs" />
+    <Compile Include="RawHtml\Html5\IInputNumberElement.cs" />
+    <Compile Include="RawHtml\Html5\IInputRangeElement.cs" />
+    <Compile Include="RawHtml\Html5\IInputSearchElement.cs" />
+    <Compile Include="RawHtml\Html5\IInputTelephoneNumberElement.cs" />
+    <Compile Include="RawHtml\Html5\IInputTimeElement.cs" />
+    <Compile Include="RawHtml\Html5\IInputUrlElement.cs" />
+    <Compile Include="RawHtml\Html5\IInputWeekElement.cs" />
+    <Compile Include="RawHtml\Html5\IKeyGeneratorElement.cs" />
+    <Compile Include="RawHtml\Html5\ImageElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\IMeterElement.cs" />
+    <Compile Include="RawHtml\Html5\InlineFrameElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\InlineFrameSandbox.cs" />
+    <Compile Include="RawHtml\Html5\IProgressElement.cs" />
+    <Compile Include="RawHtml\Html5\KeyGeneratorElement.cs" />
+    <Compile Include="RawHtml\Html5\KeyType.cs" />
+    <Compile Include="RawHtml\Html5\MeterElement.cs" />
+    <Compile Include="RawHtml\Html5\ProgressElement.cs" />
+    <Compile Include="RawHtml\HttpMetadataName.cs" />
+    <Compile Include="RawHtml\IBaseElement.cs" />
+    <Compile Include="RawHtml\ICircleAreaElement.cs" />
+    <Compile Include="RawHtml\IDefaultAreaElement.cs" />
+    <Compile Include="RawHtml\IEmbeddedObjectElements.cs" />
+    <Compile Include="RawHtml\IFormElement.cs" />
+    <Compile Include="RawHtml\IImageElement.cs" />
+    <Compile Include="RawHtml\IImageMapElements.cs" />
+    <Compile Include="RawHtml\IInlineFrameElement.cs" />
+    <Compile Include="RawHtml\ImageElement.cs" />
+    <Compile Include="RawHtml\ImageMapElements.cs" />
+    <Compile Include="RawHtml\IMedia.cs" />
+    <Compile Include="RawHtml\IMediaDevice.cs" />
+    <Compile Include="RawHtml\IMediaOperator.cs" />
+    <Compile Include="RawHtml\IMediaResolution.cs" />
+    <Compile Include="RawHtml\Html5\InputCheckboxElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\InputColorPickerElement.cs" />
+    <Compile Include="RawHtml\Html5\InputDateElement.cs" />
+    <Compile Include="RawHtml\Html5\InputDateTimeElement.cs" />
+    <Compile Include="RawHtml\Html5\InputDateTimeLocalElement.cs" />
+    <Compile Include="RawHtml\Html5\InputElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\InputEmailAddressElement.cs" />
+    <Compile Include="RawHtml\Html5\InputFileElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\InputImageButtonElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\InputMonthElement.cs" />
+    <Compile Include="RawHtml\Html5\InputNumberElement.cs" />
+    <Compile Include="RawHtml\Html5\InputPasswordElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\InputRadioButtonElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\InputRangeElement.cs" />
+    <Compile Include="RawHtml\Html5\InputSearchElement.cs" />
+    <Compile Include="RawHtml\Html5\InputSubmitButtonElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\InputTelephoneNumberElement.cs" />
+    <Compile Include="RawHtml\Html5\InputTextElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\InputTimeElement.cs" />
+    <Compile Include="RawHtml\Html5\InputUrlElement.cs" />
+    <Compile Include="RawHtml\Html5\InputWeekElement.cs" />
+    <Compile Include="RawHtml\Html5\LabelElementExtensions.cs" />
+    <Compile Include="RawHtml\IMetadataElement.cs" />
+    <Compile Include="RawHtml\InlineFrameElement.cs" />
+    <Compile Include="RawHtml\IObjectElement.cs" />
+    <Compile Include="RawHtml\IParameterElement.cs" />
+    <Compile Include="RawHtml\IPolygonAreaElement.cs" />
+    <Compile Include="RawHtml\IRectangleAreaElement.cs" />
+    <Compile Include="RawHtml\IScriptElement.cs" />
+    <Compile Include="RawHtml\IStyleElement.cs" />
+    <Compile Include="RawHtml\LinkElement.cs" />
+    <Compile Include="RawHtml\Media.cs" />
+    <Compile Include="RawHtml\MediaDevice.cs" />
+    <Compile Include="RawHtml\MediaOperator.cs" />
+    <Compile Include="RawHtml\MediaOrientation.cs" />
+    <Compile Include="RawHtml\MediaResolution.cs" />
+    <Compile Include="RawHtml\MediaScan.cs" />
+    <Compile Include="RawHtml\Html5\PageLinkElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\RawHtmlExtensions.cs" />
+    <Compile Include="RawHtml\Html5\SelectElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\TableHeaderCellElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\TextAreaElementExtensions.cs" />
+    <Compile Include="RawHtml\Html5\TextAreaWrap.cs" />
+    <Compile Include="RawHtml\Html5\TextDirectionOverride.cs" />
+    <Compile Include="RawHtml\Html5\TextElementsExtensions.cs" />
+    <Compile Include="RawHtml\Html5\UserInputElementsExtensions.cs" />
+    <Compile Include="RawHtml\HtmlDocumentElement.cs" />
+    <Compile Include="RawHtml\HtmlElement.cs" />
+    <Compile Include="RawHtml\HtmlHelperExtensions.cs" />
+    <Compile Include="RawHtml\IBlockElements.cs" />
+    <Compile Include="RawHtml\IBlockQuoteElement.cs" />
+    <Compile Include="RawHtml\IButtonElement.cs" />
+    <Compile Include="RawHtml\IButtonElements.cs" />
+    <Compile Include="RawHtml\IDeletedTextElement.cs" />
+    <Compile Include="RawHtml\IDescriptionListElements.cs" />
+    <Compile Include="RawHtml\IDropDown.cs" />
+    <Compile Include="RawHtml\IFieldsetElement.cs" />
+    <Compile Include="RawHtml\IFieldsetElements.cs" />
+    <Compile Include="RawHtml\IHeadElements.cs" />
+    <Compile Include="RawHtml\IHtmlDocumentElement.cs" />
+    <Compile Include="RawHtml\IHtmlElement.cs" />
+    <Compile Include="RawHtml\IHtmlElement.generic.cs" />
+    <Compile Include="RawHtml\IAreaElement.cs" />
+    <Compile Include="RawHtml\IInlineQuoteElement.cs" />
+    <Compile Include="RawHtml\IInputButtonElement.cs" />
+    <Compile Include="RawHtml\IInputCheckboxElement.cs" />
+    <Compile Include="RawHtml\IInputElement.cs" />
+    <Compile Include="RawHtml\IInputFileElement.cs" />
+    <Compile Include="RawHtml\IInputHiddenElement.cs" />
+    <Compile Include="RawHtml\IInputImageButtonElement.cs" />
+    <Compile Include="RawHtml\IInputPasswordElement.cs" />
+    <Compile Include="RawHtml\IInputRadioButtonElement.cs" />
+    <Compile Include="RawHtml\IInputResetButtonElement.cs" />
+    <Compile Include="RawHtml\IInputSubmitButtonElement.cs" />
+    <Compile Include="RawHtml\IInputTextElement.cs" />
+    <Compile Include="RawHtml\IInsertedTextElement.cs" />
+    <Compile Include="RawHtml\ILabelElement.cs" />
+    <Compile Include="RawHtml\ILinkElement.cs" />
+    <Compile Include="RawHtml\ILinkElements.cs" />
+    <Compile Include="RawHtml\IListElements.cs" />
+    <Compile Include="RawHtml\AbstractAreaElement.cs" />
+    <Compile Include="RawHtml\IMultiLineText.cs" />
+    <Compile Include="RawHtml\InlineQuoteElement.cs" />
+    <Compile Include="RawHtml\InputButtonElement.cs" />
+    <Compile Include="RawHtml\InputCheckboxElement.cs" />
+    <Compile Include="RawHtml\InputFileElement.cs" />
+    <Compile Include="RawHtml\InputHiddenElement.cs" />
+    <Compile Include="RawHtml\InputImageButtonElement.cs" />
+    <Compile Include="RawHtml\InputPasswordElement.cs" />
+    <Compile Include="RawHtml\InputRadioButtonElement.cs" />
+    <Compile Include="RawHtml\InputResetButtonElement.cs" />
+    <Compile Include="RawHtml\InputSubmitButtonElement.cs" />
+    <Compile Include="RawHtml\InputTextElement.cs" />
+    <Compile Include="RawHtml\InsertedTextElement.cs" />
+    <Compile Include="RawHtml\IOptionElement.cs" />
+    <Compile Include="RawHtml\IOptionGroupElement.cs" />
+    <Compile Include="RawHtml\IOrderedListElement.cs" />
+    <Compile Include="RawHtml\IOrderedListElements.cs" />
+    <Compile Include="RawHtml\IOrderedListItemElement.cs" />
+    <Compile Include="RawHtml\IPageLinkElement.cs" />
+    <Compile Include="RawHtml\IQuoteElement.cs" />
+    <Compile Include="RawHtml\IRawHtml.cs" />
+    <Compile Include="RawHtml\ISelectElement.cs" />
+    <Compile Include="RawHtml\ITableCellElement.cs" />
+    <Compile Include="RawHtml\ITableColumnElement.cs" />
+    <Compile Include="RawHtml\ITableColumnGroupElement.cs" />
+    <Compile Include="RawHtml\ITableElements.cs" />
+    <Compile Include="RawHtml\ITableHeaderCellElement.cs" />
+    <Compile Include="RawHtml\ITableRowElements.cs" />
+    <Compile Include="RawHtml\ITextAreaElement.cs" />
+    <Compile Include="RawHtml\ITextElements.cs" />
+    <Compile Include="RawHtml\IUnorderedListElements.cs" />
+    <Compile Include="RawHtml\IUserInputElements.cs" />
+    <Compile Include="RawHtml\LabelElement.cs" />
+    <Compile Include="LanguageCode.cs" />
+    <Compile Include="RawHtml\LinkElements.cs" />
+    <Compile Include="RawHtml\ListElements.cs" />
+    <Compile Include="RawHtml\MediaType.cs" />
+    <Compile Include="RawHtml\MetadataElement.cs" />
+    <Compile Include="RawHtml\MetadataName.cs" />
+    <Compile Include="RawHtml\MultiLineText.cs" />
+    <Compile Include="RawHtml\ObjectElement.cs" />
+    <Compile Include="RawHtml\OptionElement.cs" />
+    <Compile Include="RawHtml\OptionGroupElement.cs" />
+    <Compile Include="RawHtml\OrderedListElement.cs" />
+    <Compile Include="RawHtml\OrderedListElements.cs" />
+    <Compile Include="RawHtml\OrderedListItemElement.cs" />
+    <Compile Include="RawHtml\OrderedListType.cs" />
+    <Compile Include="RawHtml\PageLinkElement.cs" />
+    <Compile Include="RawHtml\PageLinkRelationship.cs" />
+    <Compile Include="RawHtml\PageLinkTarget.cs" />
+    <Compile Include="RawHtml\ParameterElement.cs" />
+    <Compile Include="RawHtml\PolygonAreaElement.cs" />
+    <Compile Include="RawHtml\QuoteElement.cs" />
+    <Compile Include="RawHtml\RawHtml.cs" />
+    <Compile Include="RawHtml\RectangleAreaElement.cs" />
+    <Compile Include="RawHtml\ScriptElement.cs" />
+    <Compile Include="RawHtml\SelectElement.cs" />
+    <Compile Include="RawHtml\StyleElement.cs" />
+    <Compile Include="RawHtml\TableCellElement.cs" />
+    <Compile Include="RawHtml\TableColumnElement.cs" />
+    <Compile Include="RawHtml\TableColumnGroupElement.cs" />
+    <Compile Include="RawHtml\TableElements.cs" />
+    <Compile Include="RawHtml\TableHeaderCellElement.cs" />
+    <Compile Include="RawHtml\TableHeaderCellElementScope.cs" />
+    <Compile Include="RawHtml\TableRowElements.cs" />
+    <Compile Include="RawHtml\TextAreaElement.cs" />
+    <Compile Include="RawHtml\TextDirection.cs" />
+    <Compile Include="RawHtml\TextElements.cs" />
+    <Compile Include="RawHtml\UnorderedListElements.cs" />
+    <Compile Include="RawHtml\UserInputElements.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

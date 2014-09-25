@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Web", "RazorMarkup.Web\RazorMarkup.Web.csproj", "{A0389800-F458-48D4-B69C-2D628E3C3F18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Database", "RazorMarkup.Database\RazorMarkup.Database.csproj", "{7DD4E19A-F32E-4111-9A32-6BB280597008}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Database.SqlServer", "RazorMarkup.Database.SqlServer\RazorMarkup.Database.SqlServer.csproj", "{38CADD81-4103-497C-A213-EFC3EAC6A190}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Database.SqlServer.Tests", "RazorMarkup.Database.SqlServer.Tests\RazorMarkup.Database.SqlServer.Tests.csproj", "{37088E70-490F-421B-AF2E-A7B3F311FDDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Database.SqlServer.Parser", "RazorMarkup.Database.SqlServer.Parser\RazorMarkup.Database.SqlServer.Parser.csproj", "{49768143-D5BC-4657-A579-DC85DBC66E3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Common", "RazorMarkup.Common\RazorMarkup.Common.csproj", "{36373B5C-A4CC-40B1-9A9D-C54EAC326E7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0389800-F458-48D4-B69C-2D628E3C3F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0389800-F458-48D4-B69C-2D628E3C3F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0389800-F458-48D4-B69C-2D628E3C3F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0389800-F458-48D4-B69C-2D628E3C3F18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD4E19A-F32E-4111-9A32-6BB280597008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD4E19A-F32E-4111-9A32-6BB280597008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD4E19A-F32E-4111-9A32-6BB280597008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD4E19A-F32E-4111-9A32-6BB280597008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38CADD81-4103-497C-A213-EFC3EAC6A190}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38CADD81-4103-497C-A213-EFC3EAC6A190}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38CADD81-4103-497C-A213-EFC3EAC6A190}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38CADD81-4103-497C-A213-EFC3EAC6A190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37088E70-490F-421B-AF2E-A7B3F311FDDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37088E70-490F-421B-AF2E-A7B3F311FDDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37088E70-490F-421B-AF2E-A7B3F311FDDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37088E70-490F-421B-AF2E-A7B3F311FDDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49768143-D5BC-4657-A579-DC85DBC66E3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49768143-D5BC-4657-A579-DC85DBC66E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49768143-D5BC-4657-A579-DC85DBC66E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49768143-D5BC-4657-A579-DC85DBC66E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36373B5C-A4CC-40B1-9A9D-C54EAC326E7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36373B5C-A4CC-40B1-9A9D-C54EAC326E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36373B5C-A4CC-40B1-9A9D-C54EAC326E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36373B5C-A4CC-40B1-9A9D-C54EAC326E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{49768143-D5BC-4657-A579-DC85DBC66E3A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RazorMarkup.Database.SqlServer.Parser</RootNamespace>
+    <AssemblyName>RazorMarkup.Database.SqlServer.Parser</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.TransactSql.ScriptDom, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.SqlServer.TransactSql.ScriptDom.12.0\lib\Microsoft.SqlServer.TransactSql.ScriptDom.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractSqlVisitor.cs" />
+    <Compile Include="ObsoleteException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\QueryOperandExtensions.cs" />
+    <Compile Include="Query\QueryOperandVisitor.cs" />
+    <Compile Include="Query\QueryStatementsExtensions.cs" />
+    <Compile Include="Query\Select\SelectClauseExtensions.cs" />
+    <Compile Include="Query\Select\SelectClauseVisitor.cs" />
+    <Compile Include="Query\Select\SelectClauseWithDistinctExtensions.cs" />
+    <Compile Include="Query\Select\SelectClauseWithTopExtensions.cs" />
+    <Compile Include="ScalarExpressionExtensions.cs" />
+    <Compile Include="SqlExpressionVisitor.cs" />
+    <Compile Include="SqlSourceCodeBuilder.cs" />
+    <Compile Include="SqlSourceCodeVisitor.cs" />
+    <Compile Include="SqlSourceCodeVisitor.Drop.cs" />
+    <Compile Include="SqlSourceCodeVisitor.Set.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RazorMarkup.Common\RazorMarkup.Common.csproj">
+      <Project>{36373b5c-a4cc-40b1-9a9d-c54eac326e7e}</Project>
+      <Name>RazorMarkup.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RazorMarkup.Database.SqlServer\RazorMarkup.Database.SqlServer.csproj">
+      <Project>{38cadd81-4103-497c-a213-efc3eac6a190}</Project>
+      <Name>RazorMarkup.Database.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RazorMarkup.Database\RazorMarkup.Database.csproj">
+      <Project>{7dd4e19a-f32e-4111-9a32-6bb280597008}</Project>
+      <Name>RazorMarkup.Database</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
