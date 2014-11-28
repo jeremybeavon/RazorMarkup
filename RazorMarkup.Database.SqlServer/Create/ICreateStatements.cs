@@ -5,8 +5,6 @@ namespace RazorMarkup.Database.SqlServer.Create
 {
     public interface ICreateStatements
     {
-        ICreateAggregateStatement Aggregate(SchemaName schemaName, AggregateName aggregateName);
-
         ICreateAggregateStatement Aggregate(AggregateName aggregateName);
 
         ICreateApplicationRoleStatement ApplicationRole(ApplicationRoleName applicationRoleName);

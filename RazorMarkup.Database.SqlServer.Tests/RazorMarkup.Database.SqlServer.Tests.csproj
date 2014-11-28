@@ -59,6 +59,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ConfigurationFunctionsTests.cs" />
+    <Compile Include="CreateStatementTests.cs" />
     <Compile Include="DropStatementTests.cs" />
     <Compile Include="FunctionTestHelper.cs" />
     <Compile Include="SetStatementTests.cs" />

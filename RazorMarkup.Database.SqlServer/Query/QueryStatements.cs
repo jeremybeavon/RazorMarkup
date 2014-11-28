@@ -31,13 +31,6 @@ namespace RazorMarkup.Database.SqlServer.Query
             return new CommonTableExpression(tableName, columnNames, Expression, new EndQuery(this)).AsNextClause(this);
         }
 
-        public string ToSqlString()
-        {
-            SqlBuilder sqlBuilder = new SqlBuilder();
-            ToSqlString(sqlBuilder);
-            return sqlBuilder.ToSqlString();
-        }
-
         public override Expression ToExpression()
         {
             return Expression;

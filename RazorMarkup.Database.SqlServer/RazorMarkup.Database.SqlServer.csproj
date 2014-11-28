@@ -42,6 +42,13 @@
   <ItemGroup>
     <Compile Include="AggregateName.cs" />
     <Compile Include="AggregateFunctions.cs" />
+    <Compile Include="Create\Aggregate\CreateAggregateAnd.cs" />
+    <Compile Include="Create\Aggregate\CreateAggregateExternalName.cs" />
+    <Compile Include="Create\Aggregate\CreateAggregateParameterBuilder.cs" />
+    <Compile Include="Create\Aggregate\CreateAggregateReturns.cs" />
+    <Compile Include="Create\Aggregate\CreateAggregateStatement.cs" />
+    <Compile Include="Create\Aggregate\CreateAggregateStatementBuilder.cs" />
+    <Compile Include="Create\CreateStatements.cs" />
     <Compile Include="Exists.cs" />
     <Compile Include="Expressions\FunctionRegistrationManager.cs" />
     <Compile Include="Expressions\Functions\IEndIn.cs" />
@@ -503,6 +510,7 @@
     <Compile Include="DatabaseName.cs" />
     <Compile Include="SchemaName.cs" />
     <Compile Include="TriggerFunctions.cs" />
+    <Compile Include="TypeExtensions.cs" />
     <Compile Include="TypeName.cs" />
     <Compile Include="Types\Aggregates\AbstractSqlAggregate.cs" />
     <Compile Include="Types\Aggregates\SqlBigIntAggregate.cs" />

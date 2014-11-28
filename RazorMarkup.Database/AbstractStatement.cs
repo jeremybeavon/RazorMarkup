@@ -1,6 +1,9 @@
-﻿namespace RazorMarkup.Database
+﻿using System;
+using System.Linq.Expressions;
+
+namespace RazorMarkup.Database
 {
-    public abstract class AbstractStatement<TStatementBuilder>
+    public abstract class AbstractStatement<TStatementBuilder> : ISqlString
         where TStatementBuilder : AbstractStatementBuilder
     {
         protected AbstractStatement(TStatementBuilder statement)
@@ -9,5 +12,15 @@
         }
 
         protected TStatementBuilder Statement { get; private set; }
+
+        public Expression ToExpression()
+        {
+            return Statement.ToExpression();
+        }
+
+        public string ToSqlString()
+        {
+            return Statement.ToSqlString();
+        }
     }
 }

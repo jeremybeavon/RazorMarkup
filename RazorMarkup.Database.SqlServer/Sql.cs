@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using RazorMarkup.Database.SqlServer.Create;
 using RazorMarkup.Database.SqlServer.Drop;
 using RazorMarkup.Database.SqlServer.Options;
 using RazorMarkup.Database.SqlServer.Query;
@@ -27,6 +28,11 @@ namespace RazorMarkup.Database.SqlServer
         public static ISqlString Break()
         {
             return new SqlString("BREAK", () => Break());
+        }
+
+        public static ICreateStatements Create()
+        {
+            return new CreateStatements();
         }
 
         public static ISqlString Continue()

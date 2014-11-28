@@ -3,7 +3,8 @@ using System.Linq.Expressions;
 
 namespace RazorMarkup.Database
 {
-    public abstract class AbstractStatementBuilder
+    public abstract class AbstractStatementBuilder : ISqlString
+
     {
         protected AbstractStatementBuilder()
         {
@@ -19,6 +20,13 @@ namespace RazorMarkup.Database
         public virtual Expression ToExpression()
         {
             return Expression;
+        }
+
+        public string ToSqlString()
+        {
+            SqlBuilder sqlBuilder = new SqlBuilder();
+            ToSqlString(sqlBuilder);
+            return sqlBuilder.ToSqlString();
         }
 
         public abstract void ToSqlString(SqlBuilder sqlBuilder);

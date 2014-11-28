@@ -10,7 +10,5 @@ namespace RazorMarkup.Database.SqlServer.Create.Aggregate
         		where T : ISqlScalarType;*/
 
         ICreateAggregateAnd WithParameter(ParameterName parameterName, TypeName typeName);
-
-        ICreateAggregateAnd WithParameter(ParameterName parameterName, SchemaName schemaName, TypeName typeName);
     }
 }
