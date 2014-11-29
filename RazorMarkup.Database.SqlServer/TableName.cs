@@ -7,27 +7,27 @@
         {
         }
 
-        protected TableName(SchemaName schemaName, string name)
+        public TableName(SchemaName schemaName, string name)
             : base(schemaName, name)
         {
         }
 
-        protected TableName(DatabaseName databaseName, string name)
+        public TableName(DatabaseName databaseName, string name)
             : base(databaseName, name)
         {
         }
 
-        protected TableName(DatabaseName databaseName, SchemaName schemaName, string name)
+        public TableName(DatabaseName databaseName, SchemaName schemaName, string name)
             : base(databaseName, schemaName, name)
         {
         }
 
-        protected TableName(ServerName serverName, DatabaseName databaseName, string name)
+        public TableName(ServerName serverName, DatabaseName databaseName, string name)
             : base(serverName, databaseName, name)
         {
         }
 
-        protected TableName(ServerName serverName, DatabaseName databaseName, SchemaName schemaName, string name)
+        public TableName(ServerName serverName, DatabaseName databaseName, SchemaName schemaName, string name)
             : base(serverName, databaseName, schemaName, name)
         {
         }
