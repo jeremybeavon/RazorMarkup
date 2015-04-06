@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Web", "RazorMarkup.Web\RazorMarkup.Web.csproj", "{A0389800-F458-48D4-B69C-2D628E3C3F18}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Database.SqlServer.Parser", "RazorMarkup.Database.SqlServer.Parser\RazorMarkup.Database.SqlServer.Parser.csproj", "{49768143-D5BC-4657-A579-DC85DBC66E3A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Common", "RazorMarkup.Common\RazorMarkup.Common.csproj", "{36373B5C-A4CC-40B1-9A9D-C54EAC326E7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Web.Parser", "RazorMarkup.Web.Parser\RazorMarkup.Web.Parser.csproj", "{54E58D3D-B455-44EA-80D1-2FF503F85842}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Web.Tests", "RazorMarkup.Web.Tests\RazorMarkup.Web.Tests.csproj", "{AD7EB397-129C-4089-92D7-5C5B9AEB955B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{36373B5C-A4CC-40B1-9A9D-C54EAC326E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36373B5C-A4CC-40B1-9A9D-C54EAC326E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36373B5C-A4CC-40B1-9A9D-C54EAC326E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54E58D3D-B455-44EA-80D1-2FF503F85842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54E58D3D-B455-44EA-80D1-2FF503F85842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54E58D3D-B455-44EA-80D1-2FF503F85842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54E58D3D-B455-44EA-80D1-2FF503F85842}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD7EB397-129C-4089-92D7-5C5B9AEB955B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD7EB397-129C-4089-92D7-5C5B9AEB955B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD7EB397-129C-4089-92D7-5C5B9AEB955B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD7EB397-129C-4089-92D7-5C5B9AEB955B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

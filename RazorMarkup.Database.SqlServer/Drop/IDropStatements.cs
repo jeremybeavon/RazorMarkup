@@ -4,8 +4,6 @@
     {
         ISqlString Aggregate(AggregateName aggregateName);
 
-        ISqlString Aggregate(SchemaName schemaName, AggregateName aggregateName);
-
         ISqlString ApplicationRole(ApplicationRoleName applicationRoleName);
 
         IDropAssemblyStatement Assembly(AssemblyName assemblyName);
@@ -46,8 +44,6 @@
 
         IDropFunctionStatement Function(FunctionName functionName);
 
-        IDropFunctionStatement Function(SchemaName schemaName, FunctionName functionName);
-
         ISqlString Login(LoginName loginName);
 
         ISqlString MasterKey();
@@ -60,15 +56,7 @@
 
         IDropProcedureStatement Procedure(ProcedureName procedureName);
 
-        IDropProcedureStatement Procedure(SchemaName schemaName, ProcedureName procedureName);
-
         ISqlString Queue(QueueName queueName);
-
-        ISqlString Queue(DatabaseName databaseName, QueueName queueName);
-
-        ISqlString Queue(DatabaseName databaseName, SchemaName schemaName, QueueName queueName);
-
-        ISqlString Queue(SchemaName schemaName, QueueName queueName);
 
         ISqlString RemoteServiceBinding(RemoteServiceBindingName remoteServiceBindingName);
 
@@ -98,11 +86,7 @@
 
         ISqlString Synonym(SynonymName synonymName);
 
-        ISqlString Synonym(SchemaName schemaName, SynonymName synonymName);
-
         ISqlString Type(TypeName typeName);
-
-        ISqlString Type(SchemaName schemaName, TypeName typeName);
 
         ISqlString User(UserName userName);
 

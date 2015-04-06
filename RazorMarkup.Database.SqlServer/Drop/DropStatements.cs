@@ -14,15 +14,6 @@ namespace RazorMarkup.Database.SqlServer.Drop
             };
         }
 
-        public ISqlString Aggregate(SchemaName schemaName, AggregateName aggregateName)
-        {
-            return new SqlString(string.Format("DROP AGGREGATE {0}.{1}", schemaName.ToSqlString(), aggregateName.ToSqlString()))
-            {
-                CreateFunc = () => Sql.Drop().Aggregate(schemaName, aggregateName),
-                Parameters = { schemaName, aggregateName }
-            };
-        }
-
         public ISqlString ApplicationRole(ApplicationRoleName applicationRoleName)
         {
             return new SqlString(string.Format("DROP APPLICATION ROLE {0}", applicationRoleName.ToSqlString()))
@@ -44,7 +35,7 @@ namespace RazorMarkup.Database.SqlServer.Drop
 
         public ISqlString AvailabilityGroup(AvailabilityGroupName availabilityGroupName)
         {
-            return new SqlString(string.Format("DROP AVAILABLITITY GROUP {0}", availabilityGroupName.ToSqlString()))
+            return new SqlString(string.Format("DROP AVAILABILITY GROUP {0}", availabilityGroupName.ToSqlString()))
             {
                 CreateFunc = () => Sql.Drop().AvailabilityGroup(availabilityGroupName),
                 Parameters = { availabilityGroupName }
@@ -163,7 +154,7 @@ namespace RazorMarkup.Database.SqlServer.Drop
 
         public ISqlString FullTextStopList(FullTextStopListName fullTextStopListName)
         {
-            return new SqlString(string.Format("DROP FULLTEXT STOPLIST {0}", fullTextStopListName.ToSqlString()))
+            return new SqlString(string.Format("DROP FULLTEXT STOPLIST {0};", fullTextStopListName.ToSqlString()))
             {
                 CreateFunc = () => Sql.Drop().FullTextStopList(fullTextStopListName),
                 Parameters = { fullTextStopListName }
@@ -173,11 +164,6 @@ namespace RazorMarkup.Database.SqlServer.Drop
         public IDropFunctionStatement Function(FunctionName functionName)
         {
             return new DropFunctionStatement(functionName);
-        }
-
-        public IDropFunctionStatement Function(SchemaName schemaName, FunctionName functionName)
-        {
-            return new DropFunctionStatement(schemaName, functionName);
         }
 
         public ISqlString Login(LoginName loginName)
@@ -226,44 +212,12 @@ namespace RazorMarkup.Database.SqlServer.Drop
             return new DropProcedureStatement(procedureName);
         }
 
-        public IDropProcedureStatement Procedure(SchemaName schemaName, ProcedureName procedureName)
-        {
-            return new DropProcedureStatement(schemaName, procedureName);
-        }
-
         public ISqlString Queue(QueueName queueName)
         {
             return new SqlString(string.Format("DROP QUEUE {0}", queueName.ToSqlString()))
             {
                 CreateFunc = () => Sql.Drop().Queue(queueName),
                 Parameters = { queueName }
-            };
-        }
-
-        public ISqlString Queue(SchemaName schemaName, QueueName queueName)
-        {
-            return new SqlString(string.Format("DROP QUEUE {0}.{1}", schemaName.ToSqlString(), queueName.ToSqlString()))
-            {
-                CreateFunc = () => Sql.Drop().Queue(schemaName, queueName),
-                Parameters = { schemaName, queueName }
-            };
-        }
-
-        public ISqlString Queue(DatabaseName databaseName, QueueName queueName)
-        {
-            return new SqlString(string.Format("DROP QUEUE {0}.{1}", databaseName.ToSqlString(), queueName.ToSqlString()))
-            {
-                CreateFunc = () => Sql.Drop().Queue(databaseName, queueName),
-                Parameters = { databaseName, queueName }
-            };
-        }
-
-        public ISqlString Queue(DatabaseName databaseName, SchemaName schemaName, QueueName queueName)
-        {
-            return new SqlString(string.Format("DROP QUEUE {0}.{1}.{2}", databaseName.ToSqlString(), schemaName.ToSqlString(), queueName.ToSqlString()))
-            {
-                CreateFunc = () => Sql.Drop().Queue(databaseName, schemaName, queueName),
-                Parameters = { databaseName, schemaName, queueName }
             };
         }
 
@@ -314,7 +268,7 @@ namespace RazorMarkup.Database.SqlServer.Drop
 
         public ISqlString SearchPropertyList(SearchPropertyListName searchPropertyListName)
         {
-            return new SqlString(string.Format("DROP SEARCH PROPERTY LIST {0}", searchPropertyListName.ToSqlString()))
+            return new SqlString(string.Format("DROP SEARCH PROPERTY LIST {0};", searchPropertyListName.ToSqlString()))
             {
                 CreateFunc = () => Sql.Drop().SearchPropertyList(searchPropertyListName),
                 Parameters = { searchPropertyListName }
@@ -381,29 +335,11 @@ namespace RazorMarkup.Database.SqlServer.Drop
             };
         }
 
-        public ISqlString Synonym(SchemaName schemaName, SynonymName synonymName)
-        {
-            return new SqlString(string.Format("DROP SYNONYM {0}.{1}", schemaName.ToSqlString(), synonymName.ToSqlString()))
-            {
-                CreateFunc = () => Sql.Drop().Synonym(schemaName, synonymName),
-                Parameters = { synonymName }
-            };
-        }
-
         public ISqlString Type(TypeName typeName)
         {
             return new SqlString(string.Format("DROP TYPE {0}", typeName.ToSqlString()))
             {
                 CreateFunc = () => Sql.Drop().Type(typeName),
-                Parameters = { typeName }
-            };
-        }
-
-        public ISqlString Type(SchemaName schemaName, TypeName typeName)
-        {
-            return new SqlString(string.Format("DROP TYPE {0}.{1}", schemaName.ToSqlString(), typeName.ToSqlString()))
-            {
-                CreateFunc = () => Sql.Drop().Type(schemaName, typeName),
                 Parameters = { typeName }
             };
         }

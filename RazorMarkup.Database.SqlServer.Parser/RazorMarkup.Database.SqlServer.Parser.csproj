@@ -54,6 +54,7 @@
     <Compile Include="Query\Select\SelectClauseWithDistinctExtensions.cs" />
     <Compile Include="Query\Select\SelectClauseWithTopExtensions.cs" />
     <Compile Include="ScalarExpressionExtensions.cs" />
+    <Compile Include="SchemaObjectNameExtensions.cs" />
     <Compile Include="SqlDataTypeOptionExtensions.cs" />
     <Compile Include="SqlExpressionVisitor.cs" />
     <Compile Include="SqlSourceCodeBuilder.cs" />

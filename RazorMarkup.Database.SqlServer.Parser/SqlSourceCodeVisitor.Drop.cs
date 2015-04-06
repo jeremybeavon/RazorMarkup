@@ -1,4 +1,6 @@
-﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
+﻿using System.Linq;
+using Microsoft.SqlServer.TransactSql.ScriptDom;
+using RazorMarkup.Database.SqlServer.Drop;
 
 namespace RazorMarkup.Database.SqlServer.Parser
 {
@@ -6,7 +8,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
     {
         public override void ExplicitVisit(DropAggregateStatement node)
         {
-            Result = Sql.Drop().Aggregate(new AggregateName(node.Objects[0].BaseIdentifier.Value));
+            Result = Sql.Drop().Aggregate(node.Objects[0].ToAggregateName());
         }
 
         public override void ExplicitVisit(DropApplicationRoleStatement node)
@@ -16,12 +18,19 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(DropAssemblyStatement node)
         {
-            //Result = Sql.Drop().ApplicationRole(new ApplicationRoleName(node.Name.Value));
+            IDropAssemblyStatement statement = Sql.Drop().Assembly(node.Objects[0].ToAssemblyName());
+            foreach (SchemaObjectName name in node.Objects.Skip(1))
+            {
+                statement = statement.And(name.ToAssemblyName());
+            }
+
+            Result = node.WithNoDependents ? statement.WithNoDependents() : statement;
         }
 
         public override void ExplicitVisit(DropAsymmetricKeyStatement node)
         {
-            Result = Sql.Drop().AsymmetricKey(new AsymmetricKeyName(node.Name.Value));
+            IDropKeyStatement statement = Sql.Drop().AsymmetricKey(new AsymmetricKeyName(node.Name.Value));
+            Result = node.RemoveProviderKey ? statement.RemoveProviderKey() : statement;
         }
 
         public override void ExplicitVisit(DropAvailabilityGroupStatement node)
@@ -51,7 +60,13 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(DropDatabaseStatement node)
         {
-            //Result = Sql.Drop().Certificate(new CertificateName(node.Name.Value));
+            IDropDatabaseStatement statement = Sql.Drop().Database(new DatabaseName(node.Databases[0].Value));
+            foreach (Identifier name in node.Databases.Skip(1))
+            {
+                statement = statement.And(new DatabaseName(name.Value));
+            }
+
+            Result = statement;
         }
 
         public override void ExplicitVisit(DropDatabaseAuditSpecificationStatement node)
@@ -91,7 +106,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(DropFullTextIndexStatement node)
         {
-            //Result = Sql.Drop().FullTextIndex(new TableName(node.Name.Value));
+            Result = Sql.Drop().FullTextIndex(node.TableName.ToTableName());
         }
 
         public override void ExplicitVisit(DropFullTextStopListStatement node)
@@ -101,7 +116,13 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(DropFunctionStatement node)
         {
-            //Result = Sql.Drop().Certificate(new CertificateName(node.Name.Value));
+            IDropFunctionStatement statement = Sql.Drop().Function(node.Objects[0].ToFunctionName());
+            foreach (SchemaObjectName name in node.Objects.Skip(1))
+            {
+                statement = statement.And(name.ToFunctionName());
+            }
+
+            Result = statement;
         }
 
         public override void ExplicitVisit(DropLoginStatement node)
@@ -112,6 +133,11 @@ namespace RazorMarkup.Database.SqlServer.Parser
         public override void ExplicitVisit(DropMasterKeyStatement node)
         {
             Result = Sql.Drop().MasterKey();
+        }
+
+        public override void ExplicitVisit(DropMessageTypeStatement node)
+        {
+            Result = Sql.Drop().MessageType(new MessageTypeName(node.Name.Value));
         }
 
         public override void ExplicitVisit(DropPartitionFunctionStatement node)
@@ -126,12 +152,18 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(DropProcedureStatement node)
         {
-            //Result = Sql.Drop().Certificate(new CertificateName(node.Name.Value));
+            IDropProcedureStatement statement = Sql.Drop().Procedure(node.Objects[0].ToProcedureName());
+            foreach (SchemaObjectName name in node.Objects.Skip(1))
+            {
+                statement = statement.And(name.ToProcedureName());
+            }
+
+            Result = statement;
         }
 
         public override void ExplicitVisit(DropQueueStatement node)
         {
-            //Result = Sql.Drop().Certificate(new CertificateName(node.Name.Value));
+            Result = Sql.Drop().Queue(node.Name.ToQueueName());
         }
 
         public override void ExplicitVisit(DropRemoteServiceBindingStatement node)
@@ -156,7 +188,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(DropSchemaStatement node)
         {
-            //Result = Sql.Drop().Schema(new SchemaName(node.Name.Value));
+            Result = Sql.Drop().Schema(node.Schema.ToSchemaName());
         }
 
         public override void ExplicitVisit(DropSearchPropertyListStatement node)
@@ -196,12 +228,12 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(DropSynonymStatement node)
         {
-            //Result = Sql.Drop().Synonym(new SynonymName(node.Name.Value));
+            Result = Sql.Drop().Synonym(node.Objects[0].ToSynonymName());
         }
 
         public override void ExplicitVisit(DropTypeStatement node)
         {
-            //Result = Sql.Drop().Type(new CertificateName(node.Name.Value));
+            Result = Sql.Drop().Type(node.Name.ToTypeName());
         }
 
         public override void ExplicitVisit(DropUserStatement node)

@@ -10,7 +10,12 @@ namespace RazorMarkup.Database.SqlServer.Tests
 
         public static string ToSqlStringViaRazorPage(this ISqlString sqlString)
         {
-            return SqlSourceCodeBuilder.ToSqlString(sqlString.ToSqlString()).ToSourceCode().ToRazorPage(DummyFileName).Render();
+            string text = sqlString.ToSqlString();
+            ISqlString sqlText = SqlSourceCodeBuilder.ToSqlString(text);
+            ISourceCode sourceCode = sqlText.ToSourceCode();
+            IRazorPage razorPage = sourceCode.ToRazorPage(DummyFileName);
+            string renderedText = razorPage.Render();
+            return renderedText.Trim();
         }
 
         public static void Matches(this ISqlString sqlString, string expectedSql)

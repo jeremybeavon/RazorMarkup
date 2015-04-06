@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.ComponentModel;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database
 {
@@ -6,6 +7,7 @@ namespace RazorMarkup.Database
     {
         string ToSqlString();
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Expression ToExpression();
     }
 }

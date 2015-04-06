@@ -18,12 +18,12 @@ namespace RazorMarkup.Database
         public SqlBuilder(string sql, Expression<Func<object>> expression, params ISqlString[] parameters)
             : base(sql)
         {
-            Expression = ExpressionBuilder.BuildExpression(expression, parameters);
+            Initialize(expression, parameters);
         }
 
         public SqlBuilder(Expression<Func<object>> expression, params ISqlString[] parameters)
         {
-            Expression = ExpressionBuilder.BuildExpression(expression, parameters);
+            Initialize(expression, parameters);
         }
 
         protected Expression Expression { get; set; }
