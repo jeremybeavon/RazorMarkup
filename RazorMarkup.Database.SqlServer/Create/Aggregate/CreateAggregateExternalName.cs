@@ -16,18 +16,15 @@ namespace RazorMarkup.Database.SqlServer.Create.Aggregate
 
         public ISqlString ExternalName(AssemblyName assemblyName)
         {
-            Statement.Append((ICreateAggregateExternalName input) => input.ExternalName(assemblyName), assemblyName);
             Statement.ExternalName = assemblyName.ToSqlString();
+            Statement.Append((ICreateAggregateExternalName input) => input.ExternalName(assemblyName), assemblyName);
             return this;
         }
 
         public ISqlString ExternalName(AssemblyName assemblyName, ClassName className)
         {
-            Statement.Append(
-                (ICreateAggregateExternalName input) => input.ExternalName(assemblyName, className),
-                assemblyName,
-                className);
-            Statement.ExternalName = string.Format("{0}::{1}", assemblyName.ToSqlString(), className.ToSqlString());
+            Statement.ExternalName = string.Format("{0}.{1}", assemblyName.ToSqlString(), className.ToSqlString());
+            Statement.Append((ICreateAggregateExternalName input) => input.ExternalName(null, null), assemblyName, className);
             return this;
         }
     }

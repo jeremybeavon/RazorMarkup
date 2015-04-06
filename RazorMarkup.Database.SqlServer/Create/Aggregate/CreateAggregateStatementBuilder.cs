@@ -18,7 +18,7 @@ namespace RazorMarkup.Database.SqlServer.Create.Aggregate
 
         public IList<CreateAggregateParameterBuilder> Parameters { get; private set; }
 
-        public string ReturnValue { get; set; }
+        public string ReturnType { get; set; }
 
         public string ExternalName { get; set; }
 
@@ -40,7 +40,7 @@ namespace RazorMarkup.Database.SqlServer.Create.Aggregate
             }
 
             sqlBuilder.AppendIndent().Append(")");
-            sqlBuilder.AppendIndent().Append("RETURNS ").Append(ReturnValue);
+            sqlBuilder.AppendIndent().Append("RETURNS ").Append(ReturnType);
             sqlBuilder.AppendIndent().Append("EXTERNAL NAME ").Append(ExternalName);
         }
     }

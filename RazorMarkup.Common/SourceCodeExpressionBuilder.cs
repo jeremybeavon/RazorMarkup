@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
@@ -53,7 +54,16 @@ namespace RazorMarkup.Common
             textBuilder.Append(".");
             textBuilder.Append(node.Method.Name);
             textBuilder.Append("(");
-            Visit(node.Arguments);
+            if (node.Arguments.Count != 0)
+            {
+                Visit(node.Arguments[0]);
+                foreach (Expression argument in node.Arguments.Skip(1))
+                {
+                    textBuilder.Append(", ");
+                    Visit(argument);
+                }
+            }
+
             textBuilder.Append(")");
             return node;
         }

@@ -11,19 +11,19 @@ namespace RazorMarkup.Database.SqlServer.Create.Aggregate
 
         public ICreateAggregateAnd And(ParameterName parameterName, TypeName typeName)
         {
-            Statement.Append((ICreateAggregateAnd input) => input.And(parameterName, typeName), parameterName, typeName);
             Statement.Parameters.Add(new CreateAggregateParameterBuilder(parameterName, typeName.ToSqlString()));
+            Statement.Append((ICreateAggregateAnd input) => input.And(parameterName, typeName), parameterName, typeName);
             return new CreateAggregateAnd(Statement);
         }
 
         public ICreateAggregateAnd And(ParameterName parameterName, Type parameterType)
         {
             ISqlString parameterTypeSql = parameterType.ToSqlString();
+            Statement.Parameters.Add(new CreateAggregateParameterBuilder(parameterName, parameterTypeSql.ToSqlString()));
             Statement.Append(
                 (ICreateAggregateAnd input) => input.And(parameterName, parameterType),
                 parameterName,
                 parameterTypeSql);
-            Statement.Parameters.Add(new CreateAggregateParameterBuilder(parameterName, parameterTypeSql.ToSqlString()));
             return new CreateAggregateAnd(Statement);
         }
     }

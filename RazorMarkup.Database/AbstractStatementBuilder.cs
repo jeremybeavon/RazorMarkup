@@ -31,9 +31,9 @@ namespace RazorMarkup.Database
 
         public abstract void ToSqlString(SqlBuilder sqlBuilder);
 
-        public void Initialize<TResult>(Expression<Func<TResult>> expression)
+        public void Initialize<TResult>(Expression<Func<TResult>> expression, params ISqlString[] parameters)
         {
-            Expression = expression.Body;
+            Expression = ExpressionBuilder.BuildExpression(expression, parameters);
         }
 
         public void Append<TInput, TResult>(Expression<Func<TInput, TResult>> expression, params ISqlString[] parameters)

@@ -9,21 +9,18 @@ namespace RazorMarkup.Database.SqlServer.Create.Aggregate
         {
         }
 
-        public ICreateAggregateExternalName Returns(ParameterName parameterName, TypeName typeName)
+        public ICreateAggregateExternalName Returns(TypeName typeName)
         {
-            Statement.Append((ICreateAggregateReturns input) => input.Returns(parameterName, typeName), parameterName, typeName);
-            Statement.Parameters.Add(new CreateAggregateParameterBuilder(parameterName, typeName.ToSqlString()));
+            Statement.ReturnType = typeName.ToSqlString();
+            Statement.Append((ICreateAggregateReturns input) => input.Returns(typeName), typeName);
             return new CreateAggregateExternalName(Statement);
         }
 
-        public ICreateAggregateExternalName Returns(ParameterName parameterName, Type parameterType)
+        public ICreateAggregateExternalName Returns(Type parameterType)
         {
             ISqlString parameterTypeSql = parameterType.ToSqlString();
-            Statement.Append(
-                (ICreateAggregateReturns input) => input.Returns(parameterName, parameterType),
-                parameterName,
-                parameterTypeSql);
-            Statement.Parameters.Add(new CreateAggregateParameterBuilder(parameterName, parameterTypeSql.ToSqlString()));
+            Statement.ReturnType = parameterTypeSql.ToSqlString();
+            Statement.Append((ICreateAggregateReturns input) => input.Returns(parameterType), parameterTypeSql);
             return new CreateAggregateExternalName(Statement);
         }
     }

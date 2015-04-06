@@ -12,16 +12,14 @@ namespace RazorMarkup.Database.SqlServer.Parser
     {
         public override void ExplicitVisit(CreateAggregateStatement node)
         {
-            ICreateAggregateAnd and = Sql.Create().Aggregate(new AggregateName(node.Name.BaseIdentifier.Value))
-                .WithParameter(new ParameterName(node.Parameters[0].VariableName.Value), new TypeName(null));
+            ICreateAggregateAnd and = Sql.Create().Aggregate(node.Name.ToAggregateName())
+                .WithParameter(new ParameterName(node.Parameters[0].VariableName.Value), node.Parameters[0].DataType.ToTypeName());
             foreach (ProcedureParameter parameter in node.Parameters.Skip(1))
             {
-                and = and.And(new ParameterName(parameter.VariableName.Value), new TypeName(null));
+                and = and.And(new ParameterName(parameter.VariableName.Value), parameter.DataType.ToTypeName());
             }
 
-            ICreateAggregateExternalName name = and.Returns(
-                new ParameterName(node.ReturnType.Name.BaseIdentifier.Value),
-                new TypeName(null));
+            ICreateAggregateExternalName name = and.Returns(node.ReturnType.ToTypeName());
             AssemblyName assemblyName = new AssemblyName(node.AssemblyName.Name.Value);
             Result = node.AssemblyName.ClassName == null ?
                 name.ExternalName(assemblyName) :
