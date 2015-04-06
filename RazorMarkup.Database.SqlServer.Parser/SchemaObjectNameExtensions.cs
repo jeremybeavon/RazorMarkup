@@ -53,5 +53,10 @@ namespace RazorMarkup.Database.SqlServer.Parser
         {
             return new TypeName(name.BaseIdentifier.Value);
         }
+
+        public static ViewName ToViewName(this SchemaObjectName name)
+        {
+            return new ViewName(name.BaseIdentifier.Value);
+        }
     }
 }

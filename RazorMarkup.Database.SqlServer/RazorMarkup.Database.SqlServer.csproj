@@ -49,6 +49,10 @@
     <Compile Include="Create\Aggregate\CreateAggregateStatement.cs" />
     <Compile Include="Create\Aggregate\CreateAggregateStatementBuilder.cs" />
     <Compile Include="Create\CreateStatements.cs" />
+    <Compile Include="Drop\DropTableStatement.cs" />
+    <Compile Include="Drop\DropViewStatement.cs" />
+    <Compile Include="Drop\IDropTableStatement.cs" />
+    <Compile Include="Drop\IDropViewStatement.cs" />
     <Compile Include="Drop\Index\DropIndexAnd.cs" />
     <Compile Include="Drop\Index\DropIndexStatement.cs" />
     <Compile Include="Drop\Index\DropIndexStatementBuilder.cs" />

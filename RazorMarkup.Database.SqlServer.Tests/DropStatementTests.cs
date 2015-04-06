@@ -321,6 +321,13 @@ namespace RazorMarkup.Database.SqlServer.Tests
         }
 
         [TestMethod]
+        public void Test_DropTable_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().Table(new TableName("tableName")).And(new TableName("tableName2")).ToSqlStringViaRazorPage().Should().Be(
+                "DROP TABLE tableName, tableName2");
+        }
+
+        [TestMethod]
         public void Test_DropType_GeneratesCorrectTextFromRazorPage()
         {
             Sql.Drop().Type(new TypeName("typeName")).ToSqlStringViaRazorPage().Should().Be("DROP TYPE typeName");
@@ -330,6 +337,13 @@ namespace RazorMarkup.Database.SqlServer.Tests
         public void Test_DropUser_GeneratesCorrectTextFromRazorPage()
         {
             Sql.Drop().User(new UserName("userName")).ToSqlStringViaRazorPage().Should().Be("DROP USER userName");
+        }
+
+        [TestMethod]
+        public void Test_DropView_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().View(new ViewName("viewName")).And(new ViewName("viewName2")).ToSqlStringViaRazorPage().Should().Be(
+                "DROP VIEW viewName, viewName2");
         }
 
         [TestMethod]

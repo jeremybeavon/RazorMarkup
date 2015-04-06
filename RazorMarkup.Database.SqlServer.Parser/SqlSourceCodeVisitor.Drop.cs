@@ -276,9 +276,31 @@ namespace RazorMarkup.Database.SqlServer.Parser
             Result = Sql.Drop().Synonym(node.Objects[0].ToSynonymName());
         }
 
+        public override void ExplicitVisit(DropTableStatement node)
+        {
+            IDropTableStatement statement = Sql.Drop().Table(node.Objects[0].ToTableName());
+            foreach (SchemaObjectName name in node.Objects.Skip(1))
+            {
+                statement = statement.And(name.ToTableName());
+            }
+
+            Result = statement;
+        }
+
         public override void ExplicitVisit(DropTypeStatement node)
         {
             Result = Sql.Drop().Type(node.Name.ToTypeName());
+        }
+
+        public override void ExplicitVisit(DropViewStatement node)
+        {
+            IDropViewStatement statement = Sql.Drop().View(node.Objects[0].ToViewName());
+            foreach (SchemaObjectName name in node.Objects.Skip(1))
+            {
+                statement = statement.And(name.ToViewName());
+            }
+
+            Result = statement;
         }
 
         public override void ExplicitVisit(DropUserStatement node)

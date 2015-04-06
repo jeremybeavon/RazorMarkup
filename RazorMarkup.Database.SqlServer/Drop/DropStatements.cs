@@ -3,7 +3,7 @@ using RazorMarkup.Database.SqlServer.Drop.Index;
 
 namespace RazorMarkup.Database.SqlServer.Drop
 {
-    // Do later: Index, Broker Priority, Sequence, Signature, Table, Trigger, View, Xml Schema Collection
+    // Do later: Broker Priority, Sequence, Signature, Trigger, Xml Schema Collection
     internal sealed class DropStatements : IDropStatements
     {
         public ISqlString Aggregate(AggregateName aggregateName)
@@ -341,6 +341,11 @@ namespace RazorMarkup.Database.SqlServer.Drop
             };
         }
 
+        public IDropTableStatement Table(TableName tableName)
+        {
+            return new DropTableStatement(tableName);
+        }
+
         public ISqlString Type(TypeName typeName)
         {
             return new SqlString(string.Format("DROP TYPE {0}", typeName.ToSqlString()))
@@ -357,6 +362,11 @@ namespace RazorMarkup.Database.SqlServer.Drop
                 CreateFunc = () => Sql.Drop().User(userName),
                 Parameters = { userName }
             };
+        }
+
+        public IDropViewStatement View(ViewName viewName)
+        {
+            return new DropViewStatement(viewName);
         }
 
         public ISqlString WorkloadGroup(WorkloadGroupName workloadGroupName)

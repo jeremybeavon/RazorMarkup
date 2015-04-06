@@ -90,9 +90,13 @@ namespace RazorMarkup.Database.SqlServer.Drop
 
         ISqlString Synonym(SynonymName synonymName);
 
+        IDropTableStatement Table(TableName tableName);
+
         ISqlString Type(TypeName typeName);
 
         ISqlString User(UserName userName);
+
+        IDropViewStatement View(ViewName viewName);
 
         ISqlString WorkloadGroup(WorkloadGroupName workloadGroupName);
     }
