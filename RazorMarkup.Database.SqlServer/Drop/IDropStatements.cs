@@ -1,4 +1,6 @@
-﻿namespace RazorMarkup.Database.SqlServer.Drop
+﻿using RazorMarkup.Database.SqlServer.Drop.Index;
+
+namespace RazorMarkup.Database.SqlServer.Drop
 {
     public interface IDropStatements
     {
@@ -43,6 +45,8 @@
         ISqlString FullTextStopList(FullTextStopListName fullTextStopListName);
 
         IDropFunctionStatement Function(FunctionName functionName);
+
+        IDropIndexStatement Index(IndexName indexName);
 
         ISqlString Login(LoginName loginName);
 

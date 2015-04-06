@@ -4,7 +4,6 @@ using System.Linq.Expressions;
 namespace RazorMarkup.Database
 {
     public abstract class AbstractStatementBuilder : ISqlString
-
     {
         protected AbstractStatementBuilder()
         {

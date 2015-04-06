@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Expressions;
 
-namespace RazorMarkup.Database.SqlServer.Query.Builders
+namespace RazorMarkup.Database.SqlServer
 {
     internal sealed class ExpressionBuilder<TResult> : AbstractStatementBuilder
     {

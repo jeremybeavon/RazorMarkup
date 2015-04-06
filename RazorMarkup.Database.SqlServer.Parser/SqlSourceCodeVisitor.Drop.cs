@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Drop;
+using RazorMarkup.Database.SqlServer.Drop.Index;
 
 namespace RazorMarkup.Database.SqlServer.Parser
 {
@@ -86,7 +88,24 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(DropEventNotificationStatement node)
         {
-            //Result = Sql.Drop().EventNotification(new EventNotificationName(node.Name.Value));
+            IDropEventNotificationStatement statement = Sql.Drop().EventNotification(new EventNotificationName(node.Notifications[0].Value));
+            foreach (Identifier name in node.Notifications.Skip(1))
+            {
+                statement = statement.And(new EventNotificationName(name.Value));
+            }
+
+            switch (node.Scope.Target)
+            {
+                case EventNotificationTarget.Database:
+                    Result = statement.OnDatabase();
+                    break;
+                case EventNotificationTarget.Queue:
+                    Result = statement.OnQueue(node.Scope.QueueName.ToQueueName());
+                    break;
+                case EventNotificationTarget.Server:
+                    Result = statement.OnServer();
+                    break;
+            }
         }
 
         public override void ExplicitVisit(DropEventSessionStatement node)
@@ -123,6 +142,24 @@ namespace RazorMarkup.Database.SqlServer.Parser
             }
 
             Result = statement;
+        }
+
+        public override void ExplicitVisit(DropIndexStatement node)
+        {
+            /*if (node.DropIndexClauses.OfType<BackwardsCompatibleDropIndexClause>().Any())
+            {
+                throw new NotSupportedException("DROP INDEX does not support backwards compatible indexes");
+            }
+
+            DropIndexClause firstIndex = (DropIndexClause)node.DropIndexClauses[0];
+            IDropIndexStatement statement = Sql.Drop().Index(new IndexName(firstIndex.Index.Value));
+            IDropIndexWith with = statement.On(firstIndex.Object.ToTableName());
+            IDropIndexAnd and = with;
+            foreach (DropIndexClause index in node.DropIndexClauses.Skip(1).Cast<DropIndexClause>())
+            {
+                with = and.And(new IndexName(index.Index.Value)).On(index.Object.ToTableName());
+                and = with;
+            }*/
         }
 
         public override void ExplicitVisit(DropLoginStatement node)
@@ -218,12 +255,20 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(DropStatisticsStatement node)
         {
-            //Result = Sql.Drop().Certificate(new CertificateName(node.Name.Value));
+            StatisticsName initialStatisticsName = new StatisticsName(node.Objects[0].ChildIdentifier.Value);
+            IDropStatisticsStatement statement = Sql.Drop().Statistics(node.Objects[0].ToTableName(), initialStatisticsName);
+            foreach (ChildObjectName name in node.Objects.Skip(1))
+            {
+                statement.And(name.ToTableName(), new StatisticsName(name.ChildIdentifier.Value));
+            }
+
+            Result = statement;
         }
 
         public override void ExplicitVisit(DropSymmetricKeyStatement node)
         {
-            Result = Sql.Drop().SymmetricKey(new SymmetricKeyName(node.Name.Value));
+            IDropKeyStatement statement = Sql.Drop().SymmetricKey(new SymmetricKeyName(node.Name.Value));
+            Result = node.RemoveProviderKey ? statement.RemoveProviderKey() : statement;
         }
 
         public override void ExplicitVisit(DropSynonymStatement node)

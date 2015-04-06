@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace RazorMarkup.Database.SqlServer.Tests
 {
-    // Do later: EventNotification, Statistics
     [TestClass]
     public sealed class DropStatementTests
     {
@@ -97,6 +96,37 @@ namespace RazorMarkup.Database.SqlServer.Tests
         {
             Sql.Drop().Endpoint(new EndpointName("endpointName")).ToSqlStringViaRazorPage().Should().Be(
                 "DROP ENDPOINT endpointName");
+        }
+
+        [TestMethod]
+        public void Test_DropEventNotificationOnDatabase_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop()
+                .EventNotification(new EventNotificationName("notificationName"))
+                .And(new EventNotificationName("notificationName2"))
+                .OnDatabase()
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP EVENT NOTIFICATION notificationName, notificationName2 ON DATABASE");
+        }
+
+        [TestMethod]
+        public void Test_DropEventNotificationOnQueue_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop()
+                .EventNotification(new EventNotificationName("notificationName"))
+                .OnQueue(new QueueName("queueName"))
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP EVENT NOTIFICATION notificationName ON QUEUE queueName");
+        }
+
+        [TestMethod]
+        public void Test_DropEventNotificationOnServer_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop()
+                .EventNotification(new EventNotificationName("notificationName"))
+                .OnServer()
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP EVENT NOTIFICATION notificationName ON SERVER");
         }
 
         [TestMethod]
@@ -257,7 +287,32 @@ namespace RazorMarkup.Database.SqlServer.Tests
             Sql.Drop().Service(new ServiceName("serviceName")).ToSqlStringViaRazorPage().Should().Be("DROP SERVICE serviceName");
         }
 
-        //Symmetric key
+        [TestMethod]
+        public void Test_DropStatisticsForTables_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop()
+                .Statistics(new TableName("tableName"), new StatisticsName("statisticsName"))
+                .And(new TableName("tableName2"), new StatisticsName("statisticsName2"))
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP STATISTICS tableName.statisticsName, tableName2.statisticsName2");
+        }
+
+        [TestMethod]
+        public void Test_DropStatisticsForViews_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop()
+                .Statistics(new ViewName("viewName"), new StatisticsName("statisticsName"))
+                .And(new ViewName("viewName2"), new StatisticsName("statisticsName2"))
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP STATISTICS viewName.statisticsName, viewName2.statisticsName2");
+        }
+
+        [TestMethod]
+        public void Test_DropSymmetricKey_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().SymmetricKey(new SymmetricKeyName("keyName")).RemoveProviderKey().ToSqlStringViaRazorPage().Should().Be(
+                "DROP SYMMETRIC KEY keyName REMOVE PROVIDER KEY");
+        }
 
         [TestMethod]
         public void Test_DropSynonym_GeneratesCorrectTextFromRazorPage()

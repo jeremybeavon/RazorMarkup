@@ -1,4 +1,5 @@
 ﻿using System;
+using RazorMarkup.Database.SqlServer.Drop.Index;
 
 namespace RazorMarkup.Database.SqlServer.Drop
 {
@@ -164,6 +165,11 @@ namespace RazorMarkup.Database.SqlServer.Drop
         public IDropFunctionStatement Function(FunctionName functionName)
         {
             return new DropFunctionStatement(functionName);
+        }
+
+        public IDropIndexStatement Index(IndexName indexName)
+        {
+            return new DropIndexStatement(indexName);
         }
 
         public ISqlString Login(LoginName loginName)
