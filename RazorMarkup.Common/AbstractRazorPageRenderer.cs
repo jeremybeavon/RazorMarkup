@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 using Westwind.RazorHosting;
 
 namespace RazorMarkup.Common
@@ -22,8 +23,8 @@ namespace RazorMarkup.Common
             {
                 throw new CompilationException(razorEngine.ErrorMessage);
             }
-
-            return text;
+           
+            return HttpUtility.HtmlDecode(text);
         }
     }
 }

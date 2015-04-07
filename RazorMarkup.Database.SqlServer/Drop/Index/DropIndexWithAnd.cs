@@ -15,6 +15,7 @@ namespace RazorMarkup.Database.SqlServer.Drop.Index
 
         public IDropIndexWithOptions And()
         {
+            Statement.Append((IDropIndexWithAnd input) => input.And());
             return new DropIndexWithOptions(Statement);
         }
     }

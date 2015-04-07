@@ -180,6 +180,41 @@ namespace RazorMarkup.Database.SqlServer.Tests
         }
 
         [TestMethod]
+        public void Test_DropIndex_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().Index(new IndexName("indexName")).On(new ViewName("viewName")).ToSqlStringViaRazorPage().Should().Be(
+                "DROP INDEX indexName ON viewName");
+        }
+
+        [TestMethod]
+        public void Test_DropIndexWithOptions_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql =
+                "DROP INDEX indexName ON tableName " +
+                "WITH (MAXDOP = 10, ONLINE = OFF, MOVE TO fileGroupName, FILESTREAM_ON fileGroupName2), \r\n" + 
+                "    indexName2 ON tableName2, \r\n" +
+                "    indexName3 ON viewName " +
+                "WITH (ONLINE = ON, MOVE TO schemeName(columnName), FILESTREAM_ON schemeName2), \r\n" +
+                "    indexName4 ON tableName3 " +
+                "WITH (MOVE TO \"default\", FILESTREAM_ON \"default\")";
+            Sql.Drop().Index(new IndexName("indexName")).On(new TableName("tableName"))
+                .With().MaxDegreeOfParallelism(() => 10).And()
+                .Online().Off().And()
+                .MoveTo(new FileGroupName("fileGroupName")).And()
+                .FilestreamOn(new FileGroupName("fileGroupName2"))
+                .And(new IndexName("indexName2")).On(new TableName("tableName2"))
+                .And(new IndexName("indexName3")).On(new ViewName("viewName"))
+                .With().Online().On().And()
+                .MoveTo(new PartitionSchemeName("schemeName"), new ColumnName("columnName")).And()
+                .FilestreamOn(new PartitionSchemeName("schemeName2"))
+                .And(new IndexName("indexName4")).On(new TableName("tableName3"))
+                .With().MoveToDefault().And()
+                .FilestreamOnDefault()
+                .ToSqlStringViaRazorPage()
+                .Should().Be(expectedSql);
+        }
+
+        [TestMethod]
         public void Test_DropLogin_GeneratesCorrectTextFromRazorPage()
         {
             Sql.Drop().Login(new LoginName("loginName")).ToSqlStringViaRazorPage().Should().Be(

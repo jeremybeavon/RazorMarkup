@@ -52,6 +52,11 @@ namespace RazorMarkup.Database.SqlServer.Parser
             Result = Expression.Call(FunctionRegistrationManager.Instance.GetMethod(node.Name));
         }
 
+        public override void ExplicitVisit(IntegerLiteral node)
+        {
+            Result = Expression.Constant(int.Parse(node.Value));
+        }
+
         public override void ExplicitVisit(SqlStringLiteral node)
         {
             Result = Expression.Constant(node.Value);

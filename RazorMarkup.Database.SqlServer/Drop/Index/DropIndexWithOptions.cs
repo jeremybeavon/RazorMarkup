@@ -31,7 +31,7 @@ namespace RazorMarkup.Database.SqlServer.Drop.Index
 
         public IDropIndexWithAnd MoveTo(PartitionSchemeName partitionSchemeName, ColumnName columnName)
         {
-            Statement.CurrentIndex.MoveTo = string.Format("{0} ({1})", partitionSchemeName.ToSqlString(), columnName.ToSqlString());
+            Statement.CurrentIndex.MoveTo = string.Format("{0}({1})", partitionSchemeName.ToSqlString(), columnName.ToSqlString());
             Statement.Append((IDropIndexWithOptions input) => input.MoveTo(null, null), partitionSchemeName, columnName);
             return new DropIndexWithAnd(Statement);
         }

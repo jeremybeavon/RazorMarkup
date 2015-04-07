@@ -26,11 +26,19 @@ namespace RazorMarkup.Common
 
         protected override Expression VisitConstant(ConstantExpression node)
         {
-            if (node.Type == typeof(string))
+            if (node.Value == null)
+            {
+                textBuilder.Append("null");
+            }
+            else if (node.Type == typeof(string))
             {
                 textBuilder.Append("\"");
                 textBuilder.Append(node.Value.ToString());
                 textBuilder.Append("\"");
+            }
+            else
+            {
+                textBuilder.Append(node.Value.ToString());
             }
 
             return node;

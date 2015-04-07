@@ -19,6 +19,11 @@ namespace RazorMarkup.Database.SqlServer.Drop.Index
 
         public string TableOrViewName { get; set; }
 
+        public bool HasOptions
+        {
+            get { return MaxDegreeOfParallelism != null || Online != null || MoveTo != null || FilestreamOn != null; }
+        }
+
         public Expression<Func<Integer>> MaxDegreeOfParallelism { get; set; }
 
         public string Online { get; set; }
@@ -32,14 +37,14 @@ namespace RazorMarkup.Database.SqlServer.Drop.Index
             sqlBuilder.Append(IndexName.ToSqlString());
             sqlBuilder.Append(" ON ");
             sqlBuilder.Append(TableOrViewName);
-            if (MaxDegreeOfParallelism != null || Online != null || MoveTo != null || FilestreamOn != null)
+            if (HasOptions)
             {
                 sqlBuilder.Append(" WITH (");
                 bool includeComma = false;
                 if (MaxDegreeOfParallelism != null)
                 {
-                    sqlBuilder.Append("MAX_DOP = ");
-                    new ExpressionBuilder(sqlBuilder).Visit(MaxDegreeOfParallelism);
+                    sqlBuilder.Append("MAXDOP = ");
+                    MaxDegreeOfParallelism.ToExpressionBuilder().ToSqlString(sqlBuilder);
                     includeComma = true;
                 }
 
@@ -51,15 +56,17 @@ namespace RazorMarkup.Database.SqlServer.Drop.Index
 
                 if (MoveTo != null)
                 {
-                    sqlBuilder.Append(string.Format("{0}MOVE TO = {1}", includeComma ? ", " : string.Empty, MoveTo));
+                    sqlBuilder.Append(string.Format("{0}MOVE TO {1}", includeComma ? ", " : string.Empty, MoveTo));
                     includeComma = true;
                 }
 
                 if (FilestreamOn != null)
                 {
-                    sqlBuilder.Append(string.Format("{0}FILESTREAM_ON = {1}", includeComma ? ", " : string.Empty, FilestreamOn));
+                    sqlBuilder.Append(string.Format("{0}FILESTREAM_ON {1}", includeComma ? ", " : string.Empty, FilestreamOn));
                     includeComma = true;
                 }
+
+                sqlBuilder.Append(")");
             }
         }
     }

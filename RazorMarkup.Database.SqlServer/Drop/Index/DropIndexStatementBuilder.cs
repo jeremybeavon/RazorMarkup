@@ -24,8 +24,22 @@ namespace RazorMarkup.Database.SqlServer.Drop.Index
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
+            bool hasOptions = Indexes.Any(index => index.HasOptions);
             sqlBuilder.Append("DROP INDEX ");
             Indexes[0].ToSqlString(sqlBuilder);
+            using (sqlBuilder.IncrementIndent())
+            {
+                foreach (DropSingleIndexStatementBuilder statementBuilder in Indexes.Skip(1))
+                {
+                    sqlBuilder.Append(", ");
+                    if (hasOptions)
+                    {
+                        sqlBuilder.AppendIndent();
+                    }
+
+                    statementBuilder.ToSqlString(sqlBuilder);
+                }
+            }
         }
     }
 }
