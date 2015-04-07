@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="AbstractSqlVisitor.cs" />
     <Compile Include="DataTypeReferenceExtensions.cs" />
+    <Compile Include="DropIndexOptionVisitor.cs" />
+    <Compile Include="DropIndexVisitor.cs" />
     <Compile Include="ObsoleteException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\QueryOperandExtensions.cs" />

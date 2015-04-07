@@ -43,6 +43,13 @@ namespace RazorMarkup.Database.SqlServer.Tests
         }
 
         [TestMethod]
+        public void Test_DropBrokerPriority_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().BrokerPriority(new ConversationPriorityName("priorityName")).ToSqlStringViaRazorPage().Should().Be(
+                "DROP BROKER PRIORITY priorityName");
+        }
+
+        [TestMethod]
         public void Test_DropCertificate_GeneratesCorrectTextFromRazorPage()
         {
             Sql.Drop().Certificate(new CertificateName("certificateName")).ToSqlStringViaRazorPage().Should().Be(
@@ -261,6 +268,15 @@ namespace RazorMarkup.Database.SqlServer.Tests
         }
 
         [TestMethod]
+        public void Test_DropSequence_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().Sequence(new SequenceName("sequenceName"))
+                .And(new SequenceName("sequenceName2"))
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP SEQUENCE sequenceName, sequenceName2");
+        }
+
+        [TestMethod]
         public void Test_DropServerAudit_GeneratesCorrectTextFromRazorPage()
         {
             Sql.Drop().ServerAudit(new ServerAuditName("auditName")).ToSqlStringViaRazorPage().Should().Be(
@@ -285,6 +301,46 @@ namespace RazorMarkup.Database.SqlServer.Tests
         public void Test_DropService_GeneratesCorrectTextFromRazorPage()
         {
             Sql.Drop().Service(new ServiceName("serviceName")).ToSqlStringViaRazorPage().Should().Be("DROP SERVICE serviceName");
+        }
+
+        [TestMethod]
+        public void Test_DropSignatureForProcedure_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().Signature(new ProcedureName("procedureName")).By()
+                .AysmmetricKey(new AsymmetricKeyName("keyName")).And()
+                .Certificate(new CertificateName("certificateName"))
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP SIGNATURE FROM procedureName BY ASYMMETRIC KEY keyName, CERTIFICATE certificateName");
+        }
+
+        [TestMethod]
+        public void Test_DropSignatureForFunction_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().Signature(new FunctionName("functionName")).By()
+                .Certificate(new CertificateName("certificateName")).And()
+                .AysmmetricKey(new AsymmetricKeyName("keyName"))
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP SIGNATURE FROM functionName BY CERTIFICATE certificateName, ASYMMETRIC KEY keyName");
+        }
+
+        [TestMethod]
+        public void Test_DropSignatureForAssembly_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().Signature(new AssemblyName("assemblyName")).By()
+                .Certificate(new CertificateName("certificateName")).And()
+                .Certificate(new CertificateName("certificateName2"))
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP SIGNATURE FROM assemblyName BY CERTIFICATE certificateName, CERTIFICATE certificateName2");
+        }
+
+        [TestMethod]
+        public void Test_DropSignatureForTrigger_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().Signature(new TriggerName("triggerName")).By()
+                .AysmmetricKey(new AsymmetricKeyName("keyName")).And()
+                .AysmmetricKey(new AsymmetricKeyName("keyName2"))
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP SIGNATURE FROM triggerName BY ASYMMETRIC KEY keyName, ASYMMETRIC KEY keyName2");
         }
 
         [TestMethod]
@@ -328,6 +384,35 @@ namespace RazorMarkup.Database.SqlServer.Tests
         }
 
         [TestMethod]
+        public void Test_DropTrigger_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().Trigger(new TriggerName("triggerName"))
+                .And(new TriggerName("triggerName2"))
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP TRIGGER triggerName, triggerName2");
+        }
+
+        [TestMethod]
+        public void Test_DropTriggerOnDatabase_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().Trigger(new TriggerName("triggerName"))
+                .And(new TriggerName("triggerName2"))
+                .OnDatabase()
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP TRIGGER triggerName, triggerName2 ON DATABASE");
+        }
+
+        [TestMethod]
+        public void Test_DropTriggerOnAllServer_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().Trigger(new TriggerName("triggerName"))
+                .And(new TriggerName("triggerName2"))
+                .OnAllServer()
+                .ToSqlStringViaRazorPage()
+                .Should().Be("DROP TRIGGER triggerName, triggerName2 ON ALL SERVER");
+        }
+
+        [TestMethod]
         public void Test_DropType_GeneratesCorrectTextFromRazorPage()
         {
             Sql.Drop().Type(new TypeName("typeName")).ToSqlStringViaRazorPage().Should().Be("DROP TYPE typeName");
@@ -351,6 +436,13 @@ namespace RazorMarkup.Database.SqlServer.Tests
         {
             Sql.Drop().WorkloadGroup(new WorkloadGroupName("groupName")).ToSqlStringViaRazorPage().Should().Be(
                 "DROP WORKLOAD GROUP groupName");
+        }
+
+        [TestMethod]
+        public void Test_DropXmlSchemaCollection_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Drop().XmlSchemaCollection(new XmlSchemaCollectionName("collectionName")).ToSqlStringViaRazorPage().Should().Be(
+                "DROP XML SCHEMA COLLECTION collectionName");
         }
     }
 }

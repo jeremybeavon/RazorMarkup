@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AggregateName.cs" />
     <Compile Include="AggregateFunctions.cs" />
+    <Compile Include="ConversationPriorityName.cs" />
     <Compile Include="Create\Aggregate\CreateAggregateAnd.cs" />
     <Compile Include="Create\Aggregate\CreateAggregateExternalName.cs" />
     <Compile Include="Create\Aggregate\CreateAggregateParameterBuilder.cs" />
@@ -49,9 +50,13 @@
     <Compile Include="Create\Aggregate\CreateAggregateStatement.cs" />
     <Compile Include="Create\Aggregate\CreateAggregateStatementBuilder.cs" />
     <Compile Include="Create\CreateStatements.cs" />
+    <Compile Include="Drop\DropSequenceStatement.cs" />
     <Compile Include="Drop\DropTableStatement.cs" />
+    <Compile Include="Drop\DropTriggerStatement.cs" />
     <Compile Include="Drop\DropViewStatement.cs" />
+    <Compile Include="Drop\IDropSequenceStatement.cs" />
     <Compile Include="Drop\IDropTableStatement.cs" />
+    <Compile Include="Drop\IDropTriggerStatement.cs" />
     <Compile Include="Drop\IDropViewStatement.cs" />
     <Compile Include="Drop\Index\DropIndexAnd.cs" />
     <Compile Include="Drop\Index\DropIndexStatement.cs" />
@@ -67,6 +72,13 @@
     <Compile Include="Drop\Index\IDropIndexWithAnd.cs" />
     <Compile Include="Drop\Index\IDropIndexWithOnline.cs" />
     <Compile Include="Drop\Index\IDropIndexWithOptions.cs" />
+    <Compile Include="Drop\Signature\DropSignatureAnd.cs" />
+    <Compile Include="Drop\Signature\DropSignatureCryptoType.cs" />
+    <Compile Include="Drop\Signature\DropSignatureStatement.cs" />
+    <Compile Include="Drop\Signature\DropSignatureStatementBuilder.cs" />
+    <Compile Include="Drop\Signature\IDropSignatureAnd.cs" />
+    <Compile Include="Drop\Signature\IDropSignatureCryptoType.cs" />
+    <Compile Include="Drop\Signature\IDropSignatureStatement.cs" />
     <Compile Include="Exists.cs" />
     <Compile Include="ExpressionExtensions.cs" />
     <Compile Include="Expressions\FunctionRegistrationManager.cs" />
@@ -78,6 +90,7 @@
     <Compile Include="NotExists.cs" />
     <Compile Include="Expressions\Functions\IEndExists.cs" />
     <Compile Include="Query\CommonTableExpressions\IWithClause.cs" />
+    <Compile Include="SequenceName.cs" />
     <Compile Include="ServerName.cs" />
     <Compile Include="Some.cs" />
     <Compile Include="Any.cs" />
@@ -531,6 +544,7 @@
     <Compile Include="DatabaseName.cs" />
     <Compile Include="SchemaName.cs" />
     <Compile Include="TriggerFunctions.cs" />
+    <Compile Include="TriggerName.cs" />
     <Compile Include="TypeExtensions.cs" />
     <Compile Include="TypeName.cs" />
     <Compile Include="Types\Aggregates\AbstractSqlAggregate.cs" />
@@ -697,6 +711,7 @@
     <Compile Include="ViewName.cs" />
     <Compile Include="TableName.cs" />
     <Compile Include="WorkloadGroupName.cs" />
+    <Compile Include="XmlSchemaCollectionName.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RazorMarkup.Common\RazorMarkup.Common.csproj">

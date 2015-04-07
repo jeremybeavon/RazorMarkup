@@ -1,9 +1,9 @@
 ﻿using System;
 using RazorMarkup.Database.SqlServer.Drop.Index;
+using RazorMarkup.Database.SqlServer.Drop.Signature;
 
 namespace RazorMarkup.Database.SqlServer.Drop
 {
-    // Do later: Broker Priority, Sequence, Signature, Trigger, Xml Schema Collection
     internal sealed class DropStatements : IDropStatements
     {
         public ISqlString Aggregate(AggregateName aggregateName)
@@ -40,6 +40,15 @@ namespace RazorMarkup.Database.SqlServer.Drop
             {
                 CreateFunc = () => Sql.Drop().AvailabilityGroup(availabilityGroupName),
                 Parameters = { availabilityGroupName }
+            };
+        }
+
+        public ISqlString BrokerPriority(ConversationPriorityName conversationPriorityName)
+        {
+            return new SqlString(string.Format("DROP BROKER PRIORITY {0}", conversationPriorityName))
+            {
+                CreateFunc = () => Sql.Drop().BrokerPriority(conversationPriorityName),
+                Parameters = { conversationPriorityName }
             };
         }
 
@@ -281,6 +290,11 @@ namespace RazorMarkup.Database.SqlServer.Drop
             };
         }
 
+        public IDropSequenceStatement Sequence(SequenceName sequenceName)
+        {
+            return new DropSequenceStatement(sequenceName);
+        }
+
         public ISqlString ServerAudit(ServerAuditName serverAuditName)
         {
             return new SqlString(string.Format("DROP SERVER AUDIT {0}", serverAuditName.ToSqlString()))
@@ -317,6 +331,26 @@ namespace RazorMarkup.Database.SqlServer.Drop
             };
         }
 
+        public IDropSignatureStatement Signature(ProcedureName procedureName)
+        {
+            return new DropSignatureStatement(procedureName);
+        }
+
+        public IDropSignatureStatement Signature(FunctionName functionName)
+        {
+            return new DropSignatureStatement(functionName);
+        }
+
+        public IDropSignatureStatement Signature(AssemblyName assemblyName)
+        {
+            return new DropSignatureStatement(assemblyName);
+        }
+
+        public IDropSignatureStatement Signature(TriggerName triggerName)
+        {
+            return new DropSignatureStatement(triggerName);
+        }
+
         public IDropStatisticsStatement Statistics(ViewName viewName, StatisticsName statisticsName)
         {
             return new DropStatisticsStatement(viewName, statisticsName);
@@ -344,6 +378,11 @@ namespace RazorMarkup.Database.SqlServer.Drop
         public IDropTableStatement Table(TableName tableName)
         {
             return new DropTableStatement(tableName);
+        }
+
+        public IDropTriggerStatement Trigger(TriggerName triggerName)
+        {
+            return new DropTriggerStatement(triggerName);
         }
 
         public ISqlString Type(TypeName typeName)
@@ -375,6 +414,15 @@ namespace RazorMarkup.Database.SqlServer.Drop
             {
                 CreateFunc = () => Sql.Drop().WorkloadGroup(workloadGroupName),
                 Parameters = { workloadGroupName }
+            };
+        }
+
+        public ISqlString XmlSchemaCollection(XmlSchemaCollectionName xmlSchemaCollectionName)
+        {
+            return new SqlString(string.Format("DROP XML SCHEMA COLLECTION {0}", xmlSchemaCollectionName.ToSqlString()))
+            {
+                CreateFunc = () => Sql.Drop().XmlSchemaCollection(xmlSchemaCollectionName),
+                Parameters = { xmlSchemaCollectionName }
             };
         }
     }

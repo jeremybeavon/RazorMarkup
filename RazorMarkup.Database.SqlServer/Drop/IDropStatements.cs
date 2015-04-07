@@ -1,4 +1,5 @@
 ﻿using RazorMarkup.Database.SqlServer.Drop.Index;
+using RazorMarkup.Database.SqlServer.Drop.Signature;
 
 namespace RazorMarkup.Database.SqlServer.Drop
 {
@@ -13,6 +14,8 @@ namespace RazorMarkup.Database.SqlServer.Drop
         IDropKeyStatement AsymmetricKey(AsymmetricKeyName asymmetricKeyName);
 
         ISqlString AvailabilityGroup(AvailabilityGroupName availabilityGroupName);
+
+        ISqlString BrokerPriority(ConversationPriorityName conversationPriorityName);
 
         ISqlString Certificate(CertificateName certificateName);
 
@@ -74,6 +77,8 @@ namespace RazorMarkup.Database.SqlServer.Drop
 
         ISqlString SearchPropertyList(SearchPropertyListName searchPropertyListName);
 
+        IDropSequenceStatement Sequence(SequenceName sequenceName);
+
         ISqlString ServerAudit(ServerAuditName serverAuditName);
 
         ISqlString ServerAuditSpecification(ServerAuditSpecificationName serverAuditSpecificationName);
@@ -81,6 +86,14 @@ namespace RazorMarkup.Database.SqlServer.Drop
         ISqlString ServerRole(ServerRoleName serverRoleName);
 
         ISqlString Service(ServiceName serviceName);
+
+        IDropSignatureStatement Signature(ProcedureName procedureName);
+
+        IDropSignatureStatement Signature(FunctionName functionName);
+
+        IDropSignatureStatement Signature(AssemblyName assemblyName);
+
+        IDropSignatureStatement Signature(TriggerName triggerName);
 
         IDropStatisticsStatement Statistics(TableName tableName, StatisticsName statisticsName);
 
@@ -92,6 +105,8 @@ namespace RazorMarkup.Database.SqlServer.Drop
 
         IDropTableStatement Table(TableName tableName);
 
+        IDropTriggerStatement Trigger(TriggerName triggerName);
+
         ISqlString Type(TypeName typeName);
 
         ISqlString User(UserName userName);
@@ -99,5 +114,7 @@ namespace RazorMarkup.Database.SqlServer.Drop
         IDropViewStatement View(ViewName viewName);
 
         ISqlString WorkloadGroup(WorkloadGroupName workloadGroupName);
+
+        ISqlString XmlSchemaCollection(XmlSchemaCollectionName xmlSchemaCollectionName);
     }
 }

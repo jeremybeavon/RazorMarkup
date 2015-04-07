@@ -39,6 +39,11 @@ namespace RazorMarkup.Database.SqlServer.Parser
             return new SchemaName(name.BaseIdentifier.Value);
         }
 
+        public static SequenceName ToSequenceName(this SchemaObjectName name)
+        {
+            return new SequenceName(name.BaseIdentifier.Value);
+        }
+
         public static SynonymName ToSynonymName(this SchemaObjectName name)
         {
             return new SynonymName(name.BaseIdentifier.Value);
@@ -49,6 +54,11 @@ namespace RazorMarkup.Database.SqlServer.Parser
             return new TableName(name.BaseIdentifier.Value);
         }
 
+        public static TriggerName ToTriggerName(this SchemaObjectName name)
+        {
+            return new TriggerName(name.BaseIdentifier.Value);
+        }
+
         public static TypeName ToTypeName(this SchemaObjectName name)
         {
             return new TypeName(name.BaseIdentifier.Value);
@@ -57,6 +67,11 @@ namespace RazorMarkup.Database.SqlServer.Parser
         public static ViewName ToViewName(this SchemaObjectName name)
         {
             return new ViewName(name.BaseIdentifier.Value);
+        }
+
+        public static XmlSchemaCollectionName ToXmlSchemaCollectionName(this SchemaObjectName name)
+        {
+            return new XmlSchemaCollectionName(name.BaseIdentifier.Value);
         }
     }
 }

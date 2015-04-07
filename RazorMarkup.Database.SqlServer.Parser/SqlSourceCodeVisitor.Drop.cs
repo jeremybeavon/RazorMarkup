@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Drop;
 using RazorMarkup.Database.SqlServer.Drop.Index;
+using RazorMarkup.Database.SqlServer.Drop.Signature;
 
 namespace RazorMarkup.Database.SqlServer.Parser
 {
@@ -38,6 +39,11 @@ namespace RazorMarkup.Database.SqlServer.Parser
         public override void ExplicitVisit(DropAvailabilityGroupStatement node)
         {
             Result = Sql.Drop().AvailabilityGroup(new AvailabilityGroupName(node.Name.Value));
+        }
+
+        public override void ExplicitVisit(DropBrokerPriorityStatement node)
+        {
+            Result = Sql.Drop().BrokerPriority(new ConversationPriorityName(node.Name.Value));
         }
 
         public override void ExplicitVisit(DropCertificateStatement node)
@@ -146,20 +152,9 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(DropIndexStatement node)
         {
-            /*if (node.DropIndexClauses.OfType<BackwardsCompatibleDropIndexClause>().Any())
-            {
-                throw new NotSupportedException("DROP INDEX does not support backwards compatible indexes");
-            }
-
-            DropIndexClause firstIndex = (DropIndexClause)node.DropIndexClauses[0];
-            IDropIndexStatement statement = Sql.Drop().Index(new IndexName(firstIndex.Index.Value));
-            IDropIndexWith with = statement.On(firstIndex.Object.ToTableName());
-            IDropIndexAnd and = with;
-            foreach (DropIndexClause index in node.DropIndexClauses.Skip(1).Cast<DropIndexClause>())
-            {
-                with = and.And(new IndexName(index.Index.Value)).On(index.Object.ToTableName());
-                and = with;
-            }*/
+            DropIndexVisitor visitor = new DropIndexVisitor();
+            node.Accept(visitor);
+            Result = visitor.Result;
         }
 
         public override void ExplicitVisit(DropLoginStatement node)
@@ -233,6 +228,17 @@ namespace RazorMarkup.Database.SqlServer.Parser
             Result = Sql.Drop().SearchPropertyList(new SearchPropertyListName(node.Name.Value));
         }
 
+        public override void ExplicitVisit(DropSequenceStatement node)
+        {
+            IDropSequenceStatement statement = Sql.Drop().Sequence(node.Objects[0].ToSequenceName());
+            foreach (SchemaObjectName name in node.Objects.Skip(1))
+            {
+                statement = statement.And(name.ToSequenceName());
+            }
+
+            Result = statement;
+        }
+
         public override void ExplicitVisit(DropServerAuditStatement node)
         {
             Result = Sql.Drop().ServerAudit(new ServerAuditName(node.Name.Value));
@@ -251,6 +257,30 @@ namespace RazorMarkup.Database.SqlServer.Parser
         public override void ExplicitVisit(DropServiceStatement node)
         {
             Result = Sql.Drop().Service(new ServiceName(node.Name.Value));
+        }
+
+        public override void ExplicitVisit(DropSignatureStatement node)
+        {
+            IDropSignatureCryptoType statement = Sql.Drop().Signature(node.Element.ToAssemblyName()).By();
+            IDropSignatureAnd and = null;
+            foreach (CryptoMechanism cryptoMechanism in node.Cryptos)
+            {
+                if (and != null)
+                {
+                    statement = and.And();
+                }
+
+                if (cryptoMechanism.CryptoMechanismType == CryptoMechanismType.Certificate)
+                {
+                    and = statement.Certificate(new CertificateName(cryptoMechanism.Identifier.Value));
+                }
+                else if (cryptoMechanism.CryptoMechanismType == CryptoMechanismType.AsymmetricKey)
+                {
+                    and = statement.AysmmetricKey(new AsymmetricKeyName(cryptoMechanism.Identifier.Value));
+                }
+            }
+
+            Result = and;
         }
 
         public override void ExplicitVisit(DropStatisticsStatement node)
@@ -287,6 +317,28 @@ namespace RazorMarkup.Database.SqlServer.Parser
             Result = statement;
         }
 
+        public override void ExplicitVisit(DropTriggerStatement node)
+        {
+            IDropTriggerStatement statement = Sql.Drop().Trigger(node.Objects[0].ToTriggerName());
+            foreach (SchemaObjectName name in node.Objects.Skip(1))
+            {
+                statement = statement.And(name.ToTriggerName());
+            }
+
+            switch (node.TriggerScope)
+            {
+                case TriggerScope.Normal:
+                    Result = statement;
+                    break;
+                case TriggerScope.Database:
+                    Result = statement.OnDatabase();
+                    break;
+                case TriggerScope.AllServer:
+                    Result = statement.OnAllServer();
+                    break;
+            }
+        }
+
         public override void ExplicitVisit(DropTypeStatement node)
         {
             Result = Sql.Drop().Type(node.Name.ToTypeName());
@@ -311,6 +363,11 @@ namespace RazorMarkup.Database.SqlServer.Parser
         public override void ExplicitVisit(DropWorkloadGroupStatement node)
         {
             Result = Sql.Drop().WorkloadGroup(new WorkloadGroupName(node.Name.Value));
+        }
+
+        public override void ExplicitVisit(DropXmlSchemaCollectionStatement node)
+        {
+            Result = Sql.Drop().XmlSchemaCollection(node.Name.ToXmlSchemaCollectionName());
         }
     }
 }
