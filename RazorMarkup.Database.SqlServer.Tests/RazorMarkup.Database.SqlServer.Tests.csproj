@@ -58,13 +58,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ReturnStatementTests.cs" />
+    <Compile Include="PrintStatementTests.cs" />
+    <Compile Include="LabelStatementTests.cs" />
+    <Compile Include="GotoStatementTests.cs" />
+    <Compile Include="ContinueStatementTests.cs" />
+    <Compile Include="BreakStatementTests.cs" />
     <Compile Include="ConfigurationFunctionsTests.cs" />
     <Compile Include="CreateStatementTests.cs" />
     <Compile Include="DropStatementTests.cs" />
     <Compile Include="FunctionTestHelper.cs" />
     <Compile Include="SetStatementTests.cs" />
     <Compile Include="SqlStringExtensions.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

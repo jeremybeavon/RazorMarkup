@@ -8,19 +8,14 @@ namespace RazorMarkup.Database.SqlServer.Tests
     {
         public const string DummyFileName = "TestPage.cshtml";
 
-        public static string ToSqlStringViaRazorPage(this ISqlString sqlString)
+        public static void ToSqlStringViaRazorPageIs(this ISqlString sqlString, string expectedSql)
         {
             string text = sqlString.ToSqlString();
             ISqlString sqlText = SqlSourceCodeBuilder.ToSqlString(text);
             ISourceCode sourceCode = sqlText.ToSourceCode();
             IRazorPage razorPage = sourceCode.ToRazorPage(DummyFileName);
             string renderedText = razorPage.Render();
-            return renderedText.Trim();
-        }
-
-        public static void Matches(this ISqlString sqlString, string expectedSql)
-        {
-            sqlString.ToSqlStringViaRazorPage().Trim().Should().Be(expectedSql);
+            renderedText.Trim().Should().Be(expectedSql);
         }
     }
 }

@@ -152,9 +152,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(DropIndexStatement node)
         {
-            DropIndexVisitor visitor = new DropIndexVisitor();
-            node.Accept(visitor);
-            Result = visitor.Result;
+            Result = node.AcceptWithResult(new DropIndexVisitor());    
         }
 
         public override void ExplicitVisit(DropLoginStatement node)

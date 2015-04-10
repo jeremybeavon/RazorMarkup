@@ -52,6 +52,7 @@
     <Compile Include="Query\QueryOperandExtensions.cs" />
     <Compile Include="Query\QueryOperandVisitor.cs" />
     <Compile Include="Query\QueryStatementsExtensions.cs" />
+    <Compile Include="Query\SelectStatementVisitor.cs" />
     <Compile Include="Query\Select\SelectClauseExtensions.cs" />
     <Compile Include="Query\Select\SelectClauseVisitor.cs" />
     <Compile Include="Query\Select\SelectClauseWithDistinctExtensions.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="SqlSourceCodeVisitor.cs" />
     <Compile Include="SqlSourceCodeVisitor.Drop.cs" />
     <Compile Include="SqlSourceCodeVisitor.Set.cs" />
+    <Compile Include="TSqlFragmentExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

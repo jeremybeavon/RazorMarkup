@@ -7,7 +7,7 @@ namespace RazorMarkup.Database.SqlServer.Tests
     {
         public static void TestFunction(Expression<Func<object>> expression, string expectedSql)
         {
-            Sql.Query().Select().Column(expression).End().Query().Matches("SELECT " + expectedSql);
+            Sql.Query().Select().Column(expression).End().Query().ToSqlStringViaRazorPageIs("SELECT " + expectedSql);
         }
     }
 }

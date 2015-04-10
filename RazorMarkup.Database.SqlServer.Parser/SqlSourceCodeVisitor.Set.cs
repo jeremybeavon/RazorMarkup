@@ -110,7 +110,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(SetIdentityInsertStatement node)
         {
-            Result = BuildSetStatement(node, Sql.Set().IdentityInsert(GetTableName(node.Table)));
+            Result = BuildSetStatement(node, Sql.Set().IdentityInsert(node.Table.ToTableName()));
         }
 
         public override void ExplicitVisit(SetOffsetsStatement node)

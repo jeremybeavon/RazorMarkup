@@ -8,7 +8,7 @@ using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer
 {
-    public sealed class Sql : ISql
+    public static class Sql
     {
         public static ISqlString Begin()
         {
@@ -82,7 +82,8 @@ namespace RazorMarkup.Database.SqlServer
 
         public static ISqlString Print(Expression<Func<Text>> expression)
         {
-            throw new NotImplementedException();
+            ExpressionBuilder<Text> expressionBuilder = expression.ToExpressionBuilder();
+            return new SqlString("PRINT " + expressionBuilder.ToSqlString(), () => Sql.Print(null), expressionBuilder);
         }
 
         public static IQueryStatements Query()
@@ -92,7 +93,13 @@ namespace RazorMarkup.Database.SqlServer
 
         public static ISqlString Return()
         {
-            return new SqlString("RETURN", () => Return());
+            return new SqlString("RETURN", () => Sql.Return());
+        }
+
+        public static ISqlString Return<TResult>(Expression<Func<TResult>> expression)
+        {
+            ExpressionBuilder<TResult> expressionBuilder = expression.ToExpressionBuilder();
+            return new SqlString("RETURN " + expressionBuilder.ToSqlString(), () => Sql.Return<TResult>(null), expressionBuilder);
         }
 
         public static ISetStatements Set()
@@ -103,86 +110,6 @@ namespace RazorMarkup.Database.SqlServer
         public static ISqlString While(Expression<Func<bool>> expression)
         {
             throw new NotImplementedException();
-        }
-
-        ISqlString ISql.Begin()
-        {
-            return Begin();
-        }
-
-        ISqlString ISql.BeginCatch()
-        {
-            return BeginCatch();
-        }
-
-        ISqlString ISql.BeginTry()
-        {
-            return BeginTry();
-        }
-
-        ISqlString ISql.Break()
-        {
-            return Break();
-        }
-
-        ISqlString ISql.Continue()
-        {
-            return Continue();
-        }
-
-        ISqlString ISql.Else()
-        {
-            return Else();
-        }
-
-        ISqlString ISql.End()
-        {
-            return End();
-        }
-
-        ISqlString ISql.EndCatch()
-        {
-            return EndCatch();
-        }
-
-        ISqlString ISql.EndTry()
-        {
-            return EndTry();
-        }
-
-        ISqlString ISql.Goto(LabelName labelName)
-        {
-            return Goto(labelName);
-        }
-
-        ISqlString ISql.If(Expression<Func<bool>> expression)
-        {
-            return If(expression);
-        }
-
-        ISqlString ISql.Label(LabelName labelName)
-        {
-            return Label(labelName);
-        }
-
-        ISqlString ISql.Print(Expression<Func<Text>> expression)
-        {
-            return Print(expression);
-        }
-
-        IQueryStatements ISql.Query()
-        {
-            return Query();
-        }
-
-        ISqlString ISql.Return()
-        {
-            return Return();
-        }
-
-        ISqlString ISql.While(Expression<Func<bool>> expression)
-        {
-            return While(expression);
         }
     }
 }

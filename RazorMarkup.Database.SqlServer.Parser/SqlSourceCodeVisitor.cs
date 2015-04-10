@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
-using Microsoft.SqlServer.TransactSql.ScriptDom;
+﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Parser.Query;
-using RazorMarkup.Database.SqlServer.Query;
-using RazorMarkup.Database.SqlServer.Query.CommonTableExpressions;
+using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Parser
 {
+    // Do later: BEGIN, BeginCatch, BeginTry, Else, End, EndCatch, EndTry, If, While
     internal sealed partial class SqlSourceCodeVisitor : AbstractSqlVisitor<ISqlString>
     {
         public override void ExplicitVisit(TSqlBatch node)
@@ -19,49 +17,39 @@ namespace RazorMarkup.Database.SqlServer.Parser
             node.AcceptChildren(this);
         }
 
+        public override void ExplicitVisit(BreakStatement node)
+        {
+            Result = Sql.Break();
+        }
+
+        public override void ExplicitVisit(ContinueStatement node)
+        {
+            Result = Sql.Continue();
+        }
+
+        public override void ExplicitVisit(GoToStatement node)
+        {
+            Result = Sql.Goto(new LabelName(node.LabelName.Value));
+        }
+
+        public override void ExplicitVisit(LabelStatement node)
+        {
+            Result = Sql.Label(new LabelName(node.Value));
+        }
+
+        public override void ExplicitVisit(PrintStatement node)
+        {
+            Result = Sql.Print(node.Expression.ToExpression<Text>());
+        }
+
+        public override void ExplicitVisit(ReturnStatement node)
+        {
+            Result = node.Expression == null ? Sql.Return() : Sql.Return(node.Expression.ToExpression<Variant>());
+        }
+
         public override void ExplicitVisit(SelectStatement node)
         {
-            IQueryOperand<IEndQuery> operand;
-            object result;
-            if (node.WithCtesAndXmlNamespaces != null && node.WithCtesAndXmlNamespaces.CommonTableExpressions.Count != 0)
-            {
-                CommonTableExpression expression = node.WithCtesAndXmlNamespaces.CommonTableExpressions[0];
-                IEndCommonTableExpression expressionEnd = BuildCommonTableExpression(Sql.Query(), expression);
-                foreach (CommonTableExpression cte in node.WithCtesAndXmlNamespaces.CommonTableExpressions.Skip(1))
-                {
-                    expressionEnd = BuildCommonTableExpression(expressionEnd.And(), cte);
-                }
-
-                operand = expressionEnd;
-            }
-            else
-            {
-                operand = Sql.Query();
-            }
-
-            result = new QueryOperandVisitor<IEndQuery>(operand, node.QueryExpression).Result;
-            /*if (node.OptimizerHints.Count != 0)
-            {
-                //IOptionClause<IEndQuery> optionClause = 
-            }*/
-
-            Result = ((IHasEnd<IEndQuery>)result).End().Query();
-        }
-
-        private static IEndCommonTableExpression BuildCommonTableExpression(
-            IWithClause withClause,
-            CommonTableExpression expression)
-        {
-            TableAlias tableAlias = new TableAlias(expression.ExpressionName.Value);
-            ColumnAlias[] columnNames = expression.Columns.Select(name => new ColumnAlias(name.Value)).ToArray();
-            IQueryOperand<ICommonTableExpressionEnd> cteOperand = Sql.Query().With(tableAlias, columnNames).As();
-            object result = new QueryOperandVisitor<ICommonTableExpressionEnd>(cteOperand, expression.QueryExpression).Result;
-            return ((IHasEnd<ICommonTableExpressionEnd>)result).End().With();
-        }
-
-        private static TableName GetTableName(SchemaObjectName name)
-        {
-            return new TableName(name.BaseIdentifier.Value);
+            Result = node.AcceptWithResult(new SelectStatementVisitor());
         }
     }
 }

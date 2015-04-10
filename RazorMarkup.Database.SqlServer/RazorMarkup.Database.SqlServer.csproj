@@ -229,7 +229,6 @@
     <Compile Include="Options\IOnOffOptions.cs" />
     <Compile Include="IPattern.cs" />
     <Compile Include="Options\ISetStatements.cs" />
-    <Compile Include="ISql.cs" />
     <Compile Include="Options\ITransactionIsolationLevel.cs" />
     <Compile Include="LabelName.cs" />
     <Compile Include="LogicalFunctions.cs" />
@@ -619,6 +618,7 @@
     <Compile Include="Types\Wrappers\NVarchar.cs" />
     <Compile Include="Types\Wrappers\SmallerInteger.cs" />
     <Compile Include="Types\Wrappers\Text.cs" />
+    <Compile Include="Types\Wrappers\Variant.cs" />
     <Compile Include="UpdateOrDelete\Delete\IDeleteStatementWithPercent.cs" />
     <Compile Include="UpdateOrDelete\Delete\IDeleteStatementWithTop.cs" />
     <Compile Include="UpdateOrDelete\ICursorWhereClause.cs" />

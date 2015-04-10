@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer.Tests
@@ -28,8 +22,7 @@ EXTERNAL NAME assembly.class";
                 .And(new ParameterName("@parameter2"), new TypeName("money"))
                 .Returns(new TypeName("bigint"))
                 .ExternalName(new AssemblyName("assembly"), new ClassName("class"))
-                .ToSqlStringViaRazorPage()
-                .Should().Be(expectedResult);
+                .ToSqlStringViaRazorPageIs(expectedResult);
         }
     }
 }
