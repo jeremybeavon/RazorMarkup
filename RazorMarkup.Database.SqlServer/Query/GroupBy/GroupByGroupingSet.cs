@@ -28,6 +28,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 
         public IGroupByAnd<TEndType> EndGroupingSet()
         {
+            Statement.Append((IGroupByGroupingSet<TEndType> input) => input.EndGroupingSet());
             return groupingSetClosure;
         }
     }

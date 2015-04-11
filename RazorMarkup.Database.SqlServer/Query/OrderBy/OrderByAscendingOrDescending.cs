@@ -13,12 +13,14 @@ namespace RazorMarkup.Database.SqlServer.Query.OrderBy
         public IOrderByAnd<TEndType> Ascending()
         {
             Statement.LastColumn.IsAscending = true;
+            Statement.Append((IOrderByAscendingOrDescending<TEndType> input) => input.Ascending());
             return this;
         }
 
         public IOrderByAnd<TEndType> Descending()
         {
             Statement.LastColumn.IsAscending = false;
+            Statement.Append((IOrderByAscendingOrDescending<TEndType> input) => input.Descending());
             return this;
         }
     }

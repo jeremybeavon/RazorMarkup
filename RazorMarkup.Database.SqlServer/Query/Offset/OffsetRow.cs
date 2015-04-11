@@ -16,12 +16,14 @@ namespace RazorMarkup.Database.SqlServer.Query.Offset
         public IOffsetFetch<TEndType> Row()
         {
             Statement.IsSingleRow = true;
+            Statement.Append((IOffsetRow<TEndType> input) => input.Row());
             return new OffsetFetch<TEndType>(Statement, EndClosure);
         }
 
         public IOffsetFetch<TEndType> Rows()
         {
             Statement.IsSingleRow = false;
+            Statement.Append((IOffsetRow<TEndType> input) => input.Rows());
             return new OffsetFetch<TEndType>(Statement, EndClosure);
         }
 

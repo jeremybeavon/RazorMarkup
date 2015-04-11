@@ -13,6 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Query
 
         public IEndQueryOperatorGroup<TEndType> OperatorGroup()
         {
+            Statement.Append((IQueryOperatorGroupEnd<TEndType> input) => input.OperatorGroup());
             return new EndQueryOperatorGroup<TEndType>(Statement, EndClosure);
         }
 

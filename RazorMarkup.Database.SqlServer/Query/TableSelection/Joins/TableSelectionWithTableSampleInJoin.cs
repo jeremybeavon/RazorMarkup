@@ -14,6 +14,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 
         public ITableSampleInJoin<TJoinEndType> WithTableSample()
         {
+            Statement.Append((ITableSelectionWithTableSampleInJoin<TJoinEndType> input) => input.WithTableSample());
             return new TableSampleInJoin<TJoinEndType>(Statement, JoinClosure);
         }
     }

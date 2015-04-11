@@ -13,6 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Query
 
         public ISelectClauseWithDistinct<IEndSubquery<TParent>> Select()
         {
+            Statement.Append((ISubquery<TParent> input) => input.Select());
             return new SelectClauseWithDistinct<IEndSubquery<TParent>>(Statement, EndClosure);
         }
     }

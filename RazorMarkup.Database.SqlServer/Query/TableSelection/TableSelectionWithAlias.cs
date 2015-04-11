@@ -13,6 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
         public ITableSelectionWithTableSample<TEndType> WithAlias(TableAlias tableAlias)
         {
             Statement.CurrentTable.TableAlias = tableAlias.ToSqlString();
+            Statement.Append((ITableSelectionWithAlias<TEndType> input) => input.WithAlias(null), tableAlias);
             return this;
         }
     }

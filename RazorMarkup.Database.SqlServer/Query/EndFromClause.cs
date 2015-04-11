@@ -53,9 +53,9 @@ namespace RazorMarkup.Database.SqlServer.Query
             return new QueryOperand<TEndType>(QueryOperators.Intersect, EndClosure).AsNextClause(Statement);
         }
 
-        public IOrderByWithCollate<TEndType> OrderBy(Expression<Func<object>> expression)
+        public IOrderByCollate<TEndType> OrderBy(Expression<Func<object>> expression)
         {
-            return new OrderByWithCollate<TEndType>(expression, EndClosure).AsNextClause(Statement);
+            return new OrderByCollate<TEndType>(expression, EndClosure).AsNextClause(Statement);
         }
 
         public IOffsetRow<TEndType> Offset(Expression<Func<Integer>> expression)

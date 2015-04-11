@@ -15,7 +15,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
         public ISelectClauseWithPercent<TEndType> Top(Expression<Func<Integer>> count)
         {
             Statement.Top = new ExpressionBuilder<Integer>(count);
-            Statement.Append((ISelectClauseWithTop<TEndType> input) => input.Top(count), count);
+            Statement.Append((ISelectClauseWithTop<TEndType> input) => input.Top(null), count);
             return new SelectClauseWithPercent<TEndType>(Statement, EndClosure);
         }
     }

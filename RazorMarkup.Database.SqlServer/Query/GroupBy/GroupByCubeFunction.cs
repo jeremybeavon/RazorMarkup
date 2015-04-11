@@ -20,6 +20,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupByGroupQueryBuilder queryBuilder = new GroupByGroupQueryBuilder();
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByCubeFunction<TEndCubeType> input) => input.Group(null), groupingExpression);
             IGroupByCube<TEndCubeType> groupClosure = new GroupByCube<TEndCubeType>(Statement, cubeClosure);
             return new GroupByGroup<IGroupByCube<TEndCubeType>>(queryBuilder, groupClosure);
         }

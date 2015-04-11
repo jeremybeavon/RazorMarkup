@@ -44,7 +44,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(ReturnStatement node)
         {
-            Result = node.Expression == null ? Sql.Return() : Sql.Return(node.Expression.ToExpression<Variant>());
+            Result = node.Expression == null ? Sql.Return() : Sql.Return(node.Expression.ToExpression<object>());
         }
 
         public override void ExplicitVisit(SelectStatement node)

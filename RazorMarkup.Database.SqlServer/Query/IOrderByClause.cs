@@ -6,6 +6,6 @@ namespace RazorMarkup.Database.SqlServer.Query
 {
     public interface IOrderByClause<TEndType> : IHideObjectMethods
     {
-        IOrderByWithCollate<TEndType> OrderBy(Expression<Func<object>> expression);
+        IOrderByCollate<TEndType> OrderBy(Expression<Func<object>> expression);
     }
 }

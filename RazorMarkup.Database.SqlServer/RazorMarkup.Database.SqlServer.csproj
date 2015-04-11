@@ -358,10 +358,10 @@
     <Compile Include="Query\Option\IQueryHintOptimizeForVariable.cs" />
     <Compile Include="Query\OrderBy\IOrderByAnd.cs" />
     <Compile Include="Query\OrderBy\IOrderByAscendingOrDescending.cs" />
-    <Compile Include="Query\OrderBy\IOrderByWithCollate.cs" />
+    <Compile Include="Query\OrderBy\IOrderByCollate.cs" />
     <Compile Include="Query\OrderBy\OrderByAnd.cs" />
     <Compile Include="Query\OrderBy\OrderByAscendingOrDescending.cs" />
-    <Compile Include="Query\OrderBy\OrderByWithCollate.cs" />
+    <Compile Include="Query\OrderBy\OrderByCollate.cs" />
     <Compile Include="Query\QueryOperand.cs" />
     <Compile Include="Query\QueryOperatorGroupEnd.cs" />
     <Compile Include="Query\Select\ISelectClauseWithInto.cs" />
@@ -618,7 +618,6 @@
     <Compile Include="Types\Wrappers\NVarchar.cs" />
     <Compile Include="Types\Wrappers\SmallerInteger.cs" />
     <Compile Include="Types\Wrappers\Text.cs" />
-    <Compile Include="Types\Wrappers\Variant.cs" />
     <Compile Include="UpdateOrDelete\Delete\IDeleteStatementWithPercent.cs" />
     <Compile Include="UpdateOrDelete\Delete\IDeleteStatementWithTop.cs" />
     <Compile Include="UpdateOrDelete\ICursorWhereClause.cs" />

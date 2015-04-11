@@ -1,5 +1,7 @@
-﻿using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.Types;
+﻿using System;
+using System.Linq.Expressions;
+using RazorMarkup.Database.SqlServer.Query.Builders;
+using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins.Samples
 {
@@ -11,23 +13,26 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins.Samples
         {
         }
 
-        public ITableSelectionWithRepeatableInJoin<TJoinEndType> Percent(SqlFloat sampleNumber)
+        public ITableSelectionWithRepeatableInJoin<TJoinEndType> Percent(Expression<Func<Float>> sampleNumber)
         {
             Statement.CurrentTable.TableSampleNumber = sampleNumber.ToString();
             Statement.CurrentTable.IsTableSamplePercent = true;
+            Statement.Append((ITableSampleInJoin<TJoinEndType> input) => input.Percent(null), sampleNumber);
             return new TableSelectionWithRepeatableInJoin<TJoinEndType>(Statement, JoinClosure);
         }
 
-        public ITableSelectionWithRepeatableInJoin<TJoinEndType> Rows(SqlBigInt sampleNumber)
+        public ITableSelectionWithRepeatableInJoin<TJoinEndType> Rows(Expression<Func<Integer>> sampleNumber)
         {
             Statement.CurrentTable.TableSampleNumber = sampleNumber.ToString();
             Statement.CurrentTable.IsTableSamplePercent = false;
+            Statement.Append((ITableSampleInJoin<TJoinEndType> input) => input.Rows(null), sampleNumber);
             return new TableSelectionWithRepeatableInJoin<TJoinEndType>(Statement, JoinClosure);
         }
 
-        public ITableSelectionWithRepeatableInJoin<TJoinEndType> Sample(SqlBigInt sampleNumber)
+        public ITableSelectionWithRepeatableInJoin<TJoinEndType> Sample(Expression<Func<Integer>> sampleNumber)
         {
             Statement.CurrentTable.TableSampleNumber = sampleNumber.ToString();
+            Statement.Append((ITableSampleInJoin<TJoinEndType> input) => input.Sample(null), sampleNumber);
             return new TableSelectionWithRepeatableInJoin<TJoinEndType>(Statement, JoinClosure);
         }
     }

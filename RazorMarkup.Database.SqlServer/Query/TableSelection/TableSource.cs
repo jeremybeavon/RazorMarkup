@@ -15,6 +15,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
             TableQueryBuilder builder = new TableQueryBuilder();
             builder.TableName = tableName.ToSqlString();
             Statement.Statements.Add(builder);
+            Statement.Append((ITableSource<TEndType> input) => input.Table(null), tableName);
             return new TableSelectionWithAlias<TEndType>(Statement, EndClosure);
         }
 
@@ -23,6 +24,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
             TableQueryBuilder builder = new TableQueryBuilder();
             builder.TableName = viewName.ToSqlString();
             Statement.Statements.Add(builder);
+            Statement.Append((ITableSource<TEndType> input) => input.View(null), viewName);
             return new TableSelectionWithAlias<TEndType>(Statement, EndClosure);
         }
 
@@ -30,6 +32,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
         {
             SubqueryBuilder builder = new SubqueryBuilder();
             Statement.Statements.Add(builder);
+            Statement.Append((ITableSource<TEndType> input) => input.Subquery());
             ISubqueryWithAlias<TEndType> subquery = new SubqueryWithAlias<TEndType>(Statement, EndClosure);
             return new Subquery<ISubqueryWithAlias<TEndType>>(builder.Select, subquery);
         }

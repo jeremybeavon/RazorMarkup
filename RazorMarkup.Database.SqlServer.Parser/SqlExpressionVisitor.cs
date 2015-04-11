@@ -4,6 +4,7 @@ using System.Reflection;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Expressions;
 using BinaryExpression = Microsoft.SqlServer.TransactSql.ScriptDom.BinaryExpression;
+using SqlIntegerLiteral = Microsoft.SqlServer.TransactSql.ScriptDom.IntegerLiteral;
 using SqlStringLiteral = Microsoft.SqlServer.TransactSql.ScriptDom.StringLiteral;
 using UnaryExpression = Microsoft.SqlServer.TransactSql.ScriptDom.UnaryExpression;
 
@@ -13,6 +14,19 @@ namespace RazorMarkup.Database.SqlServer.Parser
     {
         private static readonly ConstructorInfo variableNameConstructor =
             typeof(VariableName).GetConstructor(new Type[] { typeof(string) });
+
+        public static Expression<Func<TResult>> ToExpression<TResult>(TSqlFragment expression)
+        {
+            SqlExpressionVisitor visitor = new SqlExpressionVisitor();
+            expression.Accept(visitor);
+            Expression body = visitor.Result;
+            if (body.Type != typeof(TResult))
+            {
+                body = Expression.Convert(body, typeof(TResult));
+            }
+
+            return Expression.Lambda<Func<TResult>>(body);
+        }
 
         public override void ExplicitVisit(BinaryExpression node)
         {
@@ -52,7 +66,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
             Result = Expression.Call(FunctionRegistrationManager.Instance.GetMethod(node.Name));
         }
 
-        public override void ExplicitVisit(IntegerLiteral node)
+        public override void ExplicitVisit(SqlIntegerLiteral node)
         {
             Result = Expression.Constant(int.Parse(node.Value));
         }

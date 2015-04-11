@@ -20,6 +20,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupByGroupQueryBuilder queryBuilder = new GroupByGroupQueryBuilder();
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByRollupFunction<TEndRollupType> input) => input.Group(null), groupingExpression);
             IGroupByRollup<TEndRollupType> groupClosure = new GroupByRollup<TEndRollupType>(Statement, rollupClosure);
             return new GroupByGroup<IGroupByRollup<TEndRollupType>>(queryBuilder, groupClosure);
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Types;
+using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
@@ -23,7 +23,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 
         public bool? IsTableSamplePercent { get; set; }
 
-        public ExpressionBuilder<SqlBigInt> TableSampleRepeatableSeed { get; set; }
+        public ExpressionBuilder<Integer> TableSampleRepeatableSeed { get; set; }
 
         public IList<string> TableHints { get; private set; }
 

@@ -12,10 +12,11 @@ namespace RazorMarkup.Database.SqlServer.Query.OrderBy
         {
         }
 
-        public IOrderByWithCollate<TEndType> OrderBy(Expression<Func<object>> expression)
+        public IOrderByCollate<TEndType> And(Expression<Func<object>> expression)
         {
             Statement.Columns.Add(new OrderByColumnBuilder(expression));
-            return new OrderByWithCollate<TEndType>(Statement, EndClosure);
+            Statement.Append((IOrderByAnd<TEndType> input) => input.And(null), expression);
+            return new OrderByCollate<TEndType>(Statement, EndClosure);
         }
     }
 }

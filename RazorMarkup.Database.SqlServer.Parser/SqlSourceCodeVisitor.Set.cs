@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Options;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using SqlIntegerLiteral = Microsoft.SqlServer.TransactSql.ScriptDom.IntegerLiteral;
 
 namespace RazorMarkup.Database.SqlServer.Parser
 {
@@ -131,7 +132,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
                 return Sql.Set().DateFirst(new VariableName(variableReference.Name));
             }
 
-            IntegerLiteral literal = command.Parameter as IntegerLiteral;
+            SqlIntegerLiteral literal = command.Parameter as SqlIntegerLiteral;
             if (literal != null)
             {
                 IDateFirst dateFirst = Sql.Set().DateFirst();

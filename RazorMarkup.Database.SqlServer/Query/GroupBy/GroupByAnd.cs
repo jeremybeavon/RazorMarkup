@@ -19,12 +19,14 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 
         public IGroupByFunction<TEndType> And()
         {
+            Statement.Append((IGroupByAnd<TEndType> input) => input.And());
             return new GroupByFunction<TEndType>(Statement, EndClosure);
         }
 
         public IGroupByAnd<TEndType> And(Expression<Func<object>> groupingExpression)
         {
             Statement.Groupings.Add(new ExpressionBuilder<object>(groupingExpression));
+            Statement.Append((IGroupByAnd<TEndType> input) => input.And(null), groupingExpression);
             return this;
         }
 

@@ -96,10 +96,10 @@ namespace RazorMarkup.Database.SqlServer
             return new SqlString("RETURN", () => Sql.Return());
         }
 
-        public static ISqlString Return<TResult>(Expression<Func<TResult>> expression)
+        public static ISqlString Return(Expression<Func<object>> expression)
         {
-            ExpressionBuilder<TResult> expressionBuilder = expression.ToExpressionBuilder();
-            return new SqlString("RETURN " + expressionBuilder.ToSqlString(), () => Sql.Return<TResult>(null), expressionBuilder);
+            ExpressionBuilder<object> expressionBuilder = expression.ToExpressionBuilder();
+            return new SqlString("RETURN " + expressionBuilder.ToSqlString(), () => Sql.Return(null), expressionBuilder);
         }
 
         public static ISetStatements Set()

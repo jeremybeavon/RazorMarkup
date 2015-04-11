@@ -13,6 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
         public ITableSelectionWithTableSampleInJoin<TJoinEndType> WithAlias(TableAlias tableAlias)
         {
             Statement.CurrentTable.TableAlias = tableAlias.ToSqlString();
+            Statement.Append((ITableSelectionWithAliasInJoin<TJoinEndType> input) => input.WithAlias(null), tableAlias);
             return this;
         }
     }

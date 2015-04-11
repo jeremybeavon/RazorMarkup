@@ -44,19 +44,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractSqlVisitor.cs" />
+    <Compile Include="BooleanExpressionExtensions.cs" />
     <Compile Include="DataTypeReferenceExtensions.cs" />
     <Compile Include="DropIndexOptionVisitor.cs" />
     <Compile Include="DropIndexVisitor.cs" />
     <Compile Include="ObsoleteException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\CommonTableExpressionExtensions.cs" />
+    <Compile Include="Query\EmptyForClause.cs" />
+    <Compile Include="Query\EmptyGroupByClause.cs" />
+    <Compile Include="Query\EmptyHavingClause.cs" />
+    <Compile Include="Query\EmptyOffsetClause.cs" />
+    <Compile Include="Query\EmptyOrderByClause.cs" />
+    <Compile Include="Query\EmptyWhereClause.cs" />
+    <Compile Include="Query\FromClauseVisitor.cs" />
+    <Compile Include="Query\GroupByClauseVisitor.cs" />
+    <Compile Include="Query\QueryExpressionExtensions.cs" />
     <Compile Include="Query\QueryOperandExtensions.cs" />
     <Compile Include="Query\QueryOperandVisitor.cs" />
-    <Compile Include="Query\QueryStatementsExtensions.cs" />
     <Compile Include="Query\SelectStatementVisitor.cs" />
-    <Compile Include="Query\Select\SelectClauseExtensions.cs" />
-    <Compile Include="Query\Select\SelectClauseVisitor.cs" />
-    <Compile Include="Query\Select\SelectClauseWithDistinctExtensions.cs" />
-    <Compile Include="Query\Select\SelectClauseWithTopExtensions.cs" />
+    <Compile Include="Query\SelectClauseVisitor.cs" />
     <Compile Include="ScalarExpressionExtensions.cs" />
     <Compile Include="SchemaObjectNameExtensions.cs" />
     <Compile Include="SqlDataTypeOptionExtensions.cs" />

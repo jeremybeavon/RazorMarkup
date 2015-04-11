@@ -11,6 +11,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Offset
 
         public IEndOffsetClause<TEndType> Only()
         {
+            Statement.Append((IOffsetFetchOnly<TEndType> input) => input.Only());
             return this;
         }
     }

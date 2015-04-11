@@ -15,6 +15,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
             TableQueryBuilder builder = new TableQueryBuilder();
             builder.TableName = tableName.ToSqlString();
             Statement.Statements.Add(builder);
+            Statement.Append((ITableSourceInJoin<TJoinEndType> input) => input.Table(null), tableName);
             return new TableSelectionWithAliasInJoin<TJoinEndType>(Statement, JoinClosure);
         }
 
@@ -23,6 +24,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
             TableQueryBuilder builder = new TableQueryBuilder();
             builder.TableName = viewName.ToSqlString();
             Statement.Statements.Add(builder);
+            Statement.Append((ITableSourceInJoin<TJoinEndType> input) => input.View(null), viewName);
             return new TableSelectionWithAliasInJoin<TJoinEndType>(Statement, JoinClosure);
         }
     }

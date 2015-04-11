@@ -12,6 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Samples
         public ITableSample<TEndType> System()
         {
             Statement.CurrentTable.IsTableSampleSystem = true;
+            Statement.Append((ITableSampleWithSystem<TEndType> input) => input.System());
             return this;
         }
     }

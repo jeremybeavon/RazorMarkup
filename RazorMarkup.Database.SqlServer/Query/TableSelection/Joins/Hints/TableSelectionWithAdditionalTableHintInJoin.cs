@@ -13,6 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins.Hints
 
         public ITableHintWithNoExpandInJoin<TJoinEndType> And()
         {
+            Statement.Append((ITableSelectionWithAdditionalTableHintInJoin<TJoinEndType> input) => input.And());
             return new TableHintWithNoExpandInJoin<TJoinEndType>(Statement, JoinClosure);
         }
     }

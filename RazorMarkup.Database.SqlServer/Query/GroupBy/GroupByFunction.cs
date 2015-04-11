@@ -22,6 +22,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("CUBE");
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByFunction<TEndType> input) => input.Cube(null), groupingExpression);
             IGroupByAnd<TEndType> cubeClosure = new GroupByAnd<TEndType>(Statement, EndClosure);
             return new GroupByCube<IGroupByAnd<TEndType>>(queryBuilder, cubeClosure);
         }
@@ -30,6 +31,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
              GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("CUBE");
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByFunction<TEndType> input) => input.Cube());
             IGroupByAnd<TEndType> cubeClosure = new GroupByAnd<TEndType>(Statement, EndClosure);
             return new GroupByCubeFunction<IGroupByAnd<TEndType>>(queryBuilder, cubeClosure);
         }
@@ -38,6 +40,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("ROLLUP");
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByFunction<TEndType> input) => input.Rollup(null), groupingExpression);
             IGroupByAnd<TEndType> rollupClosure = new GroupByAnd<TEndType>(Statement, EndClosure);
             return new GroupByRollup<IGroupByAnd<TEndType>>(queryBuilder, rollupClosure);
         }
@@ -46,6 +49,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("ROLLUP");
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByFunction<TEndType> input) => input.Rollup());
             IGroupByAnd<TEndType> rollupClosure = new GroupByAnd<TEndType>(Statement, EndClosure);
             return new GroupByRollupFunction<IGroupByAnd<TEndType>>(queryBuilder, rollupClosure);
         }
@@ -54,6 +58,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("GROUPING SET");
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByFunction<TEndType> input) => input.GroupingSet(null), groupingExpression);
             IGroupByAnd<TEndType> groupingSetClosure = new GroupByAnd<TEndType>(Statement, EndClosure);
             return new GroupByGroupingSet<TEndType>(queryBuilder, groupingSetClosure);
         }
@@ -62,6 +67,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("GROUPING SET");
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByFunction<TEndType> input) => input.GroupingSet());
             IGroupByAnd<TEndType> groupingSetClosure = new GroupByAnd<TEndType>(Statement, EndClosure);
             return new GroupByGroupingSetFunction<TEndType>(queryBuilder, groupingSetClosure);
         }
@@ -70,6 +76,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupByGroupQueryBuilder queryBuilder = new GroupByGroupQueryBuilder();
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByFunction<TEndType> input) => input.Group(null), groupingExpression);
             IGroupByAnd<TEndType> closure = new GroupByAnd<TEndType>(Statement, EndClosure);
             return new GroupByGroup<IGroupByAnd<TEndType>>(queryBuilder, closure);
         }
@@ -77,6 +84,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         public IGroupByAnd<TEndType> GrandTotal()
         {
             Statement.Groupings.Add(new RawStatementBuilder("()"));
+            Statement.Append((IGroupByFunction<TEndType> input) => input.GrandTotal());
             return new GroupByAnd<TEndType>(Statement, EndClosure);
         }
 

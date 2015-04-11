@@ -7,11 +7,14 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
     {
         public static IEndQueryOperatorGroup<TEndType> OperatorGroup<TEndType>(
             this IQueryOperand<TEndType> operand,
-            QueryParenthesisExpression query)
+            QueryExpression query)
         {
-            IQueryOperand<IQueryOperatorGroupEnd<TEndType>> operatorGroup = operand.BeginOperatorGroup();
-            object result = new QueryOperandVisitor<IQueryOperatorGroupEnd<TEndType>>(operatorGroup, query.QueryExpression).Result;
-            return ((IHasEnd<IQueryOperatorGroupEnd<TEndType>>)result).End().OperatorGroup();
+            return query.AcceptWithResult(operand.BeginOperatorGroup()).End().OperatorGroup();
+        }
+
+        public static ISqlString Select(this IQueryOperand<IEndQuery> operand, SelectStatement query)
+        {
+            return query.QueryExpression.AcceptWithResult(new QueryOperandVisitor<IEndQuery>(operand, query)).End().Query();
         }
     }
 }

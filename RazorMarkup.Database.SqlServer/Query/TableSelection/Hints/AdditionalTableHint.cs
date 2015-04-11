@@ -12,6 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Hints
 
         public ITableHint<TEndType> And()
         {
+            Statement.Append((IAdditionalTableHint<TEndType> input) => input.And());
             return new TableHint<TEndType>(Statement, EndClosure);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using RazorMarkup.Common;
 using RazorMarkup.Database.SqlServer.Query.Builders;
@@ -28,6 +29,7 @@ namespace RazorMarkup.Database.SqlServer.Query
 
         public ICommonTableExpression With(TableAlias tableName, params ColumnAlias[] columnNames)
         {
+            Append((IQueryStatements input) => input.With(null), (new ISqlString[] { tableName }).Concat(columnNames).ToArray());
             return new CommonTableExpression(tableName, columnNames, Expression, new EndQuery(this)).AsNextClause(this);
         }
 

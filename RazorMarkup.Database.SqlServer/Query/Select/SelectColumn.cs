@@ -12,6 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
         public ISelectClauseWithInto<TEndType> WithAlias(ColumnAlias columnAlias)
         {
             Statement.Columns[Statement.Columns.Count - 1].Alias = columnAlias.ToSqlString();
+            Statement.Append((ISelectColumn<TEndType> input) => input.WithAlias(null), columnAlias);
             return this;
         }
     }

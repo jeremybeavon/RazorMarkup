@@ -12,6 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Hints
         public IAdditionalTableHint<TEndType> NoExpand()
         {
             Statement.CurrentTable.TableHintNoExpandIndexes.Add(Statement.CurrentTable.TableHints.Count);
+            Statement.Append((ITableHintWithNoExpand<TEndType> input) => input.NoExpand());
             return new AdditionalTableHint<TEndType>(Statement, EndClosure);
         }
     }

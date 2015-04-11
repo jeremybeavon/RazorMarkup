@@ -15,20 +15,23 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             this.rollupClosure = rollupClosure;
         }
-        
+       
         public IGroupByRollup<TEndRollupType> And(Expression<Func<object>> groupingExpression)
         {
             Statement.Groupings.Add(new ExpressionBuilder<object>(groupingExpression));
+            Statement.Append((IGroupByRollup<TEndRollupType> input) => input.And(null), groupingExpression);
             return this;
         }
 
         public IGroupByRollupFunction<TEndRollupType> And()
         {
+            Statement.Append((IGroupByRollup<TEndRollupType> input) => input.And());
             return new GroupByRollupFunction<TEndRollupType>(Statement, rollupClosure);
         }
 
         public TEndRollupType EndRollup()
         {
+            Statement.Append((IGroupByRollup<TEndRollupType> input) => input.EndRollup());
             return rollupClosure;
         }
     }

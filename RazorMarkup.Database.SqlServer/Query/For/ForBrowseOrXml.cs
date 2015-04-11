@@ -14,12 +14,14 @@ namespace RazorMarkup.Database.SqlServer.Query.For
         public IEndForClause<TEndType> Browse()
         {
             Statement.IsXml = false;
+            Statement.Append((IForBrowseOrXml<TEndType> input) => input.Browse());
             return new EndForClause<TEndType>(Statement, EndClosure);
         }
 
         public IForXml<TEndType> Xml()
         {
             Statement.IsXml = true;
+            Statement.Append((IForBrowseOrXml<TEndType> input) => input.Xml());
             return new ForXml<TEndType>(Statement, EndClosure);
         }
 

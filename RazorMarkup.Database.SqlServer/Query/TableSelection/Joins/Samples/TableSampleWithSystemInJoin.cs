@@ -13,6 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins.Samples
         public ITableSampleInJoin<TJoinEndType> System()
         {
             Statement.CurrentTable.IsTableSampleSystem = true;
+            Statement.Append((ITableSampleWithSystemInJoin<TJoinEndType> input) => input.System());
             return this;
         }
     }

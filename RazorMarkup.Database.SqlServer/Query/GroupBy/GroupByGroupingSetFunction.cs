@@ -20,6 +20,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("CUBE");
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByGroupingSetFunction<TEndType> input) => input.Cube(null), groupingExpression);
             IGroupByGroupingSet<TEndType> cubeClosure = new GroupByGroupingSet<TEndType>(Statement, groupingSetClosure);
             return new GroupByCube<IGroupByGroupingSet<TEndType>>(queryBuilder, cubeClosure);
         }
@@ -28,6 +29,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("CUBE");
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByGroupingSetFunction<TEndType> input) => input.Cube());
             IGroupByGroupingSet<TEndType> cubeClosure = new GroupByGroupingSet<TEndType>(Statement, groupingSetClosure);
             return new GroupByCubeFunction<IGroupByGroupingSet<TEndType>>(queryBuilder, cubeClosure);
         }
@@ -36,6 +38,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("ROLLUP");
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByGroupingSetFunction<TEndType> input) => input.Rollup(null), groupingExpression);
             IGroupByGroupingSet<TEndType> rollupClosure = new GroupByGroupingSet<TEndType>(Statement, groupingSetClosure);
             return new GroupByRollup<IGroupByGroupingSet<TEndType>>(queryBuilder, rollupClosure);
         }
@@ -44,6 +47,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("ROLLUP");
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByGroupingSetFunction<TEndType> input) => input.Rollup());
             IGroupByGroupingSet<TEndType> rollupClosure = new GroupByGroupingSet<TEndType>(Statement, groupingSetClosure);
             return new GroupByRollupFunction<IGroupByGroupingSet<TEndType>>(queryBuilder, rollupClosure);
         }
@@ -52,6 +56,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             GroupByGroupQueryBuilder queryBuilder = new GroupByGroupQueryBuilder();
             Statement.Groupings.Add(queryBuilder);
+            Statement.Append((IGroupByGroupingSetFunction<TEndType> input) => input.Group(null), groupingExpression);
             IGroupByGroupingSet<TEndType> closure = new GroupByGroupingSet<TEndType>(Statement, groupingSetClosure);
             return new GroupByGroup<IGroupByGroupingSet<TEndType>>(queryBuilder, closure);
         }
@@ -59,6 +64,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         public IGroupByGroupingSet<TEndType> GrandTotal()
         {
             Statement.Groupings.Add(new RawStatementBuilder("()"));
+            Statement.Append((IGroupByGroupingSetFunction<TEndType> input) => input.GrandTotal());
             return new GroupByGroupingSet<TEndType>(Statement, groupingSetClosure);
         }
     }

@@ -43,6 +43,7 @@
     <Compile Include="AbstractStatementBuilder.cs" />
     <Compile Include="ExpressionBuilder.cs" />
     <Compile Include="IHideObjectMethods.cs" />
+    <Compile Include="IntegerLiteral.cs" />
     <Compile Include="ISqlString.cs" />
     <Compile Include="NotInExpressionException.cs" />
     <Compile Include="RawStatementBuilder.cs" />

@@ -13,7 +13,8 @@ namespace RazorMarkup.Database.SqlServer.Query.For
 
         public IForXmlAnd<IExplicitDirectives<TEndType>> XmlData()
         {
-            Statement.Directives.Add("XMLDATA");
+            Statement.Directives.Add("XMLDATA");;
+            Statement.Append((IExplicitDirectives<TEndType> input) => input.XmlData());
             return this;
         }
     }

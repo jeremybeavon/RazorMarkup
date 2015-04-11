@@ -13,6 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 
         public ITableSample<TEndType> WithTableSample()
         {
+            Statement.Append((ITableSelectionWithTableSample<TEndType> input) => input.WithTableSample());
             return new TableSample<TEndType>(Statement, EndClosure);
         }
     }

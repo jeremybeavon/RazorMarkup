@@ -13,6 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 
         public ITableHintWithNoExpand<TEndType> WithHint()
         {
+            Statement.Append((ITableSelectionWithTableHint<TEndType> input) => input.WithHint());
             return new TableHintWithNoExpand<TEndType>(Statement, EndClosure);
         }
     }

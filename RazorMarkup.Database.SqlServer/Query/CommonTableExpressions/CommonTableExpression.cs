@@ -18,6 +18,7 @@ namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions
 
         public IQueryOperand<ICommonTableExpressionEnd> As()
         {
+            Statement.Append((ICommonTableExpression input) => input.As());
             return new CommonTableExpressionQuery(Statement, EndClosure);
         }
 

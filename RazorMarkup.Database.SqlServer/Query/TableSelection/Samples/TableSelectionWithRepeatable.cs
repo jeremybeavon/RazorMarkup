@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.Types;
+using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Samples
 {
@@ -13,9 +13,10 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Samples
         {
         }
 
-        public ITableSelectionWithTableHint<TEndType> WithRepeatSeed(Expression<Func<SqlBigInt>> repeatSeed)
+        public ITableSelectionWithTableHint<TEndType> WithRepeatSeed(Expression<Func<Integer>> repeatSeed)
         {
-            Statement.CurrentTable.TableSampleRepeatableSeed = new ExpressionBuilder<SqlBigInt>(repeatSeed);
+            Statement.CurrentTable.TableSampleRepeatableSeed = new ExpressionBuilder<Integer>(repeatSeed);
+            Statement.Append((ITableSelectionWithRepeatable<TEndType> input) => input.WithRepeatSeed(null), repeatSeed);
             return this;
         }
     }

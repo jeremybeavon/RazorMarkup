@@ -13,6 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
         public ISelectClauseWithFrom<TEndType> Into(TableName tableName)
         {
             Statement.IntoTable = tableName.ToSqlString();
+            Statement.Append((ISelectClauseWithInto<TEndType> input) => input.Into(null), tableName);
             return this;
         }
     }

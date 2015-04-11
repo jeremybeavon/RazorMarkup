@@ -14,6 +14,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
         public ISelectClauseWithTies<TEndType> Percent()
         {
             Statement.IsPercent = true;
+            Statement.Append((ISelectClauseWithPercent<TEndType> input) => input.Percent());
             return this;
         }
     }

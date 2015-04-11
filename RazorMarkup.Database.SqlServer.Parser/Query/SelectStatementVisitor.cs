@@ -14,7 +14,6 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
         public override void ExplicitVisit(SelectStatement node)
         {
             IQueryOperand<IEndQuery> operand;
-            object result;
             if (node.WithCtesAndXmlNamespaces != null && node.WithCtesAndXmlNamespaces.CommonTableExpressions.Count != 0)
             {
                 CommonTableExpression expression = node.WithCtesAndXmlNamespaces.CommonTableExpressions[0];
@@ -31,29 +30,14 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
                 operand = Sql.Query();
             }
 
-            result = new QueryOperandVisitor<IEndQuery>(operand, node.QueryExpression).Result;
-            /*if (node.OptimizerHints.Count != 0)
-            {
-                //IOptionClause<IEndQuery> optionClause = 
-            }*/
-
-            Result = ((IHasEnd<IEndQuery>)result).End().Query();
+            Result = operand.Select(node);
         }
 
-        private static IEndCommonTableExpression BuildCommonTableExpression(
-            IWithClause withClause,
-            CommonTableExpression expression)
+        private static IEndCommonTableExpression BuildCommonTableExpression(IWithClause withClause, CommonTableExpression expression)
         {
             TableAlias tableAlias = new TableAlias(expression.ExpressionName.Value);
             ColumnAlias[] columnNames = expression.Columns.Select(name => new ColumnAlias(name.Value)).ToArray();
-            IQueryOperand<ICommonTableExpressionEnd> cteOperand = Sql.Query().With(tableAlias, columnNames).As();
-            object result = new QueryOperandVisitor<ICommonTableExpressionEnd>(cteOperand, expression.QueryExpression).Result;
-            return ((IHasEnd<ICommonTableExpressionEnd>)result).End().With();
-        }
-
-        private static TableName GetTableName(SchemaObjectName name)
-        {
-            return new TableName(name.BaseIdentifier.Value);
+            return withClause.With(tableAlias, columnNames).As(expression.QueryExpression);
         }
     }
 }

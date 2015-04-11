@@ -12,16 +12,19 @@ namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions
 
         public IWithClause And()
         {
+            Statement.Append((IEndCommonTableExpression input) => input.And());
             return new WithClause(Statement, EndClosure);
         }
 
         public IQueryOperand<IQueryOperatorGroupEnd<IEndQuery>> BeginOperatorGroup()
         {
+            Statement.Append((IEndCommonTableExpression input) => input.BeginOperatorGroup());
             return new QueryOperatorGroupEnd<IEndQuery>(EndClosure, Statement.Expression).AsOperand().AsNextClause(Statement);
         }
 
         public ISelectClauseWithDistinct<IEndQuery> Select()
         {
+            Statement.Append((IEndCommonTableExpression input) => input.Select());
             return new SelectClauseWithDistinct<IEndQuery>(EndClosure).AsNextClause(Statement);
         }
     }

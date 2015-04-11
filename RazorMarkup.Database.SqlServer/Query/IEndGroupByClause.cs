@@ -7,7 +7,6 @@ namespace RazorMarkup.Database.SqlServer.Query
         IHavingClause<TEndType>,
         IQueryOperator<TEndType>,
         IOrderByClause<TEndType>,
-        IOffsetClause<TEndType>,
         IForClause<TEndType>,
         IOptionClause<TEndType>
     {

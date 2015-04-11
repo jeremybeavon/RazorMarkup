@@ -8,15 +8,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
     {
         public static Expression<Func<TResult>> ToExpression<TResult>(this ScalarExpression expression)
         {
-            SqlExpressionVisitor visitor = new SqlExpressionVisitor();
-            expression.Accept(visitor);
-            Expression body = visitor.Result;
-            if (body.Type != typeof(TResult))
-            {
-                body = Expression.Convert(body, typeof(TResult));
-            }
-
-            return Expression.Lambda<Func<TResult>>(body);
+            return SqlExpressionVisitor.ToExpression<TResult>(expression);
         }
     }
 }

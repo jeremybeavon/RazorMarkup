@@ -12,6 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 
         public IJoinHint<TJoinEndType> WithHint()
         {
+            Statement.Append((ITableSourceWithJoinHint<TJoinEndType> input) => input.WithHint());
             return new JoinHint<TJoinEndType>(Statement, JoinClosure);
         }
     }
