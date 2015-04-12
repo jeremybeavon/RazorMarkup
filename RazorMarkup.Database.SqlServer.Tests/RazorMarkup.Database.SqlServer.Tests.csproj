@@ -68,6 +68,7 @@
     <Compile Include="CreateStatementTests.cs" />
     <Compile Include="DropStatementTests.cs" />
     <Compile Include="FunctionTestHelper.cs" />
+    <Compile Include="SelectStatementTests.cs" />
     <Compile Include="SetStatementTests.cs" />
     <Compile Include="SqlStringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

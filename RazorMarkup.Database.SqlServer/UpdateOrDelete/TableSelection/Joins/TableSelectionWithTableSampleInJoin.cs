@@ -12,7 +12,7 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Joins
         {
         }
 
-        public ITableSampleInJoin<TJoinEndType> WithTableSample()
+        public ITableSampleInJoin<TJoinEndType> TableSample()
         {
             return new TableSampleInJoin<TJoinEndType>(Statement, JoinClosure);
         }

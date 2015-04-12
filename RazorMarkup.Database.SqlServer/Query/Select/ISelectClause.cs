@@ -6,13 +6,13 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
 {
     public interface ISelectClause<TEndType>
     {
-        ISelectClauseWithFrom<TEndType> AllColumns();
+        ISelectColumn<TEndType> AllColumns();
 
-        ISelectClauseWithFrom<TEndType> AllColumns(TableName tableName);
+        ISelectColumn<TEndType> AllColumns(TableName tableName);
 
-        ISelectClauseWithFrom<TEndType> AllColumns(ViewName viewName);
+        ISelectColumn<TEndType> AllColumns(ViewName viewName);
 
-        ISelectClauseWithFrom<TEndType> AllColumns(TableAlias tableAlias);
+        ISelectColumn<TEndType> AllColumns(TableAlias tableAlias);
 
         ISelectColumn<TEndType> Column(Expression<Func<object>> expression);
 

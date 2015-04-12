@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.Query.For
@@ -6,8 +7,8 @@ namespace RazorMarkup.Database.SqlServer.Query.For
     internal class ForBrowseOrXml<TEndType> : AbstractQueryStatement<ForClauseBuilder, TEndType>, IForBrowseOrXml<TEndType>,
         IClauseStart<IForBrowseOrXml<TEndType>>
     {
-        public ForBrowseOrXml(TEndType endClosure)
-            : base(new ForClauseBuilder(), endClosure)
+        public ForBrowseOrXml(Expression initialExpression, TEndType endClosure)
+            : base(new ForClauseBuilder(initialExpression), endClosure)
         {
         }
 

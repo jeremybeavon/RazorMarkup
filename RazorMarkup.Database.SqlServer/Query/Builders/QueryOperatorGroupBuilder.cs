@@ -4,15 +4,10 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class QueryOperatorGroupBuilder : ClauseBuilder
     {
-        public QueryOperatorGroupBuilder()
-        {
-            Operand = new ClauseBuilder();
-        }
-
         public QueryOperatorGroupBuilder(Expression initialExpression)
             : base(initialExpression)
         {
-            Operand = new ClauseBuilder();
+            Operand = new ClauseBuilder(initialExpression);
         }
 
         public ClauseBuilder Operand { get; private set; }

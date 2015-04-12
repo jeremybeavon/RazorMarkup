@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Query;
@@ -107,13 +108,14 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
             ISelectClause<TEndType> select,
             QuerySpecification node)
         {
-            SelectClauseVisitor<TEndType> visitor = new SelectClauseVisitor<TEndType>(select);
-            foreach (SelectElement selectElement in node.SelectElements)
+            ISelectClauseAnd<TEndType> selectColumn =
+                node.SelectElements[0].AcceptWithResult(new SelectClauseVisitor<TEndType>(select));
+            foreach (SelectElement selectElement in node.SelectElements.Skip(1))
             {
-                selectElement.Accept(visitor);
+                selectColumn = selectElement.AcceptWithResult(new SelectClauseVisitor<TEndType>(selectColumn.And()));
             }
 
-            return visitor.Result;
+            return selectColumn;
         }
 
         private ISelectClauseWithFrom<TEndType> BuildSelectClauseWithInto(ISelectClauseWithInto<TEndType> select)

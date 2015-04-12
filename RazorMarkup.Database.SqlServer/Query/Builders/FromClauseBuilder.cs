@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class FromClauseBuilder : ClauseBuilder
     {
-        public FromClauseBuilder()
+        public FromClauseBuilder(Expression initialExpression)
+            : base(initialExpression)
         {
             Statements = new List<AbstractTableReferenceBuilder>();
         }

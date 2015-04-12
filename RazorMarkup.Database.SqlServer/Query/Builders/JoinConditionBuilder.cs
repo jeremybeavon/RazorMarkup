@@ -6,6 +6,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
     public sealed class JoinConditionBuilder : AbstractTableReferenceBuilder
     {
         public JoinConditionBuilder(Expression<Func<bool>> searchCondition)
+            : base(null)
         {
             SearchCondition = searchCondition;
         }
@@ -16,6 +17,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
         {
             sqlBuilder.AppendIndent();
             sqlBuilder.Append(" ON");
+            SearchCondition.ToExpressionBuilder().ToSqlString(sqlBuilder);
         }
     }
 }

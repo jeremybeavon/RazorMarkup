@@ -76,5 +76,10 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
         {
             throw new NotSupportedException();
         }
+
+        public ITableSelectionWithJoin<TEndType> End()
+        {
+            return tableSelectionWithJoin;
+        }
     } 
 }

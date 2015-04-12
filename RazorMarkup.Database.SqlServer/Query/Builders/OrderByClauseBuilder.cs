@@ -8,11 +8,12 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class OrderByClauseBuilder : ClauseBuilder
     {
-        public OrderByClauseBuilder(Expression<Func<object>> expression)
+        public OrderByClauseBuilder(Expression initialExpression, Expression<Func<object>> expression)
+            : base(initialExpression)
         {
             Columns = new List<OrderByColumnBuilder>()
             {
-                new OrderByColumnBuilder(expression)
+                new OrderByColumnBuilder(initialExpression, expression)
             };
         }
 

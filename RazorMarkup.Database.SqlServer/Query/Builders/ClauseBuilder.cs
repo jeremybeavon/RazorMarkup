@@ -4,10 +4,6 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal class ClauseBuilder : AbstractStatementBuilder
     {
-        public ClauseBuilder()
-        {
-        }
-
         public ClauseBuilder(Expression initialExpression)
             : base(initialExpression)
         {

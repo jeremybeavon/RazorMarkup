@@ -13,6 +13,11 @@ namespace RazorMarkup.Database
 
         protected TStatementBuilder Statement { get; private set; }
 
+        protected Expression Expression
+        {
+            get { return Statement.Expression; }
+        }
+
         public Expression ToExpression()
         {
             return Statement.ToExpression();

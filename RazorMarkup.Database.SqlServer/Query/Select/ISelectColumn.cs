@@ -1,7 +1,7 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Query.Select
 {
-    public interface ISelectColumn<TEndType> : ISelectClauseWithInto<TEndType>
+    public interface ISelectColumn<TEndType> : ISelectClauseAnd<TEndType>
     {
-        ISelectClauseWithInto<TEndType> WithAlias(ColumnAlias columnAlias);
+        ISelectClauseAnd<TEndType> WithAlias(ColumnAlias columnAlias);
     }
 }

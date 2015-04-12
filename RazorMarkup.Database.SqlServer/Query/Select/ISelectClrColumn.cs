@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Query.Select
 {
-    public interface ISelectClrColumn<TEndType> : ISelectClauseWithFrom<TEndType>
+    public interface ISelectClrColumn<TEndType> : ISelectClauseAnd<TEndType>
     {
         ISelectClauseWithFrom<TEndType> Field(ClrFieldName field);
 

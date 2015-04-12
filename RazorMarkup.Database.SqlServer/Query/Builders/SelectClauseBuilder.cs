@@ -7,11 +7,6 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class SelectClauseBuilder : ClauseBuilder
     {
-        public SelectClauseBuilder()
-        {
-            Columns = new List<SelectColumnBuilder>();
-        }
-
         public SelectClauseBuilder(Expression initialExpression)
             : base(initialExpression)
         {
@@ -52,9 +47,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
         {
             if (Top != null)
             {
-                sqlBuilder.Append(" TOP (");
+                sqlBuilder.Append(" TOP ");
                 Top.ToSqlString(sqlBuilder);
-                sqlBuilder.Append(")");
                 if (IsPercent)
                 {
                     sqlBuilder.Append(" PERCENT");

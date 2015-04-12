@@ -6,9 +6,9 @@ using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query
 {
-    internal sealed class SelectClauseVisitor<TEndType> : AbstractSqlVisitor<ISelectClauseWithInto<TEndType>>
+    internal sealed class SelectClauseVisitor<TEndType> : AbstractSqlVisitor<ISelectClauseAnd<TEndType>>
     {
-        private ISelectClause<TEndType> selectClause;
+        private readonly ISelectClause<TEndType> selectClause;
 
         public SelectClauseVisitor(ISelectClause<TEndType> selectClause)
         {
@@ -17,14 +17,12 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
 
         public override void ExplicitVisit(SelectScalarExpression node)
         {
-            ISelectColumn<TEndType> column = selectClause.Column(node.Expression.ToExpression<object>());
-            Result = column;
-            selectClause = column;
+            Result = selectClause.Column(node.Expression.ToExpression<object>());
         }
 
         public override void ExplicitVisit(SelectStarExpression node)
         {
-            throw new NotSupportedException();
+            Result = node.Qualifier == null ? selectClause.AllColumns() : selectClause.AllColumns(node.Qualifier.ToTableName());
         }
 
         public override void ExplicitVisit(SelectSetVariable node)

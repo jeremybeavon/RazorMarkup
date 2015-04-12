@@ -3,6 +3,7 @@
     internal sealed class JoinQueryBuilder : AbstractTableReferenceBuilder
     {
         public JoinQueryBuilder(string joinType)
+            : base(null)
         {
             JoinType = joinType;
         }

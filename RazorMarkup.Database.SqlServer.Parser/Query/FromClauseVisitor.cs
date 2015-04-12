@@ -1,11 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
-using Microsoft.SqlServer.TransactSql.ScriptDom;
+﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
+using RazorMarkup.Database.SqlServer.Parser.Query.TableSelection;
+using RazorMarkup.Database.SqlServer.Parser.TableSelection;
 using RazorMarkup.Database.SqlServer.Query;
-using RazorMarkup.Database.SqlServer.Query.TableSelection;
-using RazorMarkup.Database.SqlServer.Query.TableSelection.Samples;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query
 {
@@ -20,9 +16,17 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
 
         public override void ExplicitVisit(FromClause node)
         {
-            base.ExplicitVisit(node);
-        }
+            ICommonTableSelectionWithJoin tableSelection = null;
+            foreach (TableReference tableReference in node.TableReferences)
+            {
+                ICommonTableSource tableSource = 
+                    tableSelection == null ?
+                    new CommonTableSource<TEndType>(fromClause) :
+                    tableSelection.And();
+                tableSelection = tableReference.AcceptWithResult(new TableReferenceVisitor(tableSource));
+            }
 
-        
+            Result = ((CommonTableSelectionWithJoin<TEndType>)tableSelection).End();
+        }
     }
 }

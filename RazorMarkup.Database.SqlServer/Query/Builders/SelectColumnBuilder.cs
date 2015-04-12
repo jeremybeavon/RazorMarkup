@@ -6,11 +6,13 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
     internal sealed class SelectColumnBuilder : AbstractStatementBuilder
     {
         public SelectColumnBuilder(string columnName)
+            : base(null)
         {
             ColumnName = columnName;
         }
 
         public SelectColumnBuilder(Expression<Func<object>> columnExpression)
+            : base(null)
         {
             ColumnExpression = new ExpressionBuilder<object>(columnExpression);
         }

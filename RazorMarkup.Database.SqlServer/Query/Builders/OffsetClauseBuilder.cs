@@ -6,7 +6,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class OffsetClauseBuilder : ClauseBuilder
     {
-        public OffsetClauseBuilder(Expression<Func<Integer>> offsetExpression)
+        public OffsetClauseBuilder(Expression initialExpression, Expression<Func<Integer>> offsetExpression)
+            : base(initialExpression)
         {
             OffsetExpression = new ExpressionBuilder<Integer>(offsetExpression);
         }

@@ -5,7 +5,7 @@ using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.Query.Select
 {
-    internal class SelectClrColumn<TEndType> : SelectColumn<TEndType>, ISelectClrColumn<TEndType>
+    internal class SelectClrColumn<TEndType> : SelectClauseAnd<TEndType>, ISelectClrColumn<TEndType>
     {
         public SelectClrColumn(SelectClauseBuilder statement, TEndType endClosure)
             : base(statement, endClosure)

@@ -28,7 +28,7 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 
         public ISubquery<ISubqueryWithAlias> Subquery()
         {
-            SubqueryBuilder builder = new SubqueryBuilder();
+            SubqueryBuilder builder = new SubqueryBuilder(Expression);
             Statement.Statements.Add(builder);
             ISubqueryWithAlias subquery = new SubqueryWithAlias(Statement);
             return new Subquery<ISubqueryWithAlias>(builder.Select, subquery);

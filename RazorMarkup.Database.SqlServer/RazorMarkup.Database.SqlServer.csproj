@@ -92,6 +92,8 @@
     <Compile Include="Query\Builders\AbstractTableReferenceBuilder.cs" />
     <Compile Include="Query\Builders\RawTableReferenceBuilder.cs" />
     <Compile Include="Query\CommonTableExpressions\IWithClause.cs" />
+    <Compile Include="Query\Select\ISelectClauseAnd.cs" />
+    <Compile Include="Query\Select\SelectClauseAnd.cs" />
     <Compile Include="Query\TableSelection\IPivotClauseIn.cs" />
     <Compile Include="Query\TableSelection\IPivotClauseAlias.cs" />
     <Compile Include="Query\TableSelection\IUnpivotClauseAlias.cs" />

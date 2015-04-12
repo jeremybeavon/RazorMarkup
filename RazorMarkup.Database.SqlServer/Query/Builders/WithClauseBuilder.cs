@@ -6,18 +6,13 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class WithClauseBuilder : ClauseBuilder
     {
-        public WithClauseBuilder(TableAlias tableName, IEnumerable<ColumnAlias> columnNames)
+        public WithClauseBuilder(Expression initialExpression, TableAlias tableName, IEnumerable<ColumnAlias> columnNames)
+            : base(initialExpression)
         {
             CommonTableExpressions = new List<CommonTableExpressionBuilder>()
             {
                 new CommonTableExpressionBuilder(tableName, columnNames)
             };
-        }
-
-        public WithClauseBuilder(TableAlias tableName, IEnumerable<ColumnAlias> columnNames, Expression initialExpression)
-            : this(tableName, columnNames)
-        {
-            Expression = initialExpression;
         }
 
         public IList<CommonTableExpressionBuilder> CommonTableExpressions { get; private set; }

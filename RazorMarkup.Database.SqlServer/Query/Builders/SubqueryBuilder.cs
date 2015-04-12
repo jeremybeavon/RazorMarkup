@@ -1,10 +1,13 @@
-﻿namespace RazorMarkup.Database.SqlServer.Query.Builders
+﻿using System.Linq.Expressions;
+
+namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class SubqueryBuilder : AbstractTableReferenceBuilder
     {
-        public SubqueryBuilder()
+        public SubqueryBuilder(Expression initialExpression)
+            : base(initialExpression)
         {
-            Select = new SelectClauseBuilder();
+            Select = new SelectClauseBuilder(initialExpression);
         }
 
         public SelectClauseBuilder Select { get; set; }

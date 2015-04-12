@@ -12,7 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Query
 
         public IForBrowseOrXml<TEndType> For()
         {
-            return new ForBrowseOrXml<TEndType>(EndClosure).AsNextClause(Statement);
+            return new ForBrowseOrXml<TEndType>(Expression, EndClosure).AsNextClause(Statement);
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class CommonTableExpressionBuilder : ClauseBuilder
     {
         public CommonTableExpressionBuilder(TableAlias tableName, IEnumerable<ColumnAlias> columnNames)
+            : base(null)
         {
             TableName = tableName.ToSqlString();
             ColumnNames = columnNames.Select(name => name.ToSqlString()).ToList();

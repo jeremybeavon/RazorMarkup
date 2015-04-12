@@ -13,32 +13,32 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
         {
         }
 
-        public ISelectClauseWithFrom<TEndType> AllColumns()
+        public ISelectColumn<TEndType> AllColumns()
         {
             Statement.Columns.Add(new SelectColumnBuilder("*"));
             Statement.Append((ISelectClause<TEndType> input) => input.AllColumns());
-            return new SelectClauseWithFrom<TEndType>(Statement, EndClosure);
+            return new SelectColumn<TEndType>(Statement, EndClosure);
         }
 
-        public ISelectClauseWithFrom<TEndType> AllColumns(TableName tableName)
+        public ISelectColumn<TEndType> AllColumns(TableName tableName)
         {
             Statement.Columns.Add(new SelectColumnBuilder(string.Format("{0}.*", tableName.ToSqlString())));
             Statement.Append((ISelectClause<TEndType> input) => input.AllColumns((TableName)null), tableName);
-            return new SelectClauseWithFrom<TEndType>(Statement, EndClosure);
+            return new SelectColumn<TEndType>(Statement, EndClosure);
         }
 
-        public ISelectClauseWithFrom<TEndType> AllColumns(ViewName viewName)
+        public ISelectColumn<TEndType> AllColumns(ViewName viewName)
         {
             Statement.Columns.Add(new SelectColumnBuilder(string.Format("{0}.*", viewName.ToSqlString())));
             Statement.Append((ISelectClause<TEndType> input) => input.AllColumns((ViewName)null), viewName);
-            return new SelectClauseWithFrom<TEndType>(Statement, EndClosure);
+            return new SelectColumn<TEndType>(Statement, EndClosure);
         }
 
-        public ISelectClauseWithFrom<TEndType> AllColumns(TableAlias tableAlias)
+        public ISelectColumn<TEndType> AllColumns(TableAlias tableAlias)
         {
             Statement.Columns.Add(new SelectColumnBuilder(string.Format("{0}.*", tableAlias.ToSqlString())));
             Statement.Append((ISelectClause<TEndType> input) => input.AllColumns((TableAlias)null), tableAlias);
-            return new SelectClauseWithFrom<TEndType>(Statement, EndClosure);
+            return new SelectColumn<TEndType>(Statement, EndClosure);
         }
 
         public ISelectColumn<TEndType> Column(Expression<Func<object>> expression)

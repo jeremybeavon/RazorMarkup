@@ -13,8 +13,8 @@ namespace RazorMarkup.Database.SqlServer.Query.OrderBy
         {
         }
 
-        public OrderByCollate(Expression<Func<object>> expression, TEndType endClosure)
-            : base(new OrderByClauseBuilder(expression), endClosure)
+        public OrderByCollate(Expression initialExpression, Expression<Func<object>> expression, TEndType endClosure)
+            : base(new OrderByClauseBuilder(initialExpression, expression), endClosure)
         {
         }
 

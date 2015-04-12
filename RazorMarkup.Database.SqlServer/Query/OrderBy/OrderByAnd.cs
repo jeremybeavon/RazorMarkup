@@ -14,7 +14,7 @@ namespace RazorMarkup.Database.SqlServer.Query.OrderBy
 
         public IOrderByCollate<TEndType> And(Expression<Func<object>> expression)
         {
-            Statement.Columns.Add(new OrderByColumnBuilder(expression));
+            Statement.Columns.Add(new OrderByColumnBuilder(Expression, expression));
             Statement.Append((IOrderByAnd<TEndType> input) => input.And(null), expression);
             return new OrderByCollate<TEndType>(Statement, EndClosure);
         }

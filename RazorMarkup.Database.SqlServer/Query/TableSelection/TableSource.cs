@@ -30,7 +30,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 
         public ISubquery<ISubqueryWithAlias<TEndType>> Subquery()
         {
-            SubqueryBuilder builder = new SubqueryBuilder();
+            SubqueryBuilder builder = new SubqueryBuilder(Expression);
             Statement.Statements.Add(builder);
             Statement.Append((ITableSource<TEndType> input) => input.Subquery());
             ISubqueryWithAlias<TEndType> subquery = new SubqueryWithAlias<TEndType>(Statement, EndClosure);

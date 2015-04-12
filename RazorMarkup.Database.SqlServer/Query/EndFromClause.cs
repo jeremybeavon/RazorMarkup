@@ -20,7 +20,7 @@ namespace RazorMarkup.Database.SqlServer.Query
 
         public IEndWhereClause<TEndType> Where(Expression<Func<bool>> searchCondition)
         {
-            return new EndWhereClause<TEndType>(searchCondition, EndClosure).AsNextClause(Statement);
+            return new EndWhereClause<TEndType>(Expression, searchCondition, EndClosure).AsNextClause(Statement);
         }
 
         public IGroupByAnd<TEndType> GroupBy(Expression<Func<object>> groupingExpression)
@@ -30,42 +30,42 @@ namespace RazorMarkup.Database.SqlServer.Query
 
         public IGroupByFunction<TEndType> GroupBy()
         {
-            return new GroupByFunction<TEndType>(EndClosure).AsNextClause(Statement);
+            return new GroupByFunction<TEndType>(Expression, EndClosure).AsNextClause(Statement);
         }
 
         public IQueryOperand<TEndType> Union()
         {
-            return new QueryOperand<TEndType>(QueryOperators.Union, EndClosure).AsNextClause(Statement);
+            return new QueryOperand<TEndType>(Expression, QueryOperators.Union, EndClosure).AsNextClause(Statement);
         }
 
         public IQueryOperand<TEndType> UnionAll()
         {
-            return new QueryOperand<TEndType>(QueryOperators.UnionAll, EndClosure).AsNextClause(Statement);
+            return new QueryOperand<TEndType>(Expression, QueryOperators.UnionAll, EndClosure).AsNextClause(Statement);
         }
 
         public IQueryOperand<TEndType> Except()
         {
-            return new QueryOperand<TEndType>(QueryOperators.Except, EndClosure).AsNextClause(Statement);
+            return new QueryOperand<TEndType>(Expression, QueryOperators.Except, EndClosure).AsNextClause(Statement);
         }
 
         public IQueryOperand<TEndType> Intersect()
         {
-            return new QueryOperand<TEndType>(QueryOperators.Intersect, EndClosure).AsNextClause(Statement);
+            return new QueryOperand<TEndType>(Expression, QueryOperators.Intersect, EndClosure).AsNextClause(Statement);
         }
 
         public IOrderByCollate<TEndType> OrderBy(Expression<Func<object>> expression)
         {
-            return new OrderByCollate<TEndType>(expression, EndClosure).AsNextClause(Statement);
+            return new OrderByCollate<TEndType>(Expression, expression, EndClosure).AsNextClause(Statement);
         }
 
         public IOffsetRow<TEndType> Offset(Expression<Func<Integer>> expression)
         {
-            return new OffsetRow<TEndType>(expression, EndClosure).AsNextClause(Statement);
+            return new OffsetRow<TEndType>(Expression, expression, EndClosure).AsNextClause(Statement);
         }
 
         public IForBrowseOrXml<TEndType> For()
         {
-            return new ForBrowseOrXml<TEndType>(EndClosure).AsNextClause(Statement);
+            return new ForBrowseOrXml<TEndType>(Expression, EndClosure).AsNextClause(Statement);
         }
     }
 }

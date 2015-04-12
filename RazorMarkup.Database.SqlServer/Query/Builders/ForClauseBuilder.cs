@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class ForClauseBuilder : ClauseBuilder
     {
-        public ForClauseBuilder()
+        public ForClauseBuilder(Expression initialExpression)
+            : base(initialExpression)
         {
             Directives = new List<string>();
         }

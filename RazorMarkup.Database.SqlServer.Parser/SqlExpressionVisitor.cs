@@ -17,9 +17,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public static Expression<Func<TResult>> ToExpression<TResult>(TSqlFragment expression)
         {
-            SqlExpressionVisitor visitor = new SqlExpressionVisitor();
-            expression.Accept(visitor);
-            Expression body = visitor.Result;
+            Expression body = expression.AcceptWithResult(new SqlExpressionVisitor());
             if (body.Type != typeof(TResult))
             {
                 body = Expression.Convert(body, typeof(TResult));
@@ -64,6 +62,11 @@ namespace RazorMarkup.Database.SqlServer.Parser
         public override void ExplicitVisit(GlobalVariableExpression node)
         {
             Result = Expression.Call(FunctionRegistrationManager.Instance.GetMethod(node.Name));
+        }
+
+        public override void ExplicitVisit(ParenthesisExpression node)
+        {
+            Result = node.Expression.AcceptWithResult(new SqlExpressionVisitor());
         }
 
         public override void ExplicitVisit(SqlIntegerLiteral node)

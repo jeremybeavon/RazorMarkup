@@ -13,8 +13,8 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
         }
 
-        public GroupByFunction(TEndType endClosure)
-            : base(new GroupByClauseBuilder(), endClosure)
+        public GroupByFunction(Expression initialExpression, TEndType endClosure)
+            : base(new GroupByClauseBuilder(initialExpression), endClosure)
         {
         }
 

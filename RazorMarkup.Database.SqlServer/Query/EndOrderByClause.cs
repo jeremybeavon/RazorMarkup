@@ -17,12 +17,12 @@ namespace RazorMarkup.Database.SqlServer.Query
 
         public IOffsetRow<TEndType> Offset(Expression<Func<Integer>> expression)
         {
-            return new OffsetRow<TEndType>(expression, EndClosure).AsNextClause(Statement);
+            return new OffsetRow<TEndType>(Expression, expression, EndClosure).AsNextClause(Statement);
         }
 
         public IForBrowseOrXml<TEndType> For()
         {
-            return new ForBrowseOrXml<TEndType>(EndClosure).AsNextClause(Statement);
+            return new ForBrowseOrXml<TEndType>(Expression, EndClosure).AsNextClause(Statement);
         }
     }
 }
