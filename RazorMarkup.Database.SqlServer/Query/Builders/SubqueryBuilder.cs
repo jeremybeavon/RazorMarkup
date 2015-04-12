@@ -1,6 +1,6 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
-    internal sealed class SubqueryBuilder : AbstractStatementBuilder
+    internal sealed class SubqueryBuilder : AbstractTableReferenceBuilder
     {
         public SubqueryBuilder()
         {

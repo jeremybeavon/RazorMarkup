@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AbstractSqlVisitor.cs" />
     <Compile Include="BooleanExpressionExtensions.cs" />
+    <Compile Include="ColumnReferenceExpressionExtensions.cs" />
     <Compile Include="DataTypeReferenceExtensions.cs" />
     <Compile Include="DropIndexOptionVisitor.cs" />
     <Compile Include="DropIndexVisitor.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Query\EmptyHavingClause.cs" />
     <Compile Include="Query\EmptyOffsetClause.cs" />
     <Compile Include="Query\EmptyOrderByClause.cs" />
+    <Compile Include="Query\EmptyFromClause.cs" />
     <Compile Include="Query\EmptyWhereClause.cs" />
     <Compile Include="Query\FromClauseVisitor.cs" />
     <Compile Include="Query\GroupByClauseVisitor.cs" />
@@ -64,6 +66,36 @@
     <Compile Include="Query\QueryOperandVisitor.cs" />
     <Compile Include="Query\SelectStatementVisitor.cs" />
     <Compile Include="Query\SelectClauseVisitor.cs" />
+    <Compile Include="Query\TableReferenceVisitor.cs" />
+    <Compile Include="Query\TableSelection\CommonJoinHint.cs" />
+    <Compile Include="Query\TableSelection\CommonPivotClause.cs" />
+    <Compile Include="Query\TableSelection\CommonPivotClauseAlias.cs" />
+    <Compile Include="Query\TableSelection\CommonPivotClauseIn.cs" />
+    <Compile Include="Query\TableSelection\CommonTableHint.cs" />
+    <Compile Include="Query\TableSelection\CommonTableSample.cs" />
+    <Compile Include="Query\TableSelection\CommonTableSampleWithSystem.cs" />
+    <Compile Include="Query\TableSelection\CommonTableSelectionWithAdditionalTableHint.cs" />
+    <Compile Include="Query\TableSelection\CommonTableSelectionWithAlias.cs" />
+    <Compile Include="Query\TableSelection\CommonTableSelectionWithJoin.cs" />
+    <Compile Include="Query\TableSelection\CommonTableSelectionWithRepeatable.cs" />
+    <Compile Include="Query\TableSelection\CommonTableSelectionWithTableHint.cs" />
+    <Compile Include="Query\TableSelection\CommonTableSelectionWithTableSample.cs" />
+    <Compile Include="Query\TableSelection\CommonTableSource.cs" />
+    <Compile Include="Query\TableSelection\CommonTableSourceWithJoinHint.cs" />
+    <Compile Include="Query\TableSelection\CommonUnpivotClause.cs" />
+    <Compile Include="Query\TableSelection\CommonUnpivotClauseAlias.cs" />
+    <Compile Include="Query\TableSelection\CommonUnpivotClauseIn.cs" />
+    <Compile Include="Query\TableSelection\Joins\AbstractJoinStatement.cs" />
+    <Compile Include="Query\TableSelection\Joins\CommonTableHintInJoin.cs" />
+    <Compile Include="Query\TableSelection\Joins\CommonTableSampleInJoin.cs" />
+    <Compile Include="Query\TableSelection\Joins\CommonTableSampleWithSystemInJoin.cs" />
+    <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithAdditionalTableHintInJoin.cs" />
+    <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithAliasInJoin.cs" />
+    <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithJoinInJoin.cs" />
+    <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithRepeatableInJoin.cs" />
+    <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithTableHintInJoin.cs" />
+    <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithTableSampleInJoin.cs" />
+    <Compile Include="Query\TableSelection\Joins\CommonTableSourceInJoin.cs" />
     <Compile Include="ScalarExpressionExtensions.cs" />
     <Compile Include="SchemaObjectNameExtensions.cs" />
     <Compile Include="SqlDataTypeOptionExtensions.cs" />
@@ -73,6 +105,25 @@
     <Compile Include="SqlSourceCodeVisitor.cs" />
     <Compile Include="SqlSourceCodeVisitor.Drop.cs" />
     <Compile Include="SqlSourceCodeVisitor.Set.cs" />
+    <Compile Include="TableSelection\ICommonAdditionalTableHint.cs" />
+    <Compile Include="TableSelection\ICommonPivotClause.cs" />
+    <Compile Include="TableSelection\ICommonPivotClauseAlias.cs" />
+    <Compile Include="TableSelection\ICommonPivotClauseIn.cs" />
+    <Compile Include="TableSelection\ICommonTableSelectionWithAlias.cs" />
+    <Compile Include="TableSelection\ICommonTableSelectionWithJoin.cs" />
+    <Compile Include="TableSelection\ICommonTableSelectionWithTableHint.cs" />
+    <Compile Include="TableSelection\ICommonTableSelectionWithTableSample.cs" />
+    <Compile Include="TableSelection\ICommonTableSource.cs" />
+    <Compile Include="TableSelection\ICommonUnpivotClause.cs" />
+    <Compile Include="TableSelection\ICommonUnpivotClauseAlias.cs" />
+    <Compile Include="TableSelection\ICommonUnpivotClauseIn.cs" />
+    <Compile Include="TableSelection\ICommonTableSample.cs" />
+    <Compile Include="TableSelection\ICommonTableSampleWithSystem.cs" />
+    <Compile Include="TableSelection\ICommonTableSelectionWithRepeatable.cs" />
+    <Compile Include="TableSelection\ICommonTableHint.cs" />
+    <Compile Include="TableSelection\ICommonTableSelectionWithAdditionalTableHint.cs" />
+    <Compile Include="TableSelection\ICommonTableSourceWithJoinHint.cs" />
+    <Compile Include="TableSelection\ICommonJoinHint.cs" />
     <Compile Include="TSqlFragmentExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +143,7 @@
       <Name>RazorMarkup.Database</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

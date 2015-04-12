@@ -1,4 +1,6 @@
-﻿using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
+﻿using System;
+using System.Linq.Expressions;
+using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
@@ -18,6 +20,10 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 
         ITableSource<TEndType> OuterApplyJoin();
 
-        IPivotClause<TEndType> Pivot();
+        IPivotClause<TEndType> Pivot(Expression<Func<object>> aggregateFunction);
+
+        IUnpivotClause<TEndType> Unpivot(ColumnName columnName);
+
+        ITableSource<TEndType> And();
     } 
 }

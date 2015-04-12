@@ -11,7 +11,7 @@ namespace RazorMarkup.Harness
     {
         public static void Main(string[] args)
         {
-            SqlSourceCodeBuilder.ToSqlString("SELECT * FROM test2 ORDER BY col1 OFFSET 1 ROW FETCH NEXT 2 ROWS ONLY");
+            SqlSourceCodeBuilder.ToSqlString("SELECT * FROM test2 PIVOT (COUNT(column1) FOR column2 IN (test1)) AS testPivot");
         }
     }
 }

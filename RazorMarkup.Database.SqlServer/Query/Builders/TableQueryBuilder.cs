@@ -5,12 +5,11 @@ using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
-    internal sealed class TableQueryBuilder : AbstractStatementBuilder
+    internal sealed class TableQueryBuilder : AbstractTableReferenceBuilder
     {
         public TableQueryBuilder()
         {
             TableHints = new List<string>();
-            TableHintNoExpandIndexes = new HashSet<int>();
         }
 
         public string TableName { get; set; }
@@ -26,8 +25,6 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
         public ExpressionBuilder<Integer> TableSampleRepeatableSeed { get; set; }
 
         public IList<string> TableHints { get; private set; }
-
-        public ISet<int> TableHintNoExpandIndexes { get; private set; }
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
@@ -83,11 +80,6 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
                     if (index > 0)
                     {
                         sqlBuilder.Append(", ");
-                    }
-
-                    if (TableHintNoExpandIndexes.Contains(index))
-                    {
-                        sqlBuilder.Append("NOEXPAND ");
                     }
 
                     sqlBuilder.Append(TableHints[index]);

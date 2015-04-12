@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
-    public sealed class JoinConditionBuilder : AbstractStatementBuilder
+    public sealed class JoinConditionBuilder : AbstractTableReferenceBuilder
     {
         public JoinConditionBuilder(Expression<Func<bool>> searchCondition)
         {

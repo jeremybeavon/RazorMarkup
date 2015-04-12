@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 
@@ -41,28 +42,40 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 
         public ITableSource<TEndType> CrossJoin()
         {
-            Statement.Statements.Add(new RawStatementBuilder(" CROSS JOIN "));
+            Statement.Statements.Add(new RawTableReferenceBuilder(" CROSS JOIN "));
             Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.CrossJoin());
             return new TableSource<TEndType>(Statement, EndClosure);
         }
 
         public ITableSource<TEndType> CrossApplyJoin()
         {
-            Statement.Statements.Add(new RawStatementBuilder(" CROSS APPLY "));
+            Statement.Statements.Add(new RawTableReferenceBuilder(" CROSS APPLY "));
             Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.CrossApplyJoin());
             return new TableSource<TEndType>(Statement, EndClosure);
         }
 
         public ITableSource<TEndType> OuterApplyJoin()
         {
-            Statement.Statements.Add(new RawStatementBuilder(" OUTER APPLY "));
+            Statement.Statements.Add(new RawTableReferenceBuilder(" OUTER APPLY "));
             Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.OuterApplyJoin());
             return new TableSource<TEndType>(Statement, EndClosure);
         }
 
-        public IPivotClause<TEndType> Pivot()
+        public IPivotClause<TEndType> Pivot(Expression<Func<object>> aggregateFunction)
         {
             throw new NotImplementedException();
+        }
+
+        public IUnpivotClause<TEndType> Unpivot(ColumnName columnName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ITableSource<TEndType> And()
+        {
+            Statement.CurrentTable.IncludeComma = true;
+            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.And());
+            return new TableSource<TEndType>(Statement, EndClosure);
         }
     }
 }

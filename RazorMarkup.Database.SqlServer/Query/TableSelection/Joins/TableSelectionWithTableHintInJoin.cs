@@ -1,5 +1,4 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins.Hints;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 {
@@ -11,10 +10,10 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
         {
         }
 
-        public ITableHintWithNoExpandInJoin<TJoinEndType> WithHint()
+        public ITableHintInJoin<TJoinEndType> WithHint()
         {
             Statement.Append((ITableSelectionWithTableHintInJoin<TJoinEndType> input) => input.WithHint());
-            return new TableHintWithNoExpandInJoin<TJoinEndType>(Statement, JoinClosure);
+            return new TableHintInJoin<TJoinEndType>(Statement, JoinClosure);
         }
     }
 }

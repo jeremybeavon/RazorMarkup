@@ -125,7 +125,9 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
             ISelectClauseWithFrom<TEndType> selectClauseWithFrom,
             QuerySpecification node)
         {
-            return selectClauseWithFrom.From().Table(new TableName("tableName"));
+            return node.FromClause == null ?
+                new EmptyFromClause<TEndType>(selectClauseWithFrom) :
+                node.FromClause.AcceptWithResult(new FromClauseVisitor<TEndType>(selectClauseWithFrom.From()));
         }
 
         private IEndWhereClause<TEndType> BuildWhereClause(

@@ -1,6 +1,6 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
-    internal sealed class JoinQueryBuilder : AbstractStatementBuilder
+    internal sealed class JoinQueryBuilder : AbstractTableReferenceBuilder
     {
         public JoinQueryBuilder(string joinType)
         {

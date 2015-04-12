@@ -9,6 +9,6 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
     public interface ITableSelectionWithTableSample<TEndType> : ITableSelectionWithTableHint<TEndType>
     {
-        ITableSample<TEndType> WithTableSample();
+        ITableSampleWithSystem<TEndType> TableSample();
     }
 }

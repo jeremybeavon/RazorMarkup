@@ -1,5 +1,4 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.Query.TableSelection.Hints;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
@@ -11,10 +10,10 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
         {
         }
 
-        public ITableHintWithNoExpand<TEndType> WithHint()
+        public ITableHint<TEndType> WithHint()
         {
             Statement.Append((ITableSelectionWithTableHint<TEndType> input) => input.WithHint());
-            return new TableHintWithNoExpand<TEndType>(Statement, EndClosure);
+            return new TableHint<TEndType>(Statement, EndClosure);
         }
     }
 }

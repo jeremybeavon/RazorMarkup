@@ -37,19 +37,19 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 
         public ITableSource CrossJoin()
         {
-            Statement.Statements.Add(new RawStatementBuilder(" CROSS JOIN "));
+            Statement.Statements.Add(new RawTableReferenceBuilder(" CROSS JOIN "));
             return new TableSource(Statement);
         }
 
         public ITableSource CrossApplyJoin()
         {
-            Statement.Statements.Add(new RawStatementBuilder(" CROSS APPLY "));
+            Statement.Statements.Add(new RawTableReferenceBuilder(" CROSS APPLY "));
             return new TableSource(Statement);
         }
 
         public ITableSource OuterApplyJoin()
         {
-            Statement.Statements.Add(new RawStatementBuilder(" OUTER APPLY "));
+            Statement.Statements.Add(new RawTableReferenceBuilder(" OUTER APPLY "));
             return new TableSource(Statement);
         }
 

@@ -1,6 +1,4 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Joins.Hints;
-
 namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Joins
 {
     internal class TableSelectionWithTableHintInJoin<TJoinEndType> : TableSelectionWithJoinInJoin<TJoinEndType>,
@@ -11,9 +9,9 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Joins
         {
         }
 
-        public ITableHintWithNoExpandInJoin<TJoinEndType> WithHint()
+        public ITableHintInJoin<TJoinEndType> WithHint()
         {
-            return new TableHintWithNoExpandInJoin<TJoinEndType>(Statement, JoinClosure);
+            return new TableHintInJoin<TJoinEndType>(Statement, JoinClosure);
         }
     }
 }

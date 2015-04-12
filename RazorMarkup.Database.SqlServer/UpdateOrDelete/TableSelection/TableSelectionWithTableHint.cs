@@ -1,5 +1,4 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Hints;
 
 namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 {
@@ -11,9 +10,9 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
         {
         }
 
-        public ITableHintWithNoExpand WithHint()
+        public ITableHint WithHint()
         {
-            return new TableHintWithNoExpand(Statement);
+            return new TableHint(Statement);
         }
     }
 }

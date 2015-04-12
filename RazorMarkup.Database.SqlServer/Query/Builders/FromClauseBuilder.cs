@@ -7,10 +7,10 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
     {
         public FromClauseBuilder()
         {
-            Statements = new List<AbstractStatementBuilder>();
+            Statements = new List<AbstractTableReferenceBuilder>();
         }
 
-        public IList<AbstractStatementBuilder> Statements { get; private set; }
+        public IList<AbstractTableReferenceBuilder> Statements { get; private set; }
 
         internal TableQueryBuilder CurrentTable
         {
@@ -21,9 +21,13 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
         {
             sqlBuilder.AppendIndent();
             sqlBuilder.Append("FROM");
-            foreach (AbstractStatementBuilder statement in Statements)
+            foreach (AbstractTableReferenceBuilder statement in Statements)
             {
                 statement.ToSqlString(sqlBuilder);
+                if (statement.IncludeComma)
+                {
+                    sqlBuilder.Append(", ");
+                }
             }
 
             base.ToSqlString(sqlBuilder);

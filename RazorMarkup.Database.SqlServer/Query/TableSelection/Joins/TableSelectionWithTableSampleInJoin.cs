@@ -12,10 +12,10 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
         {
         }
 
-        public ITableSampleInJoin<TJoinEndType> WithTableSample()
+        public ITableSampleWithSystemInJoin<TJoinEndType> TableSample()
         {
-            Statement.Append((ITableSelectionWithTableSampleInJoin<TJoinEndType> input) => input.WithTableSample());
-            return new TableSampleInJoin<TJoinEndType>(Statement, JoinClosure);
+            Statement.Append((ITableSelectionWithTableSampleInJoin<TJoinEndType> input) => input.TableSample());
+            return new TableSampleWithSystemInJoin<TJoinEndType>(Statement, JoinClosure);
         }
     }
 }
