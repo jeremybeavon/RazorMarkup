@@ -12,6 +12,9 @@ namespace RazorMarkup.Database.SqlServer.Parser
 {
     internal sealed partial class SqlExpressionVisitor : AbstractSqlVisitor<Expression>
     {
+        private static readonly ConstructorInfo columnNameConstructor =
+            typeof(ColumnName).GetConstructor(new Type[] { typeof(string) });
+
         private static readonly ConstructorInfo variableNameConstructor =
             typeof(VariableName).GetConstructor(new Type[] { typeof(string) });
 
@@ -28,8 +31,8 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(BinaryExpression node)
         {
-            Expression left = BuildResult(node.FirstExpression);
-            Expression right = BuildResult(node.SecondExpression);
+            Expression left = node.FirstExpression.AcceptWithResult(this);
+            Expression right = node.SecondExpression.AcceptWithResult(this);
             switch (node.BinaryExpressionType)
             {
                 case BinaryExpressionType.Add:
@@ -59,6 +62,41 @@ namespace RazorMarkup.Database.SqlServer.Parser
             }
         }
 
+        public override void ExplicitVisit(BooleanComparisonExpression node)
+        {
+            Expression left = node.FirstExpression.AcceptWithResult(this);
+            Expression right = node.SecondExpression.AcceptWithResult(this);
+            switch (node.ComparisonType)
+            {
+                case BooleanComparisonType.Equals:
+                    Result = Expression.Equal(left, right);
+                    break;
+                case BooleanComparisonType.GreaterThan:
+                    Result = Expression.GreaterThan(left, right);
+                    break;
+                case BooleanComparisonType.LessThan:
+                    Result = Expression.LessThan(left, right);
+                    break;
+                case BooleanComparisonType.GreaterThanOrEqualTo:
+                    Result = Expression.GreaterThanOrEqual(left, right);
+                    break;
+                case BooleanComparisonType.LessThanOrEqualTo:
+                    Result = Expression.LessThanOrEqual(left, right);
+                    break;
+                case BooleanComparisonType.NotEqualToBrackets:
+                case BooleanComparisonType.NotEqualToExclamation:
+                    Result = Expression.NotEqual(left, right);
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
+        public override void ExplicitVisit(ColumnReferenceExpression node)
+        {
+            Result = Expression.New(columnNameConstructor, Expression.Constant(node.ToColumnNameText()));
+        }
+
         public override void ExplicitVisit(GlobalVariableExpression node)
         {
             Result = Expression.Call(FunctionRegistrationManager.Instance.GetMethod(node.Name));
@@ -81,7 +119,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(UnaryExpression node)
         {
-            Expression operand = BuildResult(node.Expression);
+            Expression operand = node.Expression.AcceptWithResult(this);
             switch (node.UnaryExpressionType)
             {
                 case UnaryExpressionType.Positive:

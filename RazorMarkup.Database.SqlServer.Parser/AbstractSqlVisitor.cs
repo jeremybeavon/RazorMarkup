@@ -7,12 +7,6 @@ namespace RazorMarkup.Database.SqlServer.Parser
     { 
         public TResult Result { get; protected set; }
 
-        public TResult BuildResult(TSqlFragment fragment)
-        {
-            fragment.Accept(this);
-            return Result;
-        }
-
         public override void Visit(TSqlFragment fragment)
         {
             throw new NotSupportedException();

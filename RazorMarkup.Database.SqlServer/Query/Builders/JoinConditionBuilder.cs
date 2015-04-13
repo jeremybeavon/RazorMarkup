@@ -16,7 +16,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
             sqlBuilder.AppendIndent();
-            sqlBuilder.Append(" ON");
+            sqlBuilder.Append("ON ");
             SearchCondition.ToExpressionBuilder().ToSqlString(sqlBuilder);
         }
     }

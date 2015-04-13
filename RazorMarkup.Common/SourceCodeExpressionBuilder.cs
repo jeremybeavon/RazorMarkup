@@ -8,6 +8,31 @@ namespace RazorMarkup.Common
 {
     internal sealed class SourceCodeExpressionBuilder : AbstractExpressionVisitor
     {
+        private static readonly IDictionary<ExpressionType, Action<InternalTextBuilder>> binaryExpressions =
+            new Dictionary<ExpressionType, Action<InternalTextBuilder>>()
+        {
+            { ExpressionType.Add, builder => builder.Append(" + ") },
+            { ExpressionType.AddChecked, builder => builder.Append(" + ") },
+            { ExpressionType.And, builder => builder.Append(" & ") },
+            { ExpressionType.AndAlso, builder => builder.Append(" && ") },
+            { ExpressionType.Divide, builder => builder.Append(" / ") },
+            { ExpressionType.Equal, builder => builder.Append(" == ") },
+            { ExpressionType.ExclusiveOr, builder => builder.Append(" ^ ") },
+            { ExpressionType.GreaterThan, builder => builder.Append(" > ") },
+            { ExpressionType.GreaterThanOrEqual, builder => builder.Append(" >= ") },
+            { ExpressionType.LeftShift, builder => builder.Append(" << ") },
+            { ExpressionType.LessThan, builder => builder.Append(" < ") },
+            { ExpressionType.LessThanOrEqual, builder => builder.Append(" <= ") },
+            { ExpressionType.Modulo, builder => builder.Append(" % ") },
+            { ExpressionType.Multiply, builder => builder.Append(" * ") },
+            { ExpressionType.MultiplyChecked, builder => builder.Append(" * ") },
+            { ExpressionType.NotEqual, builder => builder.Append(" != ") },
+            { ExpressionType.Or, builder => builder.Append(" | ") },
+            { ExpressionType.OrElse, builder => builder.Append(" || ") },
+            { ExpressionType.RightShift, builder => builder.Append(" >> ") },
+            { ExpressionType.Subtract, builder => builder.Append(" - ") },
+            { ExpressionType.SubtractChecked, builder => builder.Append(" - ") }
+        };
         private readonly SourceCodeBuilderSettings settings;
         private readonly ISet<string> usingReferences;
         private readonly InternalTextBuilder textBuilder;
@@ -22,6 +47,23 @@ namespace RazorMarkup.Common
         public static ISourceCode ToSourceCode(SourceCodeBuilderSettings settings, Expression expression)
         {
             return new SourceCodeExpressionBuilder(settings).BuildSourceCode(expression);
+        }
+
+        protected override Expression VisitBinary(BinaryExpression node)
+        {
+            Action<InternalTextBuilder> textBuilderAction;
+            if (binaryExpressions.TryGetValue(node.NodeType, out textBuilderAction))
+            {
+                Visit(node.Left);
+                textBuilderAction(textBuilder);
+                Visit(node.Right);
+            }
+            else
+            {
+                throw new NotSupportedException();
+            }
+
+            return node;
         }
 
         protected override Expression VisitConstant(ConstantExpression node)

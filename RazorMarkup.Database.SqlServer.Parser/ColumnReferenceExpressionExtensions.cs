@@ -7,7 +7,12 @@ namespace RazorMarkup.Database.SqlServer.Parser
     {
         public static ColumnName ToColumnName(this ColumnReferenceExpression expression)
         {
-            return new ColumnName(string.Join(".", expression.MultiPartIdentifier.Identifiers.Select(part => part.Value)));
+            return new ColumnName(ToColumnNameText(expression));
+        }
+
+        public static string ToColumnNameText(this ColumnReferenceExpression expression)
+        {
+            return string.Join(".", expression.MultiPartIdentifier.Identifiers.Select(part => part.Value));
         }
     }
 }
