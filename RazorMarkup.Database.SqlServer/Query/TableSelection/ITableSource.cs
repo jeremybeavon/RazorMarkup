@@ -12,6 +12,6 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 
         ITableSelectionWithAlias<TEndType> View(ViewName viewName);
 
-        ISubquery<ISubqueryWithAlias<TEndType>> Subquery();
+        IQueryOperand<IEndSubquery<ISubqueryWithAlias<TEndType>>> Subquery();
     }
 }

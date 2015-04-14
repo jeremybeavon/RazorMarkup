@@ -2,6 +2,6 @@
 {
     public interface ISubqueryWithAlias : IHideObjectMethods
     {
-        ISubqueryWithJoin WithAlias(TableAlias tableAlias);
+        ITableSelectionWithJoin As(TableAlias tableAlias, params ColumnAlias[] columnAlias);
     }
 }

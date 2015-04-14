@@ -28,13 +28,14 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
             return new TableSelectionWithAlias<TEndType>(Statement, EndClosure);
         }
 
-        public ISubquery<ISubqueryWithAlias<TEndType>> Subquery()
+        public IQueryOperand<IEndSubquery<ISubqueryWithAlias<TEndType>>> Subquery()
         {
+            Statement.Append((ITableSource<TEndType> input) => input.Subquery());
             SubqueryBuilder builder = new SubqueryBuilder(Expression);
             Statement.Statements.Add(builder);
-            Statement.Append((ITableSource<TEndType> input) => input.Subquery());
-            ISubqueryWithAlias<TEndType> subquery = new SubqueryWithAlias<TEndType>(Statement, EndClosure);
-            return new Subquery<ISubqueryWithAlias<TEndType>>(builder.Select, subquery);
+            return new QueryOperand<IEndSubquery<ISubqueryWithAlias<TEndType>>>(
+                builder.Select,
+                new EndSubquery<TEndType>(builder, EndClosure));
         }
     }
 }

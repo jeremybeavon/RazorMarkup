@@ -81,8 +81,10 @@
     <Compile Include="Drop\Signature\IDropSignatureStatement.cs" />
     <Compile Include="Exists.cs" />
     <Compile Include="ExpressionExtensions.cs" />
+    <Compile Include="Expressions\EndSubquery.cs" />
     <Compile Include="Expressions\FunctionRegistrationManager.cs" />
     <Compile Include="Expressions\Functions\IEndIn.cs" />
+    <Compile Include="Expressions\IEndSubquery.cs" />
     <Compile Include="Expressions\LiteralExpressionBuilder.cs" />
     <Compile Include="FileGroupName.cs" />
     <Compile Include="FullyQualifiedName.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Expressions\Functions\IEndExists.cs" />
     <Compile Include="Query\Builders\AbstractTableReferenceBuilder.cs" />
     <Compile Include="Query\Builders\RawTableReferenceBuilder.cs" />
+    <Compile Include="Query\Builders\SubqueryExpressionBuilder.cs" />
     <Compile Include="Query\CommonTableExpressions\IWithClause.cs" />
     <Compile Include="Query\Select\ISelectClauseAnd.cs" />
     <Compile Include="Query\Select\SelectClauseAnd.cs" />
@@ -378,16 +381,12 @@
     <Compile Include="Query\Select\SelectClauseWithPercent.cs" />
     <Compile Include="Query\TableSelection\IPivotClause.cs" />
     <Compile Include="Query\TableSelection\ISubqueryWithAlias.cs" />
-    <Compile Include="Query\TableSelection\ISubqueryWithColumnAlias.cs" />
-    <Compile Include="Query\TableSelection\ISubqueryWithJoin.cs" />
     <Compile Include="Query\TableSelection\ITableSelectionWithAlias.cs" />
     <Compile Include="Query\TableSelection\ITableSelectionWithTableSample.cs" />
     <Compile Include="Query\QueryStatements.cs" />
     <Compile Include="Query\IHasEnd.cs" />
     <Compile Include="Query\Select\ISelectClauseWithFrom.cs" />
-    <Compile Include="Query\ISubquery.cs" />
     <Compile Include="Query\Select\SelectClauseWithFrom.cs" />
-    <Compile Include="Query\Subquery.cs" />
     <Compile Include="Query\Builders\SubqueryBuilder.cs" />
     <Compile Include="Query\TableSelection\TableSelectionWithAdditionalTableHint.cs" />
     <Compile Include="Query\TableSelection\TableHint.cs" />
@@ -480,6 +479,7 @@
     <Compile Include="ColumnName.cs" />
     <Compile Include="StatisticsName.cs" />
     <Compile Include="StringFunctions.cs" />
+    <Compile Include="Subquery.cs" />
     <Compile Include="SymmetricKeyName.cs" />
     <Compile Include="SynonymName.cs" />
     <Compile Include="SystemFunctions.cs" />

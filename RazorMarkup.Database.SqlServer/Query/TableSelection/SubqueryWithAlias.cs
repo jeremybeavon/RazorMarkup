@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
@@ -11,9 +12,19 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
         {
         }
 
-        public ISubqueryWithJoin<TEndType> WithAlias(TableAlias tableAlias)
+        public ITableSelectionWithJoin<TEndType> As(TableAlias tableAlias, params ColumnAlias[] columnAlias)
         {
-            throw new NotImplementedException();
+            SubqueryBuilder subqueryBuilder = Statement.CurrentSubquery;
+            subqueryBuilder.TableAlias = tableAlias.ToSqlString();
+            foreach (ColumnAlias alias in columnAlias)
+            {
+                subqueryBuilder.ColumnAlias.Add(alias.ToSqlString());
+            }
+
+            Statement.Append(
+                (ISubqueryWithAlias<TEndType> input) => input.As(null),
+                (new ISqlString[] { tableAlias }).Concat(columnAlias).ToArray());
+            return new TableSelectionWithJoin<TEndType>(Statement, EndClosure);
         }
     }
 }

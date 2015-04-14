@@ -72,6 +72,7 @@
     <Compile Include="Query\TableSelection\CommonPivotClause.cs" />
     <Compile Include="Query\TableSelection\CommonPivotClauseAlias.cs" />
     <Compile Include="Query\TableSelection\CommonPivotClauseIn.cs" />
+    <Compile Include="Query\TableSelection\CommonSubqueryWithAlias.cs" />
     <Compile Include="Query\TableSelection\CommonTableHint.cs" />
     <Compile Include="Query\TableSelection\CommonTableSample.cs" />
     <Compile Include="Query\TableSelection\CommonTableSampleWithSystem.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="TableSelection\ICommonPivotClause.cs" />
     <Compile Include="TableSelection\ICommonPivotClauseAlias.cs" />
     <Compile Include="TableSelection\ICommonPivotClauseIn.cs" />
+    <Compile Include="TableSelection\ICommonSubqueryWithAlias.cs" />
     <Compile Include="TableSelection\ICommonTableSelectionWithAlias.cs" />
     <Compile Include="TableSelection\ICommonTableSelectionWithJoin.cs" />
     <Compile Include="TableSelection\ICommonTableSelectionWithTableHint.cs" />

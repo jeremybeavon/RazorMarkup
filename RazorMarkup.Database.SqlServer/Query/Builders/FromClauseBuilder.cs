@@ -14,9 +14,14 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 
         public IList<AbstractTableReferenceBuilder> Statements { get; private set; }
 
-        internal TableQueryBuilder CurrentTable
+        public TableQueryBuilder CurrentTable
         {
             get { return (TableQueryBuilder)Statements.Last(); }
+        }
+
+        public SubqueryBuilder CurrentSubquery
+        {
+            get { return (SubqueryBuilder)Statements.Last(); }
         }
 
         public override void ToSqlString(SqlBuilder sqlBuilder)

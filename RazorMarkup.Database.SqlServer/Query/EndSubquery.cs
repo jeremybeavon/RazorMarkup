@@ -1,17 +1,21 @@
-﻿namespace RazorMarkup.Database.SqlServer.Query
-{
-    internal sealed class EndSubquery<TParent> : IEndSubquery<TParent>
-    {
-        private readonly TParent parent;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using RazorMarkup.Database.SqlServer.Query.TableSelection;
 
-        public EndSubquery(TParent parent)
+namespace RazorMarkup.Database.SqlServer.Query
+{
+    internal sealed class EndSubquery<TEndType> : AbstractQueryStatement<SubqueryBuilder, TEndType>,
+        IEndSubquery<ISubqueryWithAlias<TEndType>>
+    {
+        public EndSubquery(SubqueryBuilder statement, TEndType endClosure)
+            : base(statement, endClosure)
         {
-            this.parent = parent;
         }
 
-        public TParent Subquery()
+        public ISubqueryWithAlias<TEndType> Subquery()
         {
-            return parent;
+            Statement.End();
+            Statement.Append((IEndSubquery<ISubqueryWithAlias<TEndType>> input) => input.Subquery());
+            return new SubqueryWithAlias<TEndType>(new FromClauseBuilder(Expression), EndClosure);
         }
     }
 }

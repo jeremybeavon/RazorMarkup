@@ -1,4 +1,6 @@
-﻿using RazorMarkup.Database.SqlServer.Parser.TableSelection;
+﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
+using RazorMarkup.Database.SqlServer.Parser.TableSelection;
+using RazorMarkup.Database.SqlServer.Query;
 using RazorMarkup.Database.SqlServer.Query.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
@@ -20,6 +22,17 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
         public ICommonTableSelectionWithAlias View(ViewName viewName)
         {
             return new CommonTableSelectionWithAlias<TEndType>(tableSource.View(viewName));
+        }
+
+        public ICommonSubqueryWithAlias Subquery(QueryExpression query)
+        {
+            return new CommonSubqueryWithAlias<TEndType>(CreateSubquery(query));
+        }
+
+        private ISubqueryWithAlias<TEndType> CreateSubquery(QueryExpression query)
+        {
+            return query.AcceptWithResult(
+                new QueryOperandVisitor<IEndSubquery<ISubqueryWithAlias<TEndType>>>(tableSource.Subquery())).End().Subquery();
         }
     }
 }

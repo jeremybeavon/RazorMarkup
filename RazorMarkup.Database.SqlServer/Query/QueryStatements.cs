@@ -39,10 +39,9 @@ namespace RazorMarkup.Database.SqlServer.Query
             return Expression;
         }
 
-        public void EndQuery()
+        public override void End()
         {
             Expression = base.ToExpression();
-            Append((IEndQuery input) => input.Query());
         }
     }
 }

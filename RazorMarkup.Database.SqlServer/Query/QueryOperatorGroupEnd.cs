@@ -19,7 +19,7 @@ namespace RazorMarkup.Database.SqlServer.Query
 
         public QueryOperand<IQueryOperatorGroupEnd<TEndType>> AsOperand()
         {
-            return new QueryOperand<IQueryOperatorGroupEnd<TEndType>>(Statement.Operand, this);
+            return new QueryOperand<IQueryOperatorGroupEnd<TEndType>>((SelectClauseBuilder)Statement.Operand, this);
         }
     }
 }

@@ -25,5 +25,10 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
         {
             return new CommonTableSelectionWithAliasInJoin<TEndType>(tableSource.View(viewName), EndClosure);
         }
+
+        public ICommonSubqueryWithAlias Subquery(Microsoft.SqlServer.TransactSql.ScriptDom.QueryExpression query)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

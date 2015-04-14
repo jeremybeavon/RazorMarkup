@@ -23,5 +23,10 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
         {
             return NextClause == null ? Expression : NextClause.ToExpression();
         }
+
+        public virtual void End()
+        {
+            Expression = ToExpression();
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 
         public ICommonPivotClause Pivot(Expression<Func<object>> aggregateFunction)
         {
-            return new CommonPivotClause<TEndType>(tableSelectionWithJoin.Pivot(aggregateFunction));
+            return new CommonPivotClause<TEndType>(tableSelectionWithJoin.Pivot(null));
         }
 
         public ICommonUnpivotClause Unpivot(ColumnName columnName)

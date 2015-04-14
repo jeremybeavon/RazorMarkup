@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
+using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
@@ -61,7 +62,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
             return new TableSource<TEndType>(Statement, EndClosure);
         }
 
-        public IPivotClause<TEndType> Pivot(Expression<Func<object>> aggregateFunction)
+        public IPivotClause<TEndType> Pivot(AggregateName aggregateName, params Expression<Func<Text>>[] aggregateValues)
         {
             throw new NotImplementedException();
         }

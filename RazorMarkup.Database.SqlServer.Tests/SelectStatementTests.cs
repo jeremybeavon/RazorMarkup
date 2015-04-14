@@ -214,5 +214,33 @@ ON table1.column1 = table2.column1";
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
+
+        /*[TestMethod]
+        public void Test_SelectWithPivotJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+PIVOT (COUNT(column1) FOR column2 IN (test1, test2, test3)) AS testPivot";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .Pivot()
+        }*/
+
+        [TestMethod]
+        public void Test_SelectWithSubquery_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM
+(
+    SELECT *
+    FROM table1
+) AS table2";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Subquery().Select().AllColumns().From().Table(new TableName("table1")).End().Subquery().As(new TableAlias("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
     }
 }

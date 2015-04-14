@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
+using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
@@ -20,7 +21,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 
         ITableSource<TEndType> OuterApplyJoin();
 
-        IPivotClause<TEndType> Pivot(Expression<Func<object>> aggregateFunction);
+        IPivotClause<TEndType> Pivot(AggregateName aggregateName, params Expression<Func<Text>>[] aggregateValues);
 
         IUnpivotClause<TEndType> Unpivot(ColumnName columnName);
 

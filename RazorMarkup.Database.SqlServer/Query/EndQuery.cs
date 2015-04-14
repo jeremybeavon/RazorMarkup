@@ -14,7 +14,8 @@ namespace RazorMarkup.Database.SqlServer.Query
 
         public ISqlString Query()
         {
-            query.EndQuery();
+            query.End();
+            query.Append((IEndQuery input) => input.Query());
             return query;
         }
     }

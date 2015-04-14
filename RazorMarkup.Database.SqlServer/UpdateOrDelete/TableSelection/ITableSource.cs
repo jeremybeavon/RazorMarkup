@@ -8,6 +8,6 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 
         ITableSelectionWithAlias View(ViewName viewName);
 
-        ISubquery<ISubqueryWithAlias> Subquery();
+        //ISubquery<ISubqueryWithAlias> Subquery();
     }
 }

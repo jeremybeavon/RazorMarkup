@@ -26,12 +26,12 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
             return new TableSelectionWithAlias(Statement);
         }
 
-        public ISubquery<ISubqueryWithAlias> Subquery()
+        /*public ISubquery<ISubqueryWithAlias> Subquery()
         {
             SubqueryBuilder builder = new SubqueryBuilder(Expression);
             Statement.Statements.Add(builder);
             ISubqueryWithAlias subquery = new SubqueryWithAlias(Statement);
             return new Subquery<ISubqueryWithAlias>(builder.Select, subquery);
-        }
+        }*/
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Query
 {
-    public interface IEndSubquery<TParent> : IHideObjectMethods
+    public interface IEndSubquery<TEndType> : IHideObjectMethods
     {
-        TParent Subquery();
+        TEndType Subquery();
     }
 }

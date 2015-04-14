@@ -13,7 +13,12 @@ namespace RazorMarkup.Database.SqlServer.Query
         {
         }
 
-        public QueryOperand(ClauseBuilder statement, TEndType endClosure)
+        public QueryOperand(SelectClauseBuilder statement, TEndType endClosure)
+            : base(statement, endClosure)
+        {
+        }
+
+        public QueryOperand(QueryOperatorGroupBuilder statement, TEndType endClosure)
             : base(statement, endClosure)
         {
         }

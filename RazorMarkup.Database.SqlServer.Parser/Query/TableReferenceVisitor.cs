@@ -57,6 +57,13 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
             Result = secondTable.On(node.SearchCondition.ToExpression());
         }
 
+        public override void ExplicitVisit(QueryDerivedTable node)
+        {
+            ICommonSubqueryWithAlias subqueryWithAlias = tableSource.Subquery(node.QueryExpression);
+            ColumnAlias[] columns = node.Columns.Select(column => new ColumnAlias(column.Value)).ToArray();
+            Result = subqueryWithAlias.As(new TableAlias(node.Alias.Value), columns);
+        }
+
         public override void ExplicitVisit(UnpivotedTableReference node)
         {
             ICommonTableSelectionWithJoin table = node.TableReference.AcceptWithResult(new TableReferenceVisitor(tableSource));
