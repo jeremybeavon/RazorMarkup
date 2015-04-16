@@ -1,4 +1,6 @@
-﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using System;
+using System.Linq.Expressions;
+using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 {
@@ -26,6 +28,15 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
             Statement.Statements.Add(builder);
             Statement.Append((ITableSourceInJoin<TJoinEndType> input) => input.View(null), viewName);
             return new TableSelectionWithAliasInJoin<TJoinEndType>(Statement, JoinClosure);
+        }
+
+        public IDerviedTableWithAliasInJoin<TJoinEndType> DerivedTable(Expression<Func<object>>[][] values)
+        {
+            Statement.Append((ITableSource<TJoinEndType> input) => input.DerivedTable(null), new DerivedTableExpression(values));
+            DerivedTableBuilder builder = new DerivedTableBuilder();
+            builder.Values = values;
+            Statement.Statements.Add(builder);
+            return new DerivedTableWithAliasInJoin<TJoinEndType>(Statement, builder, JoinClosure);
         }
     }
 }

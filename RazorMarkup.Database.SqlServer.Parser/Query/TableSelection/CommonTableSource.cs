@@ -1,4 +1,6 @@
-﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
+﻿using System;
+using System.Linq.Expressions;
+using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Parser.TableSelection;
 using RazorMarkup.Database.SqlServer.Query;
 using RazorMarkup.Database.SqlServer.Query.TableSelection;
@@ -27,6 +29,11 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
         public ICommonSubqueryWithAlias Subquery(QueryExpression query)
         {
             return new CommonSubqueryWithAlias<TEndType>(CreateSubquery(query));
+        }
+
+        public ICommonDerivedTableWithAlias DerviedTable(Expression<Func<object>>[][] values)
+        {
+            return new CommonDerviedTableWithAlias<TEndType>(tableSource.DerivedTable(values));
         }
 
         private ISubqueryWithAlias<TEndType> CreateSubquery(QueryExpression query)

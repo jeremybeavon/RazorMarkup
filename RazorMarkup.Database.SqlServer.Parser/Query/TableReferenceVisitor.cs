@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
@@ -15,6 +16,25 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
 	    {
             this.tableSource = tableSource;
 	    }
+
+        public override void ExplicitVisit(InlineDerivedTable node)
+        {
+            Expression<Func<object>>[][] values = new Expression<Func<object>>[node.RowValues.Count][];
+            for (int rowIndex = 0; rowIndex < node.RowValues.Count; rowIndex++)
+            {
+                IList<ScalarExpression> columnValues = node.RowValues[rowIndex].ColumnValues;
+                values[rowIndex] = new Expression<Func<object>>[columnValues.Count];
+                for (int columnIndex = 0; columnIndex < columnValues.Count; columnIndex++)
+                {
+                    values[rowIndex][columnIndex] = columnValues[columnIndex].ToExpression<object>();
+                }
+            }
+
+            ICommonDerivedTableWithAlias derivedTable = tableSource.DerviedTable(values);
+            Result = derivedTable.As(
+                new TableAlias(node.Alias.Value),
+                node.Columns.Select(column => new ColumnAlias(column.Value)).ToArray());
+        }
 
         public override void ExplicitVisit(NamedTableReference node)
         {

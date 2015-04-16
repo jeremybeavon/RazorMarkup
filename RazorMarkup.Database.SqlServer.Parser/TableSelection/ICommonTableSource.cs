@@ -1,4 +1,6 @@
-﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
+﻿using System;
+using System.Linq.Expressions;
+using Microsoft.SqlServer.TransactSql.ScriptDom;
 
 namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
 {
@@ -9,5 +11,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
         ICommonTableSelectionWithAlias View(ViewName viewName);
 
         ICommonSubqueryWithAlias Subquery(QueryExpression query);
+
+        ICommonDerivedTableWithAlias DerviedTable(Expression<Func<object>>[][] values);
     }
 }

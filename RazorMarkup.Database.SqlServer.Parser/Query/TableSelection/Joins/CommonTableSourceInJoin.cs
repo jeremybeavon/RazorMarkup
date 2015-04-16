@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Parser.TableSelection;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 
@@ -27,6 +28,11 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
         }
 
         public ICommonSubqueryWithAlias Subquery(Microsoft.SqlServer.TransactSql.ScriptDom.QueryExpression query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICommonDerivedTableWithAlias DerviedTable(Expression<Func<object>>[][] values)
         {
             throw new NotImplementedException();
         }

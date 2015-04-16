@@ -128,6 +128,23 @@ namespace RazorMarkup.Common
             return node;
         }
 
+        protected override Expression VisitNewArray(NewArrayExpression node)
+        {
+            textBuilder.Append("new ");
+            textBuilder.Append(node.Type.Name);
+            textBuilder.Append("[] { ");
+            string comma = string.Empty;
+            foreach (Expression expression in node.Expressions)
+            {
+                textBuilder.Append(comma);
+                Visit(expression);
+                comma = ", ";
+            }
+
+            textBuilder.Append(" }");
+            return node;
+        }
+
         protected override Expression VisitUnary(UnaryExpression node)
         {
             if (node.NodeType == ExpressionType.Quote)

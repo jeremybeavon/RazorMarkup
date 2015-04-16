@@ -68,6 +68,7 @@
     <Compile Include="Query\SelectStatementVisitor.cs" />
     <Compile Include="Query\SelectClauseVisitor.cs" />
     <Compile Include="Query\TableReferenceVisitor.cs" />
+    <Compile Include="Query\TableSelection\CommonDerviedTableWithAlias.cs" />
     <Compile Include="Query\TableSelection\CommonJoinHint.cs" />
     <Compile Include="Query\TableSelection\CommonPivotClause.cs" />
     <Compile Include="Query\TableSelection\CommonPivotClauseAlias.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Query\TableSelection\CommonUnpivotClauseAlias.cs" />
     <Compile Include="Query\TableSelection\CommonUnpivotClauseIn.cs" />
     <Compile Include="Query\TableSelection\Joins\AbstractJoinStatement.cs" />
+    <Compile Include="Query\TableSelection\Joins\CommonDerviedTableWithAlias.cs" />
     <Compile Include="Query\TableSelection\Joins\CommonTableHintInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\CommonTableSampleInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\CommonTableSampleWithSystemInJoin.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="SqlSourceCodeVisitor.Drop.cs" />
     <Compile Include="SqlSourceCodeVisitor.Set.cs" />
     <Compile Include="TableSelection\ICommonAdditionalTableHint.cs" />
+    <Compile Include="TableSelection\ICommonDerivedTableWithAlias.cs" />
     <Compile Include="TableSelection\ICommonPivotClause.cs" />
     <Compile Include="TableSelection\ICommonPivotClauseAlias.cs" />
     <Compile Include="TableSelection\ICommonPivotClauseIn.cs" />

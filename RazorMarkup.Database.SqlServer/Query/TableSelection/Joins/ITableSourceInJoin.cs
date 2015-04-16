@@ -1,4 +1,7 @@
-﻿namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
+﻿using System;
+using System.Linq.Expressions;
+
+namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 {
     public interface ITableSourceInJoin<TJoinEndType> : IHideObjectMethods
     {
@@ -6,6 +9,6 @@
 
         ITableSelectionWithAliasInJoin<TJoinEndType> View(ViewName tableName);
 
-
+        IDerviedTableWithAliasInJoin<TJoinEndType> DerivedTable(Expression<Func<object>>[][] values);
     }
 }

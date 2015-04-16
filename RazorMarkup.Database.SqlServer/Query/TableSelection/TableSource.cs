@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
@@ -36,6 +38,15 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
             return new QueryOperand<IEndSubquery<ISubqueryWithAlias<TEndType>>>(
                 builder.Select,
                 new EndSubquery<TEndType>(builder, EndClosure));
+        }
+
+        public IDerviedTableWithAlias<TEndType> DerivedTable(Expression<Func<object>>[][] values)
+        {
+            Statement.Append((ITableSource<TEndType> input) => input.DerivedTable(null), new DerivedTableExpression(values));
+            DerivedTableBuilder builder = new DerivedTableBuilder();
+            builder.Values = values;
+            Statement.Statements.Add(builder);
+            return new DerivedTableWithAlias<TEndType>(Statement, builder, EndClosure);
         }
     }
 }
