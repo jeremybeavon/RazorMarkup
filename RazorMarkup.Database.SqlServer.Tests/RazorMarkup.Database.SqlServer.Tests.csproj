@@ -58,6 +58,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DataTypeFunctionsTests.cs" />
     <Compile Include="ReturnStatementTests.cs" />
     <Compile Include="PrintStatementTests.cs" />
     <Compile Include="LabelStatementTests.cs" />

@@ -153,7 +153,7 @@ namespace RazorMarkup.Common
                 Visit(((LambdaExpression)node.Operand).Body);
                 return node;
             }
-            else if (node.IsImplicitOperator())
+            else if (node.IsImplicitOperator() || node.Type == typeof(object))
             {
                 Visit(node.Operand);
                 return node;

@@ -61,7 +61,21 @@
     <Compile Include="Query\EmptyFromClause.cs" />
     <Compile Include="Query\EmptyWhereClause.cs" />
     <Compile Include="Query\FromClauseVisitor.cs" />
-    <Compile Include="Query\GroupByClauseVisitor.cs" />
+    <Compile Include="Query\GroupBy\AbstractGroupBy.cs" />
+    <Compile Include="Query\GroupBy\GroupByAnd.cs" />
+    <Compile Include="Query\GroupBy\GroupByClause.cs" />
+    <Compile Include="Query\GroupBy\GroupByCube.cs" />
+    <Compile Include="Query\GroupBy\GroupByCubeFunction.cs" />
+    <Compile Include="Query\GroupBy\GroupByFunction.cs" />
+    <Compile Include="Query\GroupBy\GroupByFunctionType.cs" />
+    <Compile Include="Query\GroupBy\GroupByGroup.cs" />
+    <Compile Include="Query\GroupBy\GroupByGroupingSet.cs" />
+    <Compile Include="Query\GroupBy\GroupByGroupingSetFunction.cs" />
+    <Compile Include="Query\GroupBy\GroupByRollup.cs" />
+    <Compile Include="Query\GroupBy\GroupByRollupFunction.cs" />
+    <Compile Include="Query\GroupBy\GroupingSpecificationExtensions.cs" />
+    <Compile Include="Query\GroupBy\ICommonGroupBy.cs" />
+    <Compile Include="Query\GroupingSpecificationVisitor.cs" />
     <Compile Include="Query\QueryExpressionExtensions.cs" />
     <Compile Include="Query\QueryOperandExtensions.cs" />
     <Compile Include="Query\QueryOperandVisitor.cs" />
@@ -149,7 +163,6 @@
       <Name>RazorMarkup.Database</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

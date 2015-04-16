@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
+using RazorMarkup.Database.SqlServer.Parser.Query.GroupBy;
 using RazorMarkup.Database.SqlServer.Query;
 using RazorMarkup.Database.SqlServer.Query.Offset;
 using RazorMarkup.Database.SqlServer.Query.OrderBy;
@@ -145,7 +146,14 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
             IEndWhereClause<TEndType> groupByClause,
             QuerySpecification node)
         {
-            return new EmptyGroupByClause<TEndType>(groupByClause);
+            if (node.GroupByClause == null)
+            {
+                return new EmptyGroupByClause<TEndType>(groupByClause);
+            }
+
+            ICommonGroupBy groupBy = node.GroupByClause.GroupingSpecifications.AcceptWithResult(
+                new GroupByClause<TEndType>(groupByClause));
+            return groupBy.End<IEndGroupByClause<TEndType>>();
         }
 
         private IEndHavingClause<TEndType> BuildHavingClause(

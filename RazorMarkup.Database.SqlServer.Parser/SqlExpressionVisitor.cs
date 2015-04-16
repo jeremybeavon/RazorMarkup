@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
@@ -17,6 +19,17 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         private static readonly ConstructorInfo variableNameConstructor =
             typeof(VariableName).GetConstructor(new Type[] { typeof(string) });
+
+        private readonly Type type;
+
+        public SqlExpressionVisitor()
+        {
+        }
+
+        public SqlExpressionVisitor(Type type)
+        {
+            this.type = type;
+        }
 
         public static Expression<Func<TResult>> ToExpression<TResult>(TSqlFragment expression)
         {
@@ -97,9 +110,23 @@ namespace RazorMarkup.Database.SqlServer.Parser
             Result = Expression.New(columnNameConstructor, Expression.Constant(node.ToColumnNameText()));
         }
 
+        public override void ExplicitVisit(FunctionCall node)
+        {
+            MethodInfo method = FunctionRegistrationManager.Instance.GetMethod(node.FunctionName.Value, node.Parameters.Count);
+            Type[] parameterTypes = method.GetParameters().Select(parameter => parameter.ParameterType).ToArray();
+            Func<ScalarExpression, int, Expression> getParameterFunc =
+                (parameter, index) => parameter.AcceptWithResult(new SqlExpressionVisitor(parameterTypes[index]));
+            Result = Expression.Call(method, node.Parameters.Select(getParameterFunc));
+        }
+
         public override void ExplicitVisit(GlobalVariableExpression node)
         {
-            Result = Expression.Call(FunctionRegistrationManager.Instance.GetMethod(node.Name));
+            Result = Expression.Call(FunctionRegistrationManager.Instance.GetMethod(node.Name, 0));
+        }
+
+        public override void ExplicitVisit(NullLiteral node)
+        {
+            Result = type == null ? Expression.Constant(null): Expression.Constant(null, type);
         }
 
         public override void ExplicitVisit(ParenthesisExpression node)

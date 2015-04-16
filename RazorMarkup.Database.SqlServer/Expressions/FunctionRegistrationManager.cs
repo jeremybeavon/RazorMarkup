@@ -58,7 +58,7 @@ namespace RazorMarkup.Database.SqlServer.Expressions
             return functionBuilder();
         }
 
-        public MethodInfo GetMethod(string functionName, params Type[] parameterTypes)
+        public MethodInfo GetMethod(string functionName, int parameterCount)
         {
             IList<MethodInfo> methods;
             if (!functionMethods.TryGetValue(functionName, out methods))
@@ -66,24 +66,24 @@ namespace RazorMarkup.Database.SqlServer.Expressions
                 throw new ArgumentException(functionName + " was not found.", "functionName");
             }
 
-            return methods.First(method => IsMatch(method, parameterTypes));
+            return methods.First(method => IsMatch(method, parameterCount));
         }
 
-        private static bool IsMatch(MethodInfo method, Type[] parameterTypes)
+        private static bool IsMatch(MethodInfo method, int parameterCount)
         {
             ParameterInfo[] parameters = method.GetParameters();
-            if (parameters.Length != parameterTypes.Length)
+            if (parameters.Length != parameterCount)
             {
                 return false;
             }
 
-            for (int index = 0; index < parameters.Length; index++)
+            /*for (int index = 0; index < parameters.Length; index++)
             {
                 if (parameters[index].ParameterType != parameterTypes[index])
                 {
                     return false;
                 }
-            }
+            }*/
 
             return true;
         }

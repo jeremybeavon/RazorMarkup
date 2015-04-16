@@ -84,6 +84,7 @@
     <Compile Include="Expressions\EndSubquery.cs" />
     <Compile Include="Expressions\FunctionRegistrationManager.cs" />
     <Compile Include="Expressions\Functions\IEndIn.cs" />
+    <Compile Include="Expressions\Functions\ParameterBuilder.cs" />
     <Compile Include="Expressions\IEndSubquery.cs" />
     <Compile Include="Expressions\LiteralExpressionBuilder.cs" />
     <Compile Include="FileGroupName.cs" />

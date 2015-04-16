@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using RazorMarkup.Common;
+using RazorMarkup.Database.SqlServer.Expressions.Functions;
 
 namespace RazorMarkup.Database.SqlServer.Expressions
 {
@@ -80,7 +81,16 @@ namespace RazorMarkup.Database.SqlServer.Expressions
                 case TypeCode.DateTime:
                     throw new NotSupportedException();
                 case TypeCode.Object:
-                    throw new NotSupportedException();
+                    if (node.Value == null)
+                    {
+                        sqlBuilder.Append("NULL");
+                    }
+                    else
+                    {
+                        throw new NotSupportedException();
+                    }
+
+                    break;
                 default:
                     sqlBuilder.Append(node.Value.ToString());
                     break;
@@ -105,7 +115,17 @@ namespace RazorMarkup.Database.SqlServer.Expressions
 
         protected override Expression VisitMethodCall(MethodCallExpression node)
         {
-            FunctionRegistrationManager.Instance.GetFunctionBuilder(node.Method).ToSqlString(sqlBuilder);
+            AbstractStatementBuilder statement = FunctionRegistrationManager.Instance.GetFunctionBuilder(node.Method);
+            FunctionBuilder functionBuilder = statement as FunctionBuilder;
+            if (functionBuilder != null)
+            {
+                foreach (Expression parameter in node.Arguments)
+                {
+                    functionBuilder.Arguments.Add(new ParameterBuilder(parameter));
+                }
+            }
+
+            statement.ToSqlString(sqlBuilder);
             return node;
         }
 
