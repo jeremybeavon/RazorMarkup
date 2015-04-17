@@ -16,6 +16,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
 
         ISelectColumn<TEndType> Column(Expression<Func<object>> expression);
 
+        ISelectColumn<TEndType> Column(ColumnName columnName);
+
         ISelectColumn<TEndType> IdentityColumn();
 
         ISelectColumn<TEndType> IdentityColumn(TableName tableName);

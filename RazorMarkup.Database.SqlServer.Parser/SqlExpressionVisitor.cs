@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Expressions;
+using RazorMarkup.Database.SqlServer.Types.Wrappers;
 using BinaryExpression = Microsoft.SqlServer.TransactSql.ScriptDom.BinaryExpression;
 using SqlIntegerLiteral = Microsoft.SqlServer.TransactSql.ScriptDom.IntegerLiteral;
 using SqlStringLiteral = Microsoft.SqlServer.TransactSql.ScriptDom.StringLiteral;
@@ -114,9 +115,14 @@ namespace RazorMarkup.Database.SqlServer.Parser
         {
             MethodInfo method = FunctionRegistrationManager.Instance.GetMethod(node.FunctionName.Value, node.Parameters.Count);
             Type[] parameterTypes = method.GetParameters().Select(parameter => parameter.ParameterType).ToArray();
-            Func<ScalarExpression, int, Expression> getParameterFunc =
-                (parameter, index) => parameter.AcceptWithResult(new SqlExpressionVisitor(parameterTypes[index]));
-            Result = Expression.Call(method, node.Parameters.Select(getParameterFunc));
+            IEnumerable<Expression> parameters = node.Parameters.Select(
+                (parameter, index) => parameter.AcceptWithResult(new SqlExpressionVisitor(parameterTypes[index])));
+            if (method.IsGenericMethodDefinition)
+            {
+                method = method.MakeGenericMethod(typeof(Integer));
+            }
+
+            Result = Expression.Call(method, parameters);
         }
 
         public override void ExplicitVisit(GlobalVariableExpression node)

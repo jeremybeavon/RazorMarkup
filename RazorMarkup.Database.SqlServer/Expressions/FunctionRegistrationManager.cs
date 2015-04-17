@@ -50,7 +50,7 @@ namespace RazorMarkup.Database.SqlServer.Expressions
         {
             MethodInfo searchMethod = method.IsGenericMethod ? method.GetGenericMethodDefinition() : method;
             Func<AbstractStatementBuilder> functionBuilder;
-            if (!functionBuilders.TryGetValue(method, out functionBuilder))
+            if (!functionBuilders.TryGetValue(searchMethod, out functionBuilder))
             {
                 throw new ArgumentException(method.Name + "was not found.", "method");
             }

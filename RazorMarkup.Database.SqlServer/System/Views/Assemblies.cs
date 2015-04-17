@@ -2,7 +2,7 @@
 
 namespace RazorMarkup.Database.SqlServer.System.Views
 {
-    public abstract class Assemblies
+    public sealed class Assemblies
     {
         public static readonly ViewName ViewName = new ViewName("sys.assemblies");
 

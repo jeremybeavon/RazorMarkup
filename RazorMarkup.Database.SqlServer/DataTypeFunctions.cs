@@ -25,13 +25,13 @@ namespace RazorMarkup.Database.SqlServer
             throw new NotInExpressionException();
         }
 
-        public static T Identity<T>(T dataType)
+        public static T Identity<T>()
             where T : ISqlIntegerType
         {
             throw new NotInExpressionException();
         }
 
-        public static T Identity<T>(T dataType, T seed, T increment)
+        public static T Identity<T>(T seed, T increment)
             where T : ISqlIntegerType
         {
             throw new NotInExpressionException();

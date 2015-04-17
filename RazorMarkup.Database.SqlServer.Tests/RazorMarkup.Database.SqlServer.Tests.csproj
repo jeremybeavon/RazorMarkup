@@ -59,6 +59,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DataTypeFunctionsTests.cs" />
+    <Compile Include="MathematicalFunctionsTests.cs" />
     <Compile Include="ReturnStatementTests.cs" />
     <Compile Include="PrintStatementTests.cs" />
     <Compile Include="LabelStatementTests.cs" />

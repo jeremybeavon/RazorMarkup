@@ -11,10 +11,10 @@ namespace RazorMarkup.Common
             textBuilder = new InternalTextBuilder();
         }
 
-        public TextBuilder(string sql)
+        public TextBuilder(string initialText)
             : this()
         {
-            textBuilder.Append(sql);
+            textBuilder.Append(initialText);
         }
 
         public static string DefaultIndentText

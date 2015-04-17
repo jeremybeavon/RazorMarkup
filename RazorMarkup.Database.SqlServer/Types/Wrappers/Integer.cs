@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RazorMarkup.Database.SqlServer.Types.Wrappers
 {
-    public sealed class Integer
+    public sealed class Integer : ISqlIntegerType
     {
         public static implicit operator Integer(byte integer)
         {

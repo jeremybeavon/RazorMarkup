@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer.Tests
 {
@@ -12,9 +13,9 @@ namespace RazorMarkup.Database.SqlServer.Tests
             FunctionTestHelper.TestFunction(() => DataTypeFunctions.DataLength(null), "DATALENGTH(NULL)");
         }
 
-        /*public void Test_IdentityWith1Parameter()
+        /*public void Test_Identity()
         {
-            FunctionTestHelper.TestFunction(() => DataTypeFunctions.Identity(10), "IDENTITY(10)");
+            FunctionTestHelper.TestFunction(() => DataTypeFunctions.Identity<SqlInt>(), "IDENTITY(int)");
         }*/
 
         [TestMethod]

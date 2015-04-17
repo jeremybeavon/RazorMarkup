@@ -17,8 +17,8 @@ namespace RazorMarkup.Database.SqlServer.Expressions.Functions
             functionRegistrationManager.Register(FunctionNames.IdentitySeed, () => DataTypeFunctions.IdentitySeed(null));
             functionRegistrationManager.Register(
                 FunctionNames.Identity,
-                () => DataTypeFunctions.Identity<SqlInt>(null),
-                () => DataTypeFunctions.Identity<SqlInt>(null, null, null));
+                () => DataTypeFunctions.Identity<SqlInt>(),
+                () => DataTypeFunctions.Identity<SqlInt>(null, null));
             functionRegistrationManager.Register(
                 FunctionNames.SqlVariantProperty,
                 () => DataTypeFunctions.SqlVariantProperty(null, null));
