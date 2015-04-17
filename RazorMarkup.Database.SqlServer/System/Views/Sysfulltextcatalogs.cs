@@ -2,7 +2,7 @@ using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer.System.Views
 {
-    public sealed class Sysfulltextcatalogs
+    public sealed class SysFullTextCatalogs
     {
         public static readonly ViewName ViewName = new ViewName("sys.sysfulltextcatalogs");
         

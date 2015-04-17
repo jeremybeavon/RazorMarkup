@@ -2,7 +2,7 @@ using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer.System.Views
 {
-    public sealed class Sysremotelogins
+    public sealed class SysRemoteLogins
     {
         public static readonly ViewName ViewName = new ViewName("sys.sysremotelogins");
         

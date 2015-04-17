@@ -2,7 +2,7 @@ using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer.System.Views
 {
-    public sealed class Sysusers
+    public sealed class SysUsers
     {
         public static readonly ViewName ViewName = new ViewName("sys.sysusers");
         

@@ -2,7 +2,7 @@ using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer.System.Views
 {
-    public sealed class Sysindexes
+    public sealed class SysIndexes
     {
         public static readonly ViewName ViewName = new ViewName("sys.sysindexes");
         

@@ -2,7 +2,7 @@ using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer.System.Views
 {
-    public sealed class Syscursorcolumns
+    public sealed class SysCursorColumns
     {
         public static readonly ViewName ViewName = new ViewName("sys.syscursorcolumns");
         
