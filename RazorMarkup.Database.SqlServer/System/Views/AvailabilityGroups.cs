@@ -1,4 +1,5 @@
-﻿using RazorMarkup.Database.SqlServer.Types;
+﻿using RazorMarkup.Database.SqlServer.System.Views.Values;
+using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer.System.Views
 {

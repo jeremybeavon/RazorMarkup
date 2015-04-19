@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using RazorMarkup.Common;
 
 namespace RazorMarkup.Database.SqlServer
 {
@@ -174,3 +173,12 @@ namespace RazorMarkup.Database.SqlServer
         }
     }
 }
+
+/*
+SELECT parm.name AS Parameter,        
+typ.name AS [Type]
+FROM sys.all_objects sp
+JOIN sys.all_parameters parm ON sp.object_id = parm.object_id
+JOIN sys.types typ ON parm.system_type_id = typ.system_type_id
+WHERE sp.name = 'sp_MSmergeupdatelastsyncinfo'
+*/

@@ -1,6 +1,4 @@
-﻿using RazorMarkup.Common;
-
-namespace RazorMarkup.Database
+﻿namespace RazorMarkup.Database
 {
     public static class SqlStringExtensions
     {

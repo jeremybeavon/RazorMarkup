@@ -76,9 +76,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RazorMarkup.Common\RazorMarkup.Common.csproj">
+    <ProjectReference Include="..\RazorMarkup\RazorMarkup.csproj">
       <Project>{36373b5c-a4cc-40b1-9a9d-c54eac326e7e}</Project>
-      <Name>RazorMarkup.Common</Name>
+      <Name>RazorMarkup</Name>
     </ProjectReference>
     <ProjectReference Include="..\RazorMarkup.Database.SqlServer.Parser\RazorMarkup.Database.SqlServer.Parser.csproj">
       <Project>{49768143-d5bc-4657-a579-dc85dbc66e3a}</Project>

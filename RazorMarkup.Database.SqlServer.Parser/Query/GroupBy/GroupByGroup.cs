@@ -16,7 +16,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
             this.groupBy = groupBy;
         }
 
-        public ICommonGroupBy GroupBy(Expression<Func<object>> expression)
+        public override ICommonGroupBy GroupBy(Expression<Func<object>> expression)
         {
             return new GroupByGroup<TEndGroupType>(groupBy.And(expression));
         }

@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using RazorMarkup.Database.SqlServer.Parser;
+using RazorMarkup.Database.SqlServer;
 
 namespace RazorMarkup.Harness
 {
@@ -12,8 +13,10 @@ namespace RazorMarkup.Harness
     {
         public static void Main(string[] args)
         {
-            Expression<Func<object>> test = () => new int[][] { new[] { 1, 2, 3 }, new[] { 4, 5, 6 } };
-            SqlSourceCodeBuilder.ToSqlString("SELECT * FROM test2 PIVOT (COUNT(column1) FOR column2 IN (test1)) AS testPivot");
+            CodeGenerator.GenerateSystemViews(
+                "Data Source=.\\SQLEXPRESS;Initial Catalog=\"New Database\";Integrated Security=True;",
+                "RazorMarkup.Database.SqlServer.System.Views",
+                @"C:\Users\beavon\Documents\Visual Studio 2013\Projects\RazorMarkup\RazorMarkup.Database.SqlServer\System\Views");
         }
     }
 }

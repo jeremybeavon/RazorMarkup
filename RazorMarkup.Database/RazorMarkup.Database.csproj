@@ -42,7 +42,6 @@
     <Compile Include="AbstractStatement.cs" />
     <Compile Include="AbstractStatementBuilder.cs" />
     <Compile Include="ExpressionBuilder.cs" />
-    <Compile Include="IHideObjectMethods.cs" />
     <Compile Include="IntegerLiteral.cs" />
     <Compile Include="ISqlString.cs" />
     <Compile Include="NotInExpressionException.cs" />
@@ -56,9 +55,9 @@
     <Compile Include="StringLiteral.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RazorMarkup.Common\RazorMarkup.Common.csproj">
+    <ProjectReference Include="..\RazorMarkup\RazorMarkup.csproj">
       <Project>{36373b5c-a4cc-40b1-9a9d-c54eac326e7e}</Project>
-      <Name>RazorMarkup.Common</Name>
+      <Name>RazorMarkup</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace RazorMarkup.Database
 {
-    public interface ISqlString
+    public interface ISqlString : IHideObjectMethods
     {
         string ToSqlString();
 

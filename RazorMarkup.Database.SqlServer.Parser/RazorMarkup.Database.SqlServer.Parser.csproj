@@ -150,9 +150,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RazorMarkup.Common\RazorMarkup.Common.csproj">
+    <ProjectReference Include="..\RazorMarkup\RazorMarkup.csproj">
       <Project>{36373b5c-a4cc-40b1-9a9d-c54eac326e7e}</Project>
-      <Name>RazorMarkup.Common</Name>
+      <Name>RazorMarkup</Name>
     </ProjectReference>
     <ProjectReference Include="..\RazorMarkup.Database.SqlServer\RazorMarkup.Database.SqlServer.csproj">
       <Project>{38cadd81-4103-497c-a213-efc3eac6a190}</Project>

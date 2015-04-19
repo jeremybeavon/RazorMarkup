@@ -13,13 +13,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Database.SqlSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Database.SqlServer.Parser", "RazorMarkup.Database.SqlServer.Parser\RazorMarkup.Database.SqlServer.Parser.csproj", "{49768143-D5BC-4657-A579-DC85DBC66E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Common", "RazorMarkup.Common\RazorMarkup.Common.csproj", "{36373B5C-A4CC-40B1-9A9D-C54EAC326E7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup", "RazorMarkup\RazorMarkup.csproj", "{36373B5C-A4CC-40B1-9A9D-C54EAC326E7E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Web.Parser", "RazorMarkup.Web.Parser\RazorMarkup.Web.Parser.csproj", "{54E58D3D-B455-44EA-80D1-2FF503F85842}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Web.Tests", "RazorMarkup.Web.Tests\RazorMarkup.Web.Tests.csproj", "{AD7EB397-129C-4089-92D7-5C5B9AEB955B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Harness", "RazorMarkup.Harness\RazorMarkup.Harness.csproj", "{3E6CB700-F530-4795-B632-B84C4DD2415E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Powershell", "RazorMarkup.Powershell\RazorMarkup.Powershell.csproj", "{24E77DA4-A01E-4938-B28D-51CEB477E5CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Powershell.Parser", "RazorMarkup.Powershell.Parser\RazorMarkup.Powershell.Parser.csproj", "{722FD4A1-BBC4-4A01-93A4-1A041F7EBA33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Powershell.Tests", "RazorMarkup.Powershell.Tests\RazorMarkup.Powershell.Tests.csproj", "{0C5ECD2C-FD0E-4849-A362-BBA709A9CC46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.CommandLine", "RazorMarkup.CommandLine\RazorMarkup.CommandLine.csproj", "{D5A1AA07-612F-46FB-AFB8-6B2A1A1D4A4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.CommandLine.Parser", "RazorMarkup.CommandLine.Parser\RazorMarkup.CommandLine.Parser.csproj", "{1B92D55A-1A2D-4E86-A38A-2AEA412E1165}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.CommandLine.Tests", "RazorMarkup.CommandLine.Tests\RazorMarkup.CommandLine.Tests.csproj", "{6B0A20E2-503F-46CD-B434-EE7DBAEFC44C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +75,30 @@ Global
 		{3E6CB700-F530-4795-B632-B84C4DD2415E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E6CB700-F530-4795-B632-B84C4DD2415E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E6CB700-F530-4795-B632-B84C4DD2415E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24E77DA4-A01E-4938-B28D-51CEB477E5CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24E77DA4-A01E-4938-B28D-51CEB477E5CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24E77DA4-A01E-4938-B28D-51CEB477E5CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24E77DA4-A01E-4938-B28D-51CEB477E5CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{722FD4A1-BBC4-4A01-93A4-1A041F7EBA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{722FD4A1-BBC4-4A01-93A4-1A041F7EBA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{722FD4A1-BBC4-4A01-93A4-1A041F7EBA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{722FD4A1-BBC4-4A01-93A4-1A041F7EBA33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C5ECD2C-FD0E-4849-A362-BBA709A9CC46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C5ECD2C-FD0E-4849-A362-BBA709A9CC46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C5ECD2C-FD0E-4849-A362-BBA709A9CC46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C5ECD2C-FD0E-4849-A362-BBA709A9CC46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5A1AA07-612F-46FB-AFB8-6B2A1A1D4A4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5A1AA07-612F-46FB-AFB8-6B2A1A1D4A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5A1AA07-612F-46FB-AFB8-6B2A1A1D4A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5A1AA07-612F-46FB-AFB8-6B2A1A1D4A4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B92D55A-1A2D-4E86-A38A-2AEA412E1165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B92D55A-1A2D-4E86-A38A-2AEA412E1165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B92D55A-1A2D-4E86-A38A-2AEA412E1165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B92D55A-1A2D-4E86-A38A-2AEA412E1165}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B0A20E2-503F-46CD-B434-EE7DBAEFC44C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B0A20E2-503F-46CD-B434-EE7DBAEFC44C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B0A20E2-503F-46CD-B434-EE7DBAEFC44C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B0A20E2-503F-46CD-B434-EE7DBAEFC44C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

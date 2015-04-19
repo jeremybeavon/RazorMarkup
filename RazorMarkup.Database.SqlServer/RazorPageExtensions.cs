@@ -1,6 +1,4 @@
-﻿using RazorMarkup.Common;
-
-namespace RazorMarkup.Database.SqlServer
+﻿namespace RazorMarkup.Database.SqlServer
 {
     public static class RazorPageExtensions
     {
