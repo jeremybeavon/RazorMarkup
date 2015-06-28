@@ -10,6 +10,7 @@ namespace RazorMarkup.Database.SqlServer
             {
                 yield return typeof(Sql);
                 yield return typeof(ISqlString);
+                yield return typeof(IHideObjectMethods);
             }
         }
     }

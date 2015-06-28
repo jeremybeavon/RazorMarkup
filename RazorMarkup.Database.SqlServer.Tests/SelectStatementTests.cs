@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer.Tests
 {
@@ -239,6 +240,92 @@ FROM
             Sql.Query()
                 .Select().AllColumns()
                 .From().Subquery().Select().AllColumns().From().Table(new TableName("table1")).End().Subquery().As(new TableAlias("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithWhereClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+WHERE column1 = 'test'";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .Where(() => new ColumnName("column1") == "test")
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithUnionClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+UNION
+SELECT column2
+FROM table2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Union()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithUnionAllClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+UNION ALL
+SELECT column2
+FROM table2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .UnionAll()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithExceptClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+EXCEPT
+SELECT column2
+FROM table2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Except()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithIntersectClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+INTERSECT
+SELECT column2
+FROM table2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Intersect()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }

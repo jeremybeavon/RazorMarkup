@@ -7,7 +7,7 @@ using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query
 {
-    internal sealed class EmptyOffsetClause<TEndType> : IEndOffsetClause<TEndType>
+    internal sealed class EmptyOffsetClause<TEndType> : IEndOffsetClause<TEndType>, IQueryOperator<TEndType>
     {
         private readonly IEndOrderByClause<TEndType> offsetClause;
 
@@ -24,6 +24,26 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
         public IForBrowseOrXml<TEndType> For()
         {
             return offsetClause.For();
+        }
+
+        public IQueryOperand<TEndType> Union()
+        {
+            return ((IQueryOperator<TEndType>)offsetClause).Union();
+        }
+
+        public IQueryOperand<TEndType> UnionAll()
+        {
+            return ((IQueryOperator<TEndType>)offsetClause).UnionAll();
+        }
+
+        public IQueryOperand<TEndType> Except()
+        {
+            return ((IQueryOperator<TEndType>)offsetClause).Except();
+        }
+
+        public IQueryOperand<TEndType> Intersect()
+        {
+            return ((IQueryOperator<TEndType>)offsetClause).Intersect();
         }
     }
 }

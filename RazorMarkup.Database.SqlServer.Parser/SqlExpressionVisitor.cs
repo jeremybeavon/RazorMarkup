@@ -80,6 +80,11 @@ namespace RazorMarkup.Database.SqlServer.Parser
         {
             Expression left = node.FirstExpression.AcceptWithResult(this);
             Expression right = node.SecondExpression.AcceptWithResult(this);
+            if (left.Type != right.Type && typeof(ISqlString).IsAssignableFrom(left.Type))
+            {
+                left = Expression.Convert(left, right.Type);
+            }
+
             switch (node.ComparisonType)
             {
                 case BooleanComparisonType.Equals:

@@ -11,7 +11,8 @@ namespace RazorMarkup.Powershell
     {
         public static void GenerateModule(string assemblyFile, string outputDirectory)
         {
-
+            AssemblyDefinition assembly = AssemblyDefinition.ReadAssembly(assemblyFile);
+            
         }
 
         private static IEnumerable<TypeDefinition> FindAllCmdlets(string assemblyFile)
@@ -23,7 +24,6 @@ namespace RazorMarkup.Powershell
         private static IReadOnlyCollection<string> FindAllParameterSets(TypeDefinition type)
         {
             return null;
-
         }
 
         private static IEnumerable<CustomAttribute> FindAllParameterAttributes(TypeDefinition type)

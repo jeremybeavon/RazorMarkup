@@ -15,7 +15,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
-            sqlBuilder.AppendIndent().Append("WHERE");
+            sqlBuilder.AppendIndent().Append("WHERE ");
             SearchCondition.ToSqlString(sqlBuilder);
             base.ToSqlString(sqlBuilder);
         }

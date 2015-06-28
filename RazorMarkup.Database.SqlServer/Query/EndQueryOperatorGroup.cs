@@ -20,36 +20,43 @@ namespace RazorMarkup.Database.SqlServer.Query
 
         public IQueryOperand<TEndType> Union()
         {
+            Statement.Append((IEndQueryOperatorGroup<TEndType> input) => input.Union());
             return new QueryOperand<TEndType>(Expression, QueryOperators.Union, EndClosure).AsNextClause(Statement);
         }
 
         public IQueryOperand<TEndType> UnionAll()
         {
+            Statement.Append((IEndQueryOperatorGroup<TEndType> input) => input.UnionAll());
             return new QueryOperand<TEndType>(Expression, QueryOperators.UnionAll, EndClosure).AsNextClause(Statement);
         }
 
         public IQueryOperand<TEndType> Except()
         {
+            Statement.Append((IEndQueryOperatorGroup<TEndType> input) => input.Except());
             return new QueryOperand<TEndType>(Expression, QueryOperators.Except, EndClosure).AsNextClause(Statement);
         }
 
         public IQueryOperand<TEndType> Intersect()
         {
+            Statement.Append((IEndQueryOperatorGroup<TEndType> input) => input.Intersect());
             return new QueryOperand<TEndType>(Expression, QueryOperators.Intersect, EndClosure).AsNextClause(Statement);
         }
 
         public IOrderByCollate<TEndType> OrderBy(Expression<Func<object>> expression)
         {
+            Statement.Append((IEndQueryOperatorGroup<TEndType> input) => input.OrderBy(null), expression);
             return new OrderByCollate<TEndType>(Expression, expression, EndClosure).AsNextClause(Statement);
         }
 
         public IOffsetRow<TEndType> Offset(Expression<Func<Integer>> expression)
         {
+            Statement.Append((IEndQueryOperatorGroup<TEndType> input) => input.Offset(null), expression);
             return new OffsetRow<TEndType>(Expression, expression, EndClosure).AsNextClause(Statement);
         }
 
         public IForBrowseOrXml<TEndType> For()
         {
+            Statement.Append((IEndQueryOperatorGroup<TEndType> input) => input.For());
             return new ForBrowseOrXml<TEndType>(Expression, EndClosure).AsNextClause(Statement);
         }
     }
