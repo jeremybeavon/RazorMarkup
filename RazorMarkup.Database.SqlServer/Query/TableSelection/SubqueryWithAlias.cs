@@ -21,9 +21,8 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
                 subqueryBuilder.ColumnAlias.Add(alias.ToSqlString());
             }
 
-            Statement.Append(
-                (ISubqueryWithAlias<TEndType> input) => input.As(null),
-                (new ISqlString[] { tableAlias }).Concat(columnAlias).ToArray());
+            ISqlString columnAliasString = new SqlStringArray(typeof(ColumnAlias), columnAlias);
+            Statement.Append((ISubqueryWithAlias<TEndType> input) => input.As(null), tableAlias, columnAliasString);
             return new TableSelectionWithJoin<TEndType>(Statement, EndClosure);
         }
     }

@@ -329,5 +329,115 @@ FROM table2";
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
+
+        [TestMethod]
+        public void Test_SelectWithUnionAndWhereClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+WHERE column1 < 10
+UNION
+SELECT column2
+FROM table2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Where(() => new ColumnName("column1") < 10)
+                .Union()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithUnionAllAndWhereClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+WHERE column1 < 10
+UNION ALL
+SELECT column2
+FROM table2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Where(() => new ColumnName("column1") < 10)
+                .UnionAll()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithExceptAndWhereClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+WHERE column1 < 10
+EXCEPT
+SELECT column2
+FROM table2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Where(() => new ColumnName("column1") < 10)
+                .Except()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithIntersectAndWhereClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+WHERE column1 < 10
+INTERSECT
+SELECT column2
+FROM table2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Where(() => new ColumnName("column1") < 10)
+                .Intersect()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithGroupByClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+GROUP BY column1";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .GroupBy(() => new ColumnName("column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithGroupByClauseWith2Columns_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1,
+    column2
+FROM table1
+GROUP BY column1,
+    column2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1")).And().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table1"))
+                .GroupBy(() => new ColumnName("column1")).And(() => new ColumnName("column2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
     }
 }

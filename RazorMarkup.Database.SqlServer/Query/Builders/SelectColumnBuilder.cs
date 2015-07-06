@@ -25,7 +25,6 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
-            sqlBuilder.Append(" ");
             if (ColumnExpression == null)
             {
                 sqlBuilder.Append(ColumnName);

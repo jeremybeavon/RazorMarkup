@@ -12,8 +12,8 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
         }
 
-        public GroupByAnd(Expression<Func<object>> groupingExpression, TEndType endClosure)
-            : base(new GroupByClauseBuilder(groupingExpression), endClosure)
+        public GroupByAnd(Expression initialExpression, Expression<Func<object>> groupingExpression, TEndType endClosure)
+            : base(new GroupByClauseBuilder(initialExpression, groupingExpression), endClosure)
         {
         }
 

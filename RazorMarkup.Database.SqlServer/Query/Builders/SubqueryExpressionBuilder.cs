@@ -27,6 +27,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 
                 Initialize(() => SqlSubquery.Select());
                 SubqueryBuilder builder = new SubqueryBuilder(Expression);
+                builder.Select.NextClause = new SelectClauseBuilder(Expression);
                 NextClause = builder;
                 return builder;
             }

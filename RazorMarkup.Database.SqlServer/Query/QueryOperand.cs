@@ -23,6 +23,11 @@ namespace RazorMarkup.Database.SqlServer.Query
         {
         }
 
+        public QueryOperand(SubqueryBuilder statement, TEndType endClosure)
+            : base(statement.Select, endClosure)
+        {
+        }
+
         public ISelectClauseWithDistinct<TEndType> Select()
         {
             Statement.Append((IQueryOperand<TEndType> input) => input.Select());

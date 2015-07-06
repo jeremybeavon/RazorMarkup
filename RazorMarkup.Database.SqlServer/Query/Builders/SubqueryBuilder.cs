@@ -8,11 +8,11 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
         public SubqueryBuilder(Expression initialExpression)
             : base(null)
         {
-            Select = new SelectClauseBuilder(initialExpression);
+            Select = new ClauseBuilder(initialExpression);
             ColumnAlias = new List<string>();
         }
 
-        public SelectClauseBuilder Select { get; set; }
+        public ClauseBuilder Select { get; private set; }
 
         public string TableAlias { get; set; }
 
@@ -28,6 +28,17 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
             }
 
             sqlBuilder.Append(")");
+            if (!string.IsNullOrWhiteSpace(TableAlias))
+            {
+                sqlBuilder.Append(" AS ");
+                sqlBuilder.Append(TableAlias);
+                if (ColumnAlias.Count != 0)
+                {
+                    sqlBuilder.Append("(");
+                    sqlBuilder.Append(string.Join(", ", ColumnAlias));
+                    sqlBuilder.Append(")");
+                }
+            }
         }
 
         public override Expression ToExpression()

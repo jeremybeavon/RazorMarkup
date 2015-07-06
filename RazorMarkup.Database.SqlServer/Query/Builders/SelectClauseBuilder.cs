@@ -27,7 +27,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
-            sqlBuilder.AppendIndent().Append("SELECT");
+            sqlBuilder.AppendIndent().Append("SELECT ");
             WriteDistinctOrAll(sqlBuilder);
             WriteTop(sqlBuilder);
             WriteColumns(sqlBuilder);
@@ -39,7 +39,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
         {
             if (IsDistinct.HasValue)
             {
-                sqlBuilder.Append(IsDistinct.Value ? " DISTINCT" : " ALL");
+                sqlBuilder.Append(IsDistinct.Value ? "DISTINCT " : "ALL ");
             }
         }
 
@@ -47,16 +47,17 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
         {
             if (Top != null)
             {
-                sqlBuilder.Append(" TOP ");
+                sqlBuilder.Append("TOP ");
                 Top.ToSqlString(sqlBuilder);
+                sqlBuilder.Append(" ");
                 if (IsPercent)
                 {
-                    sqlBuilder.Append(" PERCENT");
+                    sqlBuilder.Append("PERCENT ");
                 }
 
                 if (WithTies)
                 {
-                    sqlBuilder.Append(" WITH TIES");
+                    sqlBuilder.Append("WITH TIES ");
                 }
             }
         }

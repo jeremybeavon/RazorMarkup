@@ -50,6 +50,7 @@
     <Compile Include="SqlString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlString.generic.cs" />
+    <Compile Include="SqlStringArray.cs" />
     <Compile Include="SqlStringExtensions.cs" />
     <Compile Include="StatementBuilderFactory.cs" />
     <Compile Include="StringLiteral.cs" />

@@ -10,7 +10,8 @@ namespace RazorMarkup.Database.SqlServer
         public static ISelectClauseWithDistinct<IEndSubquery> Select()
         {
             SubqueryExpressionBuilder builder = new SubqueryExpressionBuilder();
-            return new SelectClauseWithDistinct<IEndSubquery>(builder.Subquery.Select, new EndSubquery(builder));
+            SelectClauseBuilder selectClauseBuilder = (SelectClauseBuilder)builder.Subquery.Select.NextClause;
+            return new SelectClauseWithDistinct<IEndSubquery>(selectClauseBuilder, new EndSubquery(builder));
         }
 
         public static IQueryOperand<IQueryOperatorGroupEnd<IEndSubquery>> BeginOperatorGroup()

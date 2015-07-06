@@ -24,6 +24,11 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
             get { return (SubqueryBuilder)Statements.Last(); }
         }
 
+        public void UpdateExpression(Expression expression)
+        {
+            Expression = expression;
+        }
+
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
             sqlBuilder.AppendIndent();

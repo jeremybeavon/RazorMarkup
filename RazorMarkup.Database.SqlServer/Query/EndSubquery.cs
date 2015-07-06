@@ -6,16 +6,20 @@ namespace RazorMarkup.Database.SqlServer.Query
     internal sealed class EndSubquery<TEndType> : AbstractQueryStatement<SubqueryBuilder, TEndType>,
         IEndSubquery<ISubqueryWithAlias<TEndType>>
     {
-        public EndSubquery(SubqueryBuilder statement, TEndType endClosure)
+        private readonly FromClauseBuilder fromClause;
+
+        public EndSubquery(SubqueryBuilder statement, FromClauseBuilder fromClause, TEndType endClosure)
             : base(statement, endClosure)
         {
+            this.fromClause = fromClause;
         }
 
         public ISubqueryWithAlias<TEndType> Subquery()
         {
             Statement.End();
             Statement.Append((IEndSubquery<ISubqueryWithAlias<TEndType>> input) => input.Subquery());
-            return new SubqueryWithAlias<TEndType>(new FromClauseBuilder(Expression), EndClosure);
+            fromClause.UpdateExpression(Expression);
+            return new SubqueryWithAlias<TEndType>(fromClause, EndClosure);
         }
     }
 }

@@ -35,9 +35,8 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
             Statement.Append((ITableSource<TEndType> input) => input.Subquery());
             SubqueryBuilder builder = new SubqueryBuilder(Expression);
             Statement.Statements.Add(builder);
-            return new QueryOperand<IEndSubquery<ISubqueryWithAlias<TEndType>>>(
-                builder.Select,
-                new EndSubquery<TEndType>(builder, EndClosure));
+            EndSubquery<TEndType> endSubquery = new EndSubquery<TEndType>(builder, Statement, EndClosure);
+            return new QueryOperand<IEndSubquery<ISubqueryWithAlias<TEndType>>>(builder, endSubquery);
         }
 
         public IDerviedTableWithAlias<TEndType> DerivedTable(Expression<Func<object>>[][] values)

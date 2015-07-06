@@ -37,7 +37,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
                 {
                     foreach (AbstractStatementBuilder grouping in Groupings.Skip(1))
                     {
-                        sqlBuilder.Append(",").AppendIndent().Append(" ");
+                        sqlBuilder.Append(",").AppendIndent();
                         grouping.ToSqlString(sqlBuilder);
                     }
                 }
