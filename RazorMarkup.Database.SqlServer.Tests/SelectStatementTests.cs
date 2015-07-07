@@ -439,5 +439,99 @@ GROUP BY column1,
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
+
+        [TestMethod]
+        public void Test_SelectWithGroupByClauseWithRollup_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+GROUP BY ROLLUP(column1)";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1")).And().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table1"))
+                .GroupBy().Rollup(() => new ColumnName("column1")).EndRollup()
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithUnionAndGroupByClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+GROUP BY column1
+UNION
+SELECT column2
+FROM table2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .GroupBy(() => new ColumnName("column1"))
+                .Union()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithUnionAllAndGroupByClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+GROUP BY column1
+UNION ALL
+SELECT column2
+FROM table2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .GroupBy(() => new ColumnName("column1"))
+                .UnionAll()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithExceptAndGroupByClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+GROUP BY column1
+EXCEPT
+SELECT column2
+FROM table2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .GroupBy(() => new ColumnName("column1"))
+                .Except()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithIntersectAndGroupByClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+GROUP BY column1
+INTERSECT
+SELECT column2
+FROM table2";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .GroupBy(() => new ColumnName("column1"))
+                .Intersect()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
     }
 }

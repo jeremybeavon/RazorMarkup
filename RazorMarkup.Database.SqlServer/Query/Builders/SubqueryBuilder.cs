@@ -20,13 +20,14 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
+            sqlBuilder.AppendIndent();
             sqlBuilder.Append("(");
             using (sqlBuilder.IncrementIndent())
             {
-                sqlBuilder.AppendIndent();
                 Select.ToSqlString(sqlBuilder);
             }
 
+            sqlBuilder.AppendIndent();
             sqlBuilder.Append(")");
             if (!string.IsNullOrWhiteSpace(TableAlias))
             {

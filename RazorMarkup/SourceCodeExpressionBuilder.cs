@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace RazorMarkup
@@ -107,8 +108,18 @@ namespace RazorMarkup
             if (node.Arguments.Count != 0)
             {
                 Visit(node.Arguments[0]);
+                bool hasParams = node.Method.GetParameters().Last().CustomAttributes.Any(
+                    attribute => attribute.AttributeType == typeof(ParamArrayAttribute));
                 foreach (Expression argument in node.Arguments.Skip(1))
                 {
+                    if (argument == node.Arguments.Last() &&
+                        hasParams &&
+                        argument.NodeType == ExpressionType.NewArrayInit &&
+                        ((NewArrayExpression)argument).Expressions.Count == 0)
+                    {
+                        break;
+                    }
+
                     textBuilder.Append(", ");
                     Visit(argument);
                 }
@@ -132,7 +143,7 @@ namespace RazorMarkup
         {
             textBuilder.Append("new ");
             textBuilder.Append(node.Type.Name);
-            textBuilder.Append("[] { ");
+            textBuilder.Append(" { ");
             string comma = string.Empty;
             foreach (Expression expression in node.Expressions)
             {

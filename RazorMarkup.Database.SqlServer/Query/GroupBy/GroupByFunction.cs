@@ -29,7 +29,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 
         public IGroupByCubeFunction<IGroupByAnd<TEndType>> Cube()
         {
-             GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("CUBE");
+            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("CUBE");
             Statement.Groupings.Add(queryBuilder);
             Statement.Append((IGroupByFunction<TEndType> input) => input.Cube());
             IGroupByAnd<TEndType> cubeClosure = new GroupByAnd<TEndType>(Statement, EndClosure);
