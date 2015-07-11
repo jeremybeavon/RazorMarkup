@@ -18,10 +18,11 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 
         public IGroupByGroup<IGroupByRollup<TEndRollupType>> Group(Expression<Func<object>> groupingExpression)
         {
-            GroupByGroupQueryBuilder queryBuilder = new GroupByGroupQueryBuilder();
-            Statement.Groupings.Add(queryBuilder);
             Statement.Append((IGroupByRollupFunction<TEndRollupType> input) => input.Group(null), groupingExpression);
-            IGroupByRollup<TEndRollupType> groupClosure = new GroupByRollup<TEndRollupType>(Statement, rollupClosure);
+            GroupByGroupQueryBuilder queryBuilder = new GroupByGroupQueryBuilder(Expression);
+            Statement.Groupings.Add(queryBuilder);
+            queryBuilder.Groupings.Add(new ExpressionBuilder<object>(groupingExpression));
+            GroupByRollup<TEndRollupType> groupClosure = new GroupByRollup<TEndRollupType>(Statement, rollupClosure);
             return new GroupByGroup<IGroupByRollup<TEndRollupType>>(queryBuilder, groupClosure);
         }
     }

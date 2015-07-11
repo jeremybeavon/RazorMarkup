@@ -8,9 +8,9 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
 {
     internal sealed class GroupByGroupingSet<TEndGroupingSetType> : AbstractGroupBy
     {
-        private readonly IGroupByGroupingSet<TEndGroupingSetType> groupByGroupingSet;
+        private readonly IGroupByGroupingSets<TEndGroupingSetType> groupByGroupingSet;
 
-        public GroupByGroupingSet(IGroupByGroupingSet<TEndGroupingSetType> groupByGroupingSet)
+        public GroupByGroupingSet(IGroupByGroupingSets<TEndGroupingSetType> groupByGroupingSet)
             : base(groupByGroupingSet)
         {
             this.groupByGroupingSet = groupByGroupingSet;
@@ -25,7 +25,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
         {
             ICommonGroupBy end = arguments.AcceptWithResult(groupByGroupingSet.And(), GroupByFunctionType.GroupingSet);
             return new GroupByGroupingSet<TEndGroupingSetType>(
-                end.End<IGroupByGroup<IGroupByGroupingSet<TEndGroupingSetType>>>().EndGroup());
+                end.End<IGroupByGroup<IGroupByGroupingSets<TEndGroupingSetType>>>().EndGroup());
         }
     }
 }

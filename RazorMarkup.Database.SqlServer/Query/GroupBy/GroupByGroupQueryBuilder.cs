@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 {
     internal sealed class GroupByGroupQueryBuilder : AbstractStatementBuilder
     {
-        public GroupByGroupQueryBuilder()
+        public GroupByGroupQueryBuilder(Expression initialExpression)
+            : base(initialExpression)
         {
             Groupings = new List<AbstractStatementBuilder>();
         }
@@ -15,7 +17,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
-            sqlBuilder.AppendIndent().Append("(");
+            sqlBuilder.Append("(");
             using (sqlBuilder.IncrementIndent())
             {
                 sqlBuilder.AppendIndent();

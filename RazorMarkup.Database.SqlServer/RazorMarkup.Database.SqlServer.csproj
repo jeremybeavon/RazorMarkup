@@ -320,8 +320,8 @@
     <Compile Include="Query\GroupBy\GroupByRollupFunction.cs" />
     <Compile Include="Query\GroupBy\GroupByCubeFunction.cs" />
     <Compile Include="Query\GroupBy\GroupByGroup.cs" />
-    <Compile Include="Query\GroupBy\GroupByGroupingSet.cs" />
-    <Compile Include="Query\GroupBy\GroupByGroupingSetFunction.cs" />
+    <Compile Include="Query\GroupBy\GroupByGroupingSets.cs" />
+    <Compile Include="Query\GroupBy\GroupByGroupingSetsFunction.cs" />
     <Compile Include="Query\GroupBy\GroupByGroupQueryBuilder.cs" />
     <Compile Include="Query\GroupBy\GroupFunctionQueryBuilder.cs" />
     <Compile Include="Query\GroupBy\GroupByAnd.cs" />
@@ -346,8 +346,8 @@
     <Compile Include="Query\IGroupByClause.cs" />
     <Compile Include="Query\GroupBy\IGroupByCubeFunction.cs" />
     <Compile Include="Query\GroupBy\IGroupByGroup.cs" />
-    <Compile Include="Query\GroupBy\IGroupByGroupingSet.cs" />
-    <Compile Include="Query\GroupBy\IGroupByGroupingSetFunction.cs" />
+    <Compile Include="Query\GroupBy\IGroupByGroupingSets.cs" />
+    <Compile Include="Query\GroupBy\IGroupByGroupingSetsFunction.cs" />
     <Compile Include="Query\GroupBy\IGroupByRollup.cs" />
     <Compile Include="Query\GroupBy\IGroupByCube.cs" />
     <Compile Include="Query\GroupBy\IGroupByFunction.cs" />

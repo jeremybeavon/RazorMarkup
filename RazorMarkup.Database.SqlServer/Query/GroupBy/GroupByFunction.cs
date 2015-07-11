@@ -56,33 +56,23 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
             return new GroupByRollupFunction<IGroupByAnd<TEndType>>(queryBuilder, rollupClosure);
         }
 
-        public IGroupByGroupingSet<TEndType> GroupingSet(Expression<Func<object>> groupingExpression)
+        public IGroupByGroupingSets<TEndType> GroupingSets(Expression<Func<object>> groupingExpression)
         {
-            Statement.Append((IGroupByFunction<TEndType> input) => input.GroupingSet(null), groupingExpression);
-            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("GROUPING SET", Expression);
+            Statement.Append((IGroupByFunction<TEndType> input) => input.GroupingSets(null), groupingExpression);
+            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("GROUPING SETS", Expression);
             Statement.Groupings.Add(queryBuilder);
             queryBuilder.Groupings.Add(new ExpressionBuilder<object>(groupingExpression));
             GroupByAnd<TEndType> groupingSetClosure = new GroupByAnd<TEndType>(Statement, EndClosure);
-            return new GroupByGroupingSet<TEndType>(queryBuilder, groupingSetClosure);
+            return new GroupByGroupingSets<TEndType>(queryBuilder, groupingSetClosure);
         }
 
-        public IGroupByGroupingSetFunction<TEndType> GroupingSet()
+        public IGroupByGroupingSetsFunction<TEndType> GroupingSets()
         {
-            Statement.Append((IGroupByFunction<TEndType> input) => input.GroupingSet());
-            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("GROUPING SET", Expression);
+            Statement.Append((IGroupByFunction<TEndType> input) => input.GroupingSets());
+            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("GROUPING SETS", Expression);
             Statement.Groupings.Add(queryBuilder);
             GroupByAnd<TEndType> groupingSetClosure = new GroupByAnd<TEndType>(Statement, EndClosure);
-            return new GroupByGroupingSetFunction<TEndType>(queryBuilder, groupingSetClosure);
-        }
-
-        public IGroupByGroup<IGroupByAnd<TEndType>> Group(Expression<Func<object>> groupingExpression)
-        {
-            Statement.Append((IGroupByFunction<TEndType> input) => input.Group(null), groupingExpression);
-            GroupByGroupQueryBuilder queryBuilder = new GroupByGroupQueryBuilder();
-            Statement.Groupings.Add(queryBuilder);
-            queryBuilder.Groupings.Add(new ExpressionBuilder<object>(groupingExpression));
-            IGroupByAnd<TEndType> closure = new GroupByAnd<TEndType>(Statement, EndClosure);
-            return new GroupByGroup<IGroupByAnd<TEndType>>(queryBuilder, closure);
+            return new GroupByGroupingSetsFunction<TEndType>(queryBuilder, groupingSetClosure);
         }
 
         public IGroupByAnd<TEndType> GrandTotal()

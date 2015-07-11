@@ -8,11 +8,11 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
 {
     internal sealed class GroupByGroupingSetFunction<TEndGroupingSetType> : AbstractGroupBy
     {
-        private readonly IGroupByGroupingSetFunction<TEndGroupingSetType> groupBy;
+        private readonly IGroupByGroupingSetsFunction<TEndGroupingSetType> groupBy;
         private readonly GroupByFunctionType groupByFunctionType;
 
         public GroupByGroupingSetFunction(
-            IGroupByGroupingSetFunction<TEndGroupingSetType> groupBy,
+            IGroupByGroupingSetsFunction<TEndGroupingSetType> groupBy,
             GroupByFunctionType groupByFunctionType)
             : base(groupBy)
         {
@@ -24,12 +24,10 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
         {
             switch (groupByFunctionType)
             {
-                case GroupByFunctionType.Group:
-                    return new GroupByGroup<IGroupByGroupingSet<TEndGroupingSetType>>(groupBy.Group(expression));
                 case GroupByFunctionType.Cube:
-                    return new GroupByCube<IGroupByGroupingSet<TEndGroupingSetType>>(groupBy.Cube(expression));
+                    return new GroupByCube<IGroupByGroupingSets<TEndGroupingSetType>>(groupBy.Cube(expression));
                 case GroupByFunctionType.Rollup:
-                    return new GroupByRollup<IGroupByGroupingSet<TEndGroupingSetType>>(groupBy.Rollup(expression));
+                    return new GroupByRollup<IGroupByGroupingSets<TEndGroupingSetType>>(groupBy.Rollup(expression));
             }
 
             return base.GroupBy(expression);
@@ -39,21 +37,21 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
         {
             ICommonGroupBy end = arguments.AcceptWithResult(groupBy, GroupByFunctionType.Group);
             return new GroupByGroupingSet<TEndGroupingSetType>(
-                end.End<IGroupByGroup<IGroupByGroupingSet<TEndGroupingSetType>>>().EndGroup());
+                end.End<IGroupByGroup<IGroupByGroupingSets<TEndGroupingSetType>>>().EndGroup());
         }
 
         public override ICommonGroupBy Cube(IList<GroupingSpecification> arguments)
         {
             ICommonGroupBy end = arguments.AcceptWithResult(groupBy, GroupByFunctionType.Cube);
             return new GroupByGroupingSet<TEndGroupingSetType>(
-                end.End<IGroupByCube<IGroupByGroupingSet<TEndGroupingSetType>>>().EndCube());
+                end.End<IGroupByCube<IGroupByGroupingSets<TEndGroupingSetType>>>().EndCube());
         }
 
         public override ICommonGroupBy Rollup(IList<GroupingSpecification> arguments)
         {
             ICommonGroupBy end = arguments.AcceptWithResult(groupBy, GroupByFunctionType.Rollup);
             return new GroupByGroupingSet<TEndGroupingSetType>(
-                end.End<IGroupByRollup<IGroupByGroupingSet<TEndGroupingSetType>>>().EndRollup());
+                end.End<IGroupByRollup<IGroupByGroupingSets<TEndGroupingSetType>>>().EndRollup());
         }
 
         public override ICommonGroupBy GrandTotal()

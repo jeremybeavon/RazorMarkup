@@ -30,7 +30,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
 
         public static ICommonGroupBy AcceptWithResult<TEndType>(
             this IList<GroupingSpecification> groups,
-            IGroupByGroupingSetFunction<TEndType> groupBy,
+            IGroupByGroupingSetsFunction<TEndType> groupBy,
             GroupByFunctionType groupByFunctionType)
         {
             return groups.AcceptWithResult(new GroupByGroupingSetFunction<TEndType>(groupBy, groupByFunctionType));

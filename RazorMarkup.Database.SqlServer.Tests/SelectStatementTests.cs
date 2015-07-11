@@ -477,6 +477,29 @@ GROUP BY ROLLUP
         }
 
         [TestMethod]
+        public void Test_SelectWithGroupByClauseWith3RollupColumnsAnd1Group_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1,
+    column2,
+    column3
+FROM table1
+GROUP BY ROLLUP
+(
+    (
+        column1,
+        column2
+    ),
+    column3
+)";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1")).And().Column(new ColumnName("column2")).And().Column(new ColumnName("column3"))
+                .From().Table(new TableName("table1"))
+                .GroupBy().Rollup().Group(() => new ColumnName("column1")).And(() => new ColumnName("column2")).EndGroup().And(() => new ColumnName("column3")).EndRollup()
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
         public void Test_SelectWithGroupByClauseWithCube_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"SELECT column1
@@ -513,29 +536,52 @@ GROUP BY CUBE
         }
 
         [TestMethod]
-        public void Test_SelectWithGroupByClauseWithGroupingSet_GeneratesCorrectTextFromRazorPage()
+        public void Test_SelectWithGroupByClauseWith3CubeColumnsAnd1Group_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1,
+    column2,
+    column3
+FROM table1
+GROUP BY CUBE
+(
+    (
+        column1,
+        column2
+    ),
+    column3
+)";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1")).And().Column(new ColumnName("column2")).And().Column(new ColumnName("column3"))
+                .From().Table(new TableName("table1"))
+                .GroupBy().Cube().Group(() => new ColumnName("column1")).And(() => new ColumnName("column2")).EndGroup().And(() => new ColumnName("column3")).EndCube()
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithGroupByClauseWithGroupingSets_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"SELECT column1
 FROM table1
-GROUP BY GROUPING SET
+GROUP BY GROUPING SETS
 (
     column1
 )";
             Sql.Query()
                 .Select().Column(new ColumnName("column1"))
                 .From().Table(new TableName("table1"))
-                .GroupBy().GroupingSet(() => new ColumnName("column1")).EndGroupingSet()
+                .GroupBy().GroupingSets(() => new ColumnName("column1")).EndGroupingSets()
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
 
         [TestMethod]
-        public void Test_SelectWithGroupByClauseWith2GroupingSetColumns_GeneratesCorrectTextFromRazorPage()
+        public void Test_SelectWithGroupByClauseWith2GroupingSetsColumns_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"SELECT column1,
     column2
 FROM table1
-GROUP BY GROUPING SET
+GROUP BY GROUPING SETS
 (
     column1,
     column2
@@ -543,7 +589,49 @@ GROUP BY GROUPING SET
             Sql.Query()
                 .Select().Column(new ColumnName("column1")).And().Column(new ColumnName("column2"))
                 .From().Table(new TableName("table1"))
-                .GroupBy().GroupingSet(() => new ColumnName("column1")).And(() => new ColumnName("column2")).EndGroupingSet()
+                .GroupBy().GroupingSets(() => new ColumnName("column1")).And(() => new ColumnName("column2")).EndGroupingSets()
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithGroupByClauseWithGroupingSetsAndRollupColumns_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1,
+    column2,
+    column3
+FROM table1
+GROUP BY GROUPING SETS
+(
+    ROLLUP
+    (
+        column1,
+        column2
+    ),
+    column3
+)";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1")).And().Column(new ColumnName("column2")).And().Column(new ColumnName("column3"))
+                .From().Table(new TableName("table1"))
+                .GroupBy().GroupingSets()
+                .Rollup(() => new ColumnName("column1")).And(() => new ColumnName("column2")).EndRollup()
+                .And(() => new ColumnName("column3"))
+                .EndGroupingSets()
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithGroupByClauseWithGrandTotal_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1,
+    column2
+FROM table1
+GROUP BY ()";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1")).And().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table1"))
+                .GroupBy().GrandTotal()
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }

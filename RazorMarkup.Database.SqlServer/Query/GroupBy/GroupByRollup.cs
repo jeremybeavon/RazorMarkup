@@ -6,7 +6,7 @@ using RazorMarkup.Database.SqlServer.Types;
 namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 {
     internal class GroupByRollup<TEndRollupType> : AbstractStatement<GroupFunctionQueryBuilder>,
-        IGroupByRollup<TEndRollupType>
+        IGroupByRollup<TEndRollupType>, IClosure<IGroupByRollup<TEndRollupType>>
     {
         private readonly IClosure<TEndRollupType> rollupClosure;
 
@@ -33,6 +33,12 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             Statement.Append((IGroupByRollup<TEndRollupType> input) => input.EndRollup());
             return rollupClosure.End(Statement.Expression);
+        }
+
+        public IGroupByRollup<TEndRollupType> End(Expression expression)
+        {
+            Statement.UpdateExpression(expression);
+            return this;
         }
     }
 }
