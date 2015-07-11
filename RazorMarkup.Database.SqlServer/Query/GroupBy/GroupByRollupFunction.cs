@@ -8,9 +8,9 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
     internal class GroupByRollupFunction<TEndRollupType> : AbstractStatement<GroupFunctionQueryBuilder>,
         IGroupByRollupFunction<TEndRollupType>
     {
-        private readonly TEndRollupType rollupClosure;
+        private readonly IClosure<TEndRollupType> rollupClosure;
 
-        public GroupByRollupFunction(GroupFunctionQueryBuilder statement, TEndRollupType rollupClosure)
+        public GroupByRollupFunction(GroupFunctionQueryBuilder statement, IClosure<TEndRollupType> rollupClosure)
             : base(statement)
         {
             this.rollupClosure = rollupClosure;

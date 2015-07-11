@@ -45,5 +45,10 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 
             base.ToSqlString(sqlBuilder);
         }
+
+        public void UpdateExpression(Expression expression)
+        {
+            Expression = expression;
+        }
     }
 }

@@ -18,9 +18,12 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
             sqlBuilder.AppendIndent().Append("(");
             using (sqlBuilder.IncrementIndent())
             {
+                sqlBuilder.AppendIndent();
                 Groupings[0].ToSqlString(sqlBuilder);
                 foreach (AbstractStatementBuilder grouping in Groupings.Skip(1))
                 {
+                    sqlBuilder.Append(",");
+                    sqlBuilder.AppendIndent();
                     grouping.ToSqlString(sqlBuilder);
                 }
             }

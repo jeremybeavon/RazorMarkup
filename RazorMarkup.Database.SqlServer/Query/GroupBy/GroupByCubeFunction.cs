@@ -8,9 +8,9 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
     internal class GroupByCubeFunction<TEndCubeType> : AbstractStatement<GroupFunctionQueryBuilder>,
         IGroupByCubeFunction<TEndCubeType>
     {
-        private readonly TEndCubeType cubeClosure;
+        private readonly IClosure<TEndCubeType> cubeClosure;
 
-        public GroupByCubeFunction(GroupFunctionQueryBuilder statement, TEndCubeType cubeClosure)
+        public GroupByCubeFunction(GroupFunctionQueryBuilder statement, IClosure<TEndCubeType> cubeClosure)
             : base(statement)
         {
             this.cubeClosure = cubeClosure;

@@ -6,11 +6,11 @@ using RazorMarkup.Database.SqlServer.Types;
 namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 {
     internal class GroupByGroupingSet<TEndType> : AbstractStatement<GroupFunctionQueryBuilder>,
-        IGroupByGroupingSet<TEndType>
+        IGroupByGroupingSet<TEndType>, IClosure<IGroupByGroupingSet<TEndType>>
     {
-        private readonly IGroupByAnd<TEndType> groupingSetClosure;
+        private readonly IClosure<IGroupByAnd<TEndType>> groupingSetClosure;
 
-        public GroupByGroupingSet(GroupFunctionQueryBuilder statement, IGroupByAnd<TEndType> groupingSetClosure)
+        public GroupByGroupingSet(GroupFunctionQueryBuilder statement, IClosure<IGroupByAnd<TEndType>> groupingSetClosure)
             : base(statement)
         {
             this.groupingSetClosure = groupingSetClosure;
@@ -18,7 +18,9 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 
         public IGroupByGroupingSet<TEndType> And(Expression<Func<object>> groupingExpression)
         {
-            throw new NotImplementedException();
+            Statement.Groupings.Add(new ExpressionBuilder<object>(groupingExpression));
+            Statement.Append((IGroupByGroupingSet<TEndType> input) => input.And(null), groupingExpression);
+            return this;
         }
 
         public IGroupByGroupingSetFunction<TEndType> And()
@@ -29,7 +31,13 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         public IGroupByAnd<TEndType> EndGroupingSet()
         {
             Statement.Append((IGroupByGroupingSet<TEndType> input) => input.EndGroupingSet());
-            return groupingSetClosure;
+            return groupingSetClosure.End(Expression);
+        }
+
+        public IGroupByGroupingSet<TEndType> End(Expression expression)
+        {
+            Statement.UpdateExpression(expression);
+            return this;
         }
     }
 }

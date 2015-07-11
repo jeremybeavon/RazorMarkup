@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 {
     internal sealed class GroupFunctionQueryBuilder : AbstractStatementBuilder
     {
-        public GroupFunctionQueryBuilder(string functionName)
+        public GroupFunctionQueryBuilder(string functionName, Expression initialExpression)
+            : base(initialExpression)
         {
             FunctionName = functionName;
             Groupings = new List<AbstractStatementBuilder>();
@@ -21,14 +23,22 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
             sqlBuilder.Append(FunctionName).AppendIndent().Append("(");
             using (sqlBuilder.IncrementIndent())
             {
+                sqlBuilder.AppendIndent();
                 Groupings[0].ToSqlString(sqlBuilder);
                 foreach (AbstractStatementBuilder grouping in Groupings.Skip(1))
                 {
+                    sqlBuilder.Append(",");
+                    sqlBuilder.AppendIndent();
                     grouping.ToSqlString(sqlBuilder);
                 }
             }
 
             sqlBuilder.AppendIndent().Append(")");
+        }
+
+        public void UpdateExpression(Expression expression)
+        {
+            Expression = expression;
         }
     }
 }

@@ -98,6 +98,7 @@
     <Compile Include="Query\Builders\RawTableReferenceBuilder.cs" />
     <Compile Include="Query\Builders\SubqueryExpressionBuilder.cs" />
     <Compile Include="Query\CommonTableExpressions\IWithClause.cs" />
+    <Compile Include="Query\GroupBy\IClosure.cs" />
     <Compile Include="Query\Select\ISelectClauseAnd.cs" />
     <Compile Include="Query\Select\SelectClauseAnd.cs" />
     <Compile Include="Query\TableSelection\DerivedTableExpression.cs" />

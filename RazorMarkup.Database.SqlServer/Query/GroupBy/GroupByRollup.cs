@@ -8,9 +8,9 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
     internal class GroupByRollup<TEndRollupType> : AbstractStatement<GroupFunctionQueryBuilder>,
         IGroupByRollup<TEndRollupType>
     {
-        private readonly TEndRollupType rollupClosure;
+        private readonly IClosure<TEndRollupType> rollupClosure;
 
-        public GroupByRollup(GroupFunctionQueryBuilder statement, TEndRollupType rollupClosure)
+        public GroupByRollup(GroupFunctionQueryBuilder statement, IClosure<TEndRollupType> rollupClosure)
             : base(statement)
         {
             this.rollupClosure = rollupClosure;
@@ -32,7 +32,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         public TEndRollupType EndRollup()
         {
             Statement.Append((IGroupByRollup<TEndRollupType> input) => input.EndRollup());
-            return rollupClosure;
+            return rollupClosure.End(Statement.Expression);
         }
     }
 }

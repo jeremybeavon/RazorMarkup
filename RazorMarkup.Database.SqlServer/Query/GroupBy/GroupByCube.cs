@@ -7,9 +7,9 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 {
     internal class GroupByCube<TEndCubeType> : AbstractStatement<GroupFunctionQueryBuilder>, IGroupByCube<TEndCubeType>
     {
-        private readonly TEndCubeType cubeClosure;
+        private readonly IClosure<TEndCubeType> cubeClosure;
 
-        public GroupByCube(GroupFunctionQueryBuilder statement, TEndCubeType cubeClosure)
+        public GroupByCube(GroupFunctionQueryBuilder statement, IClosure<TEndCubeType> cubeClosure)
             : base(statement)
         {
             this.cubeClosure = cubeClosure;
@@ -31,7 +31,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         public TEndCubeType EndCube()
         {
             Statement.Append((IGroupByCube<TEndCubeType> input) => input.EndCube());
-            return cubeClosure;
+            return cubeClosure.End(Statement.Expression);
         }
     }
 }
