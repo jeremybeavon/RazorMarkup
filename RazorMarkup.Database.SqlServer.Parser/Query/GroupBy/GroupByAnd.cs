@@ -20,5 +20,10 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
         {
             return new GroupByAnd<TEndType>(groupBy.And(expression));
         }
+
+        public override ICommonGroupBy GrandTotal()
+        {
+            return new GroupByAnd<TEndType>(groupBy.And().GrandTotal());
+        }
     }
 }

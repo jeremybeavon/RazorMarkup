@@ -24,8 +24,8 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
             {
                 case GroupByFunctionType.Cube:
                     return new GroupByCube<IGroupByAnd<TEndType>>(groupBy.Cube(expression));
-                case GroupByFunctionType.GroupingSet:
-                    return new GroupByGroupingSet<TEndType>(groupBy.GroupingSets(expression));
+                case GroupByFunctionType.GroupingSets:
+                    return new GroupByGroupingSets<TEndType>(groupBy.GroupingSets(expression));
                 case GroupByFunctionType.Rollup:
                     return new GroupByRollup<IGroupByAnd<TEndType>>(groupBy.Rollup(expression));
             }
@@ -35,15 +35,15 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
 
         public override ICommonGroupBy Cube(IList<GroupingSpecification> arguments)
         {
-            ICommonGroupBy end = arguments.AcceptWithResult(groupBy, GroupByFunctionType.Cube);
-            return new GroupByAnd<TEndType>(end.End<IGroupByCube<IGroupByAnd<TEndType>>>().EndCube());
+            ICommonGroupBy end = arguments.AcceptWithResult(groupBy.GroupingSets(), GroupByFunctionType.Cube);
+            return new GroupByGroupingSets<TEndType>(end.End<IGroupByCube<IGroupByGroupingSets<TEndType>>>().EndCube());
         }
 
         public override ICommonGroupBy Rollup(IList<GroupingSpecification> arguments)
         {
-            ICommonGroupBy end = arguments.AcceptWithResult(groupBy, GroupByFunctionType.Rollup);
-            return new GroupByAnd<TEndType>(end.End<IGroupByRollup<IGroupByAnd<TEndType>>>().EndRollup());
-        }
+            ICommonGroupBy end = arguments.AcceptWithResult(groupBy.GroupingSets(), GroupByFunctionType.Rollup);
+            return new GroupByGroupingSets<TEndType>(end.End<IGroupByRollup<IGroupByGroupingSets<TEndType>>>().EndRollup());
+        }   
 
         public override ICommonGroupBy Group(IList<GroupingSpecification> arguments)
         {
@@ -56,10 +56,10 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
                 case GroupByFunctionType.Rollup:
                     end = arguments.AcceptWithResult(new GroupByRollupFunction<IGroupByAnd<TEndType>>(groupBy.Rollup()));
                     return new GroupByRollup<IGroupByAnd<TEndType>>(end.End<IGroupByGroup<IGroupByRollup<IGroupByAnd<TEndType>>>>().EndGroup());
-                case GroupByFunctionType.GroupingSet:
+                case GroupByFunctionType.GroupingSets:
                     end = arguments.AcceptWithResult(
-                        new GroupByGroupingSetFunction<TEndType>(groupBy.GroupingSets(), GroupByFunctionType.GroupingSet));
-                    return new GroupByGroupingSet<TEndType>(end.End<IGroupByGroup<IGroupByGroupingSets<TEndType>>>().EndGroup());
+                        new GroupByGroupingSetsFunction<TEndType>(groupBy.GroupingSets(), GroupByFunctionType.GroupingSets));
+                    return new GroupByGroupingSets<TEndType>(end.End<IGroupByGroup<IGroupByGroupingSets<TEndType>>>().EndGroup());
             }
                 
             return base.Group(arguments);

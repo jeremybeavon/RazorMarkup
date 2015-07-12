@@ -10,7 +10,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
     {
         Cube,
         Group,
-        GroupingSet,
+        GroupingSets,
         Rollup
     }
 }

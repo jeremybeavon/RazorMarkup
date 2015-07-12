@@ -33,7 +33,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
                 sqlBuilder.Append(IsFetchFirst ? "FIRST " : "NEXT ");
                 FetchExpression.ToSqlString(sqlBuilder);
                 sqlBuilder.Append(IsFetchSingleRow ? " ROW" : " ROWS");
-                sqlBuilder.Append("ONLY");
+                sqlBuilder.Append(" ONLY");
             }
 
             base.ToSqlString(sqlBuilder);

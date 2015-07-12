@@ -233,7 +233,9 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
             IEndOffsetClause<TEndType> forClause,
             QuerySpecification node)
         {
-            return new EmptyForClause<TEndType>(forClause);
+            return node.ForClause == null ?
+                new EmptyForClause<TEndType>(forClause) :
+                node.ForClause.AcceptWithResult(new ForClauseVisitor<TEndType>(forClause));
         }
 
         private IHasEnd<TEndType> BuildOptionClause(

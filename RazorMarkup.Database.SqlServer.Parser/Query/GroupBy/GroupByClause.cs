@@ -42,8 +42,8 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
 
         public override ICommonGroupBy GroupingSet(IList<GroupingSpecification> arguments)
         {
-            ICommonGroupBy end = arguments.AcceptWithResult(groupByClause.GroupBy(), GroupByFunctionType.GroupingSet);
-            return new GroupByAnd<TEndType>(end.End<IGroupByAnd<TEndType>>());
+            ICommonGroupBy end = arguments.AcceptWithResult(groupByClause.GroupBy(), GroupByFunctionType.GroupingSets);
+            return new GroupByAnd<TEndType>(end.End<IGroupByGroupingSets<TEndType>>().EndGroupingSets());
         }
 
         public override ICommonGroupBy GrandTotal()

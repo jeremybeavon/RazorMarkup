@@ -29,7 +29,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
         {
             while (position >= node.FirstTokenIndex && node.ScriptTokenStream[position].TokenType != TSqlTokenType.Identifier)
             {
-                position++;
+                position--;
             }
 
             return position >= node.FirstTokenIndex ? node.ScriptTokenStream[position].Text : string.Empty;

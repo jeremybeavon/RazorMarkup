@@ -33,7 +33,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy
             IGroupByGroupingSetsFunction<TEndType> groupBy,
             GroupByFunctionType groupByFunctionType)
         {
-            return groups.AcceptWithResult(new GroupByGroupingSetFunction<TEndType>(groupBy, groupByFunctionType));
+            return groups.AcceptWithResult(new GroupByGroupingSetsFunction<TEndType>(groupBy, groupByFunctionType));
         }
     }
 }

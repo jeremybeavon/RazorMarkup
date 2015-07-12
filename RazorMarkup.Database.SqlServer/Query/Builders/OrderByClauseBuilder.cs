@@ -31,7 +31,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
                 return;
             }
 
-            sqlBuilder.AppendIndent().Append("ORDER BY");
+            sqlBuilder.AppendIndent().Append("ORDER BY ");
             Columns[0].ToSqlString(sqlBuilder);
             if (Columns.Count > 1)
             {
@@ -39,7 +39,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
                 {
                     foreach (AbstractStatementBuilder column in Columns.Skip(1))
                     {
-                        sqlBuilder.Append(",").AppendIndent().Append(" ");
+                        sqlBuilder.Append(",").AppendIndent();
                         column.ToSqlString(sqlBuilder);
                     }
                 }

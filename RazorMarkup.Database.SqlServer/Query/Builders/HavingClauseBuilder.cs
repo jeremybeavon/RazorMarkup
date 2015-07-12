@@ -15,7 +15,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
-            sqlBuilder.AppendIndent().Append("HAVING");
+            sqlBuilder.AppendIndent().Append("HAVING ");
             SearchCondition.ToSqlString(sqlBuilder);
             base.ToSqlString(sqlBuilder);
         }
