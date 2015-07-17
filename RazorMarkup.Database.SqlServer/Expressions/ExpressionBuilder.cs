@@ -130,7 +130,7 @@ namespace RazorMarkup.Database.SqlServer.Expressions
 
         protected override Expression VisitUnary(UnaryExpression node)
         {
-            if (node.IsImplicitOperator())
+            if (node.IsImplicitOperator() || node.Type == typeof(object))
             {
                 Visit(node.Operand);
                 return node;

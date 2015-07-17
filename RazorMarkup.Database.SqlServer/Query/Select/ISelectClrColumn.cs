@@ -3,18 +3,18 @@ using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Query.Select
 {
-    public interface ISelectClrColumn<TEndType> : ISelectClauseAnd<TEndType>
+    public interface ISelectClrColumn<TEndType> : ISelectColumn<TEndType>
     {
-        ISelectClauseWithFrom<TEndType> Field(ClrFieldName field);
+        ISelectColumn<TEndType> Field(ClrFieldName field);
 
-        ISelectClauseWithFrom<TEndType> Property(ClrPropertyName property);
+        ISelectColumn<TEndType> Property(ClrPropertyName property);
 
-        ISelectClauseWithFrom<TEndType> StaticField(ClrFieldName field);
+        ISelectColumn<TEndType> StaticField(ClrFieldName field);
 
-        ISelectClauseWithFrom<TEndType> StaticProperty(ClrPropertyName property);
+        ISelectColumn<TEndType> StaticProperty(ClrPropertyName property);
 
-        ISelectClauseWithFrom<TEndType> Method(ClrMethodName method, params Expression<Func<object>>[] parameters);
+        ISelectColumn<TEndType> Method(ClrMethodName method, params Expression<Func<object>>[] parameters);
 
-        ISelectClauseWithFrom<TEndType> StaticMethod(ClrMethodName method, params Expression<Func<object>>[] parameters);
+        ISelectColumn<TEndType> StaticMethod(ClrMethodName method, params Expression<Func<object>>[] parameters);
     }
 }

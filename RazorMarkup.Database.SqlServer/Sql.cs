@@ -77,7 +77,7 @@ namespace RazorMarkup.Database.SqlServer
 
         public static ISqlString Label(LabelName labelName)
         {
-            return new SqlString(labelName.ToSqlString() + ":", () => Label(labelName), labelName);
+            return new SqlString(labelName.ToSqlString() + ":", () => Label(null), labelName);
         }
 
         public static ISqlString Print(Expression<Func<Text>> expression)

@@ -19,6 +19,11 @@ namespace RazorMarkup.Database.SqlServer.Parser
             return new AssemblyName(name.BaseIdentifier.Value);
         }
 
+        public static ClrColumnName ToClrColumnName(this SchemaObjectName name)
+        {
+            return new ClrColumnName(name.BaseIdentifier.Value);
+        }
+
         public static FunctionName ToFunctionName(this SchemaObjectName name)
         {
             return new FunctionName(name.BaseIdentifier.Value);

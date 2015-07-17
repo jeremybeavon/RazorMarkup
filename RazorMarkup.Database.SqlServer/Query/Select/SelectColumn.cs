@@ -9,10 +9,10 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
         {
         }
 
-        public ISelectClauseAnd<TEndType> WithAlias(ColumnAlias columnAlias)
+        public ISelectClauseAnd<TEndType> As(ColumnAlias columnAlias)
         {
             Statement.Columns[Statement.Columns.Count - 1].Alias = columnAlias.ToSqlString();
-            Statement.Append((ISelectColumn<TEndType> input) => input.WithAlias(null), columnAlias);
+            Statement.Append((ISelectColumn<TEndType> input) => input.As(null), columnAlias);
             return this;
         }
     }

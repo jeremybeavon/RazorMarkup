@@ -2,6 +2,6 @@
 {
     public interface ISelectColumn<TEndType> : ISelectClauseAnd<TEndType>
     {
-        ISelectClauseAnd<TEndType> WithAlias(ColumnAlias columnAlias);
+        ISelectClauseAnd<TEndType> As(ColumnAlias columnAlias);
     }
 }

@@ -8,6 +8,6 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
     public interface ITableSelectionWithAlias<TEndType> : ITableSelectionWithTableSample<TEndType>
     {
-        ITableSelectionWithTableSample<TEndType> WithAlias(TableAlias tableAlias);
+        ITableSelectionWithTableSample<TEndType> As(TableAlias tableAlias);
     }
 }

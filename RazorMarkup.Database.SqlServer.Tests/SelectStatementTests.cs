@@ -60,6 +60,250 @@ FROM table1";
         }
 
         [TestMethod]
+        public void Test_SelectWithAllTableColumns_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT table1.*
+FROM table1";
+            Sql.Query().Select().AllColumns(new TableName("table1")).From().Table(new TableName("table1")).End().Query().ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithAllViewColumns_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT view1.*
+FROM table1";
+            Sql.Query().Select().AllColumns(new ViewName("view1")).From().Table(new TableName("table1")).End().Query().ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithAllTableAliasColumns_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT table1.*
+FROM table2 AS table1";
+            Sql.Query()
+                .Select().AllColumns(new TableAlias("table1"))
+                .From().Table(new TableName("table2")).As(new TableAlias("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithIdentityColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT $IDENTITY
+FROM table1";
+            Sql.Query()
+                .Select().IdentityColumn()
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithTableIdentityColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT table1.$IDENTITY
+FROM table1";
+            Sql.Query()
+                .Select().IdentityColumn(new TableName("table1"))
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithViewIdentityColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT view1.$IDENTITY
+FROM view1";
+            Sql.Query()
+                .Select().IdentityColumn(new ViewName("view1"))
+                .From().View(new ViewName("view1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithTableAliasIdentityColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT alias1.$IDENTITY
+FROM table1 AS alias1";
+            Sql.Query()
+                .Select().IdentityColumn(new TableAlias("alias1"))
+                .From().Table(new TableName("table1")).As(new TableAlias("alias1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithRowGuidColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT $ROWGUID
+FROM table1";
+            Sql.Query()
+                .Select().RowGuidColumn()
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithTableRowGuidColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT table1.$ROWGUID
+FROM table1";
+            Sql.Query()
+                .Select().RowGuidColumn(new TableName("table1"))
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithViewRowGuidColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT view1.$ROWGUID
+FROM view1";
+            Sql.Query()
+                .Select().RowGuidColumn(new ViewName("view1"))
+                .From().View(new ViewName("view1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithTableAliasRowGuidColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT alias1.$ROWGUID
+FROM table1 AS alias1";
+            Sql.Query()
+                .Select().RowGuidColumn(new TableAlias("alias1"))
+                .From().Table(new TableName("table1")).As(new TableAlias("alias1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1";
+            Sql.Query()
+                .Select().ClrColumn(new ClrColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrTableColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT table1.column1
+FROM table1";
+            Sql.Query()
+                .Select().ClrColumn(new TableName("table1"), new ClrColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrViewColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT view1.column1
+FROM view1";
+            Sql.Query()
+                .Select().ClrColumn(new ViewName("view1"), new ClrColumnName("column1"))
+                .From().View(new ViewName("view1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrTableAliasColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT alias1.column1
+FROM table1 AS alias1";
+            Sql.Query()
+                .Select().ClrColumn(new TableAlias("alias1"), new ClrColumnName("column1"))
+                .From().Table(new TableName("table1")).As(new TableAlias("alias1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrFieldColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1.field1
+FROM table1";
+            Sql.Query()
+                .Select().ClrColumn(new ClrColumnName("column1")).Field(new ClrFieldName("field1"))
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrPropertyColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1.property1
+FROM table1";
+            Sql.Query()
+                .Select().ClrColumn(new ClrColumnName("column1")).Property(new ClrPropertyName("property1"))
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrStaticFieldColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1::field1
+FROM table1";
+            Sql.Query()
+                .Select().ClrColumn(new ClrColumnName("column1")).StaticField(new ClrFieldName("field1"))
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrStaticPropertyColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1::property1
+FROM table1";
+            Sql.Query()
+                .Select().ClrColumn(new ClrColumnName("column1")).StaticProperty(new ClrPropertyName("property1"))
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        /*[TestMethod]
+        public void Test_SelectWithClrMethodColumn_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1::method1()
+FROM table1";
+            Sql.Query()
+                .Select().ClrColumn(new ClrColumnName("column1")).Method(new ClrMethodName("method1"))
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }*/
+
+        [TestMethod]
+        public void Test_SelectColumnWithAlias_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1 AS alias1
+FROM table1";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1")).As(new ColumnAlias("alias1"))
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
         public void Test_SelectWithInto_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"SELECT *
@@ -425,6 +669,22 @@ GROUP BY column1";
         }
 
         [TestMethod]
+        public void Test_SelectWithWhereAndGroupByClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+WHERE column1 < 10
+GROUP BY column1";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Where(() => new ColumnName("column1") < 10)
+                .GroupBy(() => new ColumnName("column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
         public void Test_SelectWithGroupByClauseWith2Columns_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"SELECT column1,
@@ -436,6 +696,25 @@ GROUP BY column1,
                 .Select().Column(new ColumnName("column1")).And().Column(new ColumnName("column2"))
                 .From().Table(new TableName("table1"))
                 .GroupBy(() => new ColumnName("column1")).And(() => new ColumnName("column2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithWhereAndGroupByClauseWithRollup_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+WHERE column1 > 10
+GROUP BY ROLLUP
+(
+    column1
+)";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Where(() => new ColumnName("column1") > 10)
+                .GroupBy().Rollup(() => new ColumnName("column1")).EndRollup()
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
@@ -924,6 +1203,34 @@ FROM table2";
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
 
+        /*[TestMethod]
+        public void Test_SelectWith2UnionClauses_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"(
+    SELECT column1
+    FROM table1
+    UNION
+    SELECT column2
+    FROM table2
+)
+UNION
+SELECT column3
+FROM table3";
+            Sql.Query()
+                .BeginOperatorGroup()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Union()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().OperatorGroup()
+                .Union()
+                .Select().Column(new ColumnName("column3"))
+                .From().Table(new TableName("table3"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }*/
+
         [TestMethod]
         public void Test_SelectWithOrderByClause_GeneratesCorrectTextFromRazorPage()
         {
@@ -997,6 +1304,56 @@ ORDER BY column1,
         }
 
         [TestMethod]
+        public void Test_SelectWithWhereAndOrderByClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+WHERE column1 > 10
+ORDER BY column1";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Where(() => new ColumnName("column1") > 10)
+                .OrderBy(() => new ColumnName("column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithGroupByAndOrderByClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+GROUP BY column1
+ORDER BY column1";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .GroupBy(() => new ColumnName("column1"))
+                .OrderBy(() => new ColumnName("column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithHavingAndOrderByClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+GROUP BY column1
+HAVING column1 > 1
+ORDER BY column1";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .GroupBy(() => new ColumnName("column1"))
+                .Having(() => new ColumnName("column1") > 1)
+                .OrderBy(() => new ColumnName("column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
         public void Test_SelectWithOffsetClause_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"SELECT column1
@@ -1065,7 +1422,7 @@ FETCH NEXT 1 ROW ONLY";
         }
 
         [TestMethod]
-        public void Test_SelectWithForBrowse_GeneratesCorrectTextFromRazorPage()
+        public void Test_SelectWithForBrowseClause_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"SELECT column1
 FROM table1
@@ -1079,6 +1436,90 @@ FOR BROWSE";
         }
 
         [TestMethod]
+        public void Test_SelectWithWhereAndForBrowseClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+WHERE column1 > 10
+FOR BROWSE";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Where(() => new ColumnName("column1") > 10)
+                .For().Browse()
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithGroupByAndForBrowseClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+GROUP BY column1
+FOR BROWSE";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .GroupBy(() => new ColumnName("column1"))
+                .For().Browse()
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithHavingAndForBrowseClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+GROUP BY column1
+HAVING column1 > 1
+FOR BROWSE";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .GroupBy(() => new ColumnName("column1"))
+                .Having(() => new ColumnName("column1") > 1)
+                .For().Browse()
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithOrderByAndForBrowseClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+ORDER BY column1
+FOR BROWSE";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .OrderBy(() => new ColumnName("column1"))
+                .For().Browse()
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithOffsetAndForBrowseClause_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1
+FROM table1
+ORDER BY column1
+OFFSET 10 ROWS
+FOR BROWSE";
+            Sql.Query()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .OrderBy(() => new ColumnName("column1"))
+                .Offset(() => 10).Rows()
+                .For().Browse()
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        /*[TestMethod]
         public void Test_SelectWithForXmlAuto_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"SELECT column1
@@ -1088,6 +1529,34 @@ FOR XML AUTO";
                 .Select().Column(new ColumnName("column1"))
                 .From().Table(new TableName("table1"))
                 .For().Xml().Auto()
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }*/
+
+        [TestMethod]
+        public void Test_SelectWithOperatorGroup_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"(
+    SELECT column1
+    FROM table1
+    EXCEPT
+    SELECT column2
+    FROM table2
+)
+UNION ALL
+SELECT column3
+FROM table3";
+            Sql.Query()
+                .BeginOperatorGroup()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Except()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().OperatorGroup()
+                .UnionAll()
+                .Select().Column(new ColumnName("column3"))
+                .From().Table(new TableName("table3"))
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
