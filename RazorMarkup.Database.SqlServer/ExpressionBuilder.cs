@@ -7,7 +7,7 @@ namespace RazorMarkup.Database.SqlServer
     internal sealed class ExpressionBuilder<TResult> : AbstractStatementBuilder
     {
         public ExpressionBuilder(Expression<Func<TResult>> expression)
-            : base(null)
+            : base(new ExpressionBuilder(expression))
         {
             OriginalExpression = expression;
         }

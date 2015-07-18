@@ -13,6 +13,11 @@ namespace RazorMarkup.Database
         {
         }
 
+        public ExpressionBuilder(Expression initialExpression)
+        {
+            currentExpression = initialExpression;
+        }
+
         public void Initialize<TResult>(Expression<Func<TResult>> expression, params ISqlString[] parameters)
         {
             currentExpression = BuildExpression(expression, parameters);

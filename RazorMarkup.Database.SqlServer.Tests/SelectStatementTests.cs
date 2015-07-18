@@ -1534,7 +1534,7 @@ FOR XML AUTO";
         }*/
 
         [TestMethod]
-        public void Test_SelectWithOperatorGroup_GeneratesCorrectTextFromRazorPage()
+        public void Test_SelectWithOperatorGroups_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"(
     SELECT column1
@@ -1544,8 +1544,13 @@ FOR XML AUTO";
     FROM table2
 )
 UNION ALL
-SELECT column3
-FROM table3";
+(
+    SELECT column3
+    FROM table3
+    INTERSECT
+    SELECT column4
+    FROM table4
+)";
             Sql.Query()
                 .BeginOperatorGroup()
                 .Select().Column(new ColumnName("column1"))
@@ -1555,8 +1560,13 @@ FROM table3";
                 .From().Table(new TableName("table2"))
                 .End().OperatorGroup()
                 .UnionAll()
+                .BeginOperatorGroup()
                 .Select().Column(new ColumnName("column3"))
                 .From().Table(new TableName("table3"))
+                .Intersect()
+                .Select().Column(new ColumnName("column4"))
+                .From().Table(new TableName("table4"))
+                .End().OperatorGroup()
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }

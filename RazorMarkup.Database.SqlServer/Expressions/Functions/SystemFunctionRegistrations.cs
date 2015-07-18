@@ -11,7 +11,7 @@ namespace RazorMarkup.Database.SqlServer.Expressions.Functions
         {
             functionRegistrationManager.Register(
                 "$PARTITION",
-                () => new PartitionFunctionBuilder(),
+                //() => new PartitionFunctionBuilder(),
                 () => SystemFunctions.Partition(null, null),
                 () => SystemFunctions.Partition(null, null, null));
             functionRegistrationManager.RegisterRaw(FunctionNames.Error, () => SystemFunctions.Error());

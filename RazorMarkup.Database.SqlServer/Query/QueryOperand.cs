@@ -37,7 +37,7 @@ namespace RazorMarkup.Database.SqlServer.Query
         public IQueryOperand<IQueryOperatorGroupEnd<TEndType>> BeginOperatorGroup()
         {
             Statement.Append((IQueryOperand<TEndType> input) => input.BeginOperatorGroup());
-            return new QueryOperatorGroupEnd<TEndType>(ExpressionBuilder, EndClosure).AsOperand().AsNextClause(Statement);
+            return new QueryOperatorGroupEnd<TEndType>(ExpressionBuilder, EndClosure).AsNextClause(Statement).AsOperand();
         }
 
         public IQueryOperand<TEndType> AsNextClause(ClauseBuilder statement)

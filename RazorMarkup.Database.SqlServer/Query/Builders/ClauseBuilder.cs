@@ -1,15 +1,28 @@
-﻿using System.Linq.Expressions;
+﻿using System;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal class ClauseBuilder : AbstractStatementBuilder
     {
+        private AbstractStatementBuilder nextClause;
+
         public ClauseBuilder(ExpressionBuilder expressionBuilder)
             : base(expressionBuilder)
         {
         }
 
-        public AbstractStatementBuilder NextClause { get; set; }
+        public AbstractStatementBuilder NextClause
+        {
+            get { return nextClause; }
+            set
+            {
+                if (nextClause == null)
+                    nextClause = value;
+                else
+                    throw new InvalidOperationException("NextClause cannot be set more than once.");
+            }
+        }
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {

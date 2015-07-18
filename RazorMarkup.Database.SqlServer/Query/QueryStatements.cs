@@ -24,7 +24,7 @@ namespace RazorMarkup.Database.SqlServer.Query
         public IQueryOperand<IQueryOperatorGroupEnd<IEndQuery>> BeginOperatorGroup()
         {
             Append((IQueryStatements input) => input.BeginOperatorGroup());
-            return new QueryOperatorGroupEnd<IEndQuery>(ExpressionBuilder, new EndQuery(this)).AsOperand().AsNextClause(this);
+            return new QueryOperatorGroupEnd<IEndQuery>(ExpressionBuilder, new EndQuery(this)).AsNextClause(this).AsOperand();
         }
 
         public ICommonTableExpression With(TableAlias tableName, params ColumnAlias[] columnNames)

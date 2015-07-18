@@ -21,5 +21,11 @@ namespace RazorMarkup.Database.SqlServer.Query
         {
             return new QueryOperand<IQueryOperatorGroupEnd<TEndType>>(Statement.Operand, this);
         }
+
+        public QueryOperatorGroupEnd<TEndType> AsNextClause(ClauseBuilder statement)
+        {
+            statement.NextClause = Statement;
+            return this;
+        }
     }
 }

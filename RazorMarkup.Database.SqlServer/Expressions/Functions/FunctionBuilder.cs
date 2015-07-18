@@ -42,7 +42,7 @@ namespace RazorMarkup.Database.SqlServer.Expressions.Functions
             if (Arguments.Count > 0)
             {
                 Arguments[FirstArgumentIndex].ToSqlString(sqlBuilder);
-                foreach (AbstractStatementBuilder argument in Arguments.Skip(1))
+                foreach (AbstractStatementTextBuilder argument in Arguments.Skip(1))
                 {
                     sqlBuilder.Append(", ");
                     argument.ToSqlString(sqlBuilder);
