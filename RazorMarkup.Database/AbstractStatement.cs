@@ -13,9 +13,9 @@ namespace RazorMarkup.Database
 
         protected TStatementBuilder Statement { get; private set; }
 
-        protected Expression Expression
+        protected ExpressionBuilder ExpressionBuilder
         {
-            get { return Statement.Expression; }
+            get { return Statement.ExpressionBuilder; }
         }
 
         public Expression ToExpression()

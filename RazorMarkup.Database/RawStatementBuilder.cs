@@ -5,6 +5,7 @@
         private readonly string sql;
 
         public RawStatementBuilder(string sql)
+            : base(null)
         {
             this.sql = sql;
         }

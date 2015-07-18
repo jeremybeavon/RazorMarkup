@@ -15,14 +15,14 @@ namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions
         {
             Statement.Append((IQueryOperand<ICommonTableExpressionEnd> input) => input.Select());
             CommonTableExpressionEnd end = new CommonTableExpressionEnd(Statement, EndClosure);
-            return new SelectClauseWithDistinct<ICommonTableExpressionEnd>(Expression, end).AsNextClause(Statement.LastExpression);
+            return new SelectClauseWithDistinct<ICommonTableExpressionEnd>(ExpressionBuilder, end).AsNextClause(Statement.LastExpression);
         }
 
         public IQueryOperand<IQueryOperatorGroupEnd<ICommonTableExpressionEnd>> BeginOperatorGroup()
         {
             Statement.Append((IQueryOperand<ICommonTableExpressionEnd> input) => input.BeginOperatorGroup());
             ICommonTableExpressionEnd end = new CommonTableExpressionEnd(Statement, EndClosure);
-            return new QueryOperatorGroupEnd<ICommonTableExpressionEnd>(Expression, end).AsOperand().AsNextClause(Statement.LastExpression);
+            return new QueryOperatorGroupEnd<ICommonTableExpressionEnd>(ExpressionBuilder, end).AsOperand().AsNextClause(Statement.LastExpression);
         }
     }
 }

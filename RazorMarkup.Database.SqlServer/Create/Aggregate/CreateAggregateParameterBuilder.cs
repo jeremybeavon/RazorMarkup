@@ -1,6 +1,6 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Create.Aggregate
 {
-    internal sealed class CreateAggregateParameterBuilder : AbstractStatementBuilder
+    internal sealed class CreateAggregateParameterBuilder : AbstractStatementTextBuilder
     {
         public CreateAggregateParameterBuilder(ParameterName name, string type)
         {

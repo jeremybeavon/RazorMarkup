@@ -15,49 +15,49 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 
         public ITableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>> InnerJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("INNER"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER"));
             Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.InnerJoin());
             return new TableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>>(Statement, this);
         }
 
         public ITableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>> LeftJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("LEFT"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT"));
             Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.LeftJoin());
             return new TableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>>(Statement, this);
         }
 
         public ITableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>> RightJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("RIGHT"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT"));
             Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.RightJoin());
             return new TableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>>(Statement, this);
         }
 
         public ITableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>> FullJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("FULL"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL"));
             Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.FullJoin());
             return new TableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>>(Statement, this);
         }
 
         public ITableSource<TEndType> CrossJoin()
         {
-            Statement.Statements.Add(new RawTableReferenceBuilder(" CROSS JOIN "));
+            Statement.Statements.Add(new RawTableReferenceBuilder(ExpressionBuilder, " CROSS JOIN "));
             Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.CrossJoin());
             return new TableSource<TEndType>(Statement, EndClosure);
         }
 
         public ITableSource<TEndType> CrossApplyJoin()
         {
-            Statement.Statements.Add(new RawTableReferenceBuilder(" CROSS APPLY "));
+            Statement.Statements.Add(new RawTableReferenceBuilder(ExpressionBuilder, " CROSS APPLY "));
             Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.CrossApplyJoin());
             return new TableSource<TEndType>(Statement, EndClosure);
         }
 
         public ITableSource<TEndType> OuterApplyJoin()
         {
-            Statement.Statements.Add(new RawTableReferenceBuilder(" OUTER APPLY "));
+            Statement.Statements.Add(new RawTableReferenceBuilder(ExpressionBuilder, " OUTER APPLY "));
             Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.OuterApplyJoin());
             return new TableSource<TEndType>(Statement, EndClosure);
         }

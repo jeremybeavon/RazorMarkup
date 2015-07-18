@@ -6,8 +6,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class OrderByColumnBuilder : AbstractStatementBuilder
     {
-        public OrderByColumnBuilder(Expression initialExpression, Expression<Func<object>> expression)
-            : base(initialExpression)
+        public OrderByColumnBuilder(ExpressionBuilder expressionBuilder, Expression<Func<object>> expression)
+            : base(expressionBuilder)
         {
             Column = new ExpressionBuilder<object>(expression);
         }

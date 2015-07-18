@@ -12,7 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions
 
         public ICommonTableExpression With(TableAlias tableName, params ColumnAlias[] columnNames)
         {
-            Statement.CommonTableExpressions.Add(new CommonTableExpressionBuilder(tableName, columnNames));
+            Statement.CommonTableExpressions.Add(new CommonTableExpressionBuilder(ExpressionBuilder, tableName, columnNames));
             Statement.Append((IWithClause input) => input.With(null), (new ISqlString[] { tableName }).Concat(columnNames).ToArray());
             return new CommonTableExpression(Statement, EndClosure);
         }

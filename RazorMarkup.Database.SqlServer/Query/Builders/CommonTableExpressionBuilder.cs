@@ -6,8 +6,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class CommonTableExpressionBuilder : ClauseBuilder
     {
-        public CommonTableExpressionBuilder(TableAlias tableName, IEnumerable<ColumnAlias> columnNames)
-            : base(null)
+        public CommonTableExpressionBuilder(ExpressionBuilder expressionBuilder, TableAlias tableName, IEnumerable<ColumnAlias> columnNames)
+            : base(expressionBuilder)
         {
             TableName = tableName.ToSqlString();
             ColumnNames = columnNames.Select(name => name.ToSqlString()).ToList();

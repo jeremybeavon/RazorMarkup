@@ -2,7 +2,7 @@
 
 namespace RazorMarkup.Database.SqlServer.Expressions.Functions
 {
-    internal sealed class PartitionFunctionBuilder : AbstractStatementBuilder
+    internal sealed class PartitionFunctionBuilder : AbstractStatementTextBuilder
     {
         public DatabaseName DatabaseName { get; set; }
 

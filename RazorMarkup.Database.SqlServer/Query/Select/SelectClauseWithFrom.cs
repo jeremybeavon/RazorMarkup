@@ -13,7 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
         public IFromClause<TEndType> From()
         {
             Statement.Append((ISelectClauseWithFrom<TEndType> input) => input.From());
-            return new FromClause<TEndType>(Expression, EndClosure).AsNextClause(Statement);
+            return new FromClause<TEndType>(ExpressionBuilder, EndClosure).AsNextClause(Statement);
         }
     }
 }

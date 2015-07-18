@@ -8,8 +8,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     public abstract class AbstractTableReferenceBuilder : AbstractStatementBuilder
     {
-        protected AbstractTableReferenceBuilder(Expression initialExpression)
-            : base(initialExpression)
+        protected AbstractTableReferenceBuilder(ExpressionBuilder expressionBuilder)
+            : base(expressionBuilder)
         {
         }
 

@@ -13,43 +13,43 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 
         public ITableSourceWithJoinHint<ITableSelectionWithJoin> InnerJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("INNER"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER"));
             return new TableSourceWithJoinHint<ITableSelectionWithJoin>(Statement, this);
         }
 
         public ITableSourceWithJoinHint<ITableSelectionWithJoin> LeftJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("LEFT"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT"));
             return new TableSourceWithJoinHint<ITableSelectionWithJoin>(Statement, this);
         }
 
         public ITableSourceWithJoinHint<ITableSelectionWithJoin> RightJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("RIGHT"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT"));
             return new TableSourceWithJoinHint<ITableSelectionWithJoin>(Statement, this);
         }
 
         public ITableSourceWithJoinHint<ITableSelectionWithJoin> FullJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("FULL"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL"));
             return new TableSourceWithJoinHint<ITableSelectionWithJoin>(Statement, this);
         }
 
         public ITableSource CrossJoin()
         {
-            Statement.Statements.Add(new RawTableReferenceBuilder(" CROSS JOIN "));
+            Statement.Statements.Add(new RawTableReferenceBuilder(ExpressionBuilder, " CROSS JOIN "));
             return new TableSource(Statement);
         }
 
         public ITableSource CrossApplyJoin()
         {
-            Statement.Statements.Add(new RawTableReferenceBuilder(" CROSS APPLY "));
+            Statement.Statements.Add(new RawTableReferenceBuilder(ExpressionBuilder, " CROSS APPLY "));
             return new TableSource(Statement);
         }
 
         public ITableSource OuterApplyJoin()
         {
-            Statement.Statements.Add(new RawTableReferenceBuilder(" OUTER APPLY "));
+            Statement.Statements.Add(new RawTableReferenceBuilder(ExpressionBuilder, " OUTER APPLY "));
             return new TableSource(Statement);
         }
 

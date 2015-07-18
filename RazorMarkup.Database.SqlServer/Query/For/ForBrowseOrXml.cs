@@ -7,8 +7,8 @@ namespace RazorMarkup.Database.SqlServer.Query.For
     internal class ForBrowseOrXml<TEndType> : AbstractQueryStatement<ForClauseBuilder, TEndType>, IForBrowseOrXml<TEndType>,
         IClauseStart<IForBrowseOrXml<TEndType>>
     {
-        public ForBrowseOrXml(Expression initialExpression, TEndType endClosure)
-            : base(new ForClauseBuilder(initialExpression), endClosure)
+        public ForBrowseOrXml(ExpressionBuilder expressionBuilder, TEndType endClosure)
+            : base(new ForClauseBuilder(expressionBuilder), endClosure)
         {
         }
 

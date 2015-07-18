@@ -13,7 +13,6 @@ namespace RazorMarkup.Database.SqlServer.Expressions
 
         public ISqlString Subquery()
         {
-            statement.End();
             statement.Append((IEndSubquery input) => input.Subquery());
             return statement;
         }

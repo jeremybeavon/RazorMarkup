@@ -90,7 +90,7 @@ namespace RazorMarkup.Database.SqlServer.Options
         public ISqlString Language(Expression<Func<LiteralText>> language)
         {
             SqlBuilder sqlBuilder = new SqlBuilder("SET LANGUAGE ");
-            new ExpressionBuilder(sqlBuilder).Visit(language.Body);
+            new SqlExpressionBuilder(sqlBuilder).Visit(language.Body);
             return SqlString.Create(sqlBuilder.ToSqlString(), () => Sql.Set().Language(language), language);
         }
 

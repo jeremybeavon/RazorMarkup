@@ -6,8 +6,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class FromClauseBuilder : ClauseBuilder
     {
-        public FromClauseBuilder(Expression initialExpression)
-            : base(initialExpression)
+        public FromClauseBuilder(ExpressionBuilder expressionBuilder)
+            : base(expressionBuilder)
         {
             Statements = new List<AbstractTableReferenceBuilder>();
         }
@@ -22,11 +22,6 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
         public SubqueryBuilder CurrentSubquery
         {
             get { return (SubqueryBuilder)Statements.Last(); }
-        }
-
-        public void UpdateExpression(Expression expression)
-        {
-            Expression = expression;
         }
 
         public override void ToSqlString(SqlBuilder sqlBuilder)

@@ -13,7 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Expressions
 
         protected override Expression VisitConstant(ConstantExpression node)
         {
-            return new ExpressionBuilder(sqlBuilder).Visit(node);
+            return new SqlExpressionBuilder(sqlBuilder).Visit(node);
         }
     }
 }

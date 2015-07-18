@@ -12,6 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Drop.Signature
         private string comma;
 
         public DropSignatureStatementBuilder(string moduleName)
+            : base(new ExpressionBuilder())
         {
             textBuilder = new StringBuilder(string.Format("DROP SIGNATURE FROM {0} BY ", moduleName));
             comma = string.Empty;

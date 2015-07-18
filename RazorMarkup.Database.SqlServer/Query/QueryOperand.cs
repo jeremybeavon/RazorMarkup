@@ -8,8 +8,8 @@ namespace RazorMarkup.Database.SqlServer.Query
     internal class QueryOperand<TEndType> : AbstractQueryStatement<ClauseBuilder, TEndType>, IQueryOperand<TEndType>,
         IClauseStart<IQueryOperand<TEndType>>
     {
-        public QueryOperand(Expression initialExpression, string @operator, TEndType endClosure)
-            : base(new QueryOperatorBuilder(initialExpression, @operator), endClosure)
+        public QueryOperand(ExpressionBuilder expressionBuilder, string @operator, TEndType endClosure)
+            : base(new QueryOperatorBuilder(expressionBuilder, @operator), endClosure)
         {
         }
 
@@ -31,13 +31,13 @@ namespace RazorMarkup.Database.SqlServer.Query
         public ISelectClauseWithDistinct<TEndType> Select()
         {
             Statement.Append((IQueryOperand<TEndType> input) => input.Select());
-            return new SelectClauseWithDistinct<TEndType>(Expression, EndClosure).AsNextClause(Statement);
+            return new SelectClauseWithDistinct<TEndType>(ExpressionBuilder, EndClosure).AsNextClause(Statement);
         }
 
         public IQueryOperand<IQueryOperatorGroupEnd<TEndType>> BeginOperatorGroup()
         {
             Statement.Append((IQueryOperand<TEndType> input) => input.BeginOperatorGroup());
-            return new QueryOperatorGroupEnd<TEndType>(Expression, EndClosure).AsOperand().AsNextClause(Statement);
+            return new QueryOperatorGroupEnd<TEndType>(ExpressionBuilder, EndClosure).AsOperand().AsNextClause(Statement);
         }
 
         public IQueryOperand<TEndType> AsNextClause(ClauseBuilder statement)

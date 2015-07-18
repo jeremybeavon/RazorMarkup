@@ -12,7 +12,7 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 
         public ITableSelectionWithAlias Table(TableName tableName)
         {
-            TableQueryBuilder builder = new TableQueryBuilder();
+            TableQueryBuilder builder = new TableQueryBuilder(ExpressionBuilder);
             builder.TableName = tableName.ToSqlString();
             Statement.Statements.Add(builder);
             return new TableSelectionWithAlias(Statement);
@@ -20,7 +20,7 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 
         public ITableSelectionWithAlias View(ViewName viewName)
         {
-            TableQueryBuilder builder = new TableQueryBuilder();
+            TableQueryBuilder builder = new TableQueryBuilder(ExpressionBuilder);
             builder.TableName = viewName.ToSqlString();
             Statement.Statements.Add(builder);
             return new TableSelectionWithAlias(Statement);

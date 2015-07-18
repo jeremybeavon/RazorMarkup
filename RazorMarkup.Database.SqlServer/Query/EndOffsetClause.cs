@@ -13,7 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Query
         public IForBrowseOrXml<TEndType> For()
         {
             Statement.Append((IEndOffsetClause<TEndType> input) => input.For());
-            return new ForBrowseOrXml<TEndType>(Expression, EndClosure).AsNextClause(Statement);
+            return new ForBrowseOrXml<TEndType>(ExpressionBuilder, EndClosure).AsNextClause(Statement);
         }
     }
 }

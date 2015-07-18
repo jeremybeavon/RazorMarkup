@@ -5,7 +5,7 @@ using RazorMarkup.Database.SqlServer.Expressions.Functions;
 
 namespace RazorMarkup.Database.SqlServer.Expressions
 {
-    internal sealed class ExpressionBuilder : AbstractExpressionVisitor
+    internal sealed class SqlExpressionBuilder : AbstractExpressionVisitor
     {
         private static readonly IDictionary<ExpressionType, Action<SqlBuilder>> binaryExpressions =
             new Dictionary<ExpressionType, Action<SqlBuilder>>()
@@ -34,7 +34,7 @@ namespace RazorMarkup.Database.SqlServer.Expressions
         };
         private readonly SqlBuilder sqlBuilder;
 
-        public ExpressionBuilder(SqlBuilder sqlBuilder)
+        public SqlExpressionBuilder(SqlBuilder sqlBuilder)
         {
             this.sqlBuilder = sqlBuilder;
         }

@@ -5,12 +5,11 @@ using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 {
-    internal class GroupByCube<TEndCubeType> : AbstractStatement<GroupFunctionQueryBuilder>, IGroupByCube<TEndCubeType>, 
-        IClosure<IGroupByCube<TEndCubeType>>
+    internal class GroupByCube<TEndCubeType> : AbstractStatement<GroupFunctionQueryBuilder>, IGroupByCube<TEndCubeType>
     {
-        private readonly IClosure<TEndCubeType> cubeClosure;
+        private readonly TEndCubeType cubeClosure;
 
-        public GroupByCube(GroupFunctionQueryBuilder statement, IClosure<TEndCubeType> cubeClosure)
+        public GroupByCube(GroupFunctionQueryBuilder statement, TEndCubeType cubeClosure)
             : base(statement)
         {
             this.cubeClosure = cubeClosure;
@@ -32,13 +31,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         public TEndCubeType EndCube()
         {
             Statement.Append((IGroupByCube<TEndCubeType> input) => input.EndCube());
-            return cubeClosure.End(Statement.Expression);
-        }
-
-        public IGroupByCube<TEndCubeType> End(Expression expression)
-        {
-            Statement.UpdateExpression(expression);
-            return this;
+            return cubeClosure;
         }
     }
 }

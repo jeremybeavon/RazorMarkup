@@ -11,8 +11,8 @@ namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions
         {
         }
 
-        public CommonTableExpression(Expression initialExpression, TableAlias tableName, ColumnAlias[] columnNames, IEndQuery endClosure)
-            : base(new WithClauseBuilder(initialExpression, tableName, columnNames), endClosure)
+        public CommonTableExpression(ExpressionBuilder expressionBuilder, TableAlias tableName, ColumnAlias[] columnNames, IEndQuery endClosure)
+            : base(new WithClauseBuilder(expressionBuilder, tableName, columnNames), endClosure)
         {
         }
 

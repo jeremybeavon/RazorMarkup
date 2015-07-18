@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RazorMarkup.Database.SqlServer.Expressions.Functions
 {
-    internal sealed class ParameterBuilder : AbstractStatementBuilder
+    internal sealed class ParameterBuilder : AbstractStatementTextBuilder
     {
         private readonly Expression expression;
 
@@ -17,7 +17,7 @@ namespace RazorMarkup.Database.SqlServer.Expressions.Functions
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
-            new ExpressionBuilder(sqlBuilder).Visit(expression);
+            new SqlExpressionBuilder(sqlBuilder).Visit(expression);
         }
     }
 }

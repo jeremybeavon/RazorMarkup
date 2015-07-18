@@ -12,7 +12,7 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Joins
 
         public ITableSelectionWithAliasInJoin<TJoinEndType> Table(TableName tableName)
         {
-            TableQueryBuilder builder = new TableQueryBuilder();
+            TableQueryBuilder builder = new TableQueryBuilder(ExpressionBuilder);
             builder.TableName = tableName.ToSqlString();
             Statement.Statements.Add(builder);
             return new TableSelectionWithAliasInJoin<TJoinEndType>(Statement, JoinClosure);
@@ -20,7 +20,7 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Joins
 
         public ITableSelectionWithAliasInJoin<TJoinEndType> View(ViewName viewName)
         {
-            TableQueryBuilder builder = new TableQueryBuilder();
+            TableQueryBuilder builder = new TableQueryBuilder(ExpressionBuilder);
             builder.TableName = viewName.ToSqlString();
             Statement.Statements.Add(builder);
             return new TableSelectionWithAliasInJoin<TJoinEndType>(Statement, JoinClosure);

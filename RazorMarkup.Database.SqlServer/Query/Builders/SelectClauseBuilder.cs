@@ -7,8 +7,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class SelectClauseBuilder : ClauseBuilder
     {
-        public SelectClauseBuilder(Expression initialExpression)
-            : base(initialExpression)
+        public SelectClauseBuilder(ExpressionBuilder expressionBuilder)
+            : base(expressionBuilder)
         {
             Columns = new List<SelectColumnBuilder>();
         }
@@ -74,7 +74,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
             {
                 using (sqlBuilder.IncrementIndent())
                 { 
-                    foreach (AbstractStatementBuilder column in Columns.Skip(1))
+                    foreach (AbstractStatementTextBuilder column in Columns.Skip(1))
                     {
                         sqlBuilder.Append(",").AppendIndent();
                         column.ToSqlString(sqlBuilder);

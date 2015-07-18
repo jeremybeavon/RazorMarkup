@@ -6,8 +6,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class ForClauseBuilder : ClauseBuilder
     {
-        public ForClauseBuilder(Expression initialExpression)
-            : base(initialExpression)
+        public ForClauseBuilder(ExpressionBuilder expressionBuilder)
+            : base(expressionBuilder)
         {
             Directives = new List<string>();
         }

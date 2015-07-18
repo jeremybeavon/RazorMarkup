@@ -7,8 +7,8 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 {
     internal sealed class GroupByGroupQueryBuilder : AbstractStatementBuilder
     {
-        public GroupByGroupQueryBuilder(Expression initialExpression)
-            : base(initialExpression)
+        public GroupByGroupQueryBuilder(ExpressionBuilder expressionBuilder)
+            : base(expressionBuilder)
         {
             Groupings = new List<AbstractStatementBuilder>();
         }

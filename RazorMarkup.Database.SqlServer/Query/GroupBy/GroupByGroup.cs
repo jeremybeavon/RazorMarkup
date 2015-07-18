@@ -8,9 +8,9 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
     internal class GroupByGroup<TEndGroupType> : AbstractStatement<GroupByGroupQueryBuilder>,
         IGroupByGroup<TEndGroupType>
     {
-        private readonly IClosure<TEndGroupType> groupClosure;
+        private readonly TEndGroupType groupClosure;
 
-        public GroupByGroup(GroupByGroupQueryBuilder statement, IClosure<TEndGroupType> groupClosure)
+        public GroupByGroup(GroupByGroupQueryBuilder statement, TEndGroupType groupClosure)
             : base(statement)
         {
             this.groupClosure = groupClosure;
@@ -26,7 +26,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         public TEndGroupType EndGroup()
         {
             Statement.Append((IGroupByGroup<TEndGroupType> input) => input.EndGroup());
-            return groupClosure.End(Expression);
+            return groupClosure;
         }
     }
 }

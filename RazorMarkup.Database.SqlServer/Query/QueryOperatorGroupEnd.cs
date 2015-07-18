@@ -6,8 +6,8 @@ namespace RazorMarkup.Database.SqlServer.Query
     internal sealed class QueryOperatorGroupEnd<TEndType> : AbstractQueryStatement<QueryOperatorGroupBuilder, TEndType>,
         IQueryOperatorGroupEnd<TEndType>
     {
-        public QueryOperatorGroupEnd(Expression initialExpression, TEndType endClosure)
-            : base(new QueryOperatorGroupBuilder(initialExpression), endClosure)
+        public QueryOperatorGroupEnd(ExpressionBuilder expressionBuilder, TEndType endClosure)
+            : base(new QueryOperatorGroupBuilder(expressionBuilder), endClosure)
         {
         }
 

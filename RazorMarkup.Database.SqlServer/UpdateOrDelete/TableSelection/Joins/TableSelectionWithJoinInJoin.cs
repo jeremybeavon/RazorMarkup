@@ -19,37 +19,37 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Joins
 
         public ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> InnerJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("INNER"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER"));
             return TableSource;
         }
 
         public ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> LeftJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("LEFT"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT"));
             return TableSource;
         }
 
         public ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> RightJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("RIGHT"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT"));
             return TableSource;
         }
 
         public ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> FullJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("FULL"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL"));
             return TableSource;
         }
 
         public ITableSourceInJoin<TJoinEndType> CrossJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder("CROSS"));
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "CROSS"));
             return new TableSourceInJoin<TJoinEndType>(Statement, JoinClosure);
         }
 
         public TJoinEndType On(Expression<Func<bool>> searchCondition)
         {
-            Statement.Statements.Add(new JoinConditionBuilder(searchCondition));
+            Statement.Statements.Add(new JoinConditionBuilder(ExpressionBuilder, searchCondition));
             return JoinClosure;
         }
     }

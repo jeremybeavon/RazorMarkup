@@ -5,10 +5,10 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class SubqueryBuilder : AbstractTableReferenceBuilder
     {
-        public SubqueryBuilder(Expression initialExpression)
-            : base(null)
+        public SubqueryBuilder(ExpressionBuilder expressionBuilder)
+            : base(expressionBuilder)
         {
-            Select = new ClauseBuilder(initialExpression);
+            Select = new ClauseBuilder(expressionBuilder);
             ColumnAlias = new List<string>();
         }
 
@@ -40,16 +40,6 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
                     sqlBuilder.Append(")");
                 }
             }
-        }
-
-        public override Expression ToExpression()
-        {
-            return Select.ToExpression();
-        }
-
-        public void End()
-        {
-            Expression = ToExpression();
         }
     }
 }

@@ -6,8 +6,8 @@ namespace RazorMarkup.Database.SqlServer.Query
 {
     internal class FromClause<TEndType> : TableSource<TEndType>, IFromClause<TEndType>, IClauseStart<IFromClause<TEndType>>
     {
-        public FromClause(Expression initialExpression, TEndType endClosure)
-            : base(new FromClauseBuilder(initialExpression), endClosure)
+        public FromClause(ExpressionBuilder expressionBuilder, TEndType endClosure)
+            : base(new FromClauseBuilder(expressionBuilder), endClosure)
         {
         }
 

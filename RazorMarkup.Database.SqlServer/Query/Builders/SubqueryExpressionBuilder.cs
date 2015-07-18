@@ -12,7 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
     internal sealed class SubqueryExpressionBuilder : ClauseBuilder
     {
         public SubqueryExpressionBuilder()
-            : base(null)
+            : base(new ExpressionBuilder())
         {
         }
 
@@ -26,8 +26,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
                 }
 
                 Initialize(() => SqlSubquery.Select());
-                SubqueryBuilder builder = new SubqueryBuilder(Expression);
-                builder.Select.NextClause = new SelectClauseBuilder(Expression);
+                SubqueryBuilder builder = new SubqueryBuilder(ExpressionBuilder);
+                builder.Select.NextClause = new SelectClauseBuilder(ExpressionBuilder);
                 NextClause = builder;
                 return builder;
             }
@@ -43,7 +43,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
                 }
 
                 Initialize(() => SqlSubquery.BeginOperatorGroup());
-                QueryOperatorGroupBuilder builder = new QueryOperatorGroupBuilder(Expression);
+                QueryOperatorGroupBuilder builder = new QueryOperatorGroupBuilder(ExpressionBuilder);
                 NextClause = builder;
                 return builder;
             }

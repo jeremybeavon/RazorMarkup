@@ -7,8 +7,8 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 {
     internal sealed class GroupFunctionQueryBuilder : AbstractStatementBuilder
     {
-        public GroupFunctionQueryBuilder(string functionName, Expression initialExpression)
-            : base(initialExpression)
+        public GroupFunctionQueryBuilder(ExpressionBuilder expressionBuilder, string functionName)
+            : base(expressionBuilder)
         {
             FunctionName = functionName;
             Groupings = new List<AbstractStatementBuilder>();
@@ -34,11 +34,6 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
             }
 
             sqlBuilder.AppendIndent().Append(")");
-        }
-
-        public void UpdateExpression(Expression expression)
-        {
-            Expression = expression;
         }
     }
 }

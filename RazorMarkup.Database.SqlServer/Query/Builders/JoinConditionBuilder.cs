@@ -5,8 +5,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     public sealed class JoinConditionBuilder : AbstractTableReferenceBuilder
     {
-        public JoinConditionBuilder(Expression<Func<bool>> searchCondition)
-            : base(null)
+        public JoinConditionBuilder(ExpressionBuilder expressionBuilder, Expression<Func<bool>> searchCondition)
+            : base(expressionBuilder)
         {
             SearchCondition = searchCondition;
         }

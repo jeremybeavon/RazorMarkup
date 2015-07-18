@@ -2,8 +2,8 @@
 {
     internal sealed class JoinQueryBuilder : AbstractTableReferenceBuilder
     {
-        public JoinQueryBuilder(string joinType)
-            : base(null)
+        public JoinQueryBuilder(ExpressionBuilder expressionBuilder, string joinType)
+            : base(expressionBuilder)
         {
             JoinType = joinType;
         }

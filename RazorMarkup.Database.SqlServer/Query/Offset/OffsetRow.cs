@@ -8,8 +8,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Offset
     internal class OffsetRow<TEndType> : AbstractQueryStatement<OffsetClauseBuilder, TEndType>, IOffsetRow<TEndType>,
         IClauseStart<IOffsetRow<TEndType>>
     {
-        public OffsetRow(Expression initialExpression, Expression<Func<Integer>> expression, TEndType endClosure)
-            : base(new OffsetClauseBuilder(initialExpression, expression), endClosure)
+        public OffsetRow(ExpressionBuilder expressionBuilder, Expression<Func<Integer>> expression, TEndType endClosure)
+            : base(new OffsetClauseBuilder(expressionBuilder, expression), endClosure)
         {
         }
 

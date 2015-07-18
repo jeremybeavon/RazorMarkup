@@ -11,6 +11,7 @@ namespace RazorMarkup.Database.SqlServer.Drop.Index
     internal sealed class DropIndexStatementBuilder : AbstractStatementBuilder
     {
         public DropIndexStatementBuilder(IndexName indexName)
+            : base(new ExpressionBuilder())
         {
             Indexes = new List<DropSingleIndexStatementBuilder>(new[] { new DropSingleIndexStatementBuilder(indexName) });
         }

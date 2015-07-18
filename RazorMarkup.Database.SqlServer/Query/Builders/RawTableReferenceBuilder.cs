@@ -10,8 +10,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
     {
         private readonly string sql;
 
-        public RawTableReferenceBuilder(string sql)
-            : base(null)
+        public RawTableReferenceBuilder(ExpressionBuilder expressionBuilder, string sql)
+            : base(expressionBuilder)
         {
             this.sql = sql;
         }

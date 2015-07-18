@@ -7,8 +7,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class TableQueryBuilder : AbstractTableReferenceBuilder
     {
-        public TableQueryBuilder()
-            : base(null)
+        public TableQueryBuilder(ExpressionBuilder expressionBuilder)
+            : base(expressionBuilder)
         {
             TableHints = new List<string>();
         }

@@ -5,9 +5,37 @@ using System.Linq.Expressions;
 
 namespace RazorMarkup.Database
 {
-    internal static class ExpressionBuilder
+    public sealed class ExpressionBuilder
     {
-        public static Expression BuildExpression<T>(Expression<Func<T>> expression, ICollection<ISqlString> parameters)
+        private Expression currentExpression;
+
+        public ExpressionBuilder()
+        {
+        }
+
+        public void Initialize<TResult>(Expression<Func<TResult>> expression, params ISqlString[] parameters)
+        {
+            currentExpression = BuildExpression(expression, parameters);
+        }
+
+        public void Append<TInput, TResult>(Expression<Func<TInput, TResult>> expression, params ISqlString[] parameters)
+        {
+            currentExpression = BuildExpression(expression, currentExpression, parameters);
+        }
+
+        public void Append<TInput, TResult, TParameter>(
+            Expression<Func<TInput, TResult>> expression,
+            Expression<Func<TParameter>> parameter)
+        {
+            currentExpression = ExpressionBuilder.BuildExpression(expression, currentExpression, parameter);
+        }
+
+        public Expression ToExpression()
+        {
+            return currentExpression;
+        }
+
+        internal static Expression BuildExpression<T>(Expression<Func<T>> expression, ICollection<ISqlString> parameters)
         {
             if (parameters.Count > 0)
             {
@@ -24,7 +52,7 @@ namespace RazorMarkup.Database
             return expression.Body;
         }
 
-        public static Expression BuildExpression<TInput, TResult>(
+        internal static Expression BuildExpression<TInput, TResult>(
             Expression<Func<TInput, TResult>> expression,
             Expression instance,
             ICollection<ISqlString> parameters)
@@ -39,7 +67,7 @@ namespace RazorMarkup.Database
             return Expression.Call(instance, methodCall.Method, parameterExpressions);
         }
 
-        public static Expression BuildExpression<TInput, TResult, TParameter>(
+        internal static Expression BuildExpression<TInput, TResult, TParameter>(
             Expression<Func<TInput, TResult>> expression,
             Expression instance,
             Expression<Func<TParameter>> parameter)
@@ -53,7 +81,7 @@ namespace RazorMarkup.Database
             return Expression.Call(instance, methodCall.Method, Expression.Quote(parameter));
         }
 
-        public static Expression BuildExpression<TResult, TParameter>(
+        internal static Expression BuildExpression<TResult, TParameter>(
             Expression<Func<TResult>> expression,
             Expression<Func<TParameter>> parameter)
         {

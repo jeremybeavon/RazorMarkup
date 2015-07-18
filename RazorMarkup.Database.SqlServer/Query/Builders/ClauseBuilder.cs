@@ -4,8 +4,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal class ClauseBuilder : AbstractStatementBuilder
     {
-        public ClauseBuilder(Expression initialExpression)
-            : base(initialExpression)
+        public ClauseBuilder(ExpressionBuilder expressionBuilder)
+            : base(expressionBuilder)
         {
         }
 
@@ -17,16 +17,6 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
             {
                 NextClause.ToSqlString(sqlBuilder);
             }
-        }
-
-        public override Expression ToExpression()
-        {
-            return NextClause == null ? Expression : NextClause.ToExpression();
-        }
-
-        public virtual void End()
-        {
-            Expression = ToExpression();
         }
     }
 }

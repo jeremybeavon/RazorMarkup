@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="AbstractStatement.cs" />
     <Compile Include="AbstractStatementBuilder.cs" />
+    <Compile Include="AbstractStatementTextBuilder.cs" />
     <Compile Include="ExpressionBuilder.cs" />
     <Compile Include="IntegerLiteral.cs" />
     <Compile Include="ISqlString.cs" />

@@ -8,8 +8,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class DerivedTableBuilder : AbstractTableReferenceBuilder
     {
-        public DerivedTableBuilder()
-            : base(null)
+        public DerivedTableBuilder(ExpressionBuilder expressionBuilder)
+            : base(expressionBuilder)
         {
             ColumnAlias = new List<string>();
         }

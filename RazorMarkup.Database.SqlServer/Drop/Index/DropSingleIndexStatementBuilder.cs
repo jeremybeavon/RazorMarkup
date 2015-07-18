@@ -8,7 +8,7 @@ using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Drop.Index
 {
-    internal sealed class DropSingleIndexStatementBuilder : AbstractStatementBuilder
+    internal sealed class DropSingleIndexStatementBuilder : AbstractStatementTextBuilder
     {
         public DropSingleIndexStatementBuilder(IndexName indexName)
         {

@@ -16,9 +16,7 @@ namespace RazorMarkup.Database.SqlServer.Query
 
         public ISubqueryWithAlias<TEndType> Subquery()
         {
-            Statement.End();
             Statement.Append((IEndSubquery<ISubqueryWithAlias<TEndType>> input) => input.Subquery());
-            fromClause.UpdateExpression(Expression);
             return new SubqueryWithAlias<TEndType>(fromClause, EndClosure);
         }
     }

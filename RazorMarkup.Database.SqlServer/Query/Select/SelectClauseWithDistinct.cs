@@ -12,8 +12,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
         {
         }
 
-        public SelectClauseWithDistinct(Expression initialExpression, TEndType endClosure)
-            : base(new SelectClauseBuilder(initialExpression), endClosure)
+        public SelectClauseWithDistinct(ExpressionBuilder expressionBuilder, TEndType endClosure)
+            : base(new SelectClauseBuilder(expressionBuilder), endClosure)
         { 
         }
 

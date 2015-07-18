@@ -14,7 +14,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 
         public ITableSelectionWithAliasInJoin<TJoinEndType> Table(TableName tableName)
         {
-            TableQueryBuilder builder = new TableQueryBuilder();
+            TableQueryBuilder builder = new TableQueryBuilder(ExpressionBuilder);
             builder.TableName = tableName.ToSqlString();
             Statement.Statements.Add(builder);
             Statement.Append((ITableSourceInJoin<TJoinEndType> input) => input.Table(null), tableName);
@@ -23,7 +23,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 
         public ITableSelectionWithAliasInJoin<TJoinEndType> View(ViewName viewName)
         {
-            TableQueryBuilder builder = new TableQueryBuilder();
+            TableQueryBuilder builder = new TableQueryBuilder(ExpressionBuilder);
             builder.TableName = viewName.ToSqlString();
             Statement.Statements.Add(builder);
             Statement.Append((ITableSourceInJoin<TJoinEndType> input) => input.View(null), viewName);
@@ -33,7 +33,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
         public IDerviedTableWithAliasInJoin<TJoinEndType> DerivedTable(Expression<Func<object>>[][] values)
         {
             Statement.Append((ITableSource<TJoinEndType> input) => input.DerivedTable(null), new DerivedTableExpression(values));
-            DerivedTableBuilder builder = new DerivedTableBuilder();
+            DerivedTableBuilder builder = new DerivedTableBuilder(ExpressionBuilder);
             builder.Values = values;
             Statement.Statements.Add(builder);
             return new DerivedTableWithAliasInJoin<TJoinEndType>(Statement, builder, JoinClosure);

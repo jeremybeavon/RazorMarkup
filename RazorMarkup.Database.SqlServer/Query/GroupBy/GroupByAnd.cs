@@ -5,16 +5,15 @@ using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer.Query.GroupBy
 {
-    internal class GroupByAnd<TEndType> : EndGroupByClause<TEndType>, IGroupByAnd<TEndType>, IClauseStart<IGroupByAnd<TEndType>>,
-        IClosure<IGroupByAnd<TEndType>>
+    internal class GroupByAnd<TEndType> : EndGroupByClause<TEndType>, IGroupByAnd<TEndType>, IClauseStart<IGroupByAnd<TEndType>>
     {
         public GroupByAnd(GroupByClauseBuilder statement, TEndType endClosure)
             : base(statement, endClosure)
         {
         }
 
-        public GroupByAnd(Expression initialExpression, Expression<Func<object>> groupingExpression, TEndType endClosure)
-            : base(new GroupByClauseBuilder(initialExpression, groupingExpression), endClosure)
+        public GroupByAnd(ExpressionBuilder expressionBuilder, Expression<Func<object>> groupingExpression, TEndType endClosure)
+            : base(new GroupByClauseBuilder(expressionBuilder, groupingExpression), endClosure)
         {
         }
 
@@ -34,12 +33,6 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         public IGroupByAnd<TEndType> AsNextClause(ClauseBuilder statement)
         {
             statement.NextClause = Statement;
-            return this;
-        }
-
-        public IGroupByAnd<TEndType> End(Expression expression)
-        {
-            Statement.UpdateExpression(expression);
             return this;
         }
     }

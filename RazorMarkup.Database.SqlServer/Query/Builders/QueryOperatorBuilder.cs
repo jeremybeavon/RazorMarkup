@@ -4,8 +4,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class QueryOperatorBuilder : ClauseBuilder
     {
-        public QueryOperatorBuilder(Expression initialExpression, string @operator)
-            : base(initialExpression)
+        public QueryOperatorBuilder(ExpressionBuilder expressionBuilder, string @operator)
+            : base(expressionBuilder)
         {
             Operator = @operator;
         }

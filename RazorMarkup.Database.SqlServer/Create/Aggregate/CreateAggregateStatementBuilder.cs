@@ -9,6 +9,7 @@ namespace RazorMarkup.Database.SqlServer.Create.Aggregate
     internal sealed class CreateAggregateStatementBuilder : AbstractStatementBuilder
     {
         public CreateAggregateStatementBuilder(AggregateName name)
+            : base(new ExpressionBuilder())
         {
             Name = name;
             Parameters = new List<CreateAggregateParameterBuilder>();

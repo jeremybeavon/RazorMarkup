@@ -8,9 +8,9 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
     internal class GroupByGroupingSetsFunction<TEndType> : AbstractStatement<GroupFunctionQueryBuilder>,
         IGroupByGroupingSetsFunction<TEndType>
     {
-        private IClosure<IGroupByAnd<TEndType>> groupingSetClosure;
+        private IGroupByAnd<TEndType> groupingSetClosure;
 
-        public GroupByGroupingSetsFunction(GroupFunctionQueryBuilder statement, IClosure<IGroupByAnd<TEndType>> groupingSetClosure)
+        public GroupByGroupingSetsFunction(GroupFunctionQueryBuilder statement, IGroupByAnd<TEndType> groupingSetClosure)
             : base(statement)
         {
             this.groupingSetClosure = groupingSetClosure;
@@ -19,7 +19,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         public IGroupByCube<IGroupByGroupingSets<TEndType>> Cube(Expression<Func<object>> groupingExpression)
         {
             Statement.Append((IGroupByGroupingSetsFunction<TEndType> input) => input.Cube(null), groupingExpression);
-            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("CUBE", Expression);
+            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder(ExpressionBuilder, "CUBE");
             Statement.Groupings.Add(queryBuilder);
             queryBuilder.Groupings.Add(new ExpressionBuilder<object>(groupingExpression));
             GroupByGroupingSets<TEndType> cubeClosure = new GroupByGroupingSets<TEndType>(Statement, groupingSetClosure);
@@ -29,7 +29,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         public IGroupByCubeFunction<IGroupByGroupingSets<TEndType>> Cube()
         {
             Statement.Append((IGroupByGroupingSetsFunction<TEndType> input) => input.Cube());
-            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("CUBE", Expression);
+            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder(ExpressionBuilder, "CUBE");
             Statement.Groupings.Add(queryBuilder);
             GroupByGroupingSets<TEndType> cubeClosure = new GroupByGroupingSets<TEndType>(Statement, groupingSetClosure);
             return new GroupByCubeFunction<IGroupByGroupingSets<TEndType>>(queryBuilder, cubeClosure);
@@ -38,7 +38,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         public IGroupByRollup<IGroupByGroupingSets<TEndType>> Rollup(Expression<Func<object>> groupingExpression)
         {
             Statement.Append((IGroupByGroupingSetsFunction<TEndType> input) => input.Rollup(null), groupingExpression);
-            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("ROLLUP", Expression);
+            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder(ExpressionBuilder, "ROLLUP");
             Statement.Groupings.Add(queryBuilder);
             queryBuilder.Groupings.Add(new ExpressionBuilder<object>(groupingExpression));
             GroupByGroupingSets<TEndType> rollupClosure = new GroupByGroupingSets<TEndType>(Statement, groupingSetClosure);
@@ -48,7 +48,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         public IGroupByRollupFunction<IGroupByGroupingSets<TEndType>> Rollup()
         {
             Statement.Append((IGroupByGroupingSetsFunction<TEndType> input) => input.Rollup());
-            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder("ROLLUP", Expression);
+            GroupFunctionQueryBuilder queryBuilder = new GroupFunctionQueryBuilder(ExpressionBuilder, "ROLLUP");
             Statement.Groupings.Add(queryBuilder);
             GroupByGroupingSets<TEndType> rollupClosure = new GroupByGroupingSets<TEndType>(Statement, groupingSetClosure);
             return new GroupByRollupFunction<IGroupByGroupingSets<TEndType>>(queryBuilder, rollupClosure);

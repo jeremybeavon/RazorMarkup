@@ -5,8 +5,8 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class WhereClauseBuilder : ClauseBuilder
     {
-        public WhereClauseBuilder(Expression initialExpression, Expression<Func<bool>> searchCondition)
-            : base(initialExpression)
+        public WhereClauseBuilder(ExpressionBuilder expressionBuilder, Expression<Func<bool>> searchCondition)
+            : base(expressionBuilder)
         {
             SearchCondition = new ExpressionBuilder<bool>(searchCondition);
         }

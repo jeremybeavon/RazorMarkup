@@ -8,14 +8,14 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class GroupByClauseBuilder : ClauseBuilder
     {
-        public GroupByClauseBuilder(Expression initialExpression)
-            : base(initialExpression)
+        public GroupByClauseBuilder(ExpressionBuilder expressionBuilder)
+            : base(expressionBuilder)
         {
             Groupings = new List<AbstractStatementBuilder>();
         }
 
-        public GroupByClauseBuilder(Expression initialExpression, Expression<Func<object>> groupingExpression)
-            : this(initialExpression)
+        public GroupByClauseBuilder(ExpressionBuilder expressionBuilder, Expression<Func<object>> groupingExpression)
+            : this(expressionBuilder)
         {
             Groupings.Add(new ExpressionBuilder<object>(groupingExpression));
         }
@@ -44,11 +44,6 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
             }
 
             base.ToSqlString(sqlBuilder);
-        }
-
-        public void UpdateExpression(Expression expression)
-        {
-            Expression = expression;
         }
     }
 }

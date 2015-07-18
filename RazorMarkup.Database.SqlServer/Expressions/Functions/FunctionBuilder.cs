@@ -7,15 +7,16 @@ namespace RazorMarkup.Database.SqlServer.Expressions.Functions
     public sealed class FunctionBuilder : AbstractStatementBuilder
     {
         public FunctionBuilder(string functionName, params int[] parameterIndexSortOrder)
+            : base(null)
         {
             FunctionName = functionName;
-            Arguments = new List<AbstractStatementBuilder>();
+            Arguments = new List<AbstractStatementTextBuilder>();
             ParameterIndexSortOrder = parameterIndexSortOrder;
         }
 
         public string FunctionName { get; private set; }
 
-        public IList<AbstractStatementBuilder> Arguments { get; private set; }
+        public IList<AbstractStatementTextBuilder> Arguments { get; private set; }
 
         public IList<int> ParameterIndexSortOrder { get; private set; }
 
@@ -24,7 +25,7 @@ namespace RazorMarkup.Database.SqlServer.Expressions.Functions
             get { return ParameterIndexSortOrder.Count == 0 ? 0 : ParameterIndexSortOrder[0]; }
         }
 
-        private IEnumerable<AbstractStatementBuilder> OrderedArguments
+        private IEnumerable<AbstractStatementTextBuilder> OrderedArguments
         {
             get
             {

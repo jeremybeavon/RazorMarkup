@@ -19,7 +19,7 @@ namespace RazorMarkup.Database.SqlServer
             SubqueryExpressionBuilder builder = new SubqueryExpressionBuilder();
             return new QueryOperand<IQueryOperatorGroupEnd<IEndSubquery>>(
                 builder.QueryOperatorGroup,
-                new QueryOperatorGroupEnd<IEndSubquery>(builder.QueryOperatorGroup.Expression, new EndSubquery(builder)));
+                new QueryOperatorGroupEnd<IEndSubquery>(builder.ExpressionBuilder, new EndSubquery(builder)));
         }
     }
 }
