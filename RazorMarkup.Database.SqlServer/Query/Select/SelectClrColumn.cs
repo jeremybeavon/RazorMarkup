@@ -42,23 +42,21 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
 
         public ISelectColumn<TEndType> Method(ClrMethodName method, params Expression<Func<object>>[] parameters)
         {
-            ExpressionBuilder<object>[] parameterExpressions = parameters.Select(parameter => parameter.ToExpressionBuilder()).ToArray();
-            Statement.Columns[Statement.Columns.Count - 1].ColumnName +=
-                "." + method.ToSqlString() + string.Join(", ", parameterExpressions.Select(parameter => parameter.ToSqlString()));
-            Statement.Append(
-                (ISelectClrColumn<TEndType> input) => input.Method(null),
-                (new ISqlString[] { method }).Concat(parameterExpressions).ToArray());
+            ExpressionBuilder<object>[] parameterBuilders = parameters.Select(parameter => parameter.ToExpressionBuilder()).ToArray();
+            string parameterText = string.Join(", ", parameterBuilders.Select(parameter => parameter.ToSqlString()));
+            Statement.Columns.Last().ColumnName += "." + method.ToSqlString() + "(" + parameterText + ")";
+            SqlStringArray parameterExpressions = new SqlStringArray(typeof(Expression<Func<object>>), parameterBuilders);
+            Statement.Append((ISelectClrColumn<TEndType> input) => input.Method(null), method, parameterExpressions);
             return this;
         }
 
         public ISelectColumn<TEndType> StaticMethod(ClrMethodName method, params Expression<Func<object>>[] parameters)
         {
-            ExpressionBuilder<object>[] parameterExpressions = parameters.Select(parameter => parameter.ToExpressionBuilder()).ToArray();
-            Statement.Columns[Statement.Columns.Count - 1].ColumnName +=
-                "::" + method.ToSqlString() + string.Join(", ", parameterExpressions.Select(parameter => parameter.ToSqlString()));
-            Statement.Append(
-                (ISelectClrColumn<TEndType> input) => input.StaticMethod(null),
-                (new ISqlString[] { method }).Concat(parameterExpressions).ToArray());
+            ExpressionBuilder<object>[] parameterBuilders = parameters.Select(parameter => parameter.ToExpressionBuilder()).ToArray();
+            string parameterText = string.Join(", ", parameterBuilders.Select(parameter => parameter.ToSqlString()));
+            Statement.Columns.Last().ColumnName += "::" + method.ToSqlString() + "(" + parameterText + ")";
+            SqlStringArray parameterExpressions = new SqlStringArray(typeof(Expression<Func<object>>), parameterBuilders);
+            Statement.Append((ISelectClrColumn<TEndType> input) => input.StaticMethod(null), method, parameterExpressions);
             return this;
         }
     }

@@ -404,7 +404,6 @@
     <Compile Include="Query\TableSelection\Joins\ITableSelectionWithAdditionalTableHintInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\TableHintInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\TableSelectionWithAdditionalTableHintInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\JoinHint.cs" />
     <Compile Include="Query\TableSelection\Joins\Samples\ITableSampleInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\Samples\ITableSampleWithSystemInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\Samples\ITableSelectionWithRepeatableInJoin.cs" />
@@ -416,7 +415,6 @@
     <Compile Include="Query\TableSelection\Joins\TableSelectionWithTableHintInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\TableSelectionWithTableSampleInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\TableSourceInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\TableSourceWithJoinHint.cs" />
     <Compile Include="Query\TableSelection\Samples\TableSelectionWithRepeatable.cs" />
     <Compile Include="Query\TableSelection\Samples\ITableSelectionWithRepeatable.cs" />
     <Compile Include="Query\TableSelection\Samples\ITableSample.cs" />
@@ -444,13 +442,11 @@
     <Compile Include="Query\TableSelection\Samples\TableSampleWithSystem.cs" />
     <Compile Include="Query\TableSelection\ITableSource.cs" />
     <Compile Include="Query\TableSelection\IUnpivotClause.cs" />
-    <Compile Include="Query\TableSelection\Joins\IJoinHint.cs" />
     <Compile Include="Query\TableSelection\Joins\ITableSelectionWithAliasInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\ITableSelectionWithJoinInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\ITableSelectionWithTableHintInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\ITableSelectionWithTableSampleInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\ITableSourceInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\ITableSourceWithJoinHint.cs" />
     <Compile Include="Query\TableSelection\SubqueryWithAlias.cs" />
     <Compile Include="Query\TableSelection\TableSelectionWithAlias.cs" />
     <Compile Include="Query\TableSelection\TableSelectionWithJoin.cs" />
@@ -1047,14 +1043,11 @@
     <Compile Include="UpdateOrDelete\TableSelection\Joins\ITableSelectionWithAdditionalTableHintInJoin.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Joins\TableHintInJoin.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Joins\TableSelectionWithAdditionalTableHintInJoin.cs" />
-    <Compile Include="UpdateOrDelete\TableSelection\Joins\IJoinHint.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Joins\ITableSelectionWithAliasInJoin.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Joins\ITableSelectionWithJoinInJoin.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Joins\ITableSelectionWithTableHintInJoin.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Joins\ITableSelectionWithTableSampleInJoin.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Joins\ITableSourceInJoin.cs" />
-    <Compile Include="UpdateOrDelete\TableSelection\Joins\ITableSourceWithJoinHint.cs" />
-    <Compile Include="UpdateOrDelete\TableSelection\Joins\JoinHint.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Joins\Samples\ITableSampleInJoin.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Joins\Samples\ITableSampleWithSystemInJoin.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Joins\Samples\ITableSelectionWithRepeatableInJoin.cs" />
@@ -1066,7 +1059,6 @@
     <Compile Include="UpdateOrDelete\TableSelection\Joins\TableSelectionWithTableHintInJoin.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Joins\TableSelectionWithTableSampleInJoin.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Joins\TableSourceInJoin.cs" />
-    <Compile Include="UpdateOrDelete\TableSelection\Joins\TableSourceWithJoinHint.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Samples\ITableSample.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Samples\ITableSampleWithSystem.cs" />
     <Compile Include="UpdateOrDelete\TableSelection\Samples\ITableSelectionWithRepeatable.cs" />

@@ -5,13 +5,13 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Joins
 {
     public interface ITableSelectionWithJoinInJoin<TJoinEndType> : IHideObjectMethods
     {
-        ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> InnerJoin();
+        ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> InnerJoin();
 
-        ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> LeftJoin();
+        ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> LeftJoin();
 
-        ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> RightJoin();
+        ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> RightJoin();
 
-        ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> FullJoin();
+        ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> FullJoin();
 
         ITableSourceInJoin<TJoinEndType> CrossJoin();
 

@@ -55,6 +55,14 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
             return new SelectColumn<TEndType>(Statement, EndClosure);
         }
 
+        public ISelectClauseAnd<TEndType> Column(ColumnAlias columnAlias, Expression<Func<object>> expression)
+        {
+            Statement.Columns.Add(new SelectColumnBuilder(expression, columnAlias.ToSqlString()));
+            ExpressionBuilder<object> expressionBuilder = new ExpressionBuilder<object>(expression);
+            Statement.Append((ISelectClause<TEndType> input) => input.Column(null, null), columnAlias, expressionBuilder);
+            return new SelectClauseAnd<TEndType>(Statement, EndClosure);
+        }
+
         public ISelectColumn<TEndType> IdentityColumn()
         {
             Statement.Columns.Add(new SelectColumnBuilder("$IDENTITY"));

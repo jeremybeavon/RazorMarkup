@@ -33,7 +33,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
                 statement.ToSqlString(sqlBuilder);
                 if (statement.IncludeComma)
                 {
-                    sqlBuilder.Append(", ");
+                    sqlBuilder.Append(",");
                 }
             }
 

@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Parser.TableSelection;
 using RazorMarkup.Database.SqlServer.Query.TableSelection;
+using RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {
@@ -14,31 +15,143 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
             this.tableSelectionWithJoin = tableSelectionWithJoin;
         }
 
-        public ICommonTableSourceWithJoinHint InnerJoin()
+        public ICommonTableSource InnerJoin()
         {
-            return new CommonTableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>>(
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
                 tableSelectionWithJoin.InnerJoin(),
                 endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
         }
 
-        public ICommonTableSourceWithJoinHint LeftJoin()
+        public ICommonTableSource InnerLoopJoin()
         {
-            return new CommonTableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>>(
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.InnerLoopJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource InnerHashJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.InnerHashJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource InnerMergeJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.InnerMergeJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource InnerRemoteJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.InnerRemoteJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource LeftJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
                 tableSelectionWithJoin.LeftJoin(),
                 endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
         }
 
-        public ICommonTableSourceWithJoinHint RightJoin()
+        public ICommonTableSource LeftLoopJoin()
         {
-            return new CommonTableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>>(
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.LeftLoopJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource LeftHashJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.LeftHashJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource LeftMergeJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.LeftMergeJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource LeftRemoteJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.LeftRemoteJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource RightJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
                 tableSelectionWithJoin.RightJoin(),
                 endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
         }
 
-        public ICommonTableSourceWithJoinHint FullJoin()
+        public ICommonTableSource RightLoopJoin()
         {
-            return new CommonTableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>>(
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.RightLoopJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource RightHashJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.RightHashJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource RightMergeJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.RightMergeJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource RightRemoteJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.RightRemoteJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource FullJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
                 tableSelectionWithJoin.FullJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource FullLoopJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.FullLoopJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource FullHashJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.FullHashJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource FullMergeJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.FullMergeJoin(),
+                endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
+        }
+
+        public ICommonTableSource FullRemoteJoin()
+        {
+            return new CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>>(
+                tableSelectionWithJoin.FullRemoteJoin(),
                 endClosure => new CommonTableSelectionWithJoin<TEndType>(endClosure));
         }
 

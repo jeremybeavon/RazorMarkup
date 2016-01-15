@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.Web", "RazorMarkup.Web\RazorMarkup.Web.csproj", "{A0389800-F458-48D4-B69C-2D628E3C3F18}"
 EndProject
@@ -32,6 +32,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.CommandLine.Parser", "RazorMarkup.CommandLine.Parser\RazorMarkup.CommandLine.Parser.csproj", "{1B92D55A-1A2D-4E86-A38A-2AEA412E1165}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.CommandLine.Tests", "RazorMarkup.CommandLine.Tests\RazorMarkup.CommandLine.Tests.csproj", "{6B0A20E2-503F-46CD-B434-EE7DBAEFC44C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.CPlusPlus", "RazorMarkup.CPlusPlus\RazorMarkup.CPlusPlus.csproj", "{A5B92073-61B9-46F1-95AE-80DDB462E38F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.CPlusPlus.Parser", "RazorMarkup.CPlusPlus.Parser\RazorMarkup.CPlusPlus.Parser.csproj", "{94965315-4744-4BA8-9499-B4032FD28C00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorMarkup.CPlusPlus.Tests", "RazorMarkup.CPlusPlus.Tests\RazorMarkup.CPlusPlus.Tests.csproj", "{1508D864-7D2C-4FC3-9DBD-060F3F10A926}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +105,18 @@ Global
 		{6B0A20E2-503F-46CD-B434-EE7DBAEFC44C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B0A20E2-503F-46CD-B434-EE7DBAEFC44C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B0A20E2-503F-46CD-B434-EE7DBAEFC44C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B92073-61B9-46F1-95AE-80DDB462E38F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B92073-61B9-46F1-95AE-80DDB462E38F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B92073-61B9-46F1-95AE-80DDB462E38F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B92073-61B9-46F1-95AE-80DDB462E38F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94965315-4744-4BA8-9499-B4032FD28C00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94965315-4744-4BA8-9499-B4032FD28C00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94965315-4744-4BA8-9499-B4032FD28C00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94965315-4744-4BA8-9499-B4032FD28C00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1508D864-7D2C-4FC3-9DBD-060F3F10A926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1508D864-7D2C-4FC3-9DBD-060F3F10A926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1508D864-7D2C-4FC3-9DBD-060F3F10A926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1508D864-7D2C-4FC3-9DBD-060F3F10A926}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

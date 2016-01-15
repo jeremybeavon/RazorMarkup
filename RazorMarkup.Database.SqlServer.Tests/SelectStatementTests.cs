@@ -279,17 +279,77 @@ FROM table1";
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
 
-        /*[TestMethod]
-        public void Test_SelectWithClrMethodColumn_GeneratesCorrectTextFromRazorPage()
+        [TestMethod]
+        public void Test_SelectWithClrMethodColumnWithNoParameters_GeneratesCorrectTextFromRazorPage()
         {
-            const string expectedSql = @"SELECT column1::method1()
+            const string expectedSql = @"SELECT column1.method1()
 FROM table1";
             Sql.Query()
                 .Select().ClrColumn(new ClrColumnName("column1")).Method(new ClrMethodName("method1"))
                 .From().Table(new TableName("table1"))
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
-        }*/
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrMethodColumnWithOneParameter_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1.method1('test')
+FROM table1";
+            Sql.Query()
+                .Select().ClrColumn(new ClrColumnName("column1")).Method(new ClrMethodName("method1"), () => "test")
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrMethodColumnWithTwoParameters_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1.method1('test', 2)
+FROM table1";
+            Sql.Query()
+                .Select().ClrColumn(new ClrColumnName("column1")).Method(new ClrMethodName("method1"), () => "test", () => 2)
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrStaticMethodColumnWithNoParameters_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1::method1()
+FROM table1";
+            Sql.Query()
+                .Select().ClrColumn(new ClrColumnName("column1")).StaticMethod(new ClrMethodName("method1"))
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrStaticMethodColumnWithOneParameter_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1::method1('test')
+FROM table1";
+            Sql.Query()
+                .Select().ClrColumn(new ClrColumnName("column1")).StaticMethod(new ClrMethodName("method1"), () => "test")
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithClrStaticMethodColumnWithTwoParameters_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT column1::method1('test', 2)
+FROM table1";
+            Sql.Query()
+                .Select().ClrColumn(new ClrColumnName("column1")).StaticMethod(new ClrMethodName("method1"), () => "test", () => 2)
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
 
         [TestMethod]
         public void Test_SelectColumnWithAlias_GeneratesCorrectTextFromRazorPage()
@@ -302,6 +362,18 @@ FROM table1";
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
+
+        /*[TestMethod]
+        public void Test_SelectColumnWithAliasUsingEquals_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT alias1 = column1
+FROM table1";
+            Sql.Query()
+                .Select().Column(new ColumnAlias("alias1"), () => new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }*/
 
         [TestMethod]
         public void Test_SelectWithInto_GeneratesCorrectTextFromRazorPage()
@@ -333,6 +405,70 @@ ON table1.column1 = table2.column1";
         }
 
         [TestMethod]
+        public void Test_SelectWithInnerLoopJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+INNER LOOP JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .InnerLoopJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithInnerHashJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+INNER HASH JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .InnerHashJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithInnerMergeJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+INNER MERGE JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .InnerMergeJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithInnerRemoteJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+INNER REMOTE JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .InnerRemoteJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
         public void Test_SelectWithNestedInnerJoins_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"SELECT *
@@ -353,6 +489,86 @@ ON table1.column1 = table2.column1";
         }
 
         [TestMethod]
+        public void Test_SelectWithNestedLoopInnerJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+INNER LOOP JOIN table2
+INNER LOOP JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .InnerLoopJoin().Table(new TableName("table2"))
+                .InnerLoopJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedHashInnerJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+INNER HASH JOIN table2
+INNER HASH JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .InnerHashJoin().Table(new TableName("table2"))
+                .InnerHashJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedMergeInnerJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+INNER MERGE JOIN table2
+INNER MERGE JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .InnerMergeJoin().Table(new TableName("table2"))
+                .InnerMergeJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedRemoteInnerJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+INNER REMOTE JOIN table2
+INNER REMOTE JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .InnerRemoteJoin().Table(new TableName("table2"))
+                .InnerRemoteJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
         public void Test_SelectWithLeftJoin_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"SELECT *
@@ -363,6 +579,70 @@ ON table1.column1 = table2.column1";
                 .Select().AllColumns()
                 .From().Table(new TableName("table1"))
                 .LeftJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithLeftLoopJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+LEFT LOOP JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .LeftLoopJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithLeftHashJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+LEFT HASH JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .LeftHashJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithLeftMergeJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+LEFT MERGE JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .LeftMergeJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithLeftRemoteJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+LEFT REMOTE JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .LeftRemoteJoin().Table(new TableName("table2"))
                 .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
@@ -389,6 +669,86 @@ ON table1.column1 = table2.column1";
         }
 
         [TestMethod]
+        public void Test_SelectWithNestedLoopLeftJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+LEFT LOOP JOIN table2
+LEFT LOOP JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .LeftLoopJoin().Table(new TableName("table2"))
+                .LeftLoopJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedHashLeftJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+LEFT HASH JOIN table2
+LEFT HASH JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .LeftHashJoin().Table(new TableName("table2"))
+                .LeftHashJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedMergeLeftJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+LEFT MERGE JOIN table2
+LEFT MERGE JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .LeftMergeJoin().Table(new TableName("table2"))
+                .LeftMergeJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedRemoteLeftJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+LEFT REMOTE JOIN table2
+LEFT REMOTE JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .LeftRemoteJoin().Table(new TableName("table2"))
+                .LeftRemoteJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
         public void Test_SelectWithRightJoin_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"SELECT *
@@ -399,6 +759,70 @@ ON table1.column1 = table2.column1";
                 .Select().AllColumns()
                 .From().Table(new TableName("table1"))
                 .RightJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithRightLoopJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+RIGHT LOOP JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .RightLoopJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithRightHashJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+RIGHT HASH JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .RightHashJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithRightMergeJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+RIGHT MERGE JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .RightMergeJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithRightRemoteJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+RIGHT REMOTE JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .RightRemoteJoin().Table(new TableName("table2"))
                 .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
@@ -425,6 +849,86 @@ ON table1.column1 = table2.column1";
         }
 
         [TestMethod]
+        public void Test_SelectWithNestedLoopRightJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+RIGHT LOOP JOIN table2
+RIGHT LOOP JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .RightLoopJoin().Table(new TableName("table2"))
+                .RightLoopJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedHashRightJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+RIGHT HASH JOIN table2
+RIGHT HASH JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .RightHashJoin().Table(new TableName("table2"))
+                .RightHashJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedMergeRightJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+RIGHT MERGE JOIN table2
+RIGHT MERGE JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .RightMergeJoin().Table(new TableName("table2"))
+                .RightMergeJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedRemoteRightJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+RIGHT REMOTE JOIN table2
+RIGHT REMOTE JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .RightRemoteJoin().Table(new TableName("table2"))
+                .RightRemoteJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
         public void Test_SelectWithFullJoin_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"SELECT *
@@ -435,6 +939,70 @@ ON table1.column1 = table2.column1";
                 .Select().AllColumns()
                 .From().Table(new TableName("table1"))
                 .FullJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+        
+        [TestMethod]
+        public void Test_SelectWithFullLoopJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+FULL LOOP JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .FullLoopJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithFullHashJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+FULL HASH JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .FullHashJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithFullMergeJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+FULL MERGE JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .FullMergeJoin().Table(new TableName("table2"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithFullRemoteJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+FULL REMOTE JOIN table2
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .FullRemoteJoin().Table(new TableName("table2"))
                 .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
@@ -456,6 +1024,138 @@ ON table1.column1 = table2.column1";
                 .FullJoin().Table(new TableName("table3"))
                 .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
                 .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedLoopFullJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+FULL LOOP JOIN table2
+FULL LOOP JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .FullLoopJoin().Table(new TableName("table2"))
+                .FullLoopJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedHashFullJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+FULL HASH JOIN table2
+FULL HASH JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .FullHashJoin().Table(new TableName("table2"))
+                .FullHashJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedMergeFullJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+FULL MERGE JOIN table2
+FULL MERGE JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .FullMergeJoin().Table(new TableName("table2"))
+                .FullMergeJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithNestedRemoteFullJoins_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1
+FULL REMOTE JOIN table2
+FULL REMOTE JOIN table3
+ON table2.column1 = table3.column1
+ON table1.column1 = table2.column1";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .FullRemoteJoin().Table(new TableName("table2"))
+                .FullRemoteJoin().Table(new TableName("table3"))
+                .On(() => new ColumnName("table2.column1") == new ColumnName("table3.column1"))
+                .On(() => new ColumnName("table1.column1") == new ColumnName("table2.column1"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithCrossJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1 CROSS JOIN table2";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .CrossJoin().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithCrossApplyJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1 CROSS APPLY table2";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .CrossApplyJoin().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithOuterApplyJoin_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1 OUTER APPLY table2";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .OuterApplyJoin().Table(new TableName("table2"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWith2Tables_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"SELECT *
+FROM table1, table2";
+            Sql.Query()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .And().Table(new TableName("table2"))
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
@@ -487,7 +1187,7 @@ FROM
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
-
+        
         [TestMethod]
         public void Test_SelectWithWhereClause_GeneratesCorrectTextFromRazorPage()
         {
@@ -1203,7 +1903,7 @@ FROM table2";
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void Test_SelectWith2UnionClauses_GeneratesCorrectTextFromRazorPage()
         {
             const string expectedSql = @"(
@@ -1229,7 +1929,91 @@ FROM table3";
                 .From().Table(new TableName("table3"))
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
-        }*/
+        }
+
+        [TestMethod]
+        public void Test_SelectWith2UnionAllClauses_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"(
+    SELECT column1
+    FROM table1
+    UNION ALL
+    SELECT column2
+    FROM table2
+)
+UNION ALL
+SELECT column3
+FROM table3";
+            Sql.Query()
+                .BeginOperatorGroup()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .UnionAll()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().OperatorGroup()
+                .UnionAll()
+                .Select().Column(new ColumnName("column3"))
+                .From().Table(new TableName("table3"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWith2IntersectClauses_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"(
+    SELECT column1
+    FROM table1
+    INTERSECT
+    SELECT column2
+    FROM table2
+)
+INTERSECT
+SELECT column3
+FROM table3";
+            Sql.Query()
+                .BeginOperatorGroup()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Intersect()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().OperatorGroup()
+                .Intersect()
+                .Select().Column(new ColumnName("column3"))
+                .From().Table(new TableName("table3"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWith2ExceptClauses_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"(
+    SELECT column1
+    FROM table1
+    EXCEPT
+    SELECT column2
+    FROM table2
+)
+EXCEPT
+SELECT column3
+FROM table3";
+            Sql.Query()
+                .BeginOperatorGroup()
+                .Select().Column(new ColumnName("column1"))
+                .From().Table(new TableName("table1"))
+                .Except()
+                .Select().Column(new ColumnName("column2"))
+                .From().Table(new TableName("table2"))
+                .End().OperatorGroup()
+                .Except()
+                .Select().Column(new ColumnName("column3"))
+                .From().Table(new TableName("table3"))
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
 
         [TestMethod]
         public void Test_SelectWithOrderByClause_GeneratesCorrectTextFromRazorPage()

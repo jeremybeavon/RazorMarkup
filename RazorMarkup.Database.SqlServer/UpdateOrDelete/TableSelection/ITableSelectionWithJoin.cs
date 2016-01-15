@@ -4,13 +4,13 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 {
     public interface ITableSelectionWithJoin : IEndFromClause
     {
-        ITableSourceWithJoinHint<ITableSelectionWithJoin> InnerJoin();
+        ITableSourceInJoin<ITableSelectionWithJoin> InnerJoin();
 
-        ITableSourceWithJoinHint<ITableSelectionWithJoin> LeftJoin();
+        ITableSourceInJoin<ITableSelectionWithJoin> LeftJoin();
 
-        ITableSourceWithJoinHint<ITableSelectionWithJoin> RightJoin();
+        ITableSourceInJoin<ITableSelectionWithJoin> RightJoin();
 
-        ITableSourceWithJoinHint<ITableSelectionWithJoin> FullJoin();
+        ITableSourceInJoin<ITableSelectionWithJoin> FullJoin();
 
         ITableSource CrossJoin();
 

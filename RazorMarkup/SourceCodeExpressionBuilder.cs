@@ -112,16 +112,19 @@ namespace RazorMarkup
                     attribute => attribute.AttributeType == typeof(ParamArrayAttribute));
                 foreach (Expression argument in node.Arguments.Skip(1))
                 {
-                    if (argument == node.Arguments.Last() &&
-                        hasParams &&
-                        argument.NodeType == ExpressionType.NewArrayInit &&
-                        ((NewArrayExpression)argument).Expressions.Count == 0)
+                    if (argument == node.Arguments.Last() && hasParams && argument.NodeType == ExpressionType.NewArrayInit)
                     {
-                        break;
+                        foreach (Expression parameterExpression in ((NewArrayExpression)argument).Expressions)
+                        {
+                            textBuilder.Append(", ");
+                            Visit(parameterExpression);
+                        }
                     }
-
-                    textBuilder.Append(", ");
-                    Visit(argument);
+                    else
+                    {
+                        textBuilder.Append(", ");
+                        Visit(argument);
+                    }
                 }
             }
 

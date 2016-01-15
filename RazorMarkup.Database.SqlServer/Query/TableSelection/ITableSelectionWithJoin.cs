@@ -7,13 +7,45 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
     public interface ITableSelectionWithJoin<TEndType> : IEndFromClause<TEndType>
     {
-        ITableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>> InnerJoin();
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerJoin();
 
-        ITableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>> LeftJoin();
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerLoopJoin();
 
-        ITableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>> RightJoin();
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerHashJoin();
 
-        ITableSourceWithJoinHint<ITableSelectionWithJoin<TEndType>> FullJoin();
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerMergeJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerRemoteJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftLoopJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftHashJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftMergeJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftRemoteJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightLoopJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightHashJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightMergeJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightRemoteJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullLoopJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullHashJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullMergeJoin();
+
+        ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullRemoteJoin();
 
         ITableSource<TEndType> CrossJoin();
 

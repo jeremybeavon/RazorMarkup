@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{94965315-4744-4BA8-9499-B4032FD28C00}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RazorMarkup.CPlusPlus.Parser</RootNamespace>
+    <AssemblyName>RazorMarkup.CPlusPlus.Parser</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Basic.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\Basic.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Basic.Tests.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\Basic.Tests.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CppSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\CppSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CppSharp.AST, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\CppSharp.AST.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CppSharp.Generator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\CppSharp.Generator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CppSharp.Generator.Tests, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\CppSharp.Generator.Tests.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CppSharp.Parser.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\CppSharp.Parser.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CppSharp.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\CppSharp.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CSharpTemp.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\CSharpTemp.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CSharpTemp.Tests.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\CSharpTemp.Tests.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NamespacesBase.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\NamespacesBase.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NamespacesBase.Tests.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\NamespacesBase.Tests.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NamespacesDerived.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\NamespacesDerived.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NamespacesDerived.Tests.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\NamespacesDerived.Tests.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TypeMaps.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\TypeMaps.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TypeMaps.Tests.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\TypeMaps.Tests.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UTF16.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\UTF16.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UTF16.Tests.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\UTF16.Tests.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="VTables.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\VTables.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="VTables.Tests.CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CppSharp.0.1.0\lib\net45\VTables.Tests.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\CppSharp.0.1.0\build\net45\CppSharp.targets" Condition="Exists('..\packages\CppSharp.0.1.0\build\net45\CppSharp.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\CppSharp.0.1.0\build\net45\CppSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CppSharp.0.1.0\build\net45\CppSharp.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

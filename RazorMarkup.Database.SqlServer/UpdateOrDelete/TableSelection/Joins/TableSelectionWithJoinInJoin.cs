@@ -12,30 +12,30 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Joins
         {
         }
 
-        private ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> TableSource
+        private ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> TableSource
         {
-            get { return new TableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>>(Statement, this); }
+            get { return new TableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>(Statement, this); }
         }
 
-        public ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> InnerJoin()
+        public ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> InnerJoin()
         {
             Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER"));
             return TableSource;
         }
 
-        public ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> LeftJoin()
+        public ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> LeftJoin()
         {
             Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT"));
             return TableSource;
         }
 
-        public ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> RightJoin()
+        public ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> RightJoin()
         {
             Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT"));
             return TableSource;
         }
 
-        public ITableSourceWithJoinHint<ITableSelectionWithJoinInJoin<TJoinEndType>> FullJoin()
+        public ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> FullJoin()
         {
             Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL"));
             return TableSource;

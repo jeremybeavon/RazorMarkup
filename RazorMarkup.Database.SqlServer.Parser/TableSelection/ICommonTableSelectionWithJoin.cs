@@ -6,13 +6,45 @@ namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
 {
     internal interface ICommonTableSelectionWithJoin
     {
-        ICommonTableSourceWithJoinHint InnerJoin();
+        ICommonTableSource InnerJoin();
 
-        ICommonTableSourceWithJoinHint LeftJoin();
+        ICommonTableSource InnerLoopJoin();
 
-        ICommonTableSourceWithJoinHint RightJoin();
+        ICommonTableSource InnerHashJoin();
 
-        ICommonTableSourceWithJoinHint FullJoin();
+        ICommonTableSource InnerMergeJoin();
+
+        ICommonTableSource InnerRemoteJoin();
+
+        ICommonTableSource LeftJoin();
+
+        ICommonTableSource LeftLoopJoin();
+
+        ICommonTableSource LeftHashJoin();
+
+        ICommonTableSource LeftMergeJoin();
+
+        ICommonTableSource LeftRemoteJoin();
+
+        ICommonTableSource RightJoin();
+
+        ICommonTableSource RightLoopJoin();
+
+        ICommonTableSource RightHashJoin();
+
+        ICommonTableSource RightMergeJoin();
+
+        ICommonTableSource RightRemoteJoin();
+
+        ICommonTableSource FullJoin();
+
+        ICommonTableSource FullLoopJoin();
+
+        ICommonTableSource FullHashJoin();
+
+        ICommonTableSource FullMergeJoin();
+
+        ICommonTableSource FullRemoteJoin();
 
         ICommonTableSource CrossJoin();
 

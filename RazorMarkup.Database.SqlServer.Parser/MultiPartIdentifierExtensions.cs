@@ -9,5 +9,10 @@ namespace RazorMarkup.Database.SqlServer.Parser
         {
             return new TableName(string.Join(".", identifier.Identifiers.Select(part => part.Value)));
         }
+
+        public static ClrColumnName ToClrColumnName(this MultiPartIdentifier identifier)
+        {
+            return new ClrColumnName(string.Join(".", identifier.Identifiers.Select(part => part.Value)));
+        }
     }
 }

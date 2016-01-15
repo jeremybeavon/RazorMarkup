@@ -15,14 +15,29 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
             ColumnExpression = new ExpressionBuilder<object>(columnExpression);
         }
 
+        public SelectColumnBuilder(Expression<Func<object>> columnExpression, string alias)
+            : this(columnExpression)
+        {
+            Alias = alias;
+            UseEqualsForAlias = true;
+        }
+
         public string ColumnName { get; set; }
 
         public ExpressionBuilder<object> ColumnExpression { get; private set; }
 
         public string Alias { get; set; }
 
+        public bool UseEqualsForAlias { get; set; }
+
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
+            if (UseEqualsForAlias)
+            {
+                sqlBuilder.Append(Alias);
+                sqlBuilder.Append(" = ");
+            }
+
             if (ColumnExpression == null)
             {
                 sqlBuilder.Append(ColumnName);
@@ -32,7 +47,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
                 ColumnExpression.ToSqlString(sqlBuilder);
             }
 
-            if (!string.IsNullOrWhiteSpace(Alias))
+            if (!string.IsNullOrWhiteSpace(Alias) && !UseEqualsForAlias)
             {
                 sqlBuilder.Append(" AS ");
                 sqlBuilder.Append(Alias);
