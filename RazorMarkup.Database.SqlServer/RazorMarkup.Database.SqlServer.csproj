@@ -50,6 +50,12 @@
     <Compile Include="Create\Aggregate\CreateAggregateReturns.cs" />
     <Compile Include="Create\Aggregate\CreateAggregateStatement.cs" />
     <Compile Include="Create\Aggregate\CreateAggregateStatementBuilder.cs" />
+    <Compile Include="Create\Assembly\CreateAssemblyAnd.cs" />
+    <Compile Include="Create\Assembly\CreateAssemblyPermissionSet.cs" />
+    <Compile Include="Create\Assembly\CreateAssemblyStatement.cs" />
+    <Compile Include="Create\Assembly\CreateAssemblyStatementBuilder.cs" />
+    <Compile Include="Create\Assembly\CreateAssemblyStatementWithAuthorization.cs" />
+    <Compile Include="Create\Assembly\CreateAssemblyWithPermissionSet.cs" />
     <Compile Include="Create\CreateStatements.cs" />
     <Compile Include="Drop\DropSequenceStatement.cs" />
     <Compile Include="Drop\DropTableStatement.cs" />
@@ -1097,11 +1103,13 @@
     <Folder Include="Alter\" />
     <Folder Include="ConsoleCommands\" />
     <Folder Include="Cursor\" />
+    <Folder Include="Delete\" />
     <Folder Include="Execute\" />
     <Folder Include="Insert\" />
     <Folder Include="Merge\" />
     <Folder Include="System\Functions\" />
     <Folder Include="System\Tables\" />
+    <Folder Include="Update\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

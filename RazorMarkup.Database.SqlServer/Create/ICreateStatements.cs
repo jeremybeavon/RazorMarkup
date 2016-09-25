@@ -9,6 +9,6 @@ namespace RazorMarkup.Database.SqlServer.Create
 
         ICreateApplicationRoleStatement ApplicationRole(ApplicationRoleName applicationRoleName);
 
-        ICreateAssemblyStatement Assembly(AssemblyName assemblyName);
+        ICreateAssemblyStatementWithAuthorization Assembly(AssemblyName assemblyName);
     }
 }

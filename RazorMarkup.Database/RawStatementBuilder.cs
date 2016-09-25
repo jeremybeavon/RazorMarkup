@@ -1,11 +1,13 @@
-﻿namespace RazorMarkup.Database
+﻿using System.Linq.Expressions;
+
+namespace RazorMarkup.Database
 {
     public sealed class RawStatementBuilder : AbstractStatementBuilder
     {
         private readonly string sql;
 
         public RawStatementBuilder(string sql)
-            : base(null)
+            : base(new ExpressionBuilder(Expression.Constant(sql, typeof(string))))
         {
             this.sql = sql;
         }

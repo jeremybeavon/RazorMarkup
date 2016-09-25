@@ -24,5 +24,46 @@ EXTERNAL NAME assembly.class";
                 .ExternalName(new AssemblyName("assembly"), new ClassName("class"))
                 .ToSqlStringViaRazorPageIs(expectedResult);
         }
+
+        [TestMethod]
+        public void Test_CreateAssemblyWithSafe_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE ASSEMBLY TestAssembly
+AUTHORIZATION owner
+FROM C:\Program Files\Microsoft SQL Server\100\Samples\HelloWorld\CS\HelloWorld\bin\debug\HelloWorld.dll
+WITH PERMISSION_SET = SAFE";
+            Sql.Create()
+                .Assembly(new AssemblyName("TestAssembly"))
+                .Authorization("owner")
+                .From(@"C:\Program Files\Microsoft SQL Server\100\Samples\HelloWorld\CS\HelloWorld\bin\debug\HelloWorld.dll")
+                .WithPermissionSet().Safe()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateAssemblyWithExternalAccess_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE ASSEMBLY TestAssembly
+FROM C:\Program Files\Microsoft SQL Server\100\Samples\HelloWorld\CS\HelloWorld\bin\debug\HelloWorld.dll
+WITH PERMISSION_SET = EXTERNAL_ACCESS";
+            Sql.Create()
+                .Assembly(new AssemblyName("TestAssembly"))
+                .From(@"C:\Program Files\Microsoft SQL Server\100\Samples\HelloWorld\CS\HelloWorld\bin\debug\HelloWorld.dll")
+                .WithPermissionSet().ExternalAccess()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateAssemblyWithUnsafe_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE ASSEMBLY TestAssembly
+FROM C:\Program Files\Microsoft SQL Server\100\Samples\HelloWorld\CS\HelloWorld\bin\debug\HelloWorld.dll
+WITH PERMISSION_SET = UNSAFE";
+            Sql.Create()
+                .Assembly(new AssemblyName("TestAssembly"))
+                .From(@"C:\Program Files\Microsoft SQL Server\100\Samples\HelloWorld\CS\HelloWorld\bin\debug\HelloWorld.dll")
+                .WithPermissionSet().Unsafe()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
     }
 }

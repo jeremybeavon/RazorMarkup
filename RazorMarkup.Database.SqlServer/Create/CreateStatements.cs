@@ -16,9 +16,9 @@ namespace RazorMarkup.Database.SqlServer.Create
             throw new NotImplementedException();
         }
 
-        public ICreateAssemblyStatement Assembly(AssemblyName assemblyName)
+        public ICreateAssemblyStatementWithAuthorization Assembly(AssemblyName assemblyName)
         {
-            throw new NotImplementedException();
+            return new CreateAssemblyStatementWithAuthorization(assemblyName);
         }
     }
 }
