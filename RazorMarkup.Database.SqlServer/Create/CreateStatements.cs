@@ -1,6 +1,7 @@
 ﻿using System;
 using RazorMarkup.Database.SqlServer.Create.Aggregate;
 using RazorMarkup.Database.SqlServer.Create.Assembly;
+using RazorMarkup.Database.SqlServer.Create.AvailabilityGroup;
 
 namespace RazorMarkup.Database.SqlServer.Create
 {
@@ -19,6 +20,16 @@ namespace RazorMarkup.Database.SqlServer.Create
         public ICreateAssemblyStatementWithAuthorization Assembly(AssemblyName assemblyName)
         {
             return new CreateAssemblyStatementWithAuthorization(assemblyName);
+        }
+
+        public ICreateAvailabilityGroupStatement AvailabilityGroup(AvailabilityGroupName availabilityGroupName)
+        {
+            return new CreateAvailabilityGroupStatement(availabilityGroupName);
+        }
+
+        public ICreateMasterKeyStatement MasterKey()
+        {
+            return new CreateMasterKeyStatement();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using RazorMarkup.Database.SqlServer.Create.Aggregate;
 using RazorMarkup.Database.SqlServer.Create.Assembly;
+using RazorMarkup.Database.SqlServer.Create.AvailabilityGroup;
 
 namespace RazorMarkup.Database.SqlServer.Create
 {
@@ -10,5 +11,9 @@ namespace RazorMarkup.Database.SqlServer.Create
         ICreateApplicationRoleStatement ApplicationRole(ApplicationRoleName applicationRoleName);
 
         ICreateAssemblyStatementWithAuthorization Assembly(AssemblyName assemblyName);
+
+        ICreateAvailabilityGroupStatement AvailabilityGroup(AvailabilityGroupName availabilityGroupName);
+
+        ICreateMasterKeyStatement MasterKey();
     }
 }

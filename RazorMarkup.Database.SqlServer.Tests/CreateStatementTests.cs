@@ -65,5 +65,12 @@ WITH PERMISSION_SET = UNSAFE";
                 .WithPermissionSet().Unsafe()
                 .ToSqlStringViaRazorPageIs(expectedResult);
         }
+
+        [TestMethod]
+        public void Test_CreateMasterKey_GeneratesCorrectTextFromRazorPage()
+        {
+            Sql.Create().MasterKey().EncryptionByPassword("test")
+                .ToSqlStringViaRazorPageIs("CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'test'");
+        }
     }
 }

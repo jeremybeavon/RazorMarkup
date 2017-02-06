@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Linq;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database
 {
@@ -7,9 +8,24 @@ namespace RazorMarkup.Database
         private readonly string sql;
 
         public RawStatementBuilder(string sql)
-            : base(new ExpressionBuilder(Expression.Constant(sql, typeof(string))))
+            : this(sql, AsConstant(sql))
+        {
+        }
+
+        public RawStatementBuilder(string[] sql)
+            : this(string.Join(", ", sql), Expression.NewArrayInit(typeof(string), sql.Select(item => AsConstant(item))))
+        {
+        }
+
+        private RawStatementBuilder(string sql, Expression expression)
+            : base(new ExpressionBuilder(expression))
         {
             this.sql = sql;
+        }
+
+        public static RawStatementBuilder Constant<T>(T value)
+        {
+            return new RawStatementBuilder(value?.ToString(), AsConstant(value));
         }
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
@@ -20,6 +36,11 @@ namespace RazorMarkup.Database
         public override string ToString()
         {
             return sql;
+        }
+
+        private static Expression AsConstant<T>(T value)
+        {
+            return Expression.Constant(value, typeof(T));
         }
     }
 }

@@ -62,5 +62,10 @@ namespace RazorMarkup.Database.SqlServer.Parser
                 }
             }
         }
+
+        public override void ExplicitVisit(CreateMasterKeyStatement node)
+        {
+            Result = Sql.Create().MasterKey().EncryptionByPassword(node.Password.Value);
+        }
     }
 }
