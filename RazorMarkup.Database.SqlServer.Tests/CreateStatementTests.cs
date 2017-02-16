@@ -67,6 +67,239 @@ WITH PERMISSION_SET = UNSAFE";
         }
 
         [TestMethod]
+        public void Test_CreateBrokerPriority_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithContractName_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (CONTRACT_NAME = ContractName)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().ContractName(new ContractName("ContractName"))
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithContractNameAny_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (CONTRACT_NAME = ANY)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().ContractName().Any()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithLocalServiceNameAny_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (LOCAL_SERVICE_NAME = ANY)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().LocalServiceName().Any()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithLocalServiceName_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (LOCAL_SERVICE_NAME = LocalService)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().LocalServiceName("LocalService")
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithRemoteServiceNameAny_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (REMOTE_SERVICE_NAME = ANY)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().RemoteServiceName().Any()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithRemoteServiceName_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (REMOTE_SERVICE_NAME = RemoteService)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().RemoteServiceName("RemoteService")
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithPriorityLevelDefault_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (PRIORITY_LEVEL = DEFAULT)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().PriorityLevel().Default()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithPriorityLevelOne_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (PRIORITY_LEVEL = 1)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().PriorityLevel().One()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithPriorityLevelTwo_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (PRIORITY_LEVEL = 2)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().PriorityLevel().Two()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithPriorityLevelThree_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (PRIORITY_LEVEL = 3)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().PriorityLevel().Three()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithPriorityLevelFour_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (PRIORITY_LEVEL = 4)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().PriorityLevel().Four()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithPriorityLevelFive_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (PRIORITY_LEVEL = 5)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().PriorityLevel().Five()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithPriorityLevelSix_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (PRIORITY_LEVEL = 6)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().PriorityLevel().Six()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithPriorityLevelSeven_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (PRIORITY_LEVEL = 7)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().PriorityLevel().Seven()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithPriorityLevelEight_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (PRIORITY_LEVEL = 8)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().PriorityLevel().Eight()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithPriorityLevelNine_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (PRIORITY_LEVEL = 9)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().PriorityLevel().Nine()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+        [TestMethod]
+        public void Test_CreateBrokerPriorityWithPriorityLevelTen_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedResult = @"CREATE BROKER PRIORITY TestConversation
+    FOR CONVERSATION
+    SET (PRIORITY_LEVEL = 10)";
+            Sql.Create()
+                .BrokerPriority(new ConversationPriorityName("TestConversation"))
+                .ForConversation()
+                .Set().PriorityLevel().Ten()
+                .ToSqlStringViaRazorPageIs(expectedResult);
+        }
+
+
+        [TestMethod]
         public void Test_CreateMasterKey_GeneratesCorrectTextFromRazorPage()
         {
             Sql.Create().MasterKey().EncryptionByPassword("test")

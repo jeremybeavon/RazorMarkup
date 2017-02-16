@@ -120,6 +120,7 @@
     <Compile Include="SqlExpressionVisitor.cs" />
     <Compile Include="SqlSourceCodeBuilder.cs" />
     <Compile Include="SqlSourceCodeVisitor.Create.cs" />
+    <Compile Include="SqlSourceCodeVisitor.Alter.cs" />
     <Compile Include="SqlSourceCodeVisitor.cs" />
     <Compile Include="SqlSourceCodeVisitor.Drop.cs" />
     <Compile Include="SqlSourceCodeVisitor.Set.cs" />

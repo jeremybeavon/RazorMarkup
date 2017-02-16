@@ -12,11 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
     {
         public override void ExplicitVisit(CreateAvailabilityGroupStatement node)
         {
-            ICreateAvailabilityGroupWith with = Sql.Create().AvailabilityGroup(new AvailabilityGroupName(node.Name.Value)).With();
-			foreach (AvailabilityGroupOption option in node.Options)
-            {
-
-            }
+            throw new NotSupportedException();
         }
     }
 }

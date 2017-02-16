@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
@@ -16,6 +17,11 @@ namespace RazorMarkup.Database.SqlServer.Parser
             {
                 IList<ParseError> errors;
                 TSqlFragment fragment = parser.Parse(reader, out errors);
+                if (errors != null && errors.Count != 0)
+                {
+                    throw new InvalidOperationException("Parse errors: " + string.Join(", ", errors.Select(error => error.Message)));
+                }
+
                 SqlSourceCodeVisitor visitor = new SqlSourceCodeVisitor();
                 fragment.Accept(visitor);
                 return visitor.Result;

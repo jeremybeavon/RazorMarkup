@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
+using RazorMarkup.Database.SqlServer.Alter;
 using RazorMarkup.Database.SqlServer.Create;
 using RazorMarkup.Database.SqlServer.Drop;
 using RazorMarkup.Database.SqlServer.Options;
@@ -10,6 +11,11 @@ namespace RazorMarkup.Database.SqlServer
 {
     public static class Sql
     {
+        public static IAlterStatements Alter()
+        {
+            return new AlterStatements();
+        }
+
         public static ISqlString Begin()
         {
             return new SqlString("BEGIN", () => Begin());
