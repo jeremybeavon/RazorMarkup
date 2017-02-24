@@ -8,6 +8,11 @@ using RazorMarkup.Database.SqlServer.Create.DatabaseEncryptionKey;
 using RazorMarkup.Database.SqlServer.Create.EventNotification;
 using RazorMarkup.Database.SqlServer.Create.FullTextCatalog;
 using RazorMarkup.Database.SqlServer.Create.PartitionFunction;
+using RazorMarkup.Database.SqlServer.Create.Service;
+using RazorMarkup.Database.SqlServer.Create.Trigger;
+using RazorMarkup.Database.SqlServer.Create.Type;
+using RazorMarkup.Database.SqlServer.Create.User;
+using RazorMarkup.Database.SqlServer.Create.WorkloadGroup;
 using RazorMarkup.Database.SqlServer.Create.XmlIndex;
 
 namespace RazorMarkup.Database.SqlServer.Create
@@ -75,6 +80,56 @@ namespace RazorMarkup.Database.SqlServer.Create
         }
 
         public ICreateXmlIndexStatement PrimaryXmlIndex(IndexName indexName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateRoleStatement Role(RoleName roleName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateServerRoleStatement ServerRole(ServerRoleName serverRoleName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateServiceStatement Service(ServiceName serviceName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateSynonymStatement Synonym(SynonymName synonymName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateSynonymStatement Synonym(SchemaName schemaName, SynonymName synonymName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateTriggerStatementWithDdl Trigger(TriggerName triggerName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateTriggerStatement Trigger(SchemaName schemaName, TriggerName triggerName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateTypeStatement Type(TypeName typeName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateUserStatement User(UserName userName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateWorkloadGroupStatement WorkloadGroup(WorkloadGroupName workloadGroupName)
         {
             throw new NotImplementedException();
         }

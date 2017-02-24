@@ -2,7 +2,7 @@
 
 namespace RazorMarkup.Database.SqlServer.Create.EventNotification
 {
-    internal sealed class CreateEventNotificationToService : AbstractStatement<CreateEventNotificationStatementBuilder>,
+    internal class CreateEventNotificationToService : AbstractStatement<CreateEventNotificationStatementBuilder>,
         ICreateEventNotificationToService
     {
         public CreateEventNotificationToService(CreateEventNotificationStatementBuilder statement)

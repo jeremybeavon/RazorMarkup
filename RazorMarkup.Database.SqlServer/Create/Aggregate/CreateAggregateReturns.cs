@@ -1,4 +1,4 @@
-﻿using System;
+﻿using SystemType = System.Type;
 
 namespace RazorMarkup.Database.SqlServer.Create.Aggregate
 {
@@ -16,7 +16,7 @@ namespace RazorMarkup.Database.SqlServer.Create.Aggregate
             return new CreateAggregateExternalName(Statement);
         }
 
-        public ICreateAggregateExternalName Returns(Type parameterType)
+        public ICreateAggregateExternalName Returns(SystemType parameterType)
         {
             ISqlString parameterTypeSql = parameterType.ToSqlString();
             Statement.ReturnType = parameterTypeSql.ToSqlString();

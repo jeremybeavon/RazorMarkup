@@ -1,4 +1,4 @@
-﻿using System;
+﻿using SystemType = System.Type;
 
 namespace RazorMarkup.Database.SqlServer.Create.Aggregate
 {
@@ -16,7 +16,7 @@ namespace RazorMarkup.Database.SqlServer.Create.Aggregate
             return new CreateAggregateAnd(Statement);
         }
 
-        public ICreateAggregateAnd And(ParameterName parameterName, Type parameterType)
+        public ICreateAggregateAnd And(ParameterName parameterName, SystemType parameterType)
         {
             ISqlString parameterTypeSql = parameterType.ToSqlString();
             Statement.Parameters.Add(new CreateAggregateParameterBuilder(parameterName, parameterTypeSql.ToSqlString()));

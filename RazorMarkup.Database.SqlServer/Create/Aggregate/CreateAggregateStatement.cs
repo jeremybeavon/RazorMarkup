@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SystemType = System.Type;
 
 namespace RazorMarkup.Database.SqlServer.Create.Aggregate
 {
@@ -23,7 +19,7 @@ namespace RazorMarkup.Database.SqlServer.Create.Aggregate
             return new CreateAggregateAnd(Statement);
         }
 
-        public ICreateAggregateAnd WithParameter(ParameterName parameterName, Type parameterType)
+        public ICreateAggregateAnd WithParameter(ParameterName parameterName, SystemType parameterType)
         {
             ISqlString parameterTypeSql = parameterType.ToSqlString();
             Statement.Parameters.Add(new CreateAggregateParameterBuilder(parameterName, parameterTypeSql.ToSqlString()));
