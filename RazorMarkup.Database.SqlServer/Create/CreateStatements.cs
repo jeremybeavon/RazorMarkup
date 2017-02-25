@@ -7,7 +7,16 @@ using RazorMarkup.Database.SqlServer.Create.Credential;
 using RazorMarkup.Database.SqlServer.Create.DatabaseEncryptionKey;
 using RazorMarkup.Database.SqlServer.Create.EventNotification;
 using RazorMarkup.Database.SqlServer.Create.FullTextCatalog;
+using RazorMarkup.Database.SqlServer.Create.Index;
+using RazorMarkup.Database.SqlServer.Create.Login;
 using RazorMarkup.Database.SqlServer.Create.PartitionFunction;
+using RazorMarkup.Database.SqlServer.Create.PartitionScheme;
+using RazorMarkup.Database.SqlServer.Create.Queue;
+using RazorMarkup.Database.SqlServer.Create.RemoteServiceBinding;
+using RazorMarkup.Database.SqlServer.Create.ResourcePool;
+using RazorMarkup.Database.SqlServer.Create.Route;
+using RazorMarkup.Database.SqlServer.Create.ServerAudit;
+using RazorMarkup.Database.SqlServer.Create.ServerAuditSpecification;
 using RazorMarkup.Database.SqlServer.Create.Service;
 using RazorMarkup.Database.SqlServer.Create.Trigger;
 using RazorMarkup.Database.SqlServer.Create.Type;
@@ -44,6 +53,11 @@ namespace RazorMarkup.Database.SqlServer.Create
             return new CreateBrokerPriorityStatement(conversationPriorityName);
         }
 
+        public ICreateIndexStatement ClusteredIndex(IndexName indexName)
+        {
+            throw new NotImplementedException();
+        }
+
         public ICreateCredentialStatement Credential(CredentialName credentialName)
         {
             throw new NotImplementedException();
@@ -69,12 +83,42 @@ namespace RazorMarkup.Database.SqlServer.Create
             throw new NotImplementedException();
         }
 
+        public ICreateFullTextStopListStatement FullTextStopList(FullTextStopListName fullTextStopListName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateIndexStatement Index(IndexName indexName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateLoginStatement Login(LoginName loginName)
+        {
+            throw new NotImplementedException();
+        }
+
         public ICreateMasterKeyStatement MasterKey()
         {
             return new CreateMasterKeyStatement();
         }
 
+        public ICreateMessageTypeStatement MessageType(MessageTypeName messageTypeName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateIndexStatement NonClusteredIndex(IndexName indexName)
+        {
+            throw new NotImplementedException();
+        }
+
         public ICreatePartitionFunctionStatement PartitionFunction(PartitionFunctionName partitionName, string inputParameterType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreatePartitionSchemeStatement PartitionScheme(PartitionSchemeName partitionSchemeName)
         {
             throw new NotImplementedException();
         }
@@ -84,7 +128,62 @@ namespace RazorMarkup.Database.SqlServer.Create
             throw new NotImplementedException();
         }
 
+        public ICreateQueueStatement Queue(QueueName queueName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateQueueStatement Queue(SchemaName schemaName, QueueName queueName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateQueueStatement Queue(DatabaseName databaseName, QueueName queueName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateQueueStatement Queue(DatabaseName databaseName, SchemaName schemaName, QueueName queueName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateRemoteServiceBindingStatement RemoteServiceBinding(RemoteServiceBindingName remoteServiceBindingName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateResourcePoolStatement ResourcePool(ResourcePoolName resourcePoolName)
+        {
+            throw new NotImplementedException();
+        }
+
         public ICreateRoleStatement Role(RoleName roleName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateRouteStatement Route(RouteName routeName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateSearchPropertyListStatement SearchPropertyList(SearchPropertyListName searchPropertyListName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateSequenceStatement Sequence(SchemaName schemaName, SequenceName sequenceName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateServerAuditStatement ServerAudit(ServerAuditName serverAuditName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateServerAuditSpecificationStatement ServerAuditSpecification(ServerAuditSpecificationName serverAuditSpecificationName)
         {
             throw new NotImplementedException();
         }
@@ -120,6 +219,21 @@ namespace RazorMarkup.Database.SqlServer.Create
         }
 
         public ICreateTypeStatement Type(TypeName typeName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateIndexStatement UniqueClusteredIndex(IndexName indexName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateIndexStatement UniqueIndex(IndexName indexName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateIndexStatement UniqueNonClusteredIndex(IndexName indexName)
         {
             throw new NotImplementedException();
         }
