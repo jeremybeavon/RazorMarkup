@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Alter;
+using RazorMarkup.Database.SqlServer.Backup;
 using RazorMarkup.Database.SqlServer.Create;
 using RazorMarkup.Database.SqlServer.Drop;
 using RazorMarkup.Database.SqlServer.Options;
@@ -14,6 +15,11 @@ namespace RazorMarkup.Database.SqlServer
         public static IAlterStatements Alter()
         {
             return new AlterStatements();
+        }
+
+        public static IBackupStatements Backup()
+        {
+            return new BackupStatements();
         }
 
         public static ISqlString Begin()

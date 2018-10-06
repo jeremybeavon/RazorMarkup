@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RazorMarkup.Powershell
+﻿namespace RazorMarkup.Powershell
 {
     public static class Powershell
     {
+        public static PowershellCommand Command()
+        {
+            return new PowershellCommand();
+        }
     }
 }

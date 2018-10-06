@@ -2,6 +2,6 @@
 {
     public interface ICreateIndexWithDataCompressionOnPartitionsTo : ICreateIndexWithDataCompressionOnPartitionsAnd
     {
-        ICreateIndexWithDataCompressionOnPartitionsAnd To(int partitionNumber)
+        ICreateIndexWithDataCompressionOnPartitionsAnd To(int partitionNumber);
     }
 }

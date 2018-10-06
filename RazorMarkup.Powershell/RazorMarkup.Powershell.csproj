@@ -51,12 +51,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractPowershellCommand.cs" />
+    <Compile Include="ActionPreference.cs" />
     <Compile Include="CodeGenerator.cs" />
-    <Compile Include="Modules\Utility\IAddTypeCommand.cs" />
+    <Compile Include="IPowershellCommonParameters.cs" />
+    <Compile Include="Modules\Utility\AddTypeCommand.cs" />
+    <Compile Include="Modules\Utility\IAddTypeFromMemberParameters.cs" />
+    <Compile Include="Modules\Utility\IAddTypeFromSourceParameters.cs" />
     <Compile Include="IPowershellString.cs" />
+    <Compile Include="OutputAssemblyType.cs" />
     <Compile Include="Powershell.cs" />
     <Compile Include="PowershellCommand.cs" />
+    <Compile Include="PowershellCommandBuilder.cs" />
+    <Compile Include="PowershellConverter.cs" />
+    <Compile Include="PowershellParameterBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UtilityModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RazorMarkup\RazorMarkup.csproj">

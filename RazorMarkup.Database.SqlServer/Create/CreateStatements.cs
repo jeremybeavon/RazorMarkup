@@ -7,6 +7,7 @@ using RazorMarkup.Database.SqlServer.Create.Credential;
 using RazorMarkup.Database.SqlServer.Create.DatabaseEncryptionKey;
 using RazorMarkup.Database.SqlServer.Create.EventNotification;
 using RazorMarkup.Database.SqlServer.Create.FullTextCatalog;
+using RazorMarkup.Database.SqlServer.Create.FullTextIndex;
 using RazorMarkup.Database.SqlServer.Create.Index;
 using RazorMarkup.Database.SqlServer.Create.Login;
 using RazorMarkup.Database.SqlServer.Create.PartitionFunction;
@@ -79,6 +80,16 @@ namespace RazorMarkup.Database.SqlServer.Create
         }
 
         public ICreateFullTextCatalogStatement FullTextCatalog(FullTextCatalogName fullTextCatalogName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateFullTextIndexKeyIndex FullTextIndexOn(TableName tableName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICreateFullTextIndexOnColumn FullTextIndexOn(TableName tableName, ColumnName columnName)
         {
             throw new NotImplementedException();
         }

@@ -76,7 +76,7 @@ namespace RazorMarkup
             else if (node.Type == typeof(string))
             {
                 textBuilder.Append("\"");
-                textBuilder.Append(node.Value.ToString());
+                textBuilder.Append(node.Value.ToString().Replace(@"\", @"\\"));
                 textBuilder.Append("\"");
             }
             else

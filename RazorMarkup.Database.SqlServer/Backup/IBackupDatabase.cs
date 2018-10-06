@@ -1,9 +1,11 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Backup
 {
-    public interface IBackupDatabase
+    public interface IBackupDatabase : IHideObjectMethods
     {
-        //object To(??? logicalDeviceName);
+        IBackupDatabaseToAnd To(string logicalDeviceName);
 
+        IBackupDatabaseToAnd To(VariableName logicalDeviceNameVariable);
 
+        IBackupDatabaseTo To();
     }
 }
