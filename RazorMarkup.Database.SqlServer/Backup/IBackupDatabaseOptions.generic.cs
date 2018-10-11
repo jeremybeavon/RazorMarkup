@@ -5,6 +5,7 @@ using RazorMarkup.Database.SqlServer.Types.Wrappers;
 namespace RazorMarkup.Database.SqlServer.Backup
 {
     public interface IBackupDatabaseOptions<TOptions> : IHideObjectMethods
+        where TOptions : class, IBackupDatabaseOptions<TOptions>
     {
         IBackupDatabaseOptionsAnd<TOptions> CopyOnly();
 

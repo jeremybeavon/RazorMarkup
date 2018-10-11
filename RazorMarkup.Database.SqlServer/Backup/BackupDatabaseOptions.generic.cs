@@ -6,6 +6,7 @@ namespace RazorMarkup.Database.SqlServer.Backup
 {
     internal class BackupDatabaseOptions<TOptions> : AbstractDatabaseOptions<TOptions>,
         IBackupDatabaseOptions<TOptions>
+        where TOptions : class, IBackupDatabaseOptions<TOptions>
     {
         public BackupDatabaseOptions(BackupDatabaseStatementBuilder statement, TOptions options)
             : base(statement, options)

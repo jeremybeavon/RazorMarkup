@@ -1,110 +1,46 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace RazorMarkup.Database.SqlServer.Backup
+﻿namespace RazorMarkup.Database.SqlServer.Backup
 {
     internal class BackupDatabaseTo<TOptions> : AbstractDatabaseOptions<TOptions>,
         IBackupDatabaseTo<TOptions>
+        where TOptions : class, IBackupDatabaseOptions<TOptions>
     {
-        private readonly bool isMirror;
+        private const bool IsMirror = false;
 
-        public BackupDatabaseTo(BackupDatabaseStatementBuilder input, TOptions options, bool isMirror)
+        public BackupDatabaseTo(BackupDatabaseStatementBuilder input, TOptions options)
             : base(input, options)
         {
-            this.isMirror = isMirror;
         }
 
-        private List<BackupDevice> BackupDevices =>
-            isMirror ? Statement.BackupMirrors.Last() : Statement.BackupDevices;
-        
-        public IBackupDatabaseToAnd<TOptions> Disk(string physicalDeviceName)
+        public IBackupDatabaseToAnd<TOptions> To(string logicalDeviceName)
         {
             Statement.Append(
-                (IBackupDatabaseTo<TOptions> input) => input.Disk((string)null),
-                new RawStatementBuilder(physicalDeviceName));
+                (IBackupDatabaseTo<TOptions> input) => input.To((string)null),
+                new RawStatementBuilder(logicalDeviceName));
             BackupDevice backupDevice = new BackupDevice()
             {
-                DeviceType = "DISK",
-                Name = physicalDeviceName,
-                IncludeQuotes = true
+                Name = logicalDeviceName
             };
-            BackupDevices.Add(backupDevice);
-            return new BackupDatabaseToAnd<TOptions>(Statement, Options, isMirror);
+            Statement.BackupDevices.Add(backupDevice);
+            return new BackupDatabaseToAnd<TOptions>(Statement, Options, IsMirror);
         }
 
-        public IBackupDatabaseToAnd<TOptions> Disk(VariableName physicalDeviceNameVariable)
+        public IBackupDatabaseToAnd<TOptions> To(VariableName logicalDeviceNameVariable)
         {
             Statement.Append(
-                (IBackupDatabaseTo<TOptions> input) => input.Disk((VariableName)null),
-                physicalDeviceNameVariable);
+                (IBackupDatabaseTo<TOptions> input) => input.To((VariableName)null),
+                logicalDeviceNameVariable);
             BackupDevice backupDevice = new BackupDevice()
             {
-                DeviceType = "DISK",
-                Variable = physicalDeviceNameVariable,
-                IncludeQuotes = true
+                Variable = logicalDeviceNameVariable
             };
-            BackupDevices.Add(backupDevice);
-            return new BackupDatabaseToAnd<TOptions>(Statement, Options, isMirror);
+            Statement.BackupDevices.Add(backupDevice);
+            return new BackupDatabaseToAnd<TOptions>(Statement, Options, IsMirror);
         }
 
-        public IBackupDatabaseToAnd<TOptions> Tape(string physicalDeviceName)
+        public IBackupDatabaseToDevice<TOptions> To()
         {
-            Statement.Append(
-                (IBackupDatabaseTo<TOptions> input) => input.Tape((string)null),
-                new RawStatementBuilder(physicalDeviceName));
-            BackupDevice backupDevice = new BackupDevice()
-            {
-                DeviceType = "TAPE",
-                Name = physicalDeviceName,
-                IncludeQuotes = true
-            };
-            BackupDevices.Add(backupDevice);
-            return new BackupDatabaseToAnd<TOptions>(Statement, Options, isMirror);
-        }
-
-        public IBackupDatabaseToAnd<TOptions> Tape(VariableName physicalDeviceNameVariable)
-        {
-            Statement.Append(
-                (IBackupDatabaseTo<TOptions> input) => input.Tape((VariableName)null),
-                physicalDeviceNameVariable);
-            BackupDevice backupDevice = new BackupDevice()
-            {
-                DeviceType = "TAPE",
-                Variable = physicalDeviceNameVariable,
-                IncludeQuotes = true
-            };
-            BackupDevices.Add(backupDevice);
-            return new BackupDatabaseToAnd<TOptions>(Statement, Options, isMirror);
-        }
-
-        public IBackupDatabaseToAnd<TOptions> Url(string physicalDeviceName)
-        {
-            Statement.Append(
-                (IBackupDatabaseTo<TOptions> input) => input.Url((string)null),
-                new RawStatementBuilder(physicalDeviceName));
-            BackupDevice backupDevice = new BackupDevice()
-            {
-                DeviceType = "URL",
-                Name = physicalDeviceName,
-                IncludeQuotes = true
-            };
-            BackupDevices.Add(backupDevice);
-            return new BackupDatabaseToAnd<TOptions>(Statement, Options, isMirror);
-        }
-
-        public IBackupDatabaseToAnd<TOptions> Url(VariableName physicalDeviceNameVariable)
-        {
-            Statement.Append(
-                (IBackupDatabaseTo<TOptions> input) => input.Url((VariableName)null),
-                physicalDeviceNameVariable);
-            BackupDevice backupDevice = new BackupDevice()
-            {
-                DeviceType = "URL",
-                Variable = physicalDeviceNameVariable,
-                IncludeQuotes = true
-            };
-            BackupDevices.Add(backupDevice);
-            return new BackupDatabaseToAnd<TOptions>(Statement, Options, isMirror);
+            Statement.Append((IBackupDatabaseTo<TOptions> input) => input.To());
+            return new BackupDatabaseToDevice<TOptions>(Statement, Options, IsMirror);
         }
     }
 }

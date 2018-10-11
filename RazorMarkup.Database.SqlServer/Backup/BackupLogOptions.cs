@@ -12,28 +12,26 @@ namespace RazorMarkup.Database.SqlServer.Backup
         {
             Options = this;
         }
-
-        public IBackupDatabaseOptionsAnd<IBackupDatabaseOptions> Differential()
-        {
-            Statement.Append((IBackupDatabaseOptions input) => input.Differential());
-            Statement.Differential = true;
-            return new BackupDatabaseOptionsAnd<IBackupDatabaseOptions>(Statement, Options);
-        }
-
+        
         public IBackupDatabaseOptionsAnd<IBackupLogOptions> NoRecovery()
         {
-            
-            throw new NotImplementedException();
+            Statement.Append((IBackupLogOptions input) => input.NoRecovery());
+            Statement.NoRecovery = true;
+            return new BackupDatabaseOptionsAnd<IBackupLogOptions>(Statement, Options);
         }
 
         public IBackupDatabaseOptionsAnd<IBackupLogOptions> NoTruncate()
         {
-            throw new NotImplementedException();
+            Statement.Append((IBackupLogOptions input) => input.NoTruncate());
+            Statement.NoTruncate = true;
+            return new BackupDatabaseOptionsAnd<IBackupLogOptions>(Statement, Options);
         }
 
         public IBackupDatabaseOptionsAnd<IBackupLogOptions> Standby(Expression<Func<Text>> undoFileName)
         {
-            throw new NotImplementedException();
+            Statement.Append((IBackupLogOptions input) => input.Standby(null), undoFileName);
+            Statement.Standby = undoFileName;
+            return new BackupDatabaseOptionsAnd<IBackupLogOptions>(Statement, Options);
         }
     }
 }

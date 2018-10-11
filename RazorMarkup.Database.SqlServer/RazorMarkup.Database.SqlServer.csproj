@@ -60,9 +60,10 @@
     <Compile Include="Alter\IAlterStatements.cs" />
     <Compile Include="Alter\IAlterMessageTypeStatement.cs" />
     <Compile Include="Alter\IAlterMessageTypeValidation.cs" />
+    <Compile Include="Backup\BackupDatabaseTo.cs" />
     <Compile Include="Backup\BackupLogOptions.cs" />
     <Compile Include="Backup\BackupLog.cs" />
-    <Compile Include="Backup\BackupDatabaseTo.cs" />
+    <Compile Include="Backup\BackupDatabaseToDevice.cs" />
     <Compile Include="Backup\BackupDatabase.cs" />
     <Compile Include="Backup\BackupDatabaseToAnd.cs" />
     <Compile Include="Backup\BackupDatabaseWithMirror.cs" />
@@ -85,8 +86,9 @@
     <Compile Include="Backup\BackupMasterKey.cs" />
     <Compile Include="Backup\BackupStatements.cs" />
     <Compile Include="Backup\AbstractDatabaseOptions.cs" />
-    <Compile Include="Backup\IBackupLog.cs" />
     <Compile Include="Backup\IBackupDatabaseTo.cs" />
+    <Compile Include="Backup\IBackupLog.cs" />
+    <Compile Include="Backup\IBackupDatabaseToDevice.cs" />
     <Compile Include="Backup\IBackupDatabaseToAnd.cs" />
     <Compile Include="CodeGenerator.cs" />
     <Compile Include="ConversationPriorityName.cs" />

@@ -1,6 +1,7 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Backup
 {
     public interface IBackupDatabaseEncryptionAlgorithm<TOptions> : IHideObjectMethods
+        where TOptions : class, IBackupDatabaseOptions<TOptions>
     {
         IBackupDatabaseEncryptionOption<TOptions> Aes128();
 

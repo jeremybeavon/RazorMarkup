@@ -1,17 +1,12 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Backup
 {
     public interface IBackupDatabaseTo<TOptions> : IHideObjectMethods
+        where TOptions : class, IBackupDatabaseOptions<TOptions>
     {
-        IBackupDatabaseToAnd<TOptions> Disk(string physicalDeviceName);
+        IBackupDatabaseToAnd<TOptions> To(string logicalDeviceName);
 
-        IBackupDatabaseToAnd<TOptions> Disk(VariableName physicalDeviceNameVariable);
+        IBackupDatabaseToAnd<TOptions> To(VariableName logicalDeviceNameVariable);
 
-        IBackupDatabaseToAnd<TOptions> Tape(string physicalDeviceName);
-
-        IBackupDatabaseToAnd<TOptions> Tape(VariableName physicalDeviceNameVariable);
-
-        IBackupDatabaseToAnd<TOptions> Url(string physicalDeviceName);
-
-        IBackupDatabaseToAnd<TOptions> Url(VariableName physicalDeviceNameVariable);
+        IBackupDatabaseToDevice<TOptions> To();
     }
 }

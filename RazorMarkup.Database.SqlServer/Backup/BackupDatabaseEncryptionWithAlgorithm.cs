@@ -2,6 +2,7 @@
 {
     internal sealed class BackupDatabaseEncryptionWithAlgorithm<TOptions> : BackupDatabaseOptionsAnd<TOptions>,
         IBackupDatabaseEncryptionWithAlgorithm<TOptions>
+        where TOptions : class, IBackupDatabaseOptions<TOptions>
     {
         public BackupDatabaseEncryptionWithAlgorithm(BackupDatabaseStatementBuilder statement, TOptions options)
             : base(statement, options)

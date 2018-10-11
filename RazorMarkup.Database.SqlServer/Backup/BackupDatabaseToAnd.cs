@@ -5,6 +5,7 @@ namespace RazorMarkup.Database.SqlServer.Backup
 {
     internal class BackupDatabaseToAnd<TOptions> : BackupDatabaseWithMirror<TOptions>,
         IBackupDatabaseToAnd<TOptions>
+        where TOptions : class, IBackupDatabaseOptions<TOptions>
     {
         private readonly bool isMirror;
 
@@ -43,10 +44,10 @@ namespace RazorMarkup.Database.SqlServer.Backup
             return this;
         }
 
-        public IBackupDatabaseTo<TOptions> And()
+        public IBackupDatabaseToDevice<TOptions> And()
         {
             Statement.Append((IBackupDatabaseToAnd<TOptions> input) => input.And());
-            return new BackupDatabaseTo<TOptions>(Statement, Options, isMirror: false);
+            return new BackupDatabaseToDevice<TOptions>(Statement, Options, isMirror: false);
         }
     }
 }

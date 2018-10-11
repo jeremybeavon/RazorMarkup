@@ -2,6 +2,7 @@
 {
     internal class BackupDatabaseWithOptions<TOptions> : AbstractDatabaseOptions<TOptions>,
         IBackupDatabaseWithOptions<TOptions>
+        where TOptions : class, IBackupDatabaseOptions<TOptions>
     {
         public BackupDatabaseWithOptions(BackupDatabaseStatementBuilder input, TOptions options)
             : base(input, options)
