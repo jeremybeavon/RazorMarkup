@@ -32,13 +32,13 @@ namespace RazorMarkup.Database.SqlServer.Backup
 
         IBackupDatabaseOptionsAnd<TOptions> Format();
 
-        IBackupDatabaseOptionsAnd<TOptions> MediaDescription(Expression<Func<Text>> mediaName);
+        IBackupDatabaseOptionsAnd<TOptions> MediaDescription(Expression<Func<Text>> mediaDescription);
 
         IBackupDatabaseOptionsAnd<TOptions> BlockSize(Expression<Func<Integer>> blockSize);
 
-        IBackupDatabaseOptionsAnd<TOptions> BufferCount(Expression<Func<Integer>> blockSize);
+        IBackupDatabaseOptionsAnd<TOptions> BufferCount(Expression<Func<Integer>> bufferCount);
 
-        IBackupDatabaseOptionsAnd<TOptions> MaxTransferSize(Expression<Func<Integer>> blockSize);
+        IBackupDatabaseOptionsAnd<TOptions> MaxTransferSize(Expression<Func<Integer>> maxTransferSize);
 
         IBackupDatabaseOptionsAnd<TOptions> NoChecksum();
 

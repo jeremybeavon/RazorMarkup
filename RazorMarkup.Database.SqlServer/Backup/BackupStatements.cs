@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RazorMarkup.Database.SqlServer.Backup
+﻿namespace RazorMarkup.Database.SqlServer.Backup
 {
     internal sealed class BackupStatements : IBackupStatements
     {
@@ -15,7 +9,22 @@ namespace RazorMarkup.Database.SqlServer.Backup
 
         public IBackupDatabase Database(DatabaseName databaseName)
         {
-            throw new NotImplementedException();
+            return new BackupDatabase(new BackupDatabaseStatementBuilder(databaseName));
+        }
+
+        public IBackupDatabase Database(VariableName databaseVariableName)
+        {
+            return new BackupDatabase(new BackupDatabaseStatementBuilder(databaseVariableName));
+        }
+
+        public IBackupLog Log(DatabaseName databaseName)
+        {
+            return new BackupLog(new BackupDatabaseStatementBuilder(databaseName));
+        }
+
+        public IBackupLog Log(VariableName databaseVariableName)
+        {
+            return new BackupLog(new BackupDatabaseStatementBuilder(databaseVariableName));
         }
 
         public IBackupMasterKeyToFile MasterKey()

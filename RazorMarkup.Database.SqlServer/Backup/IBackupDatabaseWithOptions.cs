@@ -1,7 +1,7 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Backup
 {
-    public interface IBackupDatabaseWithOptions : ISqlString
+    public interface IBackupDatabaseWithOptions<TOptions> : ISqlString
     {
-        IBackupDatabaseOptions With();
+        TOptions With();
     }
 }

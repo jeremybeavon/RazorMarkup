@@ -2,10 +2,10 @@
 {
     public interface IBackupDatabase : IHideObjectMethods
     {
-        IBackupDatabaseToAnd To(string logicalDeviceName);
+        IBackupDatabaseToAnd<IBackupDatabaseOptions> To(string logicalDeviceName);
 
-        IBackupDatabaseToAnd To(VariableName logicalDeviceNameVariable);
+        IBackupDatabaseToAnd<IBackupDatabaseOptions> To(VariableName logicalDeviceNameVariable);
 
-        IBackupDatabaseTo To();
+        IBackupDatabaseTo<IBackupDatabaseOptions> To();
     }
 }

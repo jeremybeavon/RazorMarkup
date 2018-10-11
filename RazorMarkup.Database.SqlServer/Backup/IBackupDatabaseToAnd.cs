@@ -1,11 +1,11 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Backup
 {
-    public interface IBackupDatabaseToAnd : IBackupDatabaseWithMirror
+    public interface IBackupDatabaseToAnd<TOptions> : IBackupDatabaseWithMirror<TOptions>
     {
-        IBackupDatabaseToAnd And(string logicalDeviceName);
+        IBackupDatabaseToAnd<TOptions> And(string logicalDeviceName);
 
-        IBackupDatabaseToAnd And(VariableName logicalDeviceNameVariable);
+        IBackupDatabaseToAnd<TOptions> And(VariableName logicalDeviceNameVariable);
 
-        IBackupDatabaseTo And();
+        IBackupDatabaseTo<TOptions> And();
     }
 }

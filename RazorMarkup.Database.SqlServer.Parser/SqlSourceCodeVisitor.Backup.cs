@@ -5,14 +5,9 @@ namespace RazorMarkup.Database.SqlServer.Parser
 {
     internal sealed partial class SqlSourceCodeVisitor : AbstractSqlVisitor<ISqlString>
     {
-        public override void ExplicitVisit(BackupMasterKeyStatement node)
+        public override void ExplicitVisit(BackupDatabaseStatement node)
         {
-            Result = Sql.Backup().MasterKey().ToFile(node.File.Value).EncryptionByPassword(node.Password.Value);
-        }
-
-        public override void ExplicitVisit(BackupServiceMasterKeyStatement node)
-        {
-            Result = Sql.Backup().ServiceMasterKey().ToFile(node.File.Value).EncryptionByPassword(node.Password.Value);
+            base.ExplicitVisit(node);
         }
 
         public override void ExplicitVisit(BackupCertificateStatement node)
@@ -32,6 +27,16 @@ namespace RazorMarkup.Database.SqlServer.Parser
                     (ISqlString)withDecryption :
                     withDecryption.AndDecryptionByPassword(node.DecryptionPassword.Value);
             }
+        }
+
+        public override void ExplicitVisit(BackupMasterKeyStatement node)
+        {
+            Result = Sql.Backup().MasterKey().ToFile(node.File.Value).EncryptionByPassword(node.Password.Value);
+        }
+
+        public override void ExplicitVisit(BackupServiceMasterKeyStatement node)
+        {
+            Result = Sql.Backup().ServiceMasterKey().ToFile(node.File.Value).EncryptionByPassword(node.Password.Value);
         }
     }
 }

@@ -31,6 +31,8 @@ namespace RazorMarkup.Database.SqlServer.Backup
 
         public VariableName DatabaseVariableName { get; private set; }
 
+        public bool IsBackupLogStatement { get; set; }
+
         public List<BackupDevice> FileOrFileGroups { get; private set; }
 
         public bool ReadWriteFileGroups { get; set; }
@@ -111,9 +113,24 @@ namespace RazorMarkup.Database.SqlServer.Backup
 
         public AsymmetricKeyName EncryptionAsymmetricKeyName { get; set; }
 
+        public bool NoRecovery { get; set; }
+
+        public bool NoTruncate { get; set; }
+
+        public Expression<Func<Text>> Standby { get; set; }
+
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
-            sqlBuilder.Append("BACKUP DATABASE ");
+            sqlBuilder.Append("BACKUP ");
+            if (IsBackupLogStatement)
+            {
+                sqlBuilder.Append("LOG ");
+            }
+            else
+            {
+                sqlBuilder.Append("DATABASE ");
+            }
+
             if (DatabaseName == null)
             {
                 sqlBuilder.Append(DatabaseVariableName.ToSqlString());
@@ -223,8 +240,24 @@ namespace RazorMarkup.Database.SqlServer.Backup
             indent = WriteOptionExpression(sqlBuilder, indent, "STATS", Stats);
             indent = WriteBooleanOption(sqlBuilder, indent, Rewind, "REWIND", NoRewind, "NOREWIND");
             indent = WriteBooleanOption(sqlBuilder, indent, Unload, "UNLOAD", NoUnload, "NOUNLOAD");
+            indent = WriteLogOptions(sqlBuilder, indent);
             indent = WriteBackupEncryptionOptions(sqlBuilder, indent);
             indent.Dispose();
+        }
+
+        private IDisposable WriteLogOptions(SqlBuilder sqlBuilder, IDisposable indent)
+        {
+            if (NoRecovery)
+            {
+                indent = WriteBooleanOption(sqlBuilder, indent, NoRecovery, "NORECOVERY");
+            }
+            else
+            {
+                indent = WriteOptionExpression(sqlBuilder, indent, "STANDBY", Standby);
+            }
+
+            indent = WriteBooleanOption(sqlBuilder, indent, NoTruncate, "NO_TRUNCATE");
+            return indent;
         }
 
         private IDisposable WriteBackupEncryptionOptions(SqlBuilder sqlBuilder, IDisposable indent)
