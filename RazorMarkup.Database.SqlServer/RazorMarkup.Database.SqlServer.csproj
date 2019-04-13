@@ -430,6 +430,14 @@
     <Compile Include="Merge\IEndMergeCommonTableExpression.cs" />
     <Compile Include="Merge\IMergeClause.cs" />
     <Compile Include="Merge\IMergeStatement.cs" />
+    <Compile Include="Merge\IMergeWhen.cs" />
+    <Compile Include="Merge\IMergeWhenNotMatchedBySource.cs" />
+    <Compile Include="Merge\IMergeWhenNotMatchedByTarget.cs" />
+    <Compile Include="Merge\IMergeWhenNotMatchedBySourceAnd.cs" />
+    <Compile Include="Merge\IMergeWhenNotMatchedByTargetAnd.cs" />
+    <Compile Include="Merge\IMergeDelete.cs" />
+    <Compile Include="Merge\IMergeWhenMatchedAnd.cs" />
+    <Compile Include="Merge\IMergeWhenMatched.cs" />
     <Compile Include="Merge\MergeStatement.cs" />
     <Compile Include="Merge\MergeStatementBuilder.cs" />
     <Compile Include="NotExists.cs" />
