@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RazorMarkup.Database.SqlServer.Query
 {
-    public interface IEndQueryOperatorGroup<TEndType> : IHasEnd<TEndType>,
+    public interface IEndQueryGroup<TEndType> : IHasEnd<TEndType>,
         IQueryOperator<TEndType>,
         IOrderByClause<TEndType>,
         IOffsetClause<TEndType>,

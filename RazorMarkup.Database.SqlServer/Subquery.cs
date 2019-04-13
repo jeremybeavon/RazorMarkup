@@ -14,10 +14,10 @@ namespace RazorMarkup.Database.SqlServer
             return new SelectClauseWithDistinct<IEndSubquery>(selectClauseBuilder, new EndSubquery(builder));
         }
 
-        public static IQueryOperand<IQueryOperatorGroupEnd<IEndSubquery>> BeginOperatorGroup()
+        public static IQueryOperand<IQueryGroupEnd<IEndSubquery>> BeginOperatorGroup()
         {
             SubqueryExpressionBuilder builder = new SubqueryExpressionBuilder();
-            return new QueryOperand<IQueryOperatorGroupEnd<IEndSubquery>>(
+            return new QueryOperand<IQueryGroupEnd<IEndSubquery>>(
                 builder.QueryOperatorGroup,
                 new QueryOperatorGroupEnd<IEndSubquery>(builder.ExpressionBuilder, new EndSubquery(builder)));
         }

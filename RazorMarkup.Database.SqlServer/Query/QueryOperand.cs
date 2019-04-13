@@ -34,9 +34,9 @@ namespace RazorMarkup.Database.SqlServer.Query
             return new SelectClauseWithDistinct<TEndType>(ExpressionBuilder, EndClosure).AsNextClause(Statement);
         }
 
-        public IQueryOperand<IQueryOperatorGroupEnd<TEndType>> BeginOperatorGroup()
+        public IQueryOperand<IQueryGroupEnd<TEndType>> BeginQueryGroup()
         {
-            Statement.Append((IQueryOperand<TEndType> input) => input.BeginOperatorGroup());
+            Statement.Append((IQueryOperand<TEndType> input) => input.BeginQueryGroup());
             return new QueryOperatorGroupEnd<TEndType>(ExpressionBuilder, EndClosure).AsNextClause(Statement).AsOperand();
         }
 

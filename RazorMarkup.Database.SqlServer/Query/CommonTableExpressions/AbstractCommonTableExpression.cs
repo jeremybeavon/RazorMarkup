@@ -2,9 +2,9 @@
 
 namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions
 {
-    internal abstract class AbstractCommonTableExpression : AbstractQueryStatement<WithClauseBuilder, IEndQuery>
+    internal abstract class AbstractCommonTableExpression<TEndType> : AbstractQueryStatement<WithClauseBuilder, TEndType>
     {
-        protected AbstractCommonTableExpression(WithClauseBuilder statement, IEndQuery endClosure)
+        protected AbstractCommonTableExpression(WithClauseBuilder statement, TEndType endClosure)
             : base(statement, endClosure)
         {
         }

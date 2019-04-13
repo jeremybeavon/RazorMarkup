@@ -1,7 +1,7 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions
 {
-    public interface IWithClause : IHideObjectMethods
+    public interface IWithClause<TEndType> : IHideObjectMethods
     {
-        ICommonTableExpression With(TableAlias tableName, params ColumnAlias[] columnNames);
+        ICommonTableExpression<TEndType> With(TableAlias tableName, params ColumnAlias[] columnNames);
     }
 }

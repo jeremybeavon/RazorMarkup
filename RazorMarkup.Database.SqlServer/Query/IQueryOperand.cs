@@ -6,6 +6,6 @@ namespace RazorMarkup.Database.SqlServer.Query
     {
         ISelectClauseWithDistinct<TEndType> Select();
 
-        IQueryOperand<IQueryOperatorGroupEnd<TEndType>> BeginOperatorGroup();
+        IQueryOperand<IQueryGroupEnd<TEndType>> BeginQueryGroup();
     }
 }

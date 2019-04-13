@@ -2,8 +2,8 @@
 
 namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions
 {
-    public interface ICommonTableExpression : IHideObjectMethods
+    public interface ICommonTableExpression<TEndType> : IHideObjectMethods
     {
-        IQueryOperand<ICommonTableExpressionEnd> As();
+        IQueryOperand<TEndType> As();
     }
 }

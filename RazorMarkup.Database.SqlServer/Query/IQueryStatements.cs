@@ -2,7 +2,7 @@
 
 namespace RazorMarkup.Database.SqlServer.Query
 {
-    public interface IQueryStatements : IWithClause, IQueryOperand<IEndQuery>
+    public interface IQueryStatements : IWithClause<ICommonTableExpressionEnd>, IQueryOperand<IEndQuery>
     { 
     }
 }

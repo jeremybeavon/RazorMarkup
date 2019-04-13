@@ -5,11 +5,11 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
 {
     internal static class QueryOperandExtensions
     {
-        public static IEndQueryOperatorGroup<TEndType> OperatorGroup<TEndType>(
+        public static IEndQueryGroup<TEndType> OperatorGroup<TEndType>(
             this IQueryOperand<TEndType> operand,
             QueryExpression query)
         {
-            return query.AcceptWithResult(operand.BeginOperatorGroup()).End().OperatorGroup();
+            return query.AcceptWithResult(operand.BeginQueryGroup()).End().OperatorGroup();
         }
 
         public static ISqlString Select(this IQueryOperand<IEndQuery> operand, SelectStatement query)

@@ -3,26 +3,21 @@ using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions
 {
-    internal class CommonTableExpression : AbstractCommonTableExpression, ICommonTableExpression,
-        IClauseStart<ICommonTableExpression>
+    internal class CommonTableExpression<TEndType> : AbstractCommonTableExpression<TEndType>, ICommonTableExpression<TEndType>,
+        IClauseStart<ICommonTableExpression<TEndType>>
     {
-        public CommonTableExpression(WithClauseBuilder statement, IEndQuery endClosure)
+        public CommonTableExpression(WithClauseBuilder statement, TEndType endClosure)
             : base(statement, endClosure)
         {
         }
 
-        public CommonTableExpression(ExpressionBuilder expressionBuilder, TableAlias tableName, ColumnAlias[] columnNames, IEndQuery endClosure)
-            : base(new WithClauseBuilder(expressionBuilder, tableName, columnNames), endClosure)
+        public IQueryOperand<TEndType> As()
         {
+            Statement.Append((ICommonTableExpression<TEndType> input) => input.As());
+            return new CommonTableExpressionQuery<TEndType>(Statement, EndClosure);
         }
 
-        public IQueryOperand<ICommonTableExpressionEnd> As()
-        {
-            Statement.Append((ICommonTableExpression input) => input.As());
-            return new CommonTableExpressionQuery(Statement, EndClosure);
-        }
-
-        public ICommonTableExpression AsNextClause(ClauseBuilder statement)
+        public ICommonTableExpression<TEndType> AsNextClause(ClauseBuilder statement)
         {
             statement.NextClause = Statement;
             return this;

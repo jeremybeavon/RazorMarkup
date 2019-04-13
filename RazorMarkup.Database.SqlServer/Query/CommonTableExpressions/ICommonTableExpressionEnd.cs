@@ -2,6 +2,6 @@
 {
     public interface ICommonTableExpressionEnd : IHideObjectMethods
     {
-        IEndCommonTableExpression With();
+        IEndCommonTableExpression<IEndQuery> With();
     }
 }

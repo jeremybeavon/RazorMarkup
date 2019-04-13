@@ -1917,7 +1917,7 @@ UNION
 SELECT column3
 FROM table3";
             Sql.Query()
-                .BeginOperatorGroup()
+                .BeginQueryGroup()
                 .Select().Column(new ColumnName("column1"))
                 .From().Table(new TableName("table1"))
                 .Union()
@@ -1945,7 +1945,7 @@ UNION ALL
 SELECT column3
 FROM table3";
             Sql.Query()
-                .BeginOperatorGroup()
+                .BeginQueryGroup()
                 .Select().Column(new ColumnName("column1"))
                 .From().Table(new TableName("table1"))
                 .UnionAll()
@@ -1973,7 +1973,7 @@ INTERSECT
 SELECT column3
 FROM table3";
             Sql.Query()
-                .BeginOperatorGroup()
+                .BeginQueryGroup()
                 .Select().Column(new ColumnName("column1"))
                 .From().Table(new TableName("table1"))
                 .Intersect()
@@ -2001,7 +2001,7 @@ EXCEPT
 SELECT column3
 FROM table3";
             Sql.Query()
-                .BeginOperatorGroup()
+                .BeginQueryGroup()
                 .Select().Column(new ColumnName("column1"))
                 .From().Table(new TableName("table1"))
                 .Except()
@@ -2336,7 +2336,7 @@ UNION ALL
     FROM table4
 )";
             Sql.Query()
-                .BeginOperatorGroup()
+                .BeginQueryGroup()
                 .Select().Column(new ColumnName("column1"))
                 .From().Table(new TableName("table1"))
                 .Except()
@@ -2344,7 +2344,7 @@ UNION ALL
                 .From().Table(new TableName("table2"))
                 .End().OperatorGroup()
                 .UnionAll()
-                .BeginOperatorGroup()
+                .BeginQueryGroup()
                 .Select().Column(new ColumnName("column3"))
                 .From().Table(new TableName("table3"))
                 .Intersect()

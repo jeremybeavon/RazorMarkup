@@ -424,6 +424,14 @@
     <Compile Include="FileGroupName.cs" />
     <Compile Include="FullyQualifiedName.cs" />
     <Compile Include="IndexName.cs" />
+    <Compile Include="Merge\CommonTableExpressionEndMerge.cs" />
+    <Compile Include="Merge\EndMergeCommonTableExpression.cs" />
+    <Compile Include="Merge\ICommonTableExpressionEndMerge.cs" />
+    <Compile Include="Merge\IEndMergeCommonTableExpression.cs" />
+    <Compile Include="Merge\IMergeClause.cs" />
+    <Compile Include="Merge\IMergeStatement.cs" />
+    <Compile Include="Merge\MergeStatement.cs" />
+    <Compile Include="Merge\MergeStatementBuilder.cs" />
     <Compile Include="NotExists.cs" />
     <Compile Include="Expressions\Functions\IEndExists.cs" />
     <Compile Include="Query\Builders\AbstractTableReferenceBuilder.cs" />
@@ -670,7 +678,7 @@
     <Compile Include="Query\IEndHavingClause.cs" />
     <Compile Include="Query\IEndOffsetClause.cs" />
     <Compile Include="Query\IEndOrderByClause.cs" />
-    <Compile Include="Query\IEndQueryOperatorGroup.cs" />
+    <Compile Include="Query\IEndQueryGroup.cs" />
     <Compile Include="Query\IEndQuery.cs" />
     <Compile Include="Query\IEndSubquery.cs" />
     <Compile Include="Query\IForClause.cs" />
@@ -691,7 +699,7 @@
     <Compile Include="Query\IOrderByClause.cs" />
     <Compile Include="Query\IQueryOperand.cs" />
     <Compile Include="Query\IQueryOperator.cs" />
-    <Compile Include="Query\IQueryOperatorGroupEnd.cs" />
+    <Compile Include="Query\IQueryGroupEnd.cs" />
     <Compile Include="Query\IWhereClause.cs" />
     <Compile Include="Query\Builders\JoinConditionBuilder.cs" />
     <Compile Include="Query\Builders\JoinQueryBuilder.cs" />
@@ -1491,7 +1499,6 @@
     <Folder Include="Delete\" />
     <Folder Include="Execute\" />
     <Folder Include="Insert\" />
-    <Folder Include="Merge\" />
     <Folder Include="System\Functions\" />
     <Folder Include="System\Tables\" />
     <Folder Include="Update\" />

@@ -4,25 +4,25 @@ using RazorMarkup.Database.SqlServer.Query.Select;
 
 namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions
 {
-    internal class CommonTableExpressionQuery : AbstractCommonTableExpression, IQueryOperand<ICommonTableExpressionEnd>
+    internal class CommonTableExpressionQuery<TEndType> : AbstractCommonTableExpression<TEndType>, IQueryOperand<TEndType>
     {
-        public CommonTableExpressionQuery(WithClauseBuilder statement, IEndQuery endClosure)
+        public CommonTableExpressionQuery(WithClauseBuilder statement, TEndType endClosure)
             : base(statement, endClosure)
         {
         }
 
-        public ISelectClauseWithDistinct<ICommonTableExpressionEnd> Select()
+        public ISelectClauseWithDistinct<TEndType> Select()
         {
-            Statement.Append((IQueryOperand<ICommonTableExpressionEnd> input) => input.Select());
-            CommonTableExpressionEnd end = new CommonTableExpressionEnd(Statement, EndClosure);
-            return new SelectClauseWithDistinct<ICommonTableExpressionEnd>(ExpressionBuilder, end).AsNextClause(Statement.LastExpression);
+            Statement.Append((IQueryOperand<TEndType> input) => input.Select());
+            //CommonTableExpressionEnd<TEndType> end = new CommonTableExpressionEnd<TEndType>(Statement, EndClosure);
+            return new SelectClauseWithDistinct<TEndType>(ExpressionBuilder, EndClosure).AsNextClause(Statement.LastExpression);
         }
 
-        public IQueryOperand<IQueryOperatorGroupEnd<ICommonTableExpressionEnd>> BeginOperatorGroup()
+        public IQueryOperand<IQueryGroupEnd<TEndType>> BeginQueryGroup()
         {
-            Statement.Append((IQueryOperand<ICommonTableExpressionEnd> input) => input.BeginOperatorGroup());
-            ICommonTableExpressionEnd end = new CommonTableExpressionEnd(Statement, EndClosure);
-            return new QueryOperatorGroupEnd<ICommonTableExpressionEnd>(ExpressionBuilder, end).AsNextClause(Statement.LastExpression).AsOperand();
+            Statement.Append((IQueryOperand<TEndType> input) => input.BeginQueryGroup());
+            //ICommonTableExpressionEnd<TEndType> end = new CommonTableExpressionEnd<TEndType>(Statement, EndClosure);
+            return new QueryOperatorGroupEnd<TEndType>(ExpressionBuilder, EndClosure).AsNextClause(Statement.LastExpression).AsOperand();
         }
     }
 }

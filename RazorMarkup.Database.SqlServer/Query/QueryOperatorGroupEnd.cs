@@ -4,22 +4,22 @@ using RazorMarkup.Database.SqlServer.Query.Builders;
 namespace RazorMarkup.Database.SqlServer.Query
 {
     internal sealed class QueryOperatorGroupEnd<TEndType> : AbstractQueryStatement<QueryOperatorGroupBuilder, TEndType>,
-        IQueryOperatorGroupEnd<TEndType>
+        IQueryGroupEnd<TEndType>
     {
         public QueryOperatorGroupEnd(ExpressionBuilder expressionBuilder, TEndType endClosure)
             : base(new QueryOperatorGroupBuilder(expressionBuilder), endClosure)
         {
         }
 
-        public IEndQueryOperatorGroup<TEndType> OperatorGroup()
+        public IEndQueryGroup<TEndType> OperatorGroup()
         {
-            Statement.Append((IQueryOperatorGroupEnd<TEndType> input) => input.OperatorGroup());
+            Statement.Append((IQueryGroupEnd<TEndType> input) => input.OperatorGroup());
             return new EndQueryOperatorGroup<TEndType>(Statement, EndClosure);
         }
 
-        public QueryOperand<IQueryOperatorGroupEnd<TEndType>> AsOperand()
+        public QueryOperand<IQueryGroupEnd<TEndType>> AsOperand()
         {
-            return new QueryOperand<IQueryOperatorGroupEnd<TEndType>>(Statement.Operand, this);
+            return new QueryOperand<IQueryGroupEnd<TEndType>>(Statement.Operand, this);
         }
 
         public QueryOperatorGroupEnd<TEndType> AsNextClause(ClauseBuilder statement)

@@ -21,16 +21,19 @@ namespace RazorMarkup.Database.SqlServer.Query
             return new SelectClauseWithDistinct<IEndQuery>(ExpressionBuilder, new EndQuery(this)).AsNextClause(this);
         }
 
-        public IQueryOperand<IQueryOperatorGroupEnd<IEndQuery>> BeginOperatorGroup()
+        public IQueryOperand<IQueryGroupEnd<IEndQuery>> BeginQueryGroup()
         {
-            Append((IQueryStatements input) => input.BeginOperatorGroup());
+            Append((IQueryStatements input) => input.BeginQueryGroup());
             return new QueryOperatorGroupEnd<IEndQuery>(ExpressionBuilder, new EndQuery(this)).AsNextClause(this).AsOperand();
         }
 
-        public ICommonTableExpression With(TableAlias tableName, params ColumnAlias[] columnNames)
+        public ICommonTableExpression<ICommonTableExpressionEnd> With(TableAlias tableName, params ColumnAlias[] columnNames)
         {
             Append((IQueryStatements input) => input.With(null), (new ISqlString[] { tableName }).Concat(columnNames).ToArray());
-            return new CommonTableExpression(ExpressionBuilder, tableName, columnNames, new EndQuery(this)).AsNextClause(this);
+            WithClauseBuilder statement = new WithClauseBuilder(ExpressionBuilder, tableName, columnNames);
+            return new CommonTableExpression<ICommonTableExpressionEnd>(
+                statement,
+                new CommonTableExpressionEnd(statement, new EndQuery(this))).AsNextClause(this);
         }
     }
 }
