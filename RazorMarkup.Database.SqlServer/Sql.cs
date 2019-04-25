@@ -4,6 +4,7 @@ using RazorMarkup.Database.SqlServer.Alter;
 using RazorMarkup.Database.SqlServer.Backup;
 using RazorMarkup.Database.SqlServer.Create;
 using RazorMarkup.Database.SqlServer.Drop;
+using RazorMarkup.Database.SqlServer.Merge;
 using RazorMarkup.Database.SqlServer.Options;
 using RazorMarkup.Database.SqlServer.Query;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
@@ -84,7 +85,8 @@ namespace RazorMarkup.Database.SqlServer
 
         public static ISqlString If(Expression<Func<bool>> expression)
         {
-            throw new NotImplementedException();
+            ExpressionBuilder<bool> expressionBuilder = expression.ToExpressionBuilder();
+            return new SqlString("IF " + expressionBuilder.ToSqlString(), () => While(null), expressionBuilder);
         }
 
         public static ISqlString Label(LabelName labelName)
@@ -92,10 +94,15 @@ namespace RazorMarkup.Database.SqlServer
             return new SqlString(labelName.ToSqlString() + ":", () => Label(null), labelName);
         }
 
+        public static IMergeStatement Merge()
+        {
+            return new MergeStatement();
+        }
+
         public static ISqlString Print(Expression<Func<Text>> expression)
         {
             ExpressionBuilder<Text> expressionBuilder = expression.ToExpressionBuilder();
-            return new SqlString("PRINT " + expressionBuilder.ToSqlString(), () => Sql.Print(null), expressionBuilder);
+            return new SqlString("PRINT " + expressionBuilder.ToSqlString(), () => Print(null), expressionBuilder);
         }
 
         public static IQueryStatements Query()
@@ -105,13 +112,13 @@ namespace RazorMarkup.Database.SqlServer
 
         public static ISqlString Return()
         {
-            return new SqlString("RETURN", () => Sql.Return());
+            return new SqlString("RETURN", () => Return());
         }
 
         public static ISqlString Return(Expression<Func<object>> expression)
         {
             ExpressionBuilder<object> expressionBuilder = expression.ToExpressionBuilder();
-            return new SqlString("RETURN " + expressionBuilder.ToSqlString(), () => Sql.Return(null), expressionBuilder);
+            return new SqlString("RETURN " + expressionBuilder.ToSqlString(), () => Return(null), expressionBuilder);
         }
 
         public static ISetStatements Set()
@@ -121,7 +128,8 @@ namespace RazorMarkup.Database.SqlServer
 
         public static ISqlString While(Expression<Func<bool>> expression)
         {
-            throw new NotImplementedException();
+            ExpressionBuilder<bool> expressionBuilder = expression.ToExpressionBuilder();
+            return new SqlString("WHILE " + expressionBuilder.ToSqlString(), () => While(null), expressionBuilder);
         }
     }
 }

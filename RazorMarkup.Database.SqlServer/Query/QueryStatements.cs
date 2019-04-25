@@ -27,11 +27,11 @@ namespace RazorMarkup.Database.SqlServer.Query
             return new QueryOperatorGroupEnd<IEndQuery>(ExpressionBuilder, new EndQuery(this)).AsNextClause(this).AsOperand();
         }
 
-        public ICommonTableExpression<ICommonTableExpressionEnd> With(TableAlias tableName, params ColumnAlias[] columnNames)
+        public ICommonTableExpression<ICommonTableExpressionEnd<IEndCommonTableExpression>> With(TableAlias tableName, params ColumnAlias[] columnNames)
         {
             Append((IQueryStatements input) => input.With(null), (new ISqlString[] { tableName }).Concat(columnNames).ToArray());
             WithClauseBuilder statement = new WithClauseBuilder(ExpressionBuilder, tableName, columnNames);
-            return new CommonTableExpression<ICommonTableExpressionEnd>(
+            return new CommonTableExpression<ICommonTableExpressionEnd<IEndCommonTableExpression>>(
                 statement,
                 new CommonTableExpressionEnd(statement, new EndQuery(this))).AsNextClause(this);
         }

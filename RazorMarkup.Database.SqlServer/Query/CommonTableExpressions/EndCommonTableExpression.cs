@@ -3,29 +3,31 @@ using RazorMarkup.Database.SqlServer.Query.Select;
 
 namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions
 {
-    internal class EndCommonTableExpression<TEndType> : AbstractCommonTableExpression<TEndType>, IEndCommonTableExpression<TEndType>
+    internal class EndCommonTableExpression : AbstractCommonTableExpression<IEndQuery>, IEndCommonTableExpression
     {
-        public EndCommonTableExpression(WithClauseBuilder statement, TEndType endClosure)
+        public EndCommonTableExpression(WithClauseBuilder statement, IEndQuery endClosure)
             : base(statement, endClosure)
         {
         }
 
-        public IWithClause<TEndType> And()
+        public IWithClause<ICommonTableExpressionEnd<IEndCommonTableExpression>> And()
         {
-            Statement.Append((IEndCommonTableExpression<TEndType> input) => input.And());
-            return new WithClause<TEndType>(Statement, EndClosure);
+            Statement.Append((IEndCommonTableExpression input) => input.And());
+            return new WithClause<ICommonTableExpressionEnd<IEndCommonTableExpression>>(
+                Statement,
+                new CommonTableExpressionEnd(Statement, EndClosure));
         }
 
-        public IQueryOperand<IQueryGroupEnd<TEndType>> BeginQueryGroup()
+        public IQueryOperand<IQueryGroupEnd<IEndQuery>> BeginQueryGroup()
         {
-            Statement.Append((IEndCommonTableExpression<TEndType> input) => input.BeginQueryGroup());
-            return new QueryOperatorGroupEnd<TEndType>(ExpressionBuilder, EndClosure).AsNextClause(Statement).AsOperand();
+            Statement.Append((IEndCommonTableExpression input) => input.BeginQueryGroup());
+            return new QueryOperatorGroupEnd<IEndQuery>(ExpressionBuilder, EndClosure).AsNextClause(Statement).AsOperand();
         }
 
-        public ISelectClauseWithDistinct<TEndType> Select()
+        public ISelectClauseWithDistinct<IEndQuery> Select()
         {
-            Statement.Append((IEndCommonTableExpression<TEndType> input) => input.Select());
-            return new SelectClauseWithDistinct<TEndType>(ExpressionBuilder, EndClosure).AsNextClause(Statement);
+            Statement.Append((IEndCommonTableExpression input) => input.Select());
+            return new SelectClauseWithDistinct<IEndQuery>(ExpressionBuilder, EndClosure).AsNextClause(Statement);
         }
     }
 }

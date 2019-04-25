@@ -2,20 +2,20 @@
 
 namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions
 {
-    internal class CommonTableExpressionEnd : ICommonTableExpressionEnd
+    internal class CommonTableExpressionEnd : ICommonTableExpressionEnd<IEndCommonTableExpression>
     {
-        private readonly IEndCommonTableExpression<IEndQuery> end;
+        private readonly IEndCommonTableExpression end;
         private readonly WithClauseBuilder statement;
 
         public CommonTableExpressionEnd(WithClauseBuilder statement, IEndQuery endClosure)
         {
             this.statement = statement;
-            end = new EndCommonTableExpression<IEndQuery>(statement, endClosure);
+            end = new EndCommonTableExpression(statement, endClosure);
         }
 
-        public IEndCommonTableExpression<IEndQuery> With()
+        public IEndCommonTableExpression With()
         {
-            statement.Append((ICommonTableExpressionEnd input) => input.With());
+            statement.Append((ICommonTableExpressionEnd<IEndCommonTableExpression> input) => input.With());
             return end;
         }
     }

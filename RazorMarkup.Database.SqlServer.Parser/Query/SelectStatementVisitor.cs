@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Query;
 using RazorMarkup.Database.SqlServer.Query.CommonTableExpressions;
@@ -33,11 +29,14 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
             Result = operand.Select(node);
         }
 
-        private static IEndCommonTableExpression BuildCommonTableExpression(IWithClause withClause, CommonTableExpression expression)
+        private static IEndCommonTableExpression BuildCommonTableExpression(
+            IWithClause<ICommonTableExpressionEnd<IEndCommonTableExpression>> withClause,
+            CommonTableExpression expression)
         {
             TableAlias tableAlias = new TableAlias(expression.ExpressionName.Value);
             ColumnAlias[] columnNames = expression.Columns.Select(name => new ColumnAlias(name.Value)).ToArray();
-            return withClause.With(tableAlias, columnNames).As(expression.QueryExpression);
+            ICommonTableExpression<ICommonTableExpressionEnd<IEndCommonTableExpression>> cte = withClause.With(tableAlias, columnNames);
+            return expression.QueryExpression.AcceptWithResult(cte.As()).End().With();
         }
     }
 }

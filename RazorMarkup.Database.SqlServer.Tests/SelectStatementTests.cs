@@ -943,7 +943,7 @@ ON table1.column1 = table2.column1";
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
-        
+
         [TestMethod]
         public void Test_SelectWithFullLoopJoin_GeneratesCorrectTextFromRazorPage()
         {
@@ -1187,7 +1187,7 @@ FROM
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }
-        
+
         [TestMethod]
         public void Test_SelectWithWhereClause_GeneratesCorrectTextFromRazorPage()
         {
@@ -2351,6 +2351,26 @@ UNION ALL
                 .Select().Column(new ColumnName("column4"))
                 .From().Table(new TableName("table4"))
                 .End().OperatorGroup()
+                .End().Query()
+                .ToSqlStringViaRazorPageIs(expectedSql);
+        }
+
+        [TestMethod]
+        public void Test_SelectWithOneCTE_GeneratesCorrectTextFromRazorPage()
+        {
+            const string expectedSql = @"WITH CTE1(column1) AS (
+    SELECT *
+    FROM table1
+)
+SELECT *
+FROM CTE1";
+            Sql.Query()
+                .With(new TableAlias("CTE1"), new ColumnAlias("column1")).As()
+                .Select().AllColumns()
+                .From().Table(new TableName("table1"))
+                .End().With()
+                .Select().AllColumns()
+                .From().Table(new TableName("CTE1"))
                 .End().Query()
                 .ToSqlStringViaRazorPageIs(expectedSql);
         }

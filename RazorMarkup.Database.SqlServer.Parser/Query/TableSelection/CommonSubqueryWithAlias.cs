@@ -5,7 +5,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {
     internal class CommonSubqueryWithAlias<TEndType> : ICommonSubqueryWithAlias
     {
-        private ISubqueryWithAlias<TEndType> subqueryWithAlias;
+        private readonly ISubqueryWithAlias<TEndType> subqueryWithAlias;
 
         public CommonSubqueryWithAlias(ISubqueryWithAlias<TEndType> subqueryWithAlias)
         {

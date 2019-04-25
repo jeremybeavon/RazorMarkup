@@ -5,17 +5,20 @@ using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Merge
 {
-    internal sealed class EndMergeCommonTableExpression : AbstractStatement<MergeStatementBuilder>, IEndMergeCommonTableExpression
+    internal sealed class EndMergeCommonTableExpression : AbstractStatement<MergeStatementBuilder>,
+        IEndMergeCommonTableExpression
     {
         public EndMergeCommonTableExpression(MergeStatementBuilder statement) 
             : base(statement)
         {
         }
 
-        public IWithClause<ICommonTableExpressionEndMerge> And()
+        public IWithClause<ICommonTableExpressionEnd<IEndMergeCommonTableExpression>> And()
         {
             Statement.Append((IEndMergeCommonTableExpression input) => input.And());
-            return new WithClause<ICommonTableExpressionEndMerge>(Statement.WithClause, new CommonTableExpressionEndMerge(Statement));
+            return new WithClause<ICommonTableExpressionEnd<IEndMergeCommonTableExpression>>(
+                Statement.WithClause,
+                new CommonTableExpressionEndMerge(Statement));
         }
 
         public object Top(Expression<Func<Integer>> count)

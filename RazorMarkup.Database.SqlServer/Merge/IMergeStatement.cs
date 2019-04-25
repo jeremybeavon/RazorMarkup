@@ -2,7 +2,7 @@
 
 namespace RazorMarkup.Database.SqlServer.Merge
 {
-    public interface IMergeStatement : IWithClause<ICommonTableExpressionEndMerge>, IMergeClause
+    public interface IMergeStatement : IWithClause<ICommonTableExpressionEnd<IEndMergeCommonTableExpression>>, IMergeClause
     {
     }
 }

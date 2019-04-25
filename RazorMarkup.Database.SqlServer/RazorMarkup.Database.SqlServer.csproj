@@ -426,10 +426,15 @@
     <Compile Include="IndexName.cs" />
     <Compile Include="Merge\CommonTableExpressionEndMerge.cs" />
     <Compile Include="Merge\EndMergeCommonTableExpression.cs" />
-    <Compile Include="Merge\ICommonTableExpressionEndMerge.cs" />
     <Compile Include="Merge\IEndMergeCommonTableExpression.cs" />
+    <Compile Include="Merge\IMergeAsTableAlias.cs" />
     <Compile Include="Merge\IMergeClause.cs" />
+    <Compile Include="Merge\IMergeHint.cs" />
+    <Compile Include="Merge\IMergeHintAnd.cs" />
+    <Compile Include="Merge\IMergeInto.cs" />
     <Compile Include="Merge\IMergeStatement.cs" />
+    <Compile Include="Merge\IMergeTargetTable.cs" />
+    <Compile Include="Merge\IMergeUsing.cs" />
     <Compile Include="Merge\IMergeWhen.cs" />
     <Compile Include="Merge\IMergeWhenNotMatchedBySource.cs" />
     <Compile Include="Merge\IMergeWhenNotMatchedByTarget.cs" />
@@ -438,6 +443,7 @@
     <Compile Include="Merge\IMergeDelete.cs" />
     <Compile Include="Merge\IMergeWhenMatchedAnd.cs" />
     <Compile Include="Merge\IMergeWhenMatched.cs" />
+    <Compile Include="Merge\IMergeWithHint.cs" />
     <Compile Include="Merge\MergeStatement.cs" />
     <Compile Include="Merge\MergeStatementBuilder.cs" />
     <Compile Include="NotExists.cs" />

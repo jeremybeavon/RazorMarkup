@@ -56,7 +56,6 @@
     <Compile Include="MultiPartIdentifierExtensions.cs" />
     <Compile Include="ObsoleteException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Query\CommonTableExpressionExtensions.cs" />
     <Compile Include="Query\EmptyForClause.cs" />
     <Compile Include="Query\EmptyGroupByClause.cs" />
     <Compile Include="Query\EmptyHavingClause.cs" />
