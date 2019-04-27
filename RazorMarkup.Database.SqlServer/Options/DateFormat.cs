@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RazorMarkup.Database.SqlServer.Options
+﻿namespace RazorMarkup.Database.SqlServer.Options
 {
     internal sealed class DateFormat : AbstractSetOption, IDateFormat
     {

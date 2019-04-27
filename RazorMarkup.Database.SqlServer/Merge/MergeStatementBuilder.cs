@@ -1,10 +1,6 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RazorMarkup.Database.SqlServer.Merge
 {
@@ -21,9 +17,47 @@ namespace RazorMarkup.Database.SqlServer.Merge
 
         public bool IsPercent { get; set; }
 
+        public bool HasInto { get; set; }
+
+        public string TableName { get; set; }
+
+        public FromClauseBuilder UsingClause { get; set; }
+
+        public ExpressionBuilder<bool> SearchCondition { get; set; }
+
+        public List<AbstractWhenClauseBuilder> WhenClauses { get; } = new List<AbstractWhenClauseBuilder>();
+
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
-            
+            WithClause?.ToSqlString(sqlBuilder);
+            sqlBuilder.Append("MERGE ");
+            if (Top != null)
+            {
+                sqlBuilder.Append(" TOP (");
+                Top.ToSqlString(sqlBuilder);
+                sqlBuilder.Append(") ");
+                if (IsPercent)
+                {
+                    sqlBuilder.Append("PERCENT ");
+                }
+            }
+
+            if (HasInto)
+            {
+                sqlBuilder.Append("INTO ");
+            }
+
+            sqlBuilder.Append(TableName);
+            sqlBuilder.AppendIndent();
+            sqlBuilder.Append("USING ");
+            UsingClause.ToSqlString(sqlBuilder);
+            sqlBuilder.AppendIndent();
+            sqlBuilder.Append("ON ");
+            SearchCondition.ToSqlString(sqlBuilder);
+            foreach (AbstractWhenClauseBuilder whenClause in WhenClauses)
+            {
+                whenClause.ToSqlString(sqlBuilder);
+            }
         }
     }
 }

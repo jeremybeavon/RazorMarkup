@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-
-namespace RazorMarkup.Database.SqlServer.Query
+﻿namespace RazorMarkup.Database.SqlServer.Query
 {
     public interface IEndGroupByClause<TEndType> : IHasEnd<TEndType>,
         IHavingClause<TEndType>,

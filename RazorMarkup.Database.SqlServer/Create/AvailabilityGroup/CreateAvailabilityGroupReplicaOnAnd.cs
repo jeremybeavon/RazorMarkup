@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RazorMarkup.Database.SqlServer.Create.AvailabilityGroup
+﻿namespace RazorMarkup.Database.SqlServer.Create.AvailabilityGroup
 {
     internal class CreateAvailabilityGroupReplicaOnAnd : AbstractStatement<CreateAvailabilityGroupStatementBuilder>,
         ICreateAvailabilityGroupReplicaOnAnd

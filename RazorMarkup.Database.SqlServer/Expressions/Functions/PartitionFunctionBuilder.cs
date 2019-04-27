@@ -1,6 +1,4 @@
-﻿using RazorMarkup.Database.SqlServer.Query.Builders;
-
-namespace RazorMarkup.Database.SqlServer.Expressions.Functions
+﻿namespace RazorMarkup.Database.SqlServer.Expressions.Functions
 {
     internal sealed class PartitionFunctionBuilder : AbstractStatementTextBuilder
     {

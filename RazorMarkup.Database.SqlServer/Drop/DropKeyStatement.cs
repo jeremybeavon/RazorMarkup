@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RazorMarkup.Database.SqlServer.Drop
+﻿namespace RazorMarkup.Database.SqlServer.Drop
 {
     internal sealed class DropKeyStatement : SqlBuilder, IDropKeyStatement
     {

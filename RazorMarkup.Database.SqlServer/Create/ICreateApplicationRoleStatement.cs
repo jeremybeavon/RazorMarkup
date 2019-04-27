@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
-
-namespace RazorMarkup.Database.SqlServer.Create
+﻿namespace RazorMarkup.Database.SqlServer.Create
 {
     public interface ICreateApplicationRoleStatement : IHideObjectMethods
     {

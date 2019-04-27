@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RazorMarkup.Database.SqlServer.Types.Aggregates
+﻿namespace RazorMarkup.Database.SqlServer.Types.Aggregates
 {
     public sealed class SqlMoneyAggregate : AbstractSqlAggregate, ISqlFloatType
     {

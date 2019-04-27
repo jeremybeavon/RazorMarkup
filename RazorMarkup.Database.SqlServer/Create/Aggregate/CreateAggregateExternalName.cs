@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RazorMarkup.Database.SqlServer.Create.Aggregate
+﻿namespace RazorMarkup.Database.SqlServer.Create.Aggregate
 {
     internal class CreateAggregateExternalName : AbstractStatement<CreateAggregateStatementBuilder>,
         ICreateAggregateExternalName

@@ -1,5 +1,4 @@
-﻿using System;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Query.Select;
 
 namespace RazorMarkup.Database.SqlServer.Query.CommonTableExpressions

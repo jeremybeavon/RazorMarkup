@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using RazorMarkup.Database.SqlServer.Types;
-
-namespace RazorMarkup.Database.SqlServer.System.Procedures
+﻿namespace RazorMarkup.Database.SqlServer.System.Procedures
 {
     public abstract class ColumnPrivileges
     {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RazorMarkup.Database.SqlServer.Create.Credential
+﻿namespace RazorMarkup.Database.SqlServer.Create.Credential
 {
     internal sealed class CreateCredentialStatement : AbstractStatement<CreateCredentialStatementBuilder>,
         ICreateCredentialStatement

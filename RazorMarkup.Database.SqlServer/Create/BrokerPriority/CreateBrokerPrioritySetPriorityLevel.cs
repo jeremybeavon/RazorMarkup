@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RazorMarkup.Database.SqlServer.Create.BrokerPriority
+﻿namespace RazorMarkup.Database.SqlServer.Create.BrokerPriority
 {
     internal sealed class CreateBrokerPrioritySetPriorityLevel : AbstractStatement<CreateBrokerPriorityStatementBuilder>,
         ICreateBrokerPrioritySetPriorityLevel

@@ -4,8 +4,6 @@ using RazorMarkup.Database.SqlServer.Constants;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Query.For;
 using RazorMarkup.Database.SqlServer.Query.OrderBy;
-using RazorMarkup.Database.SqlServer.Types;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Query
 {

@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace RazorMarkup.Database.SqlServer.Query.Builders
+﻿namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
     internal sealed class QueryOperatorBuilder : ClauseBuilder
     {

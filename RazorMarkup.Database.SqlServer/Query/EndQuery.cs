@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-
-namespace RazorMarkup.Database.SqlServer.Query
+﻿namespace RazorMarkup.Database.SqlServer.Query
 {
     internal sealed class EndQuery : IEndQuery
     {

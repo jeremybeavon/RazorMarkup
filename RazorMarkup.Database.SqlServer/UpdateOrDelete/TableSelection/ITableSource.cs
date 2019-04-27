@@ -1,6 +1,4 @@
-﻿using RazorMarkup.Database.SqlServer.Query;
-
-namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
+﻿namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 {
     public interface ITableSource : IHideObjectMethods
     {

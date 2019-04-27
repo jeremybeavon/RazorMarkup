@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RazorMarkup.Database.SqlServer.Drop.Signature
+﻿namespace RazorMarkup.Database.SqlServer.Drop.Signature
 {
     internal sealed class DropSignatureStatement : AbstractStatement<DropSignatureStatementBuilder>, IDropSignatureStatement
     {

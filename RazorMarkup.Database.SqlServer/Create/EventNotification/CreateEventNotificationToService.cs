@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RazorMarkup.Database.SqlServer.Create.EventNotification
+﻿namespace RazorMarkup.Database.SqlServer.Create.EventNotification
 {
     internal class CreateEventNotificationToService : AbstractStatement<CreateEventNotificationStatementBuilder>,
         ICreateEventNotificationToService

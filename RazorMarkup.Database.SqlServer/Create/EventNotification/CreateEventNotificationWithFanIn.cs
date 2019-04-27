@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RazorMarkup.Database.SqlServer.Create.EventNotification
+﻿namespace RazorMarkup.Database.SqlServer.Create.EventNotification
 {
     internal sealed class CreateEventNotificationWithFanIn : CreateEventNotificationFor,
         ICreateEventNotificationWithFanIn

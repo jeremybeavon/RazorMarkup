@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RazorMarkup.Database.SqlServer.Create.AvailabilityGroup
+﻿namespace RazorMarkup.Database.SqlServer.Create.AvailabilityGroup
 {
     internal sealed class CreateAvailabilityGroupWith : AbstractStatement<CreateAvailabilityGroupStatementBuilder>,
         ICreateAvailabilityGroupWith

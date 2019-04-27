@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Query.CommonTableExpressions;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
@@ -24,12 +21,14 @@ namespace RazorMarkup.Database.SqlServer.Merge
             throw new NotImplementedException();
         }
 
-        public ICommonTableExpression<ICommonTableExpressionEndMerge> With(TableAlias tableName, params ColumnAlias[] columnNames)
+        public ICommonTableExpression<ICommonTableExpressionEnd<IEndMergeCommonTableExpression>> With(
+            TableAlias tableName,
+            params ColumnAlias[] columnNames)
         {
             Statement.Append((IMergeStatement input) => input.With(null), (new ISqlString[] { tableName }).Concat(columnNames).ToArray());
             WithClauseBuilder withClause = new WithClauseBuilder(ExpressionBuilder, tableName, columnNames);
             Statement.WithClause = withClause;
-            return new CommonTableExpression<ICommonTableExpressionEndMerge>(
+            return new CommonTableExpression<ICommonTableExpressionEnd<IEndMergeCommonTableExpression>>(
                 withClause,
                 new CommonTableExpressionEndMerge(Statement));
         }

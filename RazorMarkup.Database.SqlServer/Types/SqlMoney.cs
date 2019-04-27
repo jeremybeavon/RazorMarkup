@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace RazorMarkup.Database.SqlServer.Types
+﻿namespace RazorMarkup.Database.SqlServer.Types
 {
     public sealed class SqlMoney : ISqlFloatType
     {

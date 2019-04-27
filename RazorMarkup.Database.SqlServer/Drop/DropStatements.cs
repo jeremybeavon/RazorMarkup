@@ -1,5 +1,4 @@
-﻿using System;
-using RazorMarkup.Database.SqlServer.Drop.Index;
+﻿using RazorMarkup.Database.SqlServer.Drop.Index;
 using RazorMarkup.Database.SqlServer.Drop.Signature;
 
 namespace RazorMarkup.Database.SqlServer.Drop

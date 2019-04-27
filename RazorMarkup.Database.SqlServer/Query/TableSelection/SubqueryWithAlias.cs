@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
