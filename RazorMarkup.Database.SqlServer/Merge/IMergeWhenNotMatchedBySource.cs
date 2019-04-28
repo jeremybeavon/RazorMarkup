@@ -2,6 +2,6 @@
 {
     public interface IMergeWhenNotMatchedBySource
     {
-        object Then();
+        IMergeNotMatched Then();
     }
 }

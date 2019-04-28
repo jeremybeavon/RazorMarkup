@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.Update
+namespace RazorMarkup.Database.SqlServer.SetClause
 {
-    internal sealed class SetClauseBuilder : AbstractStatementBuilder
+    internal sealed class SetColumnOrVariableBuilder : AbstractStatementBuilder
     {
-        public SetClauseBuilder(ExpressionBuilder expressionBuilder)
+        public SetColumnOrVariableBuilder(ExpressionBuilder expressionBuilder) 
             : base(expressionBuilder)
         {
             Operator = "=";

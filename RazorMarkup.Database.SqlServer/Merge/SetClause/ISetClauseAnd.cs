@@ -1,0 +1,8 @@
+﻿using RazorMarkup.Database.SqlServer.SetClause;
+
+namespace RazorMarkup.Database.SqlServer.Merge.SetClause
+{
+    public interface ISetClauseAnd : ICommonSetClauseAnd<ISetColumn, ISetVariable>, IMergeWhen
+    {
+    }
+}

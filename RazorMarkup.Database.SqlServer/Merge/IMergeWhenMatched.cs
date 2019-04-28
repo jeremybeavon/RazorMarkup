@@ -2,6 +2,6 @@
 {
     public interface IMergeWhenMatched
     {
-        object Then();
+        IMergeMatched Then();
     }
 }
