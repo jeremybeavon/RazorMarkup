@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RazorMarkup.Database.SqlServer.SetClause;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RazorMarkup.Database.SqlServer.Merge
