@@ -13,6 +13,11 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         {
         }
 
+        public static ITableSelectionWithJoin Create(FromClauseBuilder statement)
+        {
+            return new TableSelectionWithJoin(statement);
+        }
+
         public ITableSourceInJoin<ITableSelectionWithJoin> InnerJoin()
         {
             Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER"));

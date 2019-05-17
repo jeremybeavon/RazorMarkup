@@ -11,6 +11,11 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         {
         }
 
+        public new static ITableSelectionWithTableSample Create(FromClauseBuilder statement)
+        {
+            return new TableSelectionWithTableSample(statement);
+        }
+
         public ITableSampleWithSystem TableSample()
         {
             Statement.Append((ITableSelectionWithTableSample input) => input.TableSample());

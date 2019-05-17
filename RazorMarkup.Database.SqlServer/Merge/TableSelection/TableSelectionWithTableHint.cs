@@ -10,6 +10,11 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         {
         }
 
+        public new static ITableSelectionWithTableHint Create(FromClauseBuilder statement)
+        {
+            return new TableSelectionWithTableHint(statement);
+        }
+
         public ITableHint WithHint()
         {
             Statement.Append((ITableSelectionWithTableHint input) => input.WithHint());

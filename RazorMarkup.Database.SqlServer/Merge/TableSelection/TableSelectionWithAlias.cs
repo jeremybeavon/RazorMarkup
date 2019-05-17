@@ -10,6 +10,11 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         {
         }
 
+        public new static ITableSelectionWithAlias Create(FromClauseBuilder statement)
+        {
+            return new TableSelectionWithAlias(statement);
+        }
+
         public ITableSelectionWithTableSample As(TableAlias tableAlias)
         {
             Statement.CurrentTable.TableAlias = tableAlias.ToSqlString();

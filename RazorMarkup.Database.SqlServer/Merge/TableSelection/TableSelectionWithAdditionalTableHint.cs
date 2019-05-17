@@ -11,6 +11,11 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         {
         }
 
+        public new static ITableSelectionWithAdditionalTableHint Create(FromClauseBuilder statement)
+        {
+            return new TableSelectionWithAdditionalTableHint(statement);
+        }
+
         public new ITableHint And()
         {
             Statement.Append((ITableSelectionWithAdditionalTableHint input) => input.And());

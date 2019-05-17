@@ -1,27 +1,18 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
-    internal class SubqueryWithAlias : AbstractStatement<FromClauseBuilder>,
-        ISubqueryWithAlias
+    internal class SubqueryWithAlias : CommonSubqueryWithAlias<ITableSelectionWithJoin>, ISubqueryWithAlias
     {
         public SubqueryWithAlias(FromClauseBuilder statement)
-            : base(statement)
+            : base(statement, TableSelectionWithJoin.Create)
         {
         }
 
-        public ITableSelectionWithJoin As(TableAlias tableAlias, params ColumnAlias[] columnAlias)
+        public static ISubqueryWithAlias Create(FromClauseBuilder statement)
         {
-            SubqueryBuilder subqueryBuilder = Statement.CurrentSubquery;
-            subqueryBuilder.TableAlias = tableAlias.ToSqlString();
-            foreach (ColumnAlias alias in columnAlias)
-            {
-                subqueryBuilder.ColumnAlias.Add(alias.ToSqlString());
-            }
-
-            ISqlString columnAliasString = new SqlStringArray(typeof(ColumnAlias), columnAlias);
-            Statement.Append((ISubqueryWithAlias input) => input.As(null), tableAlias, columnAliasString);
-            return new TableSelectionWithJoin(Statement);
+            return new SubqueryWithAlias(statement);
         }
     }
 }

@@ -1,31 +1,19 @@
-﻿using System.Linq;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
-    internal class DerivedTableWithAlias : AbstractStatement<FromClauseBuilder>,
-        IDerviedTableWithAlias
+    internal class DerivedTableWithAlias : CommonDerivedTableWithAlias<ITableSelectionWithJoin>,
+        IDerivedTableWithAlias
     {
-        private readonly DerivedTableBuilder derivedTableBuilder;
-
         public DerivedTableWithAlias(FromClauseBuilder statement, DerivedTableBuilder derivedTableBuilder)
-            : base(statement)
+            : base(statement, derivedTableBuilder, TableSelectionWithJoin.Create)
         {
-            this.derivedTableBuilder = derivedTableBuilder;
         }
 
-        public ITableSelectionWithJoin As(TableAlias tableAlias, params ColumnAlias[] columnAlias)
+        public static IDerivedTableWithAlias Create(FromClauseBuilder statement, DerivedTableBuilder derivedTableBuilder)
         {
-            derivedTableBuilder.TableAlias = tableAlias.ToSqlString();
-            foreach (ColumnAlias alias in columnAlias)
-            {
-                derivedTableBuilder.ColumnAlias.Add(alias.ToSqlString());
-            }
-
-            Statement.Append(
-                (IDerviedTableWithAlias input) => input.As(null, null),
-                (new ISqlString[] { tableAlias }).Concat(columnAlias).ToArray());
-            return new TableSelectionWithJoin(Statement);
+            return new DerivedTableWithAlias(statement, derivedTableBuilder);
         }
     }
 }

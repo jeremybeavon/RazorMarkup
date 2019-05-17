@@ -1,7 +1,8 @@
-﻿namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
-    public interface ISubqueryWithAlias : IHideObjectMethods
+    public interface ISubqueryWithAlias : ICommonSubqueryWithAlias<ITableSelectionWithJoin>
     {
-        ITableSelectionWithJoin As(TableAlias tableAlias, params ColumnAlias[] columnAlias);
     }
 }
