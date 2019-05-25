@@ -3,16 +3,17 @@ using System;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection
 {
-    internal abstract class CommonSubqueryWithAlias<TTableSelectionWithJoin> :
-        AbstractStatement<FromClauseBuilder>,
+    internal abstract class CommonSubqueryWithAlias<TJoinEndType, TTableSelectionWithJoin> :
+        AbstractTableSelectionStatement<TJoinEndType>,
         ICommonSubqueryWithAlias<TTableSelectionWithJoin>
     {
-        private readonly Func<FromClauseBuilder, TTableSelectionWithJoin> tableSelectionWithJoinBuilder;
+        private readonly Func<FromClauseBuilder, TJoinEndType, TTableSelectionWithJoin> tableSelectionWithJoinBuilder;
 
         protected CommonSubqueryWithAlias(
             FromClauseBuilder statement,
-            Func<FromClauseBuilder, TTableSelectionWithJoin> tableSelectionWithJoinBuilder)
-            : base(statement)
+            TJoinEndType joinClosure,
+            Func<FromClauseBuilder, TJoinEndType, TTableSelectionWithJoin> tableSelectionWithJoinBuilder)
+            : base(statement, joinClosure)
         {
             this.tableSelectionWithJoinBuilder = tableSelectionWithJoinBuilder;
         }
@@ -31,7 +32,7 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
                 (ICommonSubqueryWithAlias<TTableSelectionWithJoin> input) => input.As(null),
                 tableAlias,
                 columnAliasString);
-            return tableSelectionWithJoinBuilder(Statement);
+            return tableSelectionWithJoinBuilder(Statement, JoinClosure);
         }
     }
 }

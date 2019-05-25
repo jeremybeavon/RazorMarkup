@@ -3,16 +3,16 @@ using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
-    internal class SubqueryWithAlias : CommonSubqueryWithAlias<ITableSelectionWithJoin>, ISubqueryWithAlias
+    internal class SubqueryWithAlias : CommonSubqueryWithAlias<object, ITableSelectionWithJoin>, ISubqueryWithAlias
     {
-        public SubqueryWithAlias(FromClauseBuilder statement)
-            : base(statement, TableSelectionWithJoin.Create)
+        public SubqueryWithAlias(FromClauseBuilder statement, object joinClosure)
+            : base(statement, joinClosure, TableSelectionWithJoin.Create)
         {
         }
 
-        public static ISubqueryWithAlias Create(FromClauseBuilder statement)
+        public static ISubqueryWithAlias Create(FromClauseBuilder statement, object joinClosure)
         {
-            return new SubqueryWithAlias(statement);
+            return new SubqueryWithAlias(statement, joinClosure);
         }
     }
 }

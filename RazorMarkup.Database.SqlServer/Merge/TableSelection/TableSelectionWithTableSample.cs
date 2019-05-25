@@ -1,25 +1,24 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Merge.TableSelection.Samples;
+using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
-    internal class TableSelectionWithTableSample : TableSelectionWithTableHint,
+    internal class TableSelectionWithTableSample :
+        CommonTableSelectionWithTableSample<
+            object,
+            ITableSelectionWithJoin,
+            ITableSource,
+            IPivotClause,
+            IUnpivotClause,
+            ITableHint,
+            ITableSampleWithSystem,
+            ITableSelectionWithTableSample>,
         ITableSelectionWithTableSample
     {
-        public TableSelectionWithTableSample(FromClauseBuilder statement)
-            : base(statement)
+        public TableSelectionWithTableSample(FromClauseBuilder statement, object joinClosure)
+            : base(statement, joinClosure, null, null, null, null, null, null)
         {
-        }
-
-        public new static ITableSelectionWithTableSample Create(FromClauseBuilder statement)
-        {
-            return new TableSelectionWithTableSample(statement);
-        }
-
-        public ITableSampleWithSystem TableSample()
-        {
-            Statement.Append((ITableSelectionWithTableSample input) => input.TableSample());
-            return new TableSampleWithSystem(Statement);
         }
     }
 }

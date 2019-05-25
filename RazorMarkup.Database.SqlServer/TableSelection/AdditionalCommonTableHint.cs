@@ -1,19 +1,21 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection
 {
     internal abstract class AdditionalCommonTableHint<
+        TJoinEndType,
         TTableSelectionWithAlias,
         TSubqueryWithAlias,
         TDerivedTableWithAlias,
         TTableSelectionWithAdditionalTableHint,
         TAdditionalCommonTableHint> :
-        CommonTableSource<TTableSelectionWithAlias, TSubqueryWithAlias, TDerivedTableWithAlias, TAdditionalCommonTableHint>,
+        CommonTableSource<
+            TJoinEndType,
+            TTableSelectionWithAlias,
+            TSubqueryWithAlias,
+            TDerivedTableWithAlias,
+            TAdditionalCommonTableHint>,
         IAdditionalCommonTableHint<
             TTableSelectionWithAlias,
             TSubqueryWithAlias,
@@ -29,13 +31,19 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
 
         protected AdditionalCommonTableHint(
             FromClauseBuilder statement,
-            Func<FromClauseBuilder, TTableSelectionWithAlias> tableSelectionWithAliasBuilder,
-            Func<FromClauseBuilder, TSubqueryWithAlias> subqueryWithAliasBuilder,
-            Func<FromClauseBuilder, DerivedTableBuilder, TDerivedTableWithAlias> derivedTableWithAliasBuilder,
-            Func<FromClauseBuilder, TTableSelectionWithAdditionalTableHint> tableSelectionWithAdditionalTableHintBuilder)
-            : base(statement, tableSelectionWithAliasBuilder, subqueryWithAliasBuilder, derivedTableWithAliasBuilder)
+            TJoinEndType joinClosure,
+            Func<FromClauseBuilder, TJoinEndType, TTableSelectionWithAlias> tableSelectionWithAliasBuilder,
+            Func<FromClauseBuilder, TJoinEndType, TSubqueryWithAlias> subqueryWithAliasBuilder,
+            Func<FromClauseBuilder, TJoinEndType, DerivedTableBuilder, TDerivedTableWithAlias> derivedTableWithAliasBuilder,
+            Func<FromClauseBuilder, TJoinEndType, TTableSelectionWithAdditionalTableHint> tableSelectionWithAdditionalTableHintBuilder)
+            : base(
+                  statement,
+                  joinClosure,
+                  tableSelectionWithAliasBuilder,
+                  subqueryWithAliasBuilder,
+                  derivedTableWithAliasBuilder)
         {
-            tableHint = new InternalCommonTableHint(statement, tableSelectionWithAdditionalTableHintBuilder);
+            tableHint = new InternalCommonTableHint(statement, joinClosure, tableSelectionWithAdditionalTableHintBuilder);
         }
 
         public TTableSelectionWithAdditionalTableHint ForceScan()
@@ -148,12 +156,13 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
             return tableHint.XLock();
         }
 
-        private sealed class InternalCommonTableHint : CommonTableHint<TTableSelectionWithAdditionalTableHint>
+        private sealed class InternalCommonTableHint : CommonTableHint<TJoinEndType, TTableSelectionWithAdditionalTableHint>
         {
             public InternalCommonTableHint(
                 FromClauseBuilder statement,
-                Func<FromClauseBuilder, TTableSelectionWithAdditionalTableHint> tableSelectionWithAdditionalTableHintBuilder)
-                : base(statement, tableSelectionWithAdditionalTableHintBuilder)
+                TJoinEndType joinClosure,
+                Func<FromClauseBuilder, TJoinEndType, TTableSelectionWithAdditionalTableHint> tableSelectionWithAdditionalTableHintBuilder)
+                : base(statement, joinClosure, tableSelectionWithAdditionalTableHintBuilder)
             {
             }
         }

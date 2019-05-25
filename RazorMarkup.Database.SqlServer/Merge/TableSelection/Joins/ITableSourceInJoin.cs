@@ -1,14 +1,12 @@
-﻿using System;
-using System.Linq.Expressions;
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
-    public interface ITableSourceInJoin<TJoinEndType> : IHideObjectMethods
+    public interface ITableSourceInJoin<TJoinEndType> :
+        ICommonTableSource<
+            ITableSelectionWithAliasInJoin<TJoinEndType>,
+            object,
+            IDerivedTableWithAliasInJoin<TJoinEndType>>
     {
-        ITableSelectionWithAliasInJoin<TJoinEndType> Table(TableName tableName);
-
-        ITableSelectionWithAliasInJoin<TJoinEndType> View(ViewName tableName);
-
-        IDerviedTableWithAliasInJoin<TJoinEndType> DerivedTable(Expression<Func<object>>[][] values);
     }
 }

@@ -467,7 +467,9 @@
     <Compile Include="Merge\SetClause\ISetFieldOrProperty.cs" />
     <Compile Include="Merge\SetClause\ISetValue.cs" />
     <Compile Include="Merge\SetClause\ISetVariable.cs" />
+    <Compile Include="Merge\TableSelection\AdditionalTableHint.cs" />
     <Compile Include="Merge\TableSelection\DerivedTableWithAlias.cs" />
+    <Compile Include="Merge\TableSelection\IAdditionalTableHint.cs" />
     <Compile Include="Merge\TableSelection\IDerivedTableWithAlias.cs" />
     <Compile Include="Merge\TableSelection\IPivotClause.cs" />
     <Compile Include="Merge\TableSelection\IPivotClauseAlias.cs" />
@@ -485,7 +487,8 @@
     <Compile Include="Merge\TableSelection\IUnpivotClauseIn.cs" />
     <Compile Include="Merge\TableSelection\Joins\AbstractJoinStatement.cs" />
     <Compile Include="Merge\TableSelection\Joins\DerivedTableWithAliasInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\IDerviedTableWithAliasInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\IAdditionalTableHintInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\IDerivedTableWithAliasInJoin.cs" />
     <Compile Include="Merge\TableSelection\Joins\ITableHintInJoin.cs" />
     <Compile Include="Merge\TableSelection\Joins\ITableSelectionWithAdditionalTableHintInJoin.cs" />
     <Compile Include="Merge\TableSelection\Joins\ITableSelectionWithAliasInJoin.cs" />
@@ -500,6 +503,7 @@
     <Compile Include="Merge\TableSelection\Joins\Samples\TableSampleWithSystemInJoin.cs" />
     <Compile Include="Merge\TableSelection\Joins\Samples\TableSelectionWithRepeatableInJoin.cs" />
     <Compile Include="Merge\TableSelection\Joins\TableHintInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\TableSelectionFactories.cs" />
     <Compile Include="Merge\TableSelection\Joins\TableSelectionWithAdditionalTableHintInJoin.cs" />
     <Compile Include="Merge\TableSelection\Joins\TableSelectionWithAliasInJoin.cs" />
     <Compile Include="Merge\TableSelection\Joins\TableSelectionWithJoinInJoin.cs" />
@@ -1369,6 +1373,7 @@
     <Compile Include="TableAlias.cs" />
     <Compile Include="DatabaseName.cs" />
     <Compile Include="SchemaName.cs" />
+    <Compile Include="TableSelection\AbstractTableSelectionStatement.cs" />
     <Compile Include="TableSelection\AdditionalCommonTableHint.cs" />
     <Compile Include="TableSelection\CommonDerivedTableWithAlias.cs" />
     <Compile Include="TableSelection\CommonSubqueryWithAlias.cs" />
@@ -1379,6 +1384,7 @@
     <Compile Include="TableSelection\CommonTableSelectionWithTableHint.cs" />
     <Compile Include="TableSelection\CommonTableSelectionWithTableSample.cs" />
     <Compile Include="TableSelection\DerivedTableExpression.cs" />
+    <Compile Include="TableSelection\EndCommonSubquery.cs" />
     <Compile Include="TableSelection\IAdditionalCommonTableHint.cs" />
     <Compile Include="TableSelection\ICommonDerivedTableWithAlias.cs" />
     <Compile Include="TableSelection\ICommonSubqueryWithAlias.cs" />
@@ -1390,6 +1396,9 @@
     <Compile Include="TableSelection\ICommonTableSelectionWithTableSample.cs" />
     <Compile Include="TableSelection\ICommonTableSource.cs" />
     <Compile Include="TableSelection\CommonTableSource.cs" />
+    <Compile Include="TableSelection\IEndJoin.cs" />
+    <Compile Include="TableSelection\Joins\ICommonTableSelectionWithJoinInJoin.cs" />
+    <Compile Include="TableSelection\Joins\ICommonTableSelectionWithTableHintInJoin.cs" />
     <Compile Include="TriggerFunctions.cs" />
     <Compile Include="TriggerName.cs" />
     <Compile Include="TypeExtensions.cs" />

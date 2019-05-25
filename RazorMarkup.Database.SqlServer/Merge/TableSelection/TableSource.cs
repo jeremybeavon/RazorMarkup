@@ -4,12 +4,22 @@ using RazorMarkup.Database.SqlServer.TableSelection;
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     internal class TableSource :
-        CommonTableSource<ITableSelectionWithAlias, ISubqueryWithAlias, IDerivedTableWithAlias, ITableSource>,
+        CommonTableSource<object, ITableSelectionWithAlias, ISubqueryWithAlias, IDerivedTableWithAlias, ITableSource>,
         ITableSource
     {
-        public TableSource(FromClauseBuilder statement)
-            : base(statement, TableSelectionWithAlias.Create, SubqueryWithAlias.Create, DerivedTableWithAlias.Create)
+        public TableSource(FromClauseBuilder statement, object joinClosure)
+            : base(
+                  statement,
+                  joinClosure,
+                  TableSelectionWithAlias.Create,
+                  SubqueryWithAlias.Create,
+                  DerivedTableWithAlias.Create)
         {
+        }
+
+        public static ITableSource Create(FromClauseBuilder statement, object joinClosure)
+        {
+            return new TableSource(statement, joinClosure);
         }
     }
 }

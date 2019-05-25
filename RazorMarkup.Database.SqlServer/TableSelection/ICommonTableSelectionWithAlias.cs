@@ -1,14 +1,14 @@
 ﻿namespace RazorMarkup.Database.SqlServer.TableSelection
 {
     public interface ICommonTableSelectionWithAlias<
-        TTableSourceInJoin,
+        TTableSelectionInJoin,
         TTableSource,
         TPivotClause,
         TUnpivotClause,
         TTableHint,
         TTableSampleWithSystem,
         TTableSelectionWithTableSample> :
-        ICommonTableSelectionWithTableSample<TTableSourceInJoin, TTableSource, TPivotClause, TUnpivotClause, TTableHint, TTableSampleWithSystem>
+        ICommonTableSelectionWithTableSample<TTableSelectionInJoin, TTableSource, TPivotClause, TUnpivotClause, TTableHint, TTableSampleWithSystem>
     {
         TTableSelectionWithTableSample As(TableAlias tableAlias);
     }

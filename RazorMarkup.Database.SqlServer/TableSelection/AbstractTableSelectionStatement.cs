@@ -1,11 +1,11 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 
-namespace RazorMarkup.Database.SqlServer.TableSelection.Joins
+namespace RazorMarkup.Database.SqlServer.TableSelection
 {
-    internal abstract class AbstractJoinStatement<TJoinEndType> :
+    internal abstract class AbstractTableSelectionStatement<TJoinEndType> :
         AbstractStatement<FromClauseBuilder>
     {
-        public AbstractJoinStatement(FromClauseBuilder statement, TJoinEndType joinClosure)
+        public AbstractTableSelectionStatement(FromClauseBuilder statement, TJoinEndType joinClosure)
             : base(statement)
         {
             JoinClosure = joinClosure;

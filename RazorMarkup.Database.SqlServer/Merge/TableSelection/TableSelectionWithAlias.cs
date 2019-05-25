@@ -1,25 +1,30 @@
-﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Merge.TableSelection.Samples;
+using RazorMarkup.Database.SqlServer.Query.Builders;
+using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
-    internal class TableSelectionWithAlias : TableSelectionWithTableSample,
+    internal class TableSelectionWithAlias :
+        CommonTableSelectionWithAlias<
+            object,
+            ITableSelectionWithJoin,
+            ITableSource,
+            IPivotClause,
+            IUnpivotClause,
+            ITableHint,
+            ITableSampleWithSystem,
+            ITableSelectionWithTableSample,
+            ITableSelectionWithAlias>,
         ITableSelectionWithAlias
     {
-        public TableSelectionWithAlias(FromClauseBuilder statement)
-            : base(statement)
+        public TableSelectionWithAlias(FromClauseBuilder statement, object joinClosure)
+            : base(statement, joinClosure, null, null, null, null, null, null, null)
         {
         }
 
-        public new static ITableSelectionWithAlias Create(FromClauseBuilder statement)
+        public static ITableSelectionWithAlias Create(FromClauseBuilder statement, object joinClosure)
         {
-            return new TableSelectionWithAlias(statement);
-        }
-
-        public ITableSelectionWithTableSample As(TableAlias tableAlias)
-        {
-            Statement.CurrentTable.TableAlias = tableAlias.ToSqlString();
-            Statement.Append((ITableSelectionWithAlias input) => input.As(null), tableAlias);
-            return this;
+            return new TableSelectionWithAlias(statement, joinClosure);
         }
     }
 }

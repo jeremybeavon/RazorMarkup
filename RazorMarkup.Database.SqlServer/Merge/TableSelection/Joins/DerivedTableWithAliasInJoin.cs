@@ -5,7 +5,7 @@ using RazorMarkup.Database.SqlServer.Query.Builders;
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
     internal class DerivedTableWithAliasInJoin<TJoinEndType> : AbstractQueryStatement<FromClauseBuilder, TJoinEndType>,
-        IDerviedTableWithAliasInJoin<TJoinEndType>
+        IDerivedTableWithAliasInJoin<TJoinEndType>
     {
         private readonly DerivedTableBuilder derivedTableBuilder;
 
@@ -24,7 +24,7 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
             }
 
             Statement.Append(
-                (IDerviedTableWithAliasInJoin<TJoinEndType> input) => input.As(null, null),
+                (IDerivedTableWithAliasInJoin<TJoinEndType> input) => input.As(null, null),
                 (new ISqlString[] { tableAlias }).Concat(columnAlias).ToArray());
             return new TableSelectionWithJoinInJoin<TJoinEndType>(Statement, EndClosure);
         }

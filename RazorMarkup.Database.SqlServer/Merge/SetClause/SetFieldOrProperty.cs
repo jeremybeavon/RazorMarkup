@@ -1,6 +1,4 @@
 ﻿using RazorMarkup.Database.SqlServer.SetClause;
-using System;
-using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Merge.SetClause
 {
