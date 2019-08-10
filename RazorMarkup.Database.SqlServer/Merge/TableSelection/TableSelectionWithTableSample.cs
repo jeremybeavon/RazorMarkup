@@ -6,7 +6,6 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     internal class TableSelectionWithTableSample :
         CommonTableSelectionWithTableSample<
-            object,
             ITableSelectionWithJoin,
             ITableSource,
             IPivotClause,
@@ -16,8 +15,8 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
             ITableSelectionWithTableSample>,
         ITableSelectionWithTableSample
     {
-        public TableSelectionWithTableSample(FromClauseBuilder statement, object joinClosure)
-            : base(statement, joinClosure, null, null, null, null, null, null)
+        public TableSelectionWithTableSample(FromClauseBuilder statement)
+            : base(statement, null, null, null, null, null, null)
         {
         }
     }

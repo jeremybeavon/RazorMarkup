@@ -5,7 +5,6 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     internal class AdditionalTableHint :
         AdditionalCommonTableHint<
-            object,
             ITableSelectionWithAlias,
             ISubqueryWithAlias,
             IDerivedTableWithAlias,
@@ -13,10 +12,9 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
             IAdditionalTableHint>,
         IAdditionalTableHint
     {
-        public AdditionalTableHint(FromClauseBuilder statement, object joinClosure)
+        public AdditionalTableHint(FromClauseBuilder statement)
             : base(
                   statement,
-                  joinClosure,
                   TableSelectionWithAlias.Create,
                   SubqueryWithAlias.Create,
                   DerivedTableWithAlias.Create,
@@ -24,9 +22,9 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         {
         }
 
-        public static IAdditionalTableHint Create(FromClauseBuilder statement, object joinClosure)
+        public static IAdditionalTableHint Create(FromClauseBuilder statement)
         {
-            return new AdditionalTableHint(statement, joinClosure);
+            return new AdditionalTableHint(statement);
         }
     }
 }

@@ -5,7 +5,6 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     internal class TableSelectionWithTableHint :
         CommonTableSelectionWithTableHint<
-            object,
             ITableSelectionWithJoin,
             ITableSource,
             IPivotClause,
@@ -14,14 +13,14 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
             ITableSelectionWithTableHint>,
         ITableSelectionWithTableHint
     {
-        public TableSelectionWithTableHint(FromClauseBuilder statement, object joinClosure)
-            : base(statement, joinClosure, null, null, null, null, null)
+        public TableSelectionWithTableHint(FromClauseBuilder statement)
+            : base(statement, null, null, null, null, null)
         {
         }
 
-        public static ITableSelectionWithTableHint Create(FromClauseBuilder statement, object joinClosure)
+        public static ITableSelectionWithTableHint Create(FromClauseBuilder statement)
         {
-            return new TableSelectionWithTableHint(statement, joinClosure);
+            return new TableSelectionWithTableHint(statement);
         }
     }
 }

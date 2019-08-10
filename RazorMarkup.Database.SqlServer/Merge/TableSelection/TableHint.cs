@@ -3,16 +3,16 @@ using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
-    internal class TableHint : CommonTableHint<object, ITableSelectionWithAdditionalTableHint>, ITableHint
+    internal class TableHint : CommonTableHint<ITableSelectionWithAdditionalTableHint>, ITableHint
     {
-        public TableHint(FromClauseBuilder statement, object joinClosure)
-            : base(statement, joinClosure, TableSelectionWithAdditionalTableHint.Create)
+        public TableHint(FromClauseBuilder statement)
+            : base(statement, TableSelectionWithAdditionalTableHint.Create)
         {
         }
 
-        public static ITableHint Create(FromClauseBuilder statement, object joinClosure)
+        public static ITableHint Create(FromClauseBuilder statement)
         {
-            return new TableHint(statement, joinClosure);
+            return new TableHint(statement);
         }
     }
 }

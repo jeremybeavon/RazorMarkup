@@ -2,193 +2,169 @@
 using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
+using RazorMarkup.Database.SqlServer.TableSelection;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
     internal class TableSelectionWithJoin<TEndType> : EndFromClause<TEndType>, ITableSelectionWithJoin<TEndType>
     {
+        private readonly InternalTableSelectionWithJoin commonTableSelection;
+
         public TableSelectionWithJoin(FromClauseBuilder statement, TEndType endClosure)
             : base(statement, endClosure)
         {
+            commonTableSelection = new InternalTableSelectionWithJoin(statement, endClosure);
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.InnerJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.InnerJoin();
+            //return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerLoopJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER LOOP"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.InnerLoopJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.InnerLoopJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerHashJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER HASH"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.InnerHashJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.InnerHashJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerMergeJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER MERGE"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.InnerMergeJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.InnerMergeJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerRemoteJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER REMOTE"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.InnerRemoteJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.InnerRemoteJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.LeftJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.LeftJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftLoopJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT LOOP"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.LeftLoopJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.LeftLoopJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftHashJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT HASH"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.LeftHashJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.LeftHashJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftMergeJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT MERGE"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.LeftMergeJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.InnerMergeJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftRemoteJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT REMOTE"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.LeftRemoteJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.InnerRemoteJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.RightJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.RightJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightLoopJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT LOOP"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.RightLoopJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.RightLoopJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightHashJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT HASH"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.RightHashJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.RightHashJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightMergeJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT MERGE"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.RightMergeJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.RightMergeJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightRemoteJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT REMOTE"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.RightRemoteJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.RightRemoteJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.FullJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.FullJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullLoopJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL LOOP"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.FullLoopJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.FullLoopJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullHashJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL HASH"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.FullHashJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.FullHashJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullMergeJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL MERGE"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.FullMergeJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.FullMergeJoin();
         }
 
         public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullRemoteJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL REMOTE"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.FullRemoteJoin());
-            return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
+            return commonTableSelection.FullRemoteJoin();
         }
 
         public ITableSource<TEndType> CrossJoin()
         {
-            Statement.Statements.Add(new RawTableReferenceBuilder(ExpressionBuilder, " CROSS JOIN"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.CrossJoin());
-            return new TableSource<TEndType>(Statement, EndClosure);
+            return commonTableSelection.CrossJoin();
         }
 
         public ITableSource<TEndType> CrossApplyJoin()
         {
-            Statement.Statements.Add(new RawTableReferenceBuilder(ExpressionBuilder, " CROSS APPLY"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.CrossApplyJoin());
-            return new TableSource<TEndType>(Statement, EndClosure);
+            return commonTableSelection.CrossApplyJoin();
         }
 
         public ITableSource<TEndType> OuterApplyJoin()
         {
-            Statement.Statements.Add(new RawTableReferenceBuilder(ExpressionBuilder, " OUTER APPLY"));
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.OuterApplyJoin());
-            return new TableSource<TEndType>(Statement, EndClosure);
+            return commonTableSelection.OuterApplyJoin();
         }
 
         public IPivotClause<TEndType> Pivot(AggregateName aggregateName, params Expression<Func<Text>>[] aggregateValues)
         {
-            throw new NotImplementedException();
+            return commonTableSelection.Pivot(aggregateName, aggregateValues);
         }
 
         public IUnpivotClause<TEndType> Unpivot(ColumnName columnName)
         {
-            throw new NotImplementedException();
+            return commonTableSelection.Unpivot(columnName);
         }
 
         public ITableSource<TEndType> And()
         {
-            Statement.CurrentTable.IncludeComma = true;
-            Statement.Append((ITableSelectionWithJoin<TEndType> input) => input.And());
-            return new TableSource<TEndType>(Statement, EndClosure);
+            return commonTableSelection.And();
+        }
+
+        private sealed class InternalTableSelectionWithJoin :
+            CommonTableSelectionWithJoin<
+                ITableSourceInJoin<ITableSelectionWithJoin<TEndType>>,
+                ITableSource<TEndType>,
+                IPivotClause<TEndType>,
+                IUnpivotClause<TEndType>,
+                ITableSelectionWithJoin<TEndType>>
+        {
+            public InternalTableSelectionWithJoin(FromClauseBuilder statement, TEndType endClosure)
+                : base(
+                      statement,
+                      null,
+                      new TableSelectionFactory<TEndType>(endClosure).CreateTableSource,
+                      null,
+                      null)
+            {
+            }
         }
     }
 }

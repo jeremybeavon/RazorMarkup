@@ -4,30 +4,27 @@ using System;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection
 {
-    internal sealed class EndCommonSubquery<TJoinEndType, TSubqueryWithAlias> :
+    internal sealed class EndCommonSubquery<TSubqueryWithAlias> :
         AbstractStatement<SubqueryBuilder>,
         IEndSubquery<TSubqueryWithAlias>
     {
         private readonly FromClauseBuilder fromClause;
-        private readonly TJoinEndType joinClosure;
-        private readonly Func<FromClauseBuilder, TJoinEndType, TSubqueryWithAlias> subqueryWithAliasBuilder;
+        private readonly Func<FromClauseBuilder, TSubqueryWithAlias> subqueryWithAliasBuilder;
 
         public EndCommonSubquery(
             SubqueryBuilder statement,
             FromClauseBuilder fromClause,
-            TJoinEndType joinClosure,
-            Func<FromClauseBuilder, TJoinEndType, TSubqueryWithAlias> subqueryWithAliasBuilder)
+            Func<FromClauseBuilder, TSubqueryWithAlias> subqueryWithAliasBuilder)
             : base(statement)
         {
             this.fromClause = fromClause;
-            this.joinClosure = joinClosure;
             this.subqueryWithAliasBuilder = subqueryWithAliasBuilder;
         }
 
         public TSubqueryWithAlias Subquery()
         {
             Statement.Append((IEndSubquery<TSubqueryWithAlias> input) => input.Subquery());
-            return subqueryWithAliasBuilder(fromClause, joinClosure);
+            return subqueryWithAliasBuilder(fromClause);
         }
     }
 }

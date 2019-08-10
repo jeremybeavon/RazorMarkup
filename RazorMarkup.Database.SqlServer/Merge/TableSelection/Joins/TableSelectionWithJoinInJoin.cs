@@ -1,11 +1,13 @@
-﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using System;
+using System.Linq.Expressions;
+using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.TableSelection;
+using RazorMarkup.Database.SqlServer.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
     internal class TableSelectionWithJoinInJoin<TJoinEndType> :
         CommonTableSelectionWithJoin<
-            TJoinEndType,
             ITableSelectionWithJoinInJoin<TJoinEndType>,
             ITableSourceInJoin<TJoinEndType>,
             object,
@@ -16,17 +18,16 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
         public TableSelectionWithJoinInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
             : base(
                   statement,
-                  joinClosure,
                   null,
-                  TableSelectionFactories.CreateTableSource<TJoinEndType>,
+                  new TableSelectionFactory<TJoinEndType>(joinClosure).CreateTableSource,
                   null,
                   null)
         {
         }
 
-        private ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> TableSource
+        public TJoinEndType On(Expression<Func<bool>> searchCondition)
         {
-            get { return new TableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>(Statement, this); }
+            throw new NotImplementedException();
         }
     }
 }

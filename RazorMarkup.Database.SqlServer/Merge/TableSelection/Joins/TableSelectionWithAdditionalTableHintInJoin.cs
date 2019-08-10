@@ -1,4 +1,5 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
@@ -11,10 +12,9 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
         {
         }
 
-        public ITableHintInJoin<TJoinEndType> And()
+        IAdditionalTableHint ICommonTableSelectionWithAdditionalTableHint<ITableSelectionWithJoinInJoin<TJoinEndType>, ITableSourceInJoin<TJoinEndType>, object, object, IAdditionalTableHint>.And()
         {
-            Statement.Append((ITableSelectionWithAdditionalTableHintInJoin<TJoinEndType> input) => input.And());
-            return new TableHintInJoin<TJoinEndType>(Statement, JoinClosure);
+            throw new global::System.NotImplementedException();
         }
     }
 }

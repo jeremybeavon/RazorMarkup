@@ -6,7 +6,6 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
     internal class TableSelectionWithTableSampleInJoin<TJoinEndType> :
         CommonTableSelectionWithTableSample<
-            TJoinEndType,
             ITableSelectionWithJoinInJoin<TJoinEndType>,
             ITableSourceInJoin<TJoinEndType>,
             object,
@@ -17,7 +16,7 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
         ITableSelectionWithTableSampleInJoin<TJoinEndType>
     {
         public TableSelectionWithTableSampleInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
-            : base(statement, joinClosure, null, null, null, null, null, null)
+            : base(statement, null, null, null, null, null, null)
         {
         }
     }

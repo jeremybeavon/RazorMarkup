@@ -2,13 +2,13 @@
 {
     public interface ICommonTableSelectionWithTableHintInJoin<
         TJoinEndType,
-        TTableSelectionInJoin,
+        TTableSourceInJoin,
         TTableSource,
         TPivotClause,
         TUnpivotClause,
         TTableHint> : 
         ICommonTableSelectionWithTableHint<
-            TTableSelectionInJoin,
+            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,

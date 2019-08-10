@@ -1,7 +1,8 @@
-﻿namespace RazorMarkup.Database.SqlServer.Query.TableSelection
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
-    public interface IPivotClauseAlias<TEndType> : IHideObjectMethods
+    public interface IPivotClauseAlias<TEndType> : ICommonPivotClauseAlias<ITableSelectionWithJoin<TEndType>>
     {
-        ITableSelectionWithJoin<TEndType> As(TableAlias tableAlias);
     }
 }

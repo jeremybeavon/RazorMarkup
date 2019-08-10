@@ -5,7 +5,6 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
     internal class TableSelectionWithTableHintInJoin<TJoinEndType> : 
         CommonTableSelectionWithTableHint<
-            TJoinEndType,
             ITableSelectionWithJoinInJoin<TJoinEndType>,
             ITableSourceInJoin<TJoinEndType>,
             object,
@@ -15,7 +14,7 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
         ITableSelectionWithTableHintInJoin<TJoinEndType>
     {
         public TableSelectionWithTableHintInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
-            : base(statement, joinClosure, null, null, null, null, null)
+            : base(statement, null, null, null, null, null)
         {
         }
     }

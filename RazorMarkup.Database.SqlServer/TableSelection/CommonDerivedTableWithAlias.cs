@@ -4,19 +4,18 @@ using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection
 {
-    internal abstract class CommonDerivedTableWithAlias<TJoinEndType, TTableSelectionWithJoin> :
-        AbstractTableSelectionStatement<TJoinEndType>,
+    internal abstract class CommonDerivedTableWithAlias<TTableSelectionWithJoin> :
+        AbstractStatement<FromClauseBuilder>,
         ICommonDerivedTableWithAlias<TTableSelectionWithJoin>
     {
         private readonly DerivedTableBuilder derivedTableBuilder;
-        private readonly Func<FromClauseBuilder, TJoinEndType, TTableSelectionWithJoin> tableSelectionWithJoinBuilder;
+        private readonly Func<FromClauseBuilder, TTableSelectionWithJoin> tableSelectionWithJoinBuilder;
 
         protected CommonDerivedTableWithAlias(
             FromClauseBuilder statement,
-            TJoinEndType joinClosure,
             DerivedTableBuilder derivedTableBuilder,
-            Func<FromClauseBuilder, TJoinEndType, TTableSelectionWithJoin> tableSelectionWithJoinBuilder)
-            : base(statement, joinClosure)
+            Func<FromClauseBuilder, TTableSelectionWithJoin> tableSelectionWithJoinBuilder)
+            : base(statement)
         {
             this.derivedTableBuilder = derivedTableBuilder;
             this.tableSelectionWithJoinBuilder = tableSelectionWithJoinBuilder;
@@ -33,7 +32,7 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
             Statement.Append(
                 (ICommonDerivedTableWithAlias<TTableSelectionWithJoin> input) => input.As(null, null),
                 (new ISqlString[] { tableAlias }).Concat(columnAlias).ToArray());
-            return tableSelectionWithJoinBuilder(Statement, JoinClosure);
+            return tableSelectionWithJoinBuilder(Statement);
         }
     }
 }

@@ -1,9 +1,17 @@
-﻿using RazorMarkup.Database.SqlServer.Query.TableSelection.Samples;
+﻿using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
+using RazorMarkup.Database.SqlServer.Query.TableSelection.Samples;
+using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
-    public interface ITableSelectionWithTableSample<TEndType> : ITableSelectionWithTableHint<TEndType>
+    public interface ITableSelectionWithTableSample<TEndType> :
+        ICommonTableSelectionWithTableSample<
+            ITableSourceInJoin<ITableSelectionWithJoin<TEndType>>,
+            ITableSource<TEndType>,
+            IPivotClause<TEndType>,
+            IUnpivotClause<TEndType>,
+            ITableHint<TEndType>,
+            ITableSampleWithSystem<TEndType>>
     {
-        ITableSampleWithSystem<TEndType> TableSample();
     }
 }

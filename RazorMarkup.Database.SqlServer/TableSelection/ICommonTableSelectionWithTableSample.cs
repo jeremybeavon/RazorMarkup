@@ -1,13 +1,13 @@
 ﻿namespace RazorMarkup.Database.SqlServer.TableSelection
 {
     public interface ICommonTableSelectionWithTableSample<
-        TTableSelectionInJoin,
+        TTableSourceInJoin,
         TTableSource,
         TPivotClause,
         TUnpivotClause,
         TTableHint,
         TTableSampleWithSystem> :
-        ICommonTableSelectionWithTableHint<TTableSelectionInJoin, TTableSource, TPivotClause, TUnpivotClause, TTableHint>
+        ICommonTableSelectionWithTableHint<TTableSourceInJoin, TTableSource, TPivotClause, TUnpivotClause, TTableHint>
     {
         TTableSampleWithSystem TableSample();
     }

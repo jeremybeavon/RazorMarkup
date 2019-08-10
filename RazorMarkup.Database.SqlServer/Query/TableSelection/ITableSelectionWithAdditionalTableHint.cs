@@ -1,7 +1,15 @@
-﻿namespace RazorMarkup.Database.SqlServer.Query.TableSelection
+﻿using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
+using RazorMarkup.Database.SqlServer.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
-    public interface ITableSelectionWithAdditionalTableHint<TEndType> : ITableSelectionWithJoin<TEndType>
+    public interface ITableSelectionWithAdditionalTableHint<TEndType> :
+        ICommonTableSelectionWithAdditionalTableHint<
+            ITableSourceInJoin<ITableSelectionWithJoin<TEndType>>,
+            ITableSource<TEndType>,
+            IPivotClause<TEndType>,
+            IUnpivotClause<TEndType>,
+            IAdditionalTableHint<TEndType>>
     {
-        new ITableHint<TEndType> And();
     }
 }

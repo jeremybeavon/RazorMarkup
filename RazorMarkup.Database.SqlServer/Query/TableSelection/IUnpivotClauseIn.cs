@@ -1,7 +1,8 @@
-﻿namespace RazorMarkup.Database.SqlServer.Query.TableSelection
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
-    public interface IUnpivotClauseIn<TEndType> : IHideObjectMethods
+    public interface IUnpivotClauseIn<TEndType> : ICommonUnpivotClauseIn<IUnpivotClauseAlias<TEndType>>
     {
-        IUnpivotClauseAlias<TEndType> In(params ColumnName[] columnNames);
     }
 }

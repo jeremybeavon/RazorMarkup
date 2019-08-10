@@ -6,7 +6,6 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     internal class TableSelectionWithJoin :
         CommonTableSelectionWithJoin<
-            object,
             ITableSourceInJoin<ITableSelectionWithJoin>,
             ITableSource,
             IPivotClause,
@@ -14,14 +13,14 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
             ITableSelectionWithJoin>,
         ITableSelectionWithJoin
     {
-        public TableSelectionWithJoin(FromClauseBuilder statement, object joinClosure)
-            : base(statement, joinClosure, null, null, null, null)
+        public TableSelectionWithJoin(FromClauseBuilder statement)
+            : base(statement, null, null, null, null)
         {
         }
 
-        public static ITableSelectionWithJoin Create(FromClauseBuilder statement, object joinClosure)
+        public static ITableSelectionWithJoin Create(FromClauseBuilder statement)
         {
-            return new TableSelectionWithJoin(statement, joinClosure);
+            return new TableSelectionWithJoin(statement);
         }
     }
 }

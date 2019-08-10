@@ -1,12 +1,12 @@
 ﻿namespace RazorMarkup.Database.SqlServer.TableSelection
 {
     public interface ICommonTableSelectionWithAdditionalTableHint<
-        TTableSelectionInJoin,
+        TTableSourceInJoin,
         TTableSource,
         TPivotClause,
         TUnpivotClause,
         TAdditionalTableHint> :
-        ICommonTableSelectionWithJoin<TTableSelectionInJoin, TTableSource, TPivotClause, TUnpivotClause>
+        ICommonTableSelectionWithJoin<TTableSourceInJoin, TTableSource, TPivotClause, TUnpivotClause>
     {
         new TAdditionalTableHint And();
     }

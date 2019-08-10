@@ -4,48 +4,48 @@ using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection
 {
-    public interface ICommonTableSelectionWithJoin<TTableSelectionInJoin, TTableSource, TPivotClause, TUnpivotClause> :
+    public interface ICommonTableSelectionWithJoin<TTableSourceInJoin, TTableSource, TPivotClause, TUnpivotClause> :
         IHideObjectMethods
     {
-        TTableSelectionInJoin InnerJoin();
+        TTableSourceInJoin InnerJoin();
 
-        TTableSelectionInJoin InnerLoopJoin();
+        TTableSourceInJoin InnerLoopJoin();
 
-        TTableSelectionInJoin InnerHashJoin();
+        TTableSourceInJoin InnerHashJoin();
 
-        TTableSelectionInJoin InnerMergeJoin();
+        TTableSourceInJoin InnerMergeJoin();
 
-        TTableSelectionInJoin InnerRemoteJoin();
+        TTableSourceInJoin InnerRemoteJoin();
 
-        TTableSelectionInJoin LeftJoin();
+        TTableSourceInJoin LeftJoin();
 
-        TTableSelectionInJoin LeftLoopJoin();
+        TTableSourceInJoin LeftLoopJoin();
 
-        TTableSelectionInJoin LeftHashJoin();
+        TTableSourceInJoin LeftHashJoin();
 
-        TTableSelectionInJoin LeftMergeJoin();
+        TTableSourceInJoin LeftMergeJoin();
 
-        TTableSelectionInJoin LeftRemoteJoin();
+        TTableSourceInJoin LeftRemoteJoin();
 
-        TTableSelectionInJoin RightJoin();
+        TTableSourceInJoin RightJoin();
 
-        TTableSelectionInJoin RightLoopJoin();
+        TTableSourceInJoin RightLoopJoin();
 
-        TTableSelectionInJoin RightHashJoin();
+        TTableSourceInJoin RightHashJoin();
 
-        TTableSelectionInJoin RightMergeJoin();
+        TTableSourceInJoin RightMergeJoin();
 
-        TTableSelectionInJoin RightRemoteJoin();
+        TTableSourceInJoin RightRemoteJoin();
 
-        TTableSelectionInJoin FullJoin();
+        TTableSourceInJoin FullJoin();
 
-        TTableSelectionInJoin FullLoopJoin();
+        TTableSourceInJoin FullLoopJoin();
 
-        TTableSelectionInJoin FullHashJoin();
+        TTableSourceInJoin FullHashJoin();
 
-        TTableSelectionInJoin FullMergeJoin();
+        TTableSourceInJoin FullMergeJoin();
 
-        TTableSelectionInJoin FullRemoteJoin();
+        TTableSourceInJoin FullRemoteJoin();
 
         TTableSource CrossJoin();
 

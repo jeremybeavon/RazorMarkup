@@ -5,7 +5,6 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
     internal class TableSourceInJoin<TJoinEndType> :
         CommonTableSource<
-            TJoinEndType,
             ITableSelectionWithAliasInJoin<TJoinEndType>,
             object,
             IDerivedTableWithAliasInJoin<TJoinEndType>,
@@ -15,10 +14,9 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
         public TableSourceInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
             : base(
                   statement,
-                  joinClosure,
-                  TableSelectionFactories.CreateTableSelectionWithAlias<TJoinEndType>,
+                  new TableSelectionFactory<TJoinEndType>(joinClosure).CreateTableSelectionWithAlias,
                   null,
-                  TableSelectionFactories.CreateDerivedTableWithAlias<TJoinEndType>)
+                  new TableSelectionFactory<TJoinEndType>(joinClosure).CreateDerivedTableWithAlias)
         {
         }
     }

@@ -4,8 +4,7 @@ using System;
 namespace RazorMarkup.Database.SqlServer.TableSelection
 {
     internal abstract class CommonTableSelectionWithTableSample<
-        TJoinEndType,
-        TTableSelectionInJoin,
+        TTableSourceInJoin,
         TTableSource,
         TPivotClause,
         TUnpivotClause,
@@ -13,42 +12,39 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
         TTableSampleWithSystem,
         TCommonTableSelectionWithTableSample> :
         CommonTableSelectionWithTableHint<
-            TJoinEndType,
-            TTableSelectionInJoin,
+            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,
             TTableHint,
             TCommonTableSelectionWithTableSample>,
         ICommonTableSelectionWithTableSample<
-            TTableSelectionInJoin,
+            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,
             TTableHint,
             TTableSampleWithSystem>
         where TCommonTableSelectionWithTableSample : ICommonTableSelectionWithTableSample<
-            TTableSelectionInJoin,
+            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,
             TTableHint,
             TTableSampleWithSystem>
     {
-        private readonly Func<FromClauseBuilder, TJoinEndType, TTableSampleWithSystem> tableSampleWithSystemBuilder;
+        private readonly Func<FromClauseBuilder, TTableSampleWithSystem> tableSampleWithSystemBuilder;
 
         protected CommonTableSelectionWithTableSample(
             FromClauseBuilder statement,
-            TJoinEndType endClosure,
-            Func<FromClauseBuilder, TJoinEndType, TTableSelectionInJoin> tableSourceInJoinBuilder,
-            Func<FromClauseBuilder, TJoinEndType, TTableSource> tableSourceBuilder,
-            Func<FromClauseBuilder, TJoinEndType, TPivotClause> pivotClauseBuilder,
-            Func<FromClauseBuilder, TJoinEndType, TUnpivotClause> unpivotClauseBuilder,
-            Func<FromClauseBuilder, TJoinEndType, TTableHint> tableHintBuilder,
-            Func<FromClauseBuilder, TJoinEndType, TTableSampleWithSystem> tableSampleWithSystemBuilder)
+            Func<FromClauseBuilder, TTableSourceInJoin> tableSourceInJoinBuilder,
+            Func<FromClauseBuilder, TTableSource> tableSourceBuilder,
+            Func<FromClauseBuilder, TPivotClause> pivotClauseBuilder,
+            Func<FromClauseBuilder, TUnpivotClause> unpivotClauseBuilder,
+            Func<FromClauseBuilder, TTableHint> tableHintBuilder,
+            Func<FromClauseBuilder, TTableSampleWithSystem> tableSampleWithSystemBuilder)
             : base(
                   statement,
-                  endClosure,
                   tableSourceInJoinBuilder,
                   tableSourceBuilder,
                   pivotClauseBuilder,
@@ -61,7 +57,7 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
         public TTableSampleWithSystem TableSample()
         {
             Statement.Append((TCommonTableSelectionWithTableSample input) => input.TableSample());
-            return tableSampleWithSystemBuilder(Statement, JoinClosure);
+            return tableSampleWithSystemBuilder(Statement);
         }
     }
 }

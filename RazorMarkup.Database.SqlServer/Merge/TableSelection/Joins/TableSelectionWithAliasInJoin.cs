@@ -10,11 +10,17 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
         {
         }
 
+        public ITableSelectionWithTableSampleInJoin<TJoinEndType> As(TableAlias tableAlias)
+        {
+            throw new global::System.NotImplementedException();
+        }
+
         public ITableSelectionWithTableSampleInJoin<TJoinEndType> WithAlias(TableAlias tableAlias)
         {
-            Statement.CurrentTable.TableAlias = tableAlias.ToSqlString();
-            Statement.Append((ITableSelectionWithAliasInJoin<TJoinEndType> input) => input.WithAlias(null), tableAlias);
-            return this;
+            throw new global::System.NotImplementedException();
+            //Statement.CurrentTable.TableAlias = tableAlias.ToSqlString();
+            //Statement.Append((ITableSelectionWithAliasInJoin<TJoinEndType> input) => input.WithAlias(null), tableAlias);
+            //return this;
         }
     }
 }
