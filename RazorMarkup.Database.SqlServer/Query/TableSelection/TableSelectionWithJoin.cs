@@ -1,170 +1,91 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using RazorMarkup.Database.SqlServer.Query.For;
+using RazorMarkup.Database.SqlServer.Query.GroupBy;
+using RazorMarkup.Database.SqlServer.Query.OrderBy;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.TableSelection;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using System;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
-    internal class TableSelectionWithJoin<TEndType> : EndFromClause<TEndType>, ITableSelectionWithJoin<TEndType>
+    internal class TableSelectionWithJoin<TEndType> :
+        CommonTableSelectionWithJoin<
+            ITableSourceInJoin<ITableSelectionWithJoin<TEndType>>,
+            ITableSource<TEndType>,
+            IPivotClause<TEndType>,
+            IUnpivotClause<TEndType>,
+            ITableSelectionWithJoin<TEndType>>,
+        ITableSelectionWithJoin<TEndType>
     {
-        private readonly InternalTableSelectionWithJoin commonTableSelection;
-
+        private readonly EndFromClause<TEndType> endFromClause;
+        
         public TableSelectionWithJoin(FromClauseBuilder statement, TEndType endClosure)
-            : base(statement, endClosure)
+            : this(statement, new TableSelectionFactory<TEndType>(endClosure))
         {
-            commonTableSelection = new InternalTableSelectionWithJoin(statement, endClosure);
+            endFromClause = new EndFromClause<TEndType>(statement, endClosure);
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerJoin()
+        private TableSelectionWithJoin(
+            FromClauseBuilder statement,
+            TableSelectionFactory<TEndType> factory)
+            : base(
+                statement,
+                factory.CreateTableSourceInJoin,
+                factory.CreateTableSource,
+                factory.CreatePivotClause,
+                factory.CreateUnpivotClause)
         {
-            return commonTableSelection.InnerJoin();
-            //return new TableSourceInJoin<ITableSelectionWithJoin<TEndType>>(Statement, this);
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerLoopJoin()
+        public TEndType End()
         {
-            return commonTableSelection.InnerLoopJoin();
+            return endFromClause.End();
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerHashJoin()
+        public IQueryOperand<TEndType> Except()
         {
-            return commonTableSelection.InnerHashJoin();
+            return endFromClause.Except();
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerMergeJoin()
+        public IForBrowseOrXml<TEndType> For()
         {
-            return commonTableSelection.InnerMergeJoin();
+            return endFromClause.For();
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> InnerRemoteJoin()
+        public IGroupByAnd<TEndType> GroupBy(Expression<Func<object>> groupingExpression)
         {
-            return commonTableSelection.InnerRemoteJoin();
+            return endFromClause.GroupBy(groupingExpression);
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftJoin()
+        public IGroupByFunction<TEndType> GroupBy()
         {
-            return commonTableSelection.LeftJoin();
+            return endFromClause.GroupBy();
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftLoopJoin()
+        public IQueryOperand<TEndType> Intersect()
         {
-            return commonTableSelection.LeftLoopJoin();
+            return endFromClause.Intersect();
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftHashJoin()
+        public IOrderByCollate<TEndType> OrderBy(Expression<Func<object>> expression)
         {
-            return commonTableSelection.LeftHashJoin();
+            return endFromClause.OrderBy(expression);
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftMergeJoin()
+        public IQueryOperand<TEndType> Union()
         {
-            return commonTableSelection.InnerMergeJoin();
+            return endFromClause.Union();
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> LeftRemoteJoin()
+        public IQueryOperand<TEndType> UnionAll()
         {
-            return commonTableSelection.InnerRemoteJoin();
+            return endFromClause.UnionAll();
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightJoin()
+        public IEndWhereClause<TEndType> Where(Expression<Func<bool>> searchCondition)
         {
-            return commonTableSelection.RightJoin();
-        }
-
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightLoopJoin()
-        {
-            return commonTableSelection.RightLoopJoin();
-        }
-
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightHashJoin()
-        {
-            return commonTableSelection.RightHashJoin();
-        }
-
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightMergeJoin()
-        {
-            return commonTableSelection.RightMergeJoin();
-        }
-
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> RightRemoteJoin()
-        {
-            return commonTableSelection.RightRemoteJoin();
-        }
-
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullJoin()
-        {
-            return commonTableSelection.FullJoin();
-        }
-
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullLoopJoin()
-        {
-            return commonTableSelection.FullLoopJoin();
-        }
-
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullHashJoin()
-        {
-            return commonTableSelection.FullHashJoin();
-        }
-
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullMergeJoin()
-        {
-            return commonTableSelection.FullMergeJoin();
-        }
-
-        public ITableSourceInJoin<ITableSelectionWithJoin<TEndType>> FullRemoteJoin()
-        {
-            return commonTableSelection.FullRemoteJoin();
-        }
-
-        public ITableSource<TEndType> CrossJoin()
-        {
-            return commonTableSelection.CrossJoin();
-        }
-
-        public ITableSource<TEndType> CrossApplyJoin()
-        {
-            return commonTableSelection.CrossApplyJoin();
-        }
-
-        public ITableSource<TEndType> OuterApplyJoin()
-        {
-            return commonTableSelection.OuterApplyJoin();
-        }
-
-        public IPivotClause<TEndType> Pivot(AggregateName aggregateName, params Expression<Func<Text>>[] aggregateValues)
-        {
-            return commonTableSelection.Pivot(aggregateName, aggregateValues);
-        }
-
-        public IUnpivotClause<TEndType> Unpivot(ColumnName columnName)
-        {
-            return commonTableSelection.Unpivot(columnName);
-        }
-
-        public ITableSource<TEndType> And()
-        {
-            return commonTableSelection.And();
-        }
-
-        private sealed class InternalTableSelectionWithJoin :
-            CommonTableSelectionWithJoin<
-                ITableSourceInJoin<ITableSelectionWithJoin<TEndType>>,
-                ITableSource<TEndType>,
-                IPivotClause<TEndType>,
-                IUnpivotClause<TEndType>,
-                ITableSelectionWithJoin<TEndType>>
-        {
-            public InternalTableSelectionWithJoin(FromClauseBuilder statement, TEndType endClosure)
-                : base(
-                      statement,
-                      null,
-                      new TableSelectionFactory<TEndType>(endClosure).CreateTableSource,
-                      null,
-                      null)
-            {
-            }
+            return endFromClause.Where(searchCondition);
         }
     }
 }

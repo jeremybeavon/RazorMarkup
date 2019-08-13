@@ -1,10 +1,6 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
-
-namespace RazorMarkup.Database.SqlServer.TableSelection.Joins
+﻿namespace RazorMarkup.Database.SqlServer.TableSelection.Joins
 {
-    public interface ITableSelectionWithRepeatableInJoin<
+    public interface ICommonTableSelectionWithRepeatableInJoin<
         TJoinEndType,
         TTableSourceInJoin,
         TTableSource,

@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
-namespace RazorMarkup.Database.SqlServer.TableSelection.Samples
+namespace RazorMarkup.Database.SqlServer.TableSelection
 {
     public interface ICommonTableSample<TTableSelectionWithRepeatable> : IHideObjectMethods
     {

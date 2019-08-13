@@ -9,7 +9,8 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
             ITableSource<TEndType>,
             IPivotClause<TEndType>,
             IUnpivotClause<TEndType>,
-            ITableHint<TEndType>>
+            ITableHint<TEndType>>,
+        ITableSelectionWithJoin<TEndType>
     {
     }
 }

@@ -1,13 +1,13 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using System;
 
-namespace RazorMarkup.Database.SqlServer.TableSelection.Samples
+namespace RazorMarkup.Database.SqlServer.TableSelection
 {
     internal abstract class CommonTableSampleWithSystem<
         TTableSample,
         TTableSelectionWithRepeatable,
         TCommonTableSampleWithSystem> :
-        CommonTableSample<TTableSelectionWithRepeatable, TCommonTableSampleWithSystem>,
+        CommonTableSample<TTableSelectionWithRepeatable>,
         ICommonTableSampleWithSystem<TTableSelectionWithRepeatable, TTableSample>
         where TCommonTableSampleWithSystem : ICommonTableSampleWithSystem<TTableSelectionWithRepeatable, TTableSample>
     {

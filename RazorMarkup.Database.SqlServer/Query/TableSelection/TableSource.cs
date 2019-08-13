@@ -11,7 +11,16 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
         ITableSource<TEndType>
     {
         public TableSource(FromClauseBuilder statement, TEndType endClosure)
-            : base(statement, null, null, null)
+            : this(statement, new TableSelectionFactory<TEndType>(endClosure))
+        {
+        }
+
+        private TableSource(FromClauseBuilder statement, TableSelectionFactory<TEndType> factory)
+            : base(
+                  statement,
+                  factory.CreateTableSelectionWithAlias,
+                  factory.CreateSubqueryWithAlias,
+                  factory.CreateDerivedTableWithAlias)
         {
         }
     }

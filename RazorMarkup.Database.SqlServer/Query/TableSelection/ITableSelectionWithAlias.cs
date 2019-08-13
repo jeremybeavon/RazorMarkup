@@ -1,5 +1,4 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
-using RazorMarkup.Database.SqlServer.Query.TableSelection.Samples;
 using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
@@ -12,7 +11,8 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
             IUnpivotClause<TEndType>,
             ITableHint<TEndType>,
             ITableSampleWithSystem<TEndType>,
-            ITableSelectionWithTableSample<TEndType>>
+            ITableSelectionWithTableSample<TEndType>>,
+        ITableSelectionWithTableSample<TEndType>
     {
     }
 }

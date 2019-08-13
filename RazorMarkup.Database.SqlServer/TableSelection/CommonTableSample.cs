@@ -3,12 +3,11 @@ using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
-namespace RazorMarkup.Database.SqlServer.TableSelection.Samples
+namespace RazorMarkup.Database.SqlServer.TableSelection
 {
-    internal abstract class CommonTableSample<TTableSelectionWithRepeatable, TCommonTableSample> :
+    internal abstract class CommonTableSample<TTableSelectionWithRepeatable> :
         AbstractStatement<FromClauseBuilder>,
         ICommonTableSample<TTableSelectionWithRepeatable>
-        where TCommonTableSample : ICommonTableSample<TTableSelectionWithRepeatable>
     {
         private readonly Func<FromClauseBuilder, TTableSelectionWithRepeatable> tableSelectionWithRepeatableBuilder;
 
@@ -24,14 +23,14 @@ namespace RazorMarkup.Database.SqlServer.TableSelection.Samples
         {
             Statement.CurrentTable.TableSampleNumber = sampleNumber.ToString();
             Statement.CurrentTable.IsTableSamplePercent = true;
-            Statement.Append((TCommonTableSample input) => input.Percent(null), sampleNumber);
+            Statement.Append((ICommonTableSample<TTableSelectionWithRepeatable> input) => input.Percent(null), sampleNumber);
             return tableSelectionWithRepeatableBuilder(Statement);
         }
 
         public TTableSelectionWithRepeatable Rows(Expression<Func<Integer>> sampleNumber)
         {
             Statement.CurrentTable.TableSampleNumber = sampleNumber.ToString();
-            Statement.Append((TCommonTableSample input) => input.Rows(null), sampleNumber);
+            Statement.Append((ICommonTableSample<TTableSelectionWithRepeatable> input) => input.Rows(null), sampleNumber);
             Statement.CurrentTable.IsTableSamplePercent = false;
             return tableSelectionWithRepeatableBuilder(Statement);
         }
@@ -39,7 +38,7 @@ namespace RazorMarkup.Database.SqlServer.TableSelection.Samples
         public TTableSelectionWithRepeatable Sample(Expression<Func<Integer>> sampleNumber)
         {
             Statement.CurrentTable.TableSampleNumber = sampleNumber.ToString();
-            Statement.Append((TCommonTableSample input) => input.Sample(null), sampleNumber);
+            Statement.Append((ICommonTableSample<TTableSelectionWithRepeatable> input) => input.Sample(null), sampleNumber);
             return tableSelectionWithRepeatableBuilder(Statement);
         }
     }

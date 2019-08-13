@@ -1,42 +1,41 @@
-﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using System;
+using System.Linq.Expressions;
+using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Query.For;
 using RazorMarkup.Database.SqlServer.Query.GroupBy;
 using RazorMarkup.Database.SqlServer.Query.OrderBy;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.TableSelection;
-using System;
-using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
-    internal class TableSelectionWithTableSample<TEndType> :
-        CommonTableSelectionWithTableSample<
+    internal sealed class PivotClauseAlias<TEndType> :
+        CommonPivotClauseAlias<
             ITableSourceInJoin<ITableSelectionWithJoin<TEndType>>,
             ITableSource<TEndType>,
             IPivotClause<TEndType>,
             IUnpivotClause<TEndType>,
-            ITableHint<TEndType>,
-            ITableSampleWithSystem<TEndType>,
-            ITableSelectionWithTableSample<TEndType>>,
-        ITableSelectionWithTableSample<TEndType>
+            ITableSelectionWithJoin<TEndType>,
+            IPivotClauseAlias<TEndType>>,
+        IPivotClauseAlias<TEndType>
     {
         private readonly EndFromClause<TEndType> endFromClause;
 
-        public TableSelectionWithTableSample(FromClauseBuilder statement, TEndType endClosure)
+        public PivotClauseAlias(FromClauseBuilder statement, TEndType endClosure)
             : this(statement, new TableSelectionFactory<TEndType>(endClosure))
         {
             endFromClause = new EndFromClause<TEndType>(statement, endClosure);
         }
 
-        private TableSelectionWithTableSample(FromClauseBuilder statement, TableSelectionFactory<TEndType> factory)
+        private PivotClauseAlias(FromClauseBuilder statement,
+            TableSelectionFactory<TEndType> factory)
             : base(
-                  statement,
-                  factory.CreateTableSourceInJoin,
-                  factory.CreateTableSource,
-                  factory.CreatePivotClause,
-                  factory.CreateUnpivotClause,
-                  factory.CreateTableHint,
-                  factory.CreateTableSampleWithSystem)
+                statement,
+                factory.CreateTableSourceInJoin,
+                factory.CreateTableSource,
+                factory.CreatePivotClause,
+                null,
+                factory.CreateTableSelectionWithJoin)
         {
         }
 

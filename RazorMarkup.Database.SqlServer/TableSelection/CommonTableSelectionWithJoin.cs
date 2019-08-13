@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection
@@ -202,12 +202,22 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
 
         public TPivotClause Pivot(AggregateName aggregateName, params Expression<Func<Text>>[] aggregateValues)
         {
-            throw new NotImplementedException();
+            Statement.Statements.Add(new PivotQueryBuilder(ExpressionBuilder, aggregateName.ToSqlString(), aggregateValues));
+            ExpressionBuilder<Text>[] aggregateValuesBuilders = aggregateValues
+                .Select(parameter => parameter.ToExpressionBuilder())
+                .ToArray();
+            Statement.Append(
+                (TCommonTableSelectionWithJoin input) => input.Pivot(null),
+                aggregateName,
+                new SqlStringArray(typeof(Expression<Func<Text>>), aggregateValuesBuilders));
+            return pivotClauseBuilder(Statement);
         }
 
         public TUnpivotClause Unpivot(ColumnName columnName)
         {
-            throw new NotImplementedException();
+            Statement.Statements.Add(new UnpivotQueryBuilder(ExpressionBuilder, columnName.ToSqlString()));
+            Statement.Append((TCommonTableSelectionWithJoin input) => input.Unpivot(null), columnName);
+            return unpivotClauseBuilder(Statement);
         }
 
         public TTableSource And()

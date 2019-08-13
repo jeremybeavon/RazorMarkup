@@ -3,14 +3,15 @@ using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
-    public interface IUnpivotClauseAlias<TEndType> :
-        ICommonUnpivotClauseAlias<
+    public interface ITableSelectionWithRepeatable<TEndType> :
+        ICommonTableSelectionWithRepeatable<
             ITableSourceInJoin<ITableSelectionWithJoin<TEndType>>,
             ITableSource<TEndType>,
             IPivotClause<TEndType>,
             IUnpivotClause<TEndType>,
-            ITableSelectionWithJoin<TEndType>>,
-        ITableSelectionWithJoin<TEndType>
+            ITableHint<TEndType>,
+            ITableSelectionWithTableHint<TEndType>>,
+        ITableSelectionWithTableHint<TEndType>
     {
     }
 }

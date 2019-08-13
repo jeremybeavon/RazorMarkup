@@ -1,34 +1,34 @@
-﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using System;
+using System.Linq.Expressions;
+using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Query.For;
 using RazorMarkup.Database.SqlServer.Query.GroupBy;
 using RazorMarkup.Database.SqlServer.Query.OrderBy;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.TableSelection;
-using System;
-using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
-    internal class TableSelectionWithTableSample<TEndType> :
-        CommonTableSelectionWithTableSample<
+    internal class TableSelectionWithRepeatable<TEndType> :
+        CommonTableSelectionWithRepeatable<
             ITableSourceInJoin<ITableSelectionWithJoin<TEndType>>,
             ITableSource<TEndType>,
             IPivotClause<TEndType>,
             IUnpivotClause<TEndType>,
             ITableHint<TEndType>,
-            ITableSampleWithSystem<TEndType>,
-            ITableSelectionWithTableSample<TEndType>>,
-        ITableSelectionWithTableSample<TEndType>
+            ITableSelectionWithTableHint<TEndType>,
+            ITableSelectionWithRepeatable<TEndType>>,
+        ITableSelectionWithRepeatable<TEndType>
     {
         private readonly EndFromClause<TEndType> endFromClause;
 
-        public TableSelectionWithTableSample(FromClauseBuilder statement, TEndType endClosure)
+        public TableSelectionWithRepeatable(FromClauseBuilder statement, TEndType endClosure)
             : this(statement, new TableSelectionFactory<TEndType>(endClosure))
         {
             endFromClause = new EndFromClause<TEndType>(statement, endClosure);
         }
 
-        private TableSelectionWithTableSample(FromClauseBuilder statement, TableSelectionFactory<TEndType> factory)
+        private TableSelectionWithRepeatable(FromClauseBuilder statement, TableSelectionFactory<TEndType> factory)
             : base(
                   statement,
                   factory.CreateTableSourceInJoin,
@@ -36,7 +36,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
                   factory.CreatePivotClause,
                   factory.CreateUnpivotClause,
                   factory.CreateTableHint,
-                  factory.CreateTableSampleWithSystem)
+                  factory.CreateTableSelectionWithTableHint)
         {
         }
 
