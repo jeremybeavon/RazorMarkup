@@ -2,8 +2,7 @@
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 {
-    public interface ITableHintInJoin<TJoinEndType> :
-        ICommonTableHint<ITableSelectionWithAdditionalTableHintInJoin<TJoinEndType>>
+    public interface IUnpivotClauseInInJoin<TJoinEndType> : ICommonUnpivotClauseIn<IUnpivotClauseAliasInJoin<TJoinEndType>>
     {
     }
 }

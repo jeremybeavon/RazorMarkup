@@ -34,7 +34,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
                 factory.CreateTableSourceInJoin,
                 factory.CreateTableSource,
                 factory.CreatePivotClause,
-                null,
+                factory.CreateUnpivotClause,
                 factory.CreateTableSelectionWithJoin)
         {
         }

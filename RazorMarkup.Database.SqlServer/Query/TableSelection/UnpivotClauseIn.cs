@@ -9,7 +9,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
         IUnpivotClauseIn<TEndType>
     {
         public UnpivotClauseIn(FromClauseBuilder statement, TEndType endClosure)
-            : base(statement, new TableSelectionFactory<TEndType>(endClosure).CreateUnpivotClauseAlias)
+            : base(statement, builder => new UnpivotClauseAlias<TEndType>(builder, endClosure))
         {
         }
     }

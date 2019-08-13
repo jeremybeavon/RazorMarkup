@@ -29,16 +29,6 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
             return new PivotClause<TEndType>(statement, endClosure);
         }
 
-        public IPivotClauseIn<TEndType> CreatePivotClauseIn(FromClauseBuilder statement)
-        {
-            return new PivotClauseIn<TEndType>(statement, endClosure);
-        }
-
-        public IPivotClauseAlias<TEndType> CreatePivotClauseAlias(FromClauseBuilder statement)
-        {
-            return new PivotClauseAlias<TEndType>(statement, endClosure);
-        }
-
         public ISubqueryWithAlias<TEndType> CreateSubqueryWithAlias(FromClauseBuilder statement)
         {
             return new SubqueryWithAlias<TEndType>(statement, endClosure);
@@ -97,16 +87,6 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
         public IUnpivotClause<TEndType> CreateUnpivotClause(FromClauseBuilder statement)
         {
             return new UnpivotClause<TEndType>(statement, endClosure);
-        }
-
-        public IUnpivotClauseIn<TEndType> CreateUnpivotClauseIn(FromClauseBuilder statement)
-        {
-            return new UnpivotClauseIn<TEndType>(statement, endClosure);
-        }
-
-        public IUnpivotClauseAlias<TEndType> CreateUnpivotClauseAlias(FromClauseBuilder statement)
-        {
-            return new UnpivotClauseAlias<TEndType>(statement, endClosure);
         }
     }
 }

@@ -1,21 +1,40 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins.Samples;
+using RazorMarkup.Database.SqlServer.TableSelection;
+using RazorMarkup.Database.SqlServer.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 {
     internal class TableSelectionWithTableSampleInJoin<TJoinEndType> :
-        TableSelectionWithTableHintInJoin<TJoinEndType>,
+        CommonTableSelectionWithTableSampleInJoin<
+            TJoinEndType,
+            ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
+            ITableSourceInJoin<TJoinEndType>,
+            IPivotClauseInJoin<TJoinEndType>,
+            IUnpivotClauseInJoin<TJoinEndType>,
+            ITableHintInJoin<TJoinEndType>,
+            ITableSampleWithSystemInJoin<TJoinEndType>,
+            ITableSelectionWithTableSampleInJoin<TJoinEndType>>,
         ITableSelectionWithTableSampleInJoin<TJoinEndType>
     {
         public TableSelectionWithTableSampleInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
-            : base(statement, joinClosure)
-        {
+            : this(statement, joinClosure, new TableSelectionInJoinFactory<TJoinEndType>(joinClosure))
+            {
         }
 
-        public ITableSampleWithSystemInJoin<TJoinEndType> TableSample()
+        private TableSelectionWithTableSampleInJoin(
+            FromClauseBuilder statement,
+            TJoinEndType joinClosure,
+            TableSelectionInJoinFactory<TJoinEndType> factory)
+            : base(
+                  statement,
+                  joinClosure,
+                  factory.CreateTableSourceInJoin,
+                  factory.CreateTableSource,
+                  factory.CreatePivotClause,
+                  factory.CreateUnpivotClause,
+                  factory.CreateTableHint,
+                  factory.CreateTableSampleWithSystem)
         {
-            Statement.Append((ITableSelectionWithTableSampleInJoin<TJoinEndType> input) => input.TableSample());
-            return new TableSampleWithSystemInJoin<TJoinEndType>(Statement, JoinClosure);
         }
     }
 }

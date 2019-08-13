@@ -2,16 +2,15 @@
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 {
-    public interface ITableSelectionWithAliasInJoin<TJoinEndType> :
-        ICommonTableSelectionWithAliasInJoin<
+    public interface ITableSelectionWithRepeatableInJoin<TJoinEndType> :
+        ICommonTableSelectionWithRepeatableInJoin<
             TJoinEndType,
             ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
             ITableSourceInJoin<TJoinEndType>,
             IPivotClauseInJoin<TJoinEndType>,
             IUnpivotClauseInJoin<TJoinEndType>,
             ITableHintInJoin<TJoinEndType>,
-            ITableSampleWithSystemInJoin<TJoinEndType>,
-            ITableSelectionWithTableSampleInJoin<TJoinEndType>>
+            ITableSelectionWithTableHintInJoin<TJoinEndType>>
     {
     }
 }

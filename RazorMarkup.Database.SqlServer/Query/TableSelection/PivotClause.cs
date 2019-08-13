@@ -9,7 +9,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
         IPivotClause<TEndType>
     {
         public PivotClause(FromClauseBuilder statement, TEndType endClosure)
-            : base(statement, new TableSelectionFactory<TEndType>(endClosure).CreatePivotClauseIn)
+            : base(statement, builder => new PivotClauseIn<TEndType>(builder, endClosure))
         {
         }
     }

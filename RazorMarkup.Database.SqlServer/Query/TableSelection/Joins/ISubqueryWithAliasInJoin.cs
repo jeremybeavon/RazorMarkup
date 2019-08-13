@@ -2,8 +2,8 @@
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 {
-    public interface ITableHintInJoin<TJoinEndType> :
-        ICommonTableHint<ITableSelectionWithAdditionalTableHintInJoin<TJoinEndType>>
+    public interface ISubqueryWithAliasInJoin<TJoinEndType> :
+        ICommonSubqueryWithAlias<ITableSelectionWithJoinInJoin<TJoinEndType>>
     {
     }
 }

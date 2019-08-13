@@ -1,15 +1,15 @@
-﻿using RazorMarkup.Database.SqlServer.TableSelection.Joins;
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 {
-    public interface ITableSelectionWithTableHintInJoin<TJoinEndType> :
-        ICommonTableSelectionWithTableHintInJoin<
-            TJoinEndType,
+    public interface IUnpivotClauseAliasInJoin<TJoinEndType> :
+        ICommonUnpivotClauseAlias<
             ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
             ITableSourceInJoin<TJoinEndType>,
             IPivotClauseInJoin<TJoinEndType>,
             IUnpivotClauseInJoin<TJoinEndType>,
-            ITableHintInJoin<TJoinEndType>>
+            ITableSelectionWithJoinInJoin<TJoinEndType>>,
+        ITableSelectionWithJoinInJoin<TJoinEndType>
     {
     }
 }

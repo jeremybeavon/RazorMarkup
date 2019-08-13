@@ -3,22 +3,23 @@ using RazorMarkup.Database.SqlServer.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 {
-    internal class TableSelectionWithJoinInJoin<TJoinEndType> :
-        CommonTableSelectionWithJoinInJoin<
+    internal sealed class UnpivotClauseAliasInJoin<TJoinEndType> :
+        CommonUnpivotClauseAliasInJoin<
             TJoinEndType,
             ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
             ITableSourceInJoin<TJoinEndType>,
             IPivotClauseInJoin<TJoinEndType>,
             IUnpivotClauseInJoin<TJoinEndType>,
-            ITableSelectionWithJoinInJoin<TJoinEndType>>,
-        ITableSelectionWithJoinInJoin<TJoinEndType>
+            ITableSelectionWithJoinInJoin<TJoinEndType>,
+            IUnpivotClauseAliasInJoin<TJoinEndType>>,
+        IUnpivotClauseAliasInJoin<TJoinEndType>
     {
-        public TableSelectionWithJoinInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
+        public UnpivotClauseAliasInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
             : this(statement, joinClosure, new TableSelectionInJoinFactory<TJoinEndType>(joinClosure))
         {
         }
 
-        private TableSelectionWithJoinInJoin(
+        private UnpivotClauseAliasInJoin(
             FromClauseBuilder statement,
             TJoinEndType joinClosure,
             TableSelectionInJoinFactory<TJoinEndType> factory)
@@ -28,7 +29,8 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
                 factory.CreateTableSourceInJoin,
                 factory.CreateTableSource,
                 factory.CreatePivotClause,
-                factory.CreateUnpivotClause)
+                factory.CreateUnpivotClause,
+                factory.CreateTableSelectionWithJoin)
         {
         }
     }
