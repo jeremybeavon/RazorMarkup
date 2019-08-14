@@ -4,11 +4,11 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
     public interface ITableSelectionWithAdditionalTableHintInJoin<TJoinEndType> :
         ICommonTableSelectionWithAdditionalTableHint<
-            ITableSelectionWithJoinInJoin<TJoinEndType>,
+            ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
             ITableSourceInJoin<TJoinEndType>,
-            object,
-            object,
-            IAdditionalTableHint>
+            IPivotClauseInJoin<TJoinEndType>,
+            IUnpivotClauseInJoin<TJoinEndType>,
+            IAdditionalTableHintInJoin<TJoinEndType>>
     {
     }
 }

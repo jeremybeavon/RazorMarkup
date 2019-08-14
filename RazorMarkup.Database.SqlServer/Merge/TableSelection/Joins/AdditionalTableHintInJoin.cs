@@ -3,25 +3,27 @@ using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
-    internal class TableSourceInJoin<TJoinEndType> :
-        CommonTableSource<
+    internal class AdditionalTableHintInJoin<TJoinEndType> :
+        AdditionalCommonTableHint<
             ITableSelectionWithAliasInJoin<TJoinEndType>,
             ISubqueryWithAliasInJoin<TJoinEndType>,
             IDerivedTableWithAliasInJoin<TJoinEndType>,
-            ITableSourceInJoin<TJoinEndType>>,
-        ITableSourceInJoin<TJoinEndType>
+            ITableSelectionWithAdditionalTableHintInJoin<TJoinEndType>,
+            IAdditionalTableHintInJoin<TJoinEndType>>,
+        IAdditionalTableHintInJoin<TJoinEndType>
     {
-        public TableSourceInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
+        public AdditionalTableHintInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
             : this(statement, new TableSelectionInJoinFactory<TJoinEndType>(joinClosure))
         {
         }
 
-        private TableSourceInJoin(FromClauseBuilder statement, TableSelectionInJoinFactory<TJoinEndType> factory)
+        private AdditionalTableHintInJoin(FromClauseBuilder statement, TableSelectionInJoinFactory<TJoinEndType> factory)
             : base(
                   statement,
                   factory.CreateTableSelectionWithAlias,
                   factory.CreateSubqueryWithAlias,
-                  factory.CreateDerivedTableWithAlias)
+                  factory.CreateDerivedTableWithAlias,
+                  factory.CreateTableSelectionWithAdditionalTableHint)
         {
         }
     }

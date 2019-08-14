@@ -1,22 +1,38 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins.Samples;
-using RazorMarkup.Database.SqlServer.TableSelection;
+using RazorMarkup.Database.SqlServer.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
     internal class TableSelectionWithTableSampleInJoin<TJoinEndType> :
-        CommonTableSelectionWithTableSample<
-            ITableSelectionWithJoinInJoin<TJoinEndType>,
+        CommonTableSelectionWithTableSampleInJoin<
+            TJoinEndType,
+            ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
             ITableSourceInJoin<TJoinEndType>,
-            object,
-            object,
+            IPivotClauseInJoin<TJoinEndType>,
+            IUnpivotClauseInJoin<TJoinEndType>,
             ITableHintInJoin<TJoinEndType>,
             ITableSampleWithSystemInJoin<TJoinEndType>,
             ITableSelectionWithTableSampleInJoin<TJoinEndType>>,
         ITableSelectionWithTableSampleInJoin<TJoinEndType>
     {
         public TableSelectionWithTableSampleInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
-            : base(statement, null, null, null, null, null, null)
+            : this(statement, joinClosure, new TableSelectionInJoinFactory<TJoinEndType>(joinClosure))
+        {
+        }
+
+        private TableSelectionWithTableSampleInJoin(
+            FromClauseBuilder statement,
+            TJoinEndType joinClosure,
+            TableSelectionInJoinFactory<TJoinEndType> factory)
+            : base(
+                  statement,
+                  joinClosure,
+                  factory.CreateTableSourceInJoin,
+                  factory.CreateTableSource,
+                  factory.CreatePivotClause,
+                  factory.CreateUnpivotClause,
+                  factory.CreateTableHint,
+                  factory.CreateTableSampleWithSystem)
         {
         }
     }

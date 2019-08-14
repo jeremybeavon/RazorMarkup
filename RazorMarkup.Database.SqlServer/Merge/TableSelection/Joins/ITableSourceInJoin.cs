@@ -5,7 +5,7 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
     public interface ITableSourceInJoin<TJoinEndType> :
         ICommonTableSource<
             ITableSelectionWithAliasInJoin<TJoinEndType>,
-            object,
+            ISubqueryWithAliasInJoin<TJoinEndType>,
             IDerivedTableWithAliasInJoin<TJoinEndType>>
     {
     }

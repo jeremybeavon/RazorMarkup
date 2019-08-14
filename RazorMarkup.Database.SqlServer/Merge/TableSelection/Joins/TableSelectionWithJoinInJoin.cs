@@ -1,32 +1,35 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.TableSelection;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using RazorMarkup.Database.SqlServer.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
     internal class TableSelectionWithJoinInJoin<TJoinEndType> :
-        CommonTableSelectionWithJoin<
-            ITableSelectionWithJoinInJoin<TJoinEndType>,
+        CommonTableSelectionWithJoinInJoin<
+            TJoinEndType,
+            ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
             ITableSourceInJoin<TJoinEndType>,
-            object,
-            object,
+            IPivotClauseInJoin<TJoinEndType>,
+            IUnpivotClauseInJoin<TJoinEndType>,
             ITableSelectionWithJoinInJoin<TJoinEndType>>,
         ITableSelectionWithJoinInJoin<TJoinEndType>
     {
         public TableSelectionWithJoinInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
-            : base(
-                  statement,
-                  null,
-                  new TableSelectionFactory<TJoinEndType>(joinClosure).CreateTableSource,
-                  null,
-                  null)
+            : this(statement, joinClosure, new TableSelectionInJoinFactory<TJoinEndType>(joinClosure))
         {
         }
 
-        public TJoinEndType On(Expression<Func<bool>> searchCondition)
+        private TableSelectionWithJoinInJoin(
+            FromClauseBuilder statement,
+            TJoinEndType joinClosure,
+            TableSelectionInJoinFactory<TJoinEndType> factory)
+            : base(
+                statement,
+                joinClosure,
+                factory.CreateTableSourceInJoin,
+                factory.CreateTableSource,
+                factory.CreatePivotClause,
+                factory.CreateUnpivotClause)
         {
-            throw new NotImplementedException();
         }
     }
 }

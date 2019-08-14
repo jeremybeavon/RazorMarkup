@@ -1,7 +1,9 @@
-﻿namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
-    public interface IDerivedTableWithAliasInJoin<TJoinEndType> : IHideObjectMethods
+    public interface IDerivedTableWithAliasInJoin<TJoinEndType> :
+        ICommonDerivedTableWithAlias<ITableSelectionWithJoinInJoin<TJoinEndType>>
     {
-        ITableSelectionWithJoinInJoin<TJoinEndType> As(TableAlias tableAlias, params ColumnAlias[] columnAlias);
     }
 }

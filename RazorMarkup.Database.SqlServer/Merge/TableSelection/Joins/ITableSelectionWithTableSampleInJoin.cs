@@ -1,14 +1,13 @@
-﻿using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins.Samples;
-using RazorMarkup.Database.SqlServer.TableSelection;
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
     public interface ITableSelectionWithTableSampleInJoin<TJoinEndType> :
         ICommonTableSelectionWithTableSample<
-            ITableSelectionWithJoinInJoin<TJoinEndType>,
+            ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
             ITableSourceInJoin<TJoinEndType>,
-            object,
-            object,
+            IPivotClauseInJoin<TJoinEndType>,
+            IUnpivotClauseInJoin<TJoinEndType>,
             ITableHintInJoin<TJoinEndType>,
             ITableSampleWithSystemInJoin<TJoinEndType>>
     {

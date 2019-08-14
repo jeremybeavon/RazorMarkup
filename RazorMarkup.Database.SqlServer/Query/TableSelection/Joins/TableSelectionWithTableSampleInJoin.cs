@@ -1,5 +1,4 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.TableSelection;
 using RazorMarkup.Database.SqlServer.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins

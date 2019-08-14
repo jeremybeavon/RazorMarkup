@@ -3,23 +3,24 @@ using RazorMarkup.Database.SqlServer.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
-    internal sealed class TableSelectionWithAdditionalTableHintInJoin<TJoinEndType> :
-        CommonTableSelectionWithAdditionalTableHintInJoin<
+    internal class TableSelectionWithRepeatableInJoin<TJoinEndType> :
+        CommonTableSelectionWithRepeatableInJoin<
             TJoinEndType,
             ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
             ITableSourceInJoin<TJoinEndType>,
             IPivotClauseInJoin<TJoinEndType>,
             IUnpivotClauseInJoin<TJoinEndType>,
-            IAdditionalTableHintInJoin<TJoinEndType>,
-            ITableSelectionWithAdditionalTableHintInJoin<TJoinEndType>>,
-        ITableSelectionWithAdditionalTableHintInJoin<TJoinEndType>
+            ITableHintInJoin<TJoinEndType>,
+            ITableSelectionWithTableHintInJoin<TJoinEndType>,
+            ITableSelectionWithRepeatableInJoin<TJoinEndType>>,
+        ITableSelectionWithRepeatableInJoin<TJoinEndType>
     {
-        public TableSelectionWithAdditionalTableHintInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
+        public TableSelectionWithRepeatableInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
             : this(statement, joinClosure, new TableSelectionInJoinFactory<TJoinEndType>(joinClosure))
         {
         }
 
-        private TableSelectionWithAdditionalTableHintInJoin(
+        private TableSelectionWithRepeatableInJoin(
             FromClauseBuilder statement,
             TJoinEndType joinClosure,
             TableSelectionInJoinFactory<TJoinEndType> factory)
@@ -30,7 +31,8 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
                   factory.CreateTableSource,
                   factory.CreatePivotClause,
                   factory.CreateUnpivotClause,
-                  factory.CreateAdditionalTableHint)
+                  factory.CreateTableHint,
+                  factory.CreateTableSelectionWithTableHint)
         {
         }
     }

@@ -1,25 +1,25 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.TableSelection.Joins;
 
-namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
+namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
-    internal sealed class PivotClauseAliasInJoin<TJoinEndType> :
-        CommonPivotClauseAliasInJoin<
+    internal sealed class UnpivotClauseAliasInJoin<TJoinEndType> :
+        CommonUnpivotClauseAliasInJoin<
             TJoinEndType,
             ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
             ITableSourceInJoin<TJoinEndType>,
             IPivotClauseInJoin<TJoinEndType>,
             IUnpivotClauseInJoin<TJoinEndType>,
             ITableSelectionWithJoinInJoin<TJoinEndType>,
-            IPivotClauseAliasInJoin<TJoinEndType>>,
-        IPivotClauseAliasInJoin<TJoinEndType>
+            IUnpivotClauseAliasInJoin<TJoinEndType>>,
+        IUnpivotClauseAliasInJoin<TJoinEndType>
     {
-        public PivotClauseAliasInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
+        public UnpivotClauseAliasInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
             : this(statement, joinClosure, new TableSelectionInJoinFactory<TJoinEndType>(joinClosure))
         {
         }
 
-        private PivotClauseAliasInJoin(
+        private UnpivotClauseAliasInJoin(
             FromClauseBuilder statement,
             TJoinEndType joinClosure,
             TableSelectionInJoinFactory<TJoinEndType> factory)

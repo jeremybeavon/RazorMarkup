@@ -1,7 +1,7 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.TableSelection.Joins;
 
-namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
+namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
     internal sealed class PivotClauseAliasInJoin<TJoinEndType> :
         CommonPivotClauseAliasInJoin<

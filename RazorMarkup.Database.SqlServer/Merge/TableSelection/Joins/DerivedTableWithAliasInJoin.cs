@@ -1,32 +1,21 @@
-﻿using System.Linq;
-using RazorMarkup.Database.SqlServer.Query;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
-    internal class DerivedTableWithAliasInJoin<TJoinEndType> : AbstractQueryStatement<FromClauseBuilder, TJoinEndType>,
+    internal class DerivedTableWithAliasInJoin<TJoinEndType> :
+        CommonDerivedTableWithAlias<ITableSelectionWithJoinInJoin<TJoinEndType>>,
         IDerivedTableWithAliasInJoin<TJoinEndType>
     {
-        private readonly DerivedTableBuilder derivedTableBuilder;
-
-        public DerivedTableWithAliasInJoin(FromClauseBuilder statement, DerivedTableBuilder derivedTableBuilder, TJoinEndType endClosure)
-            : base(statement, endClosure)
+        public DerivedTableWithAliasInJoin(
+            FromClauseBuilder statement,
+            DerivedTableBuilder derivedTableBuilder,
+            TJoinEndType joinClosure)
+            : base(
+                  statement,
+                  derivedTableBuilder,
+                  builder => new TableSelectionWithJoinInJoin<TJoinEndType>(statement, joinClosure))
         {
-            this.derivedTableBuilder = derivedTableBuilder;
-        }
-
-        public ITableSelectionWithJoinInJoin<TJoinEndType> As(TableAlias tableAlias, params ColumnAlias[] columnAlias)
-        {
-            derivedTableBuilder.TableAlias = tableAlias.ToSqlString();
-            foreach (ColumnAlias alias in columnAlias)
-            {
-                derivedTableBuilder.ColumnAlias.Add(alias.ToSqlString());
-            }
-
-            Statement.Append(
-                (IDerivedTableWithAliasInJoin<TJoinEndType> input) => input.As(null, null),
-                (new ISqlString[] { tableAlias }).Concat(columnAlias).ToArray());
-            return new TableSelectionWithJoinInJoin<TJoinEndType>(Statement, EndClosure);
         }
     }
 }
