@@ -1,4 +1,4 @@
-﻿using RazorMarkup.Database.SqlServer.Merge.TableSelection.Samples;
+﻿using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.TableSelection;
 
@@ -6,7 +6,7 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     internal class TableSelectionWithAlias :
         CommonTableSelectionWithAlias<
-            ITableSelectionWithJoin,
+            ITableSourceInJoin<ITableSelectionWithJoin>,
             ITableSource,
             IPivotClause,
             IUnpivotClause,
@@ -17,7 +17,15 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         ITableSelectionWithAlias
     {
         public TableSelectionWithAlias(FromClauseBuilder statement)
-            : base(statement, null, null, null, null, null, null, null)
+            : base(
+                  statement,
+                  TableSelectionWithJoin.CreateTableSourceInJoin,
+                  TableSource.Create,
+                  PivotClause.Create,
+                  UnpivotClause.Create,
+                  TableHint.Create,
+                  TableSampleWithSystem.Create,
+                  TableSelectionWithTableSample.Create)
         {
         }
 

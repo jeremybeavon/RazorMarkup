@@ -1,7 +1,8 @@
-﻿namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
-    public interface IUnpivotClauseIn : IHideObjectMethods
+    public interface IUnpivotClauseIn : ICommonUnpivotClauseIn<IUnpivotClauseAlias>
     {
-        IUnpivotClauseAlias In(params ColumnName[] columnNames);
     }
 }

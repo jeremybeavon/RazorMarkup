@@ -1,7 +1,8 @@
-﻿namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
-    public interface IPivotClauseIn : IHideObjectMethods
+    public interface IPivotClauseIn : ICommonPivotClauseIn<IPivotClauseAlias>
     {
-        IPivotClauseAlias In(params ColumnName[] columns);
     }
 }

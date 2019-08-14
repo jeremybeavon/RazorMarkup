@@ -1,12 +1,12 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.Merge.TableSelection.Samples;
 using RazorMarkup.Database.SqlServer.TableSelection;
+using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     internal class TableSelectionWithTableSample :
         CommonTableSelectionWithTableSample<
-            ITableSelectionWithJoin,
+            ITableSourceInJoin<ITableSelectionWithJoin>,
             ITableSource,
             IPivotClause,
             IUnpivotClause,
@@ -16,8 +16,20 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         ITableSelectionWithTableSample
     {
         public TableSelectionWithTableSample(FromClauseBuilder statement)
-            : base(statement, null, null, null, null, null, null)
+            : base(
+                statement,
+                TableSelectionWithJoin.CreateTableSourceInJoin,
+                TableSource.Create,
+                PivotClause.Create,
+                UnpivotClause.Create,
+                TableHint.Create,
+                TableSampleWithSystem.Create)
         {
+        }
+
+        public static ITableSelectionWithTableSample Create(FromClauseBuilder statement)
+        {
+            return new TableSelectionWithTableSample(statement);
         }
     }
 }

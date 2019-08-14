@@ -1,11 +1,12 @@
-﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
+using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     internal sealed class TableSelectionWithAdditionalTableHint :
         CommonTableSelectionWithAdditionalTableHint<
-            ITableSelectionWithJoin,
+            ITableSourceInJoin<ITableSelectionWithJoin>,
             ITableSource,
             IPivotClause,
             IUnpivotClause,
@@ -16,10 +17,10 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         public TableSelectionWithAdditionalTableHint(FromClauseBuilder statement)
             : base(
                   statement,
-                  TableSelectionWithJoin.Create,
+                  TableSelectionWithJoin.CreateTableSourceInJoin,
                   TableSource.Create,
-                  null,
-                  null,
+                  PivotClause.Create,
+                  UnpivotClause.Create,
                   AdditionalTableHint.Create)
         {
         }

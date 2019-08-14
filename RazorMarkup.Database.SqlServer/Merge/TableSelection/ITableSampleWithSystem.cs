@@ -2,7 +2,7 @@
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
-    public interface IUnpivotClause : ICommonUnpivotClause<IUnpivotClauseIn>
+    public interface ITableSampleWithSystem : ICommonTableSampleWithSystem<ITableSelectionWithRepeatable, ITableSample>
     {
     }
 }

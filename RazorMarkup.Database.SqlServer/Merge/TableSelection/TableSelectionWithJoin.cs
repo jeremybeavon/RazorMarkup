@@ -14,13 +14,23 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         ITableSelectionWithJoin
     {
         public TableSelectionWithJoin(FromClauseBuilder statement)
-            : base(statement, null, null, null, null)
+            : base(
+                statement,
+                TableSelectionWithJoin.CreateTableSourceInJoin,
+                TableSource.Create,
+                PivotClause.Create,
+                UnpivotClause.Create)
         {
         }
 
         public static ITableSelectionWithJoin Create(FromClauseBuilder statement)
         {
             return new TableSelectionWithJoin(statement);
+        }
+
+        public static ITableSourceInJoin<ITableSelectionWithJoin> CreateTableSourceInJoin(FromClauseBuilder statement)
+        {
+            return new TableSourceInJoin<ITableSelectionWithJoin>(statement, Create(statement));
         }
     }
 }

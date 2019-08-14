@@ -1,33 +1,35 @@
-﻿using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
+﻿using System;
+using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Query.Builders;
+using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
-    internal class TableSelectionWithTableHint :
-        CommonTableSelectionWithTableHint<
+    internal sealed class UnpivotClauseAlias :
+        CommonUnpivotClauseAlias<
             ITableSourceInJoin<ITableSelectionWithJoin>,
             ITableSource,
             IPivotClause,
             IUnpivotClause,
-            ITableHint,
-            ITableSelectionWithTableHint>,
-        ITableSelectionWithTableHint
+            ITableSelectionWithJoin,
+            IUnpivotClauseAlias>,
+        IUnpivotClauseAlias
     {
-        public TableSelectionWithTableHint(FromClauseBuilder statement)
+        public UnpivotClauseAlias(FromClauseBuilder statement)
             : base(
                 statement,
                 TableSelectionWithJoin.CreateTableSourceInJoin,
                 TableSource.Create,
                 PivotClause.Create,
                 UnpivotClause.Create,
-                TableHint.Create)
+                TableSelectionWithJoin.Create)
         {
         }
 
-        public static ITableSelectionWithTableHint Create(FromClauseBuilder statement)
+        public static IUnpivotClauseAlias Create(FromClauseBuilder statement)
         {
-            return new TableSelectionWithTableHint(statement);
+            return new UnpivotClauseAlias(statement);
         }
     }
 }

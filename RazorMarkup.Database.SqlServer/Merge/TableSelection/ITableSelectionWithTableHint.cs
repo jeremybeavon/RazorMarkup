@@ -1,14 +1,16 @@
-﻿using RazorMarkup.Database.SqlServer.TableSelection;
+﻿using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
+using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     public interface ITableSelectionWithTableHint :
         ICommonTableSelectionWithTableHint<
-            ITableSelectionWithJoin,
+            ITableSourceInJoin<ITableSelectionWithJoin>,
             ITableSource,
             IPivotClause,
             IUnpivotClause,
-            ITableHint>
+            ITableHint>,
+        ITableSelectionWithJoin
     {
     }
 }
