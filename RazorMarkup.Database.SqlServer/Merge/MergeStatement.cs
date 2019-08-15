@@ -14,7 +14,7 @@ namespace RazorMarkup.Database.SqlServer.Merge
         {
         }
 
-        public object Top(Expression<Func<Integer>> count)
+        public IMergeTopPercent Top(Expression<Func<Integer>> count)
         {
             Statement.Top = new ExpressionBuilder<Integer>(count);
             //Statement.Append((I))

@@ -1,4 +1,6 @@
-﻿using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
+﻿using System;
+using System.Linq.Expressions;
+using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.TableSelection;
 
@@ -28,6 +30,11 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         public static ITableSelectionWithAdditionalTableHint Create(FromClauseBuilder statement)
         {
             return new TableSelectionWithAdditionalTableHint(statement);
+        }
+
+        public IMergeWhen On(Expression<Func<bool>> searchCondition)
+        {
+            return new EndFromClause(Statement).On(searchCondition);
         }
     }
 }

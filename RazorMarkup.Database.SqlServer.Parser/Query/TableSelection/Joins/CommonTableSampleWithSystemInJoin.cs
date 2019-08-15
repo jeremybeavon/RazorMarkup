@@ -1,6 +1,5 @@
 ﻿using System;
 using RazorMarkup.Database.SqlServer.Parser.TableSelection;
-using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins.Samples;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
 {

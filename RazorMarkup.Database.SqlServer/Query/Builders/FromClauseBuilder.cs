@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
-    internal sealed class FromClauseBuilder : ClauseBuilder
+    internal class FromClauseBuilder : ClauseBuilder
     {
         public FromClauseBuilder(ExpressionBuilder expressionBuilder)
             : base(expressionBuilder)

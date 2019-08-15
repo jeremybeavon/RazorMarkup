@@ -1,8 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq.Expressions;
-
-namespace RazorMarkup.Powershell
+﻿namespace RazorMarkup.Powershell
 {
     public interface IPowershellString : IHideObjectMethods
     {

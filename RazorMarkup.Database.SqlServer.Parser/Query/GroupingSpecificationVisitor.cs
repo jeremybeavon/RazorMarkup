@@ -1,7 +1,5 @@
 ﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Parser.Query.GroupBy;
-using RazorMarkup.Database.SqlServer.Query;
-using RazorMarkup.Database.SqlServer.Query.GroupBy;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query
 {

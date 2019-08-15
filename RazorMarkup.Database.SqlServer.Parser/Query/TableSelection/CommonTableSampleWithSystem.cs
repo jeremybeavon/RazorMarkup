@@ -1,5 +1,4 @@
 ﻿using RazorMarkup.Database.SqlServer.Parser.TableSelection;
-using RazorMarkup.Database.SqlServer.Query.TableSelection.Samples;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {

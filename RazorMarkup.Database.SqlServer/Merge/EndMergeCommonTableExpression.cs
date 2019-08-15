@@ -21,7 +21,7 @@ namespace RazorMarkup.Database.SqlServer.Merge
                 new CommonTableExpressionEndMerge(Statement));
         }
 
-        public object Top(Expression<Func<Integer>> count)
+        public IMergeTopPercent Top(Expression<Func<Integer>> count)
         {
             throw new NotImplementedException();
         }

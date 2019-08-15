@@ -442,7 +442,10 @@
     <Compile Include="Merge\IMergeNotMatchedInsert.cs" />
     <Compile Include="Merge\IMergeNotMatchedInsertAnd.cs" />
     <Compile Include="Merge\IMergeStatement.cs" />
+    <Compile Include="Merge\IMergeTargetTableWithAlias.cs" />
+    <Compile Include="Merge\IMergeTargetTableWithMergeHint.cs" />
     <Compile Include="Merge\IMergeTargetTable.cs" />
+    <Compile Include="Merge\IMergeTopPercent.cs" />
     <Compile Include="Merge\IMergeUsing.cs" />
     <Compile Include="Merge\IMergeWhen.cs" />
     <Compile Include="Merge\IMergeWhenNotMatchedBySource.cs" />
@@ -453,8 +456,10 @@
     <Compile Include="Merge\IMergeWhenMatchedAnd.cs" />
     <Compile Include="Merge\IMergeWhenMatched.cs" />
     <Compile Include="Merge\IMergeWithHint.cs" />
+    <Compile Include="Merge\MergeFromClauseBuilder.cs" />
     <Compile Include="Merge\MergeStatement.cs" />
     <Compile Include="Merge\MergeStatementBuilder.cs" />
+    <Compile Include="Merge\MergeUsing.cs" />
     <Compile Include="Merge\SetClause\SetClause.cs" />
     <Compile Include="Merge\SetClause\SetClauseAnd.cs" />
     <Compile Include="Merge\SetClause\SetColumn.cs" />

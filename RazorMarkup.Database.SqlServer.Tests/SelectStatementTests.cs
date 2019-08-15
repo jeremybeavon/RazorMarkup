@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer.Tests
 {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RazorMarkup.Web.AngularJs
+﻿namespace RazorMarkup.Web.AngularJs
 {
     internal sealed class AppBinding<TModel> : AbstractFluentHtmlString, IAppBinding<TModel>
     {

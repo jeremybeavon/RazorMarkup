@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Query.GroupBy;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.GroupBy

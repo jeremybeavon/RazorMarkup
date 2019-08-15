@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Westwind.RazorHosting;
+﻿using System.IO;
 
 namespace RazorMarkup
 {

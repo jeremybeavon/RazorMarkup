@@ -1,6 +1,8 @@
 ﻿using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.TableSelection;
+using System;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
@@ -32,6 +34,11 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         public static ITableSelectionWithAlias Create(FromClauseBuilder statement)
         {
             return new TableSelectionWithAlias(statement);
+        }
+
+        public IMergeWhen On(Expression<Func<bool>> searchCondition)
+        {
+            return new EndFromClause(Statement).On(searchCondition);
         }
     }
 }

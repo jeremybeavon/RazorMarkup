@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.SqlServer.TransactSql.ScriptDom;
+﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Query.Select;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query
 {

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Drop;
-using RazorMarkup.Database.SqlServer.Drop.Index;
 using RazorMarkup.Database.SqlServer.Drop.Signature;
 
 namespace RazorMarkup.Database.SqlServer.Parser

@@ -1,6 +1,4 @@
-﻿using RazorMarkup.CommandLine.Git;
-
-namespace RazorMarkup.CommandLine
+﻿namespace RazorMarkup.CommandLine
 {
     public static class GitCommand
     {
