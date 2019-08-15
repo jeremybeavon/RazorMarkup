@@ -1,4 +1,4 @@
-﻿using RazorMarkup.Database.SqlServer.Merge.SetClause;
+﻿using RazorMarkup.Database.SqlServer.Merge.SetClauses;
 
 namespace RazorMarkup.Database.SqlServer.Merge
 {

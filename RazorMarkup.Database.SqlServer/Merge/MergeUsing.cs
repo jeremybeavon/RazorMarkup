@@ -2,7 +2,7 @@
 
 namespace RazorMarkup.Database.SqlServer.Merge
 {
-    internal sealed class MergeUsing : AbstractStatement<MergeStatementBuilder>, IMergeUsing
+    internal class MergeUsing : AbstractStatement<MergeStatementBuilder>, IMergeUsing
     {
         public MergeUsing(MergeStatementBuilder statement)
             : base(statement)

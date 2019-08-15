@@ -1,6 +1,7 @@
 ﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RazorMarkup.Database.SqlServer.Merge
 {
@@ -21,11 +22,21 @@ namespace RazorMarkup.Database.SqlServer.Merge
 
         public string TableName { get; set; }
 
+        public List<string> MergeHints { get; } = new List<string>();
+
+        public bool TableAliasHasAsKeyword { get; set; }
+
+        public string TableAlias { get; set; }
+
         public FromClauseBuilder UsingClause { get; set; }
 
         public ExpressionBuilder<bool> SearchCondition { get; set; }
 
         public List<AbstractWhenClauseBuilder> WhenClauses { get; } = new List<AbstractWhenClauseBuilder>();
+
+        public WhenMatchedClauseBuilder LastMatchedClause => (WhenMatchedClauseBuilder)WhenClauses.Last();
+
+        public WhenNotMatchedClauseBuilder LastNotMatchedClause => (WhenNotMatchedClauseBuilder)WhenClauses.Last();
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {

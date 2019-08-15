@@ -1,4 +1,4 @@
-﻿using RazorMarkup.Database.SqlServer.SetClause;
+﻿using RazorMarkup.Database.SqlServer.SetClauses;
 using System.Collections.Generic;
 using System.Linq;
 
