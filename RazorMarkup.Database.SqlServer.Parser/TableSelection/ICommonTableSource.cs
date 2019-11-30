@@ -1,17 +1,14 @@
-﻿using System;
-using System.Linq.Expressions;
-using Microsoft.SqlServer.TransactSql.ScriptDom;
+﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
+using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
 {
-    internal interface ICommonTableSource
+    internal interface ICommonTableSource :
+        ICommonTableSource<
+            ICommonTableSelectionWithAlias,
+            ICommonSubqueryWithAlias,
+            ICommonDerivedTableWithAlias>
     {
-        ICommonTableSelectionWithAlias Table(TableName tableName);
-
-        ICommonTableSelectionWithAlias View(ViewName viewName);
-
         ICommonSubqueryWithAlias Subquery(QueryExpression query);
-
-        ICommonDerivedTableWithAlias DerviedTable(Expression<Func<object>>[][] values);
     }
 }

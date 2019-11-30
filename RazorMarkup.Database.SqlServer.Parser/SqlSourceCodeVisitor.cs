@@ -1,5 +1,7 @@
 ﻿using Microsoft.SqlServer.TransactSql.ScriptDom;
 using RazorMarkup.Database.SqlServer.Parser.Query;
+using RazorMarkup.Database.SqlServer.Query;
+using RazorMarkup.Database.SqlServer.Query.CommonTableExpressions;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Parser
@@ -49,7 +51,13 @@ namespace RazorMarkup.Database.SqlServer.Parser
 
         public override void ExplicitVisit(SelectStatement node)
         {
-            Result = node.AcceptWithResult(new SelectStatementVisitor());
+            IQueryStatements query = Sql.Query();
+            IQueryOperand<IEndQuery> operand =
+                WithClauseBuilder.BuildCommonTableExpressions<IQueryOperand<IEndQuery>, IEndCommonTableExpression>(
+                    query,
+                    query,
+                    node.WithCtesAndXmlNamespaces);
+            Result = node.QueryExpression.AcceptWithResult(new QueryOperandVisitor<IEndQuery>(operand, node)).End().Query();
         }
     }
 }

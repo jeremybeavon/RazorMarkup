@@ -14,7 +14,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
             this.tableSelectionWithAlias = tableSelectionWithAlias;
         }
 
-        public ICommonTableSelectionWithTableSample WithAlias(TableAlias tableAlias)
+        public ICommonTableSelectionWithTableSample As(TableAlias tableAlias)
         {
             return new CommonTableSelectionWithTableSample<TEndType>(tableSelectionWithAlias.As(tableAlias));
         }

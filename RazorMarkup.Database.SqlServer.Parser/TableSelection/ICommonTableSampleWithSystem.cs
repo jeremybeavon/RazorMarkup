@@ -1,7 +1,10 @@
-﻿namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
 {
-    internal interface ICommonTableSampleWithSystem : ICommonTableSample
+    internal interface ICommonTableSampleWithSystem :
+        ICommonTableSampleWithSystem<ICommonTableSelectionWithRepeatable, ICommonTableSample>,
+        ICommonTableSample
     {
-        ICommonTableSample System();
     }
 }

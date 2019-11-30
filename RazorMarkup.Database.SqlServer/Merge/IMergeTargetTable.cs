@@ -2,6 +2,8 @@
 {
     public interface IMergeTargetTable : IHideObjectMethods
     {
-        object Table(TableName tableName);
+        IMergeWithHint Table(TableName tableName);
+
+        IMergeWithHint View(ViewName viewName);
     }
 }

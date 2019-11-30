@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Parser.TableSelection;
 using RazorMarkup.Database.SqlServer.Query.TableSelection;
 using RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins;
+using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {
@@ -170,9 +171,9 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
             return new CommonTableSource<TEndType>(tableSelectionWithJoin.OuterApplyJoin());
         }
 
-        public ICommonPivotClause Pivot(Expression<Func<object>> aggregateFunction)
+        public ICommonPivotClause Pivot(AggregateName aggregateName, params Expression<Func<Text>>[] aggregateValues)
         {
-            return new CommonPivotClause<TEndType>(tableSelectionWithJoin.Pivot(null));
+            return new CommonPivotClause<TEndType>(tableSelectionWithJoin.Pivot(aggregateName, aggregateValues));
         }
 
         public ICommonUnpivotClause Unpivot(ColumnName columnName)

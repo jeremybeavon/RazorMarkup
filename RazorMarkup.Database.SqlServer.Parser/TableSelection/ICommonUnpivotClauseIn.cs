@@ -1,7 +1,8 @@
-﻿namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
 {
-    internal interface ICommonUnpivotClauseIn
+    internal interface ICommonUnpivotClauseIn : ICommonUnpivotClauseIn<ICommonUnpivotClauseAlias>
     {
-        ICommonUnpivotClauseAlias In(params ColumnName[] columnNames);
     }
 }

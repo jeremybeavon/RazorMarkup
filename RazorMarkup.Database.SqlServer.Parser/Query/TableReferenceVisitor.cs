@@ -30,7 +30,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
                 }
             }
 
-            ICommonDerivedTableWithAlias derivedTable = tableSource.DerviedTable(values);
+            ICommonDerivedTableWithAlias derivedTable = tableSource.DerivedTable(values);
             Result = derivedTable.As(
                 new TableAlias(node.Alias.Value),
                 node.Columns.Select(column => new ColumnAlias(column.Value)).ToArray());
@@ -40,7 +40,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
         {
             ICommonTableSelectionWithAlias selectionWithAlias = tableSource.Table(node.SchemaObject.ToTableName());
             ICommonTableSelectionWithTableSample selectionWithTableSample =
-                node.Alias == null ? selectionWithAlias : selectionWithAlias.WithAlias(new TableAlias(node.Alias.Value));
+                node.Alias == null ? (ICommonTableSelectionWithTableSample)selectionWithAlias: selectionWithAlias.As(new TableAlias(node.Alias.Value));
             ICommonTableSelectionWithTableHint selectionWithTableHint = BuildTableSample(selectionWithTableSample, node);
             Result = BuildTableHint(selectionWithTableHint, node);
         }
@@ -142,7 +142,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
             }
 
             return clause.RepeatSeed == null ?
-                selectionWithRepeatable :
+                (ICommonTableSelectionWithTableHint)selectionWithRepeatable:
                 selectionWithRepeatable.WithRepeatSeed(clause.RepeatSeed.ToExpression<Integer>());
         }
 
@@ -158,7 +158,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
             ICommonTableSelectionWithAdditionalTableHint currentTableHint = null;
             foreach (TableHint hintNode in node.TableHints)
             {
-                currentTableHint = BuildTableHint(currentTableHint == null ? tableHint.WithHint() : currentTableHint.And(), hintNode);
+                //currentTableHint = BuildTableHint(currentTableHint == null ? tableHint.WithHint() : currentTableHint.And(), hintNode);
             }
 
             return currentTableHint;

@@ -1,24 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Query.CommonTableExpressions;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Merge
 {
-    internal sealed class MergeStatement : AbstractStatement<MergeStatementBuilder>, IMergeStatement
+    internal sealed class MergeStatement : MergeClause, IMergeStatement
     {
         public MergeStatement()
             : base(new MergeStatementBuilder(new ExpressionBuilder()))
         {
-        }
-
-        public IMergeTopPercent Top(Expression<Func<Integer>> count)
-        {
-            Statement.Top = new ExpressionBuilder<Integer>(count);
-            //Statement.Append((I))
-            throw new NotImplementedException();
         }
 
         public ICommonTableExpression<ICommonTableExpressionEnd<IEndMergeCommonTableExpression>> With(

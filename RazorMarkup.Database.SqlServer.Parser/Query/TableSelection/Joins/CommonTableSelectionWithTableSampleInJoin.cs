@@ -13,7 +13,8 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
         public CommonTableSelectionWithTableSampleInJoin(
             ITableSelectionWithTableSampleInJoin<TEndType> tableSelectionWithTableSample,
             Func<TEndType, ICommonTableSelectionWithJoin> endClosure)
-            : base(tableSelectionWithTableSample, endClosure)
+            //: base(tableSelectionWithTableSample, endClosure)
+            : base(null, endClosure)
         {
             this.tableSelectionWithTableSample = tableSelectionWithTableSample;
         }

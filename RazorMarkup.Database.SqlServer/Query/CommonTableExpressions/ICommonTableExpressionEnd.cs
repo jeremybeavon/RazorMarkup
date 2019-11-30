@@ -2,7 +2,6 @@
 {
     public interface ICommonTableExpressionEnd<TEndType> : IHideObjectMethods
     {
-        //IEndCommonTableExpression
         TEndType With();
     }
 }

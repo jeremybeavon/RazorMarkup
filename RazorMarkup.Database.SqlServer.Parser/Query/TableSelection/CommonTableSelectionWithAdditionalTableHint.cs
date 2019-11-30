@@ -14,9 +14,10 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
             this.tableSelectionWithAdditionalTableHint = tableSelectionWithAdditionalTableHint;
         }
 
-        public new ICommonTableHint And()
+        public new ICommonAdditionalTableHint And()
         {
-            return new CommonTableHint<TEndType>(tableSelectionWithAdditionalTableHint.And());
+            throw new global::System.NotImplementedException();
+            //return new CommonTableHint<TEndType>(tableSelectionWithAdditionalTableHint.And());
         }
     }
 }

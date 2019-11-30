@@ -29,7 +29,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
 
         public override void ExplicitVisit(QueryParenthesisExpression node)
         {
-            Result = operand.OperatorGroup(node.QueryExpression);
+            Result = node.AcceptWithResult(operand.BeginQueryGroup()).End().OperatorGroup();
         }
 
         public override void ExplicitVisit(BinaryQueryExpression node)

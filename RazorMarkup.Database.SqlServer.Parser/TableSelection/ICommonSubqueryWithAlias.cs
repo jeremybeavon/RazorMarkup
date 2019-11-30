@@ -1,7 +1,8 @@
-﻿namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
 {
-    internal interface ICommonSubqueryWithAlias
+    internal interface ICommonSubqueryWithAlias : ICommonSubqueryWithAlias<ICommonTableSelectionWithJoin>
     {
-        ICommonTableSelectionWithJoin As(TableAlias tableAlias, params ColumnAlias[] columnAlias);
     }
 }

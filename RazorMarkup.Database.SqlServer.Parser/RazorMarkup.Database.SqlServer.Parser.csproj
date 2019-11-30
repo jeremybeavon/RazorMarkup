@@ -81,11 +81,10 @@
     <Compile Include="Query\GroupBy\ICommonGroupBy.cs" />
     <Compile Include="Query\GroupingSpecificationVisitor.cs" />
     <Compile Include="Query\QueryExpressionExtensions.cs" />
-    <Compile Include="Query\QueryOperandExtensions.cs" />
     <Compile Include="Query\QueryOperandVisitor.cs" />
-    <Compile Include="Query\SelectStatementVisitor.cs" />
     <Compile Include="Query\SelectClauseVisitor.cs" />
     <Compile Include="Query\TableReferenceVisitor.cs" />
+    <Compile Include="Query\TableSelection\CommonAdditionalTableHint.cs" />
     <Compile Include="Query\TableSelection\CommonDerviedTableWithAlias.cs" />
     <Compile Include="Query\TableSelection\CommonPivotClause.cs" />
     <Compile Include="Query\TableSelection\CommonPivotClauseAlias.cs" />
@@ -105,7 +104,7 @@
     <Compile Include="Query\TableSelection\CommonUnpivotClauseAlias.cs" />
     <Compile Include="Query\TableSelection\CommonUnpivotClauseIn.cs" />
     <Compile Include="Query\TableSelection\Joins\AbstractJoinStatement.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonDerviedTableWithAlias.cs" />
+    <Compile Include="Query\TableSelection\Joins\CommonDerviedTableWithAliasInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\CommonTableHintInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\CommonTableSampleInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\CommonTableSampleWithSystemInJoin.cs" />
@@ -116,6 +115,7 @@
     <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithTableHintInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithTableSampleInJoin.cs" />
     <Compile Include="Query\TableSelection\Joins\CommonTableSourceInJoin.cs" />
+    <Compile Include="Query\WithClauseBuilder.cs" />
     <Compile Include="ScalarExpressionExtensions.cs" />
     <Compile Include="SchemaObjectNameExtensions.cs" />
     <Compile Include="SqlDataTypeOptionExtensions.cs" />
@@ -126,6 +126,7 @@
     <Compile Include="SqlSourceCodeVisitor.Alter.cs" />
     <Compile Include="SqlSourceCodeVisitor.cs" />
     <Compile Include="SqlSourceCodeVisitor.Drop.cs" />
+    <Compile Include="SqlSourceCodeVisitor.Merge.cs" />
     <Compile Include="SqlSourceCodeVisitor.Set.cs" />
     <Compile Include="TableSelection\ICommonAdditionalTableHint.cs" />
     <Compile Include="TableSelection\ICommonDerivedTableWithAlias.cs" />
@@ -146,7 +147,6 @@
     <Compile Include="TableSelection\ICommonTableSelectionWithRepeatable.cs" />
     <Compile Include="TableSelection\ICommonTableHint.cs" />
     <Compile Include="TableSelection\ICommonTableSelectionWithAdditionalTableHint.cs" />
-    <Compile Include="TableSelection\ICommonJoinHint.cs" />
     <Compile Include="TSqlFragmentExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +168,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Merge\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

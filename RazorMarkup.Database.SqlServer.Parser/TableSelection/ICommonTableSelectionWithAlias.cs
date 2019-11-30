@@ -1,7 +1,16 @@
-﻿namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
 {
-    internal interface ICommonTableSelectionWithAlias : ICommonTableSelectionWithTableSample
+    internal interface ICommonTableSelectionWithAlias :
+        ICommonTableSelectionWithAlias<
+            ICommonTableSource,
+            ICommonTableSource,
+            ICommonPivotClause,
+            ICommonUnpivotClause,
+            ICommonTableHint,
+            ICommonTableSampleWithSystem,
+            ICommonTableSelectionWithTableSample>
     {
-        ICommonTableSelectionWithTableSample WithAlias(TableAlias tableAlias);
     }
 }

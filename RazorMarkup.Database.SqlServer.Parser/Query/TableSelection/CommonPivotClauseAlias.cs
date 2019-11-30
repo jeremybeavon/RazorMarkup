@@ -3,11 +3,12 @@ using RazorMarkup.Database.SqlServer.Query.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {
-    internal sealed class CommonPivotClauseAlias<TEndType> : ICommonPivotClauseAlias
+    internal sealed class CommonPivotClauseAlias<TEndType> : CommonTableSelectionWithJoin<TEndType>, ICommonPivotClauseAlias
     {
         private readonly IPivotClauseAlias<TEndType> pivotClauseAlias;
 
         public CommonPivotClauseAlias(IPivotClauseAlias<TEndType> pivotClauseAlias)
+            : base(pivotClauseAlias)
         {
             this.pivotClauseAlias = pivotClauseAlias;
         }

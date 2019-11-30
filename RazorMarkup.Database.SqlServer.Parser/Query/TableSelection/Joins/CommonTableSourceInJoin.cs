@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Parser.TableSelection;
+using RazorMarkup.Database.SqlServer.Query;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
@@ -32,7 +33,12 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
             throw new NotImplementedException();
         }
 
-        public ICommonDerivedTableWithAlias DerviedTable(Expression<Func<object>>[][] values)
+        public IQueryOperand<IEndSubquery<ICommonSubqueryWithAlias>> Subquery()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICommonDerivedTableWithAlias DerivedTable(Expression<Func<object>>[][] values)
         {
             throw new NotImplementedException();
         }

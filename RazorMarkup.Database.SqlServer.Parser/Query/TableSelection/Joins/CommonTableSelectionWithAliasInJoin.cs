@@ -13,14 +13,15 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
         public CommonTableSelectionWithAliasInJoin(
             ITableSelectionWithAliasInJoin<TEndType> tableSelectionWithAlias,
             Func<TEndType, ICommonTableSelectionWithJoin> endClosure)
-            : base(tableSelectionWithAlias, endClosure)
+            //: base(tableSelectionWithAlias, endClosure)
+            : base(null, endClosure)
         {
             this.tableSelectionWithAlias = tableSelectionWithAlias;
         }
 
-        public ICommonTableSelectionWithTableSample WithAlias(TableAlias tableAlias)
+        public ICommonTableSelectionWithTableSample As(TableAlias tableAlias)
         {
-            return new CommonTableSelectionWithTableSampleInJoin<TEndType>(tableSelectionWithAlias.WithAlias(tableAlias), EndClosure);
+            return new CommonTableSelectionWithTableSampleInJoin<TEndType>(tableSelectionWithAlias.As(tableAlias), EndClosure);
         }
     }
 }

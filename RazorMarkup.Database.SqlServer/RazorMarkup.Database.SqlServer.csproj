@@ -456,6 +456,7 @@
     <Compile Include="Merge\IMergeWhenMatched.cs" />
     <Compile Include="Merge\IMergeWithHint.cs" />
     <Compile Include="Merge\MergeAsTableAlias.cs" />
+    <Compile Include="Merge\MergeClause.cs" />
     <Compile Include="Merge\MergeFromClauseBuilder.cs" />
     <Compile Include="Merge\MergeHintAnd.cs" />
     <Compile Include="Merge\MergeHint.cs" />
@@ -465,6 +466,8 @@
     <Compile Include="Merge\MergeNotMatchedInsertAnd.cs" />
     <Compile Include="Merge\MergeStatement.cs" />
     <Compile Include="Merge\MergeStatementBuilder.cs" />
+    <Compile Include="Merge\MergeTargetTable.cs" />
+    <Compile Include="Merge\MergeTopPercent.cs" />
     <Compile Include="Merge\MergeUsing.cs" />
     <Compile Include="Merge\MergeWhen.cs" />
     <Compile Include="Merge\MergeWhenMatchedAnd.cs" />
@@ -574,6 +577,7 @@
     <Compile Include="Query\Builders\PivotQueryBuilder.cs" />
     <Compile Include="Query\Builders\RawTableReferenceBuilder.cs" />
     <Compile Include="Query\Builders\SubqueryExpressionBuilder.cs" />
+    <Compile Include="Query\CommonTableExpressions\IEndCommonTableExpression.generic.cs" />
     <Compile Include="Query\CommonTableExpressions\IWithClause.cs" />
     <Compile Include="Query\Select\ISelectClauseAnd.cs" />
     <Compile Include="Query\Select\SelectClauseAnd.cs" />

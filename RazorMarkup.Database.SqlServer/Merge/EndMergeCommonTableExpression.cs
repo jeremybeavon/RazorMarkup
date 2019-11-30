@@ -1,11 +1,8 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.CommonTableExpressions;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
+﻿using RazorMarkup.Database.SqlServer.Query.CommonTableExpressions;
 
 namespace RazorMarkup.Database.SqlServer.Merge
 {
-    internal sealed class EndMergeCommonTableExpression : AbstractStatement<MergeStatementBuilder>,
+    internal sealed class EndMergeCommonTableExpression : MergeClause,
         IEndMergeCommonTableExpression
     {
         public EndMergeCommonTableExpression(MergeStatementBuilder statement) 
@@ -19,11 +16,6 @@ namespace RazorMarkup.Database.SqlServer.Merge
             return new WithClause<ICommonTableExpressionEnd<IEndMergeCommonTableExpression>>(
                 Statement.WithClause,
                 new CommonTableExpressionEndMerge(Statement));
-        }
-
-        public IMergeTopPercent Top(Expression<Func<Integer>> count)
-        {
-            throw new NotImplementedException();
         }
     }
 }

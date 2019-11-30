@@ -1,15 +1,8 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
 {
-    internal interface ICommonTableSample
+    internal interface ICommonTableSample : ICommonTableSample<ICommonTableSelectionWithRepeatable>
     {
-        ICommonTableSelectionWithRepeatable Percent(Expression<Func<Float>> sampleNumber);
-
-        ICommonTableSelectionWithRepeatable Rows(Expression<Func<Integer>> sampleNumber);
-
-        ICommonTableSelectionWithRepeatable Sample(Expression<Func<Integer>> sampleNumber);
     }
 }

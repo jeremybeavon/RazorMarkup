@@ -31,7 +31,13 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
             return new CommonSubqueryWithAlias<TEndType>(CreateSubquery(query));
         }
 
-        public ICommonDerivedTableWithAlias DerviedTable(Expression<Func<object>>[][] values)
+
+        public IQueryOperand<IEndSubquery<ICommonSubqueryWithAlias>> Subquery()
+        {
+            throw new NotSupportedException();
+        }
+
+        public ICommonDerivedTableWithAlias DerivedTable(Expression<Func<object>>[][] values)
         {
             return new CommonDerviedTableWithAlias<TEndType>(tableSource.DerivedTable(values));
         }

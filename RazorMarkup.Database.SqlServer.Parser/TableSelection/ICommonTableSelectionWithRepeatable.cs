@@ -1,11 +1,15 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
 {
-    internal interface ICommonTableSelectionWithRepeatable : ICommonTableSelectionWithTableHint
+    internal interface ICommonTableSelectionWithRepeatable :
+        ICommonTableSelectionWithRepeatable<
+            ICommonTableSource,
+            ICommonTableSource,
+            ICommonPivotClause,
+            ICommonUnpivotClause,
+            ICommonTableHint,
+            ICommonTableSelectionWithTableHint>
     {
-        ICommonTableSelectionWithTableHint WithRepeatSeed(Expression<Func<Integer>> repeatSeed);
     }
 }

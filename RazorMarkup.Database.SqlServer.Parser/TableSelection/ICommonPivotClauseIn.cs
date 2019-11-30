@@ -1,7 +1,8 @@
-﻿namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
+
+namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
 {
-    internal interface ICommonPivotClauseIn
+    internal interface ICommonPivotClauseIn : ICommonPivotClauseIn<ICommonPivotClauseAlias>
     {
-        ICommonPivotClauseAlias In(params ColumnName[] columns);
     }
 }

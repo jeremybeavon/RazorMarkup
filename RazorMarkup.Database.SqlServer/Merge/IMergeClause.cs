@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Merge
 {
-    public interface IMergeClause : IHideObjectMethods
+    public interface IMergeClause : IMergeTargetTable
     {
         IMergeTopPercent Top(Expression<Func<Integer>> count);
     }

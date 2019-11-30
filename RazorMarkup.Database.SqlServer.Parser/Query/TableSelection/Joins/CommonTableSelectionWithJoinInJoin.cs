@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using RazorMarkup.Database.SqlServer.Parser.TableSelection;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
+using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
 {
@@ -172,7 +173,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
             throw new NotImplementedException();
         }
 
-        public ICommonPivotClause Pivot(Expression<Func<object>> aggregateFunction)
+        public ICommonPivotClause Pivot(AggregateName aggregateName, params Expression<Func<Text>>[] aggregateValues)
         {
             throw new NotImplementedException();
         }
