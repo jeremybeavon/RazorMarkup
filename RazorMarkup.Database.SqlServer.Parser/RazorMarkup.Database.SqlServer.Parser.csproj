@@ -53,6 +53,44 @@
     <Compile Include="DropIndexOptionVisitor.cs" />
     <Compile Include="DropIndexVisitor.cs" />
     <Compile Include="IdentifierOrValueExpressionExtensions.cs" />
+    <Compile Include="Merge\TableSelection\AdditionalCommonTableHint.cs" />
+    <Compile Include="Merge\TableSelection\CommonDerivedTableWithAlias.cs" />
+    <Compile Include="Merge\TableSelection\CommonPivotClause.cs" />
+    <Compile Include="Merge\TableSelection\CommonPivotClauseAlias.cs" />
+    <Compile Include="Merge\TableSelection\CommonPivotClauseIn.cs" />
+    <Compile Include="Merge\TableSelection\CommonSubqueryWithAlias.cs" />
+    <Compile Include="Merge\TableSelection\CommonTableHint.cs" />
+    <Compile Include="Merge\TableSelection\CommonTableSample.cs" />
+    <Compile Include="Merge\TableSelection\CommonTableSampleWithSystem.cs" />
+    <Compile Include="Merge\TableSelection\CommonTableSelectionWithAdditionalTableHint.cs" />
+    <Compile Include="Merge\TableSelection\CommonTableSelectionWithAlias.cs" />
+    <Compile Include="Merge\TableSelection\CommonTableSelectionWithJoin.cs" />
+    <Compile Include="Merge\TableSelection\CommonTableSelectionWithRepeatable.cs" />
+    <Compile Include="Merge\TableSelection\CommonTableSelectionWithTableHint.cs" />
+    <Compile Include="Merge\TableSelection\CommonTableSelectionWithTableSample.cs" />
+    <Compile Include="Merge\TableSelection\CommonTableSource.cs" />
+    <Compile Include="Merge\TableSelection\CommonUnpivotClause.cs" />
+    <Compile Include="Merge\TableSelection\CommonUnpivotClauseAlias.cs" />
+    <Compile Include="Merge\TableSelection\CommonUnpivotClauseIn.cs" />
+    <Compile Include="Merge\TableSelection\Joins\AdditionalCommonTableHintInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonDerivedTableWithAliasInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonPivotClauseAliasInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonPivotClauseInInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonPivotClauseInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonSubqueryWithAliasInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonTableHintInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonTableSampleInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonTableSampleWithSystemInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonTableSelectionWithAdditionalTableHintInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonTableSelectionWithAliasInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonTableSelectionWithJoinInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonTableSelectionWithRepeatableInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonTableSelectionWithTableHintInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonTableSelectionWithTableSampleInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonTableSourceInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonUnpivotClauseAliasInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonUnpivotClauseInInJoin.cs" />
+    <Compile Include="Merge\TableSelection\Joins\CommonUnpivotClauseInJoin.cs" />
     <Compile Include="MultiPartIdentifierExtensions.cs" />
     <Compile Include="ObsoleteException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -217,9 +255,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Merge\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

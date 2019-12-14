@@ -1,9 +1,10 @@
-﻿using RazorMarkup.Database.SqlServer.TableSelection;
+﻿using RazorMarkup.Database.SqlServer.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
 {
     public interface ITableSelectionWithAliasInJoin<TJoinEndType> :
-        ICommonTableSelectionWithAlias<
+        ICommonTableSelectionWithAliasInJoin<
+            TJoinEndType,
             ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
             ITableSourceInJoin<TJoinEndType>,
             IPivotClauseInJoin<TJoinEndType>,
