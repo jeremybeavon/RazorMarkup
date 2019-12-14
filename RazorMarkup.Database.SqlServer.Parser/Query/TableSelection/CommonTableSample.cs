@@ -6,28 +6,11 @@ using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {
-    internal class CommonTableSample<TEndType> : ICommonTableSample
+    internal class CommonTableSample<TEndType> :
+        AbstractCommonTableSample<
+            ITableSample<TEndType>,
+            ITableSelectionWithRepeatable<TEndType>,
+            CommonTableSelectionWithRepeatable<TEndType>>
     {
-        private readonly ITableSample<TEndType> tableSample;
-
-        public CommonTableSample(ITableSample<TEndType> tableSample)
-        {
-            this.tableSample = tableSample;
-        }
-
-        public ICommonTableSelectionWithRepeatable Percent(Expression<Func<Float>> sampleNumber)
-        {
-            return new CommonTableSelectionWithRepeatable<TEndType>(tableSample.Percent(sampleNumber));
-        }
-
-        public ICommonTableSelectionWithRepeatable Rows(Expression<Func<Integer>> sampleNumber)
-        {
-            return new CommonTableSelectionWithRepeatable<TEndType>(tableSample.Rows(sampleNumber));
-        }
-
-        public ICommonTableSelectionWithRepeatable Sample(Expression<Func<Integer>> sampleNumber)
-        {
-            return new CommonTableSelectionWithRepeatable<TEndType>(tableSample.Sample(sampleNumber));
-        }
     }
 }

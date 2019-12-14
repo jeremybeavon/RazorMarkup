@@ -3,7 +3,8 @@
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
     public interface ITableSampleWithSystem<TEndType> :
-        ICommonTableSampleWithSystem<ITableSelectionWithRepeatable<TEndType>, ITableSample<TEndType>>
+        ICommonTableSampleWithSystem<ITableSelectionWithRepeatable<TEndType>, ITableSample<TEndType>>,
+        ITableSample<TEndType>
     {
     }
 }

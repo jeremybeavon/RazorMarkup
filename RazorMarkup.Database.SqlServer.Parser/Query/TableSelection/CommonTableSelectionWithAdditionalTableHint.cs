@@ -1,23 +1,23 @@
-﻿using RazorMarkup.Database.SqlServer.Parser.TableSelection;
+﻿using RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins;
+using RazorMarkup.Database.SqlServer.Parser.TableSelection;
 using RazorMarkup.Database.SqlServer.Query.TableSelection;
+using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {
-    internal class CommonTableSelectionWithAdditionalTableHint<TEndType> : CommonTableSelectionWithJoin<TEndType>,
-        ICommonTableSelectionWithAdditionalTableHint
+    internal class CommonTableSelectionWithAdditionalTableHint<TEndType> : 
+        AbstractCommonTableSelectionWithAdditionalTableHint<
+            ITableSelectionWithAdditionalTableHint<TEndType>,
+            ITableSourceInJoin<ITableSelectionWithJoin<TEndType>>,
+            ITableSource<TEndType>,
+            IPivotClause<TEndType>,
+            IUnpivotClause<TEndType>,
+            IAdditionalTableHint<TEndType>,
+            CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>, CommonTableSelectionWithJoin<TEndType>>,
+            CommonTableSource<TEndType>,
+            CommonPivotClause<TEndType>,
+            CommonUnpivotClause<TEndType>,
+            AdditionalCommonTableHint<TEndType>>
     {
-        private readonly ITableSelectionWithAdditionalTableHint<TEndType> tableSelectionWithAdditionalTableHint;
-
-        public CommonTableSelectionWithAdditionalTableHint(ITableSelectionWithAdditionalTableHint<TEndType> tableSelectionWithAdditionalTableHint)
-            : base(tableSelectionWithAdditionalTableHint)
-        {
-            this.tableSelectionWithAdditionalTableHint = tableSelectionWithAdditionalTableHint;
-        }
-
-        public new ICommonAdditionalTableHint And()
-        {
-            throw new global::System.NotImplementedException();
-            //return new CommonTableHint<TEndType>(tableSelectionWithAdditionalTableHint.And());
-        }
     }
 }

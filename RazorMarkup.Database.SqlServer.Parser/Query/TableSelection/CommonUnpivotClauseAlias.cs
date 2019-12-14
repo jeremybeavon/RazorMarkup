@@ -1,21 +1,23 @@
-﻿using RazorMarkup.Database.SqlServer.Parser.TableSelection;
+﻿using RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins;
+using RazorMarkup.Database.SqlServer.Parser.TableSelection;
 using RazorMarkup.Database.SqlServer.Query.TableSelection;
+using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {
-    internal class CommonUnpivotClauseAlias<TEndType> : CommonTableSelectionWithJoin<TEndType>, ICommonUnpivotClauseAlias
+    internal class CommonUnpivotClauseAlias<TEndType> :
+        AbstractCommonUnpivotClauseAlias<
+            IUnpivotClauseAlias<TEndType>,
+            ITableSourceInJoin<ITableSelectionWithJoin<TEndType>>,
+            ITableSource<TEndType>,
+            IPivotClause<TEndType>,
+            IUnpivotClause<TEndType>,
+            ITableSelectionWithJoin<TEndType>,
+            CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>, CommonTableSelectionWithJoin<TEndType>>,
+            CommonTableSource<TEndType>,
+            CommonPivotClause<TEndType>,
+            CommonUnpivotClause<TEndType>,
+            CommonTableSelectionWithJoin<TEndType>>
     {
-        private readonly IUnpivotClauseAlias<TEndType> unpivotClauseAlias;
-
-        public CommonUnpivotClauseAlias(IUnpivotClauseAlias<TEndType> unpivotClauseAlias)
-            : base(unpivotClauseAlias)
-        {
-            this.unpivotClauseAlias = unpivotClauseAlias;
-        }
-
-        public ICommonTableSelectionWithJoin As(TableAlias tableAlias)
-        {
-            return new CommonTableSelectionWithJoin<TEndType>(unpivotClauseAlias.As(tableAlias));
-        }
     }
 }

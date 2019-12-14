@@ -1,25 +1,28 @@
 ﻿using System;
 using System.Linq.Expressions;
+using RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.Parser.TableSelection;
 using RazorMarkup.Database.SqlServer.Query.TableSelection;
+using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {
-    internal class CommonTableSelectionWithRepeatable<TEndType> : CommonTableSelectionWithTableHint<TEndType>,
-        ICommonTableSelectionWithRepeatable
+    internal class CommonTableSelectionWithRepeatable<TEndType> :
+        AbstractCommonTableSelectionWithRepeatable<
+            ITableSelectionWithRepeatable<TEndType>,
+            ITableSourceInJoin<ITableSelectionWithJoin<TEndType>>,
+            ITableSource<TEndType>,
+            IPivotClause<TEndType>,
+            IUnpivotClause<TEndType>,
+            ITableHint<TEndType>,
+            ITableSelectionWithTableHint<TEndType>,
+            CommonTableSourceInJoin<ITableSelectionWithJoin<TEndType>, CommonTableSelectionWithJoin<TEndType>>,
+            CommonTableSource<TEndType>,
+            CommonPivotClause<TEndType>,
+            CommonUnpivotClause<TEndType>,
+            CommonTableHint<TEndType>,
+            CommonTableSelectionWithTableHint<TEndType>>
     {
-        private readonly ITableSelectionWithRepeatable<TEndType> tableSelectionWithRepeatable;
-
-        public CommonTableSelectionWithRepeatable(ITableSelectionWithRepeatable<TEndType> tableSelectionWithRepeatable)
-            : base(tableSelectionWithRepeatable)
-        {
-            this.tableSelectionWithRepeatable = tableSelectionWithRepeatable;
-        }
-
-        public ICommonTableSelectionWithTableHint WithRepeatSeed(Expression<Func<Integer>> repeatSeed)
-        {
-            return new CommonTableSelectionWithTableHint<TEndType>(tableSelectionWithRepeatable.WithRepeatSeed(repeatSeed));
-        }
     }
 }

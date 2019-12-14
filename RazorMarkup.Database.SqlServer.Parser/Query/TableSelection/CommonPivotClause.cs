@@ -3,18 +3,11 @@ using RazorMarkup.Database.SqlServer.Query.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {
-    internal class CommonPivotClause<TEndType> : ICommonPivotClause
+    internal class CommonPivotClause<TEndType> :
+        AbstractCommonPivotClause<
+            IPivotClause<TEndType>,
+            IPivotClauseIn<TEndType>,
+            CommonPivotClauseIn<TEndType>>
     {
-        private readonly IPivotClause<TEndType> pivotClause;
-
-        public CommonPivotClause(IPivotClause<TEndType> pivotClause)
-        {
-            this.pivotClause = pivotClause;
-        }
-
-        public ICommonPivotClauseIn For(ColumnName columnName)
-        {
-            return new CommonPivotClauseIn<TEndType>(pivotClause.For(columnName));
-        }
     }
 }

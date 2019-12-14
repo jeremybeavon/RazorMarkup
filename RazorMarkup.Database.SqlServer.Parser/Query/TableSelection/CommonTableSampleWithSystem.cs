@@ -3,20 +3,13 @@ using RazorMarkup.Database.SqlServer.Query.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {
-    internal class CommonTableSampleWithSystem<TEndType> : CommonTableSample<TEndType>,
-        ICommonTableSampleWithSystem
+    internal class CommonTableSampleWithSystem<TEndType> :
+        AbstractCommonTableSampleWithSystem<
+            ITableSampleWithSystem<TEndType>,
+            ITableSelectionWithRepeatable<TEndType>,
+            ITableSample<TEndType>,
+            CommonTableSelectionWithRepeatable<TEndType>,
+            CommonTableSample<TEndType>>
     {
-        private readonly ITableSampleWithSystem<TEndType> tableSampleWithSystem;
-
-        public CommonTableSampleWithSystem(ITableSampleWithSystem<TEndType> tableSampleWithSystem)
-            : base(tableSampleWithSystem)
-        {
-            this.tableSampleWithSystem = tableSampleWithSystem;
-        }
-
-        public ICommonTableSample System()
-        {
-            return new CommonTableSample<TEndType>(tableSampleWithSystem.System());
-        }
     }
 }

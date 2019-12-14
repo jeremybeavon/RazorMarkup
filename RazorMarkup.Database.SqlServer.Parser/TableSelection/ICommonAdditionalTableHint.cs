@@ -7,7 +7,8 @@ namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
             ICommonTableSelectionWithAlias,
             ICommonSubqueryWithAlias,
             ICommonDerivedTableWithAlias,
-            ICommonTableSelectionWithAdditionalTableHint>
+            ICommonTableSelectionWithAdditionalTableHint>,
+        ICommonTableSource
     {
     }
 }

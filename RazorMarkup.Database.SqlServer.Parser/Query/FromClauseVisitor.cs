@@ -21,12 +21,12 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
             {
                 ICommonTableSource tableSource = 
                     tableSelection == null ?
-                    new CommonTableSource<TEndType>(fromClause) :
+                    new CommonTableSource<TEndType>() { Source = fromClause } :
                     tableSelection.And();
                 tableSelection = tableReference.AcceptWithResult(new TableReferenceVisitor(tableSource));
             }
 
-            Result = ((CommonTableSelectionWithJoin<TEndType>)tableSelection).End();
+            Result = ((ISource)tableSelection).GetSource<IEndFromClause<TEndType>>();
         }
     }
 }

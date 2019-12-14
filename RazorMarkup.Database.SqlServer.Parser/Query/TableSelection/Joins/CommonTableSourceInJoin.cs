@@ -1,46 +1,22 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Parser.TableSelection;
-using RazorMarkup.Database.SqlServer.Query;
+﻿using RazorMarkup.Database.SqlServer.Parser.TableSelection;
+using RazorMarkup.Database.SqlServer.Parser.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
 {
-    internal class CommonTableSourceInJoin<TEndType> : AbstractJoinStatement<TEndType>, ICommonTableSource
+    internal class CommonTableSourceInJoin<TJoinEndType, TCommonJoinEndType> : 
+        AbstractCommonTableSourceInJoin<
+            TJoinEndType,
+            ITableSourceInJoin<TJoinEndType>,
+            ITableSelectionWithAliasInJoin<TJoinEndType>,
+            ISubqueryWithAliasInJoin<TJoinEndType>,
+            IDerivedTableWithAliasInJoin<TJoinEndType>,
+            TCommonJoinEndType,
+            CommonTableSelectionWithAliasInJoin<TJoinEndType, TCommonJoinEndType>,
+            CommonSubqueryWithAliasInJoin<TJoinEndType, TCommonJoinEndType>,
+            CommonDerivedTableWithAliasInJoin<TJoinEndType, TCommonJoinEndType>>
+        where TCommonJoinEndType : ISource<TJoinEndType>, ICommonTableSelectionWithJoin, new()
     {
-        private readonly ITableSourceInJoin<TEndType> tableSource;
-
-        public CommonTableSourceInJoin(
-            ITableSourceInJoin<TEndType> tableSource,
-            Func<TEndType, ICommonTableSelectionWithJoin> endClosure)
-            : base(endClosure)
-        {
-            this.tableSource = tableSource;
-        }
-
-        public ICommonTableSelectionWithAlias Table(TableName tableName)
-        {
-            return new CommonTableSelectionWithAliasInJoin<TEndType>(tableSource.Table(tableName), EndClosure);
-        }
-
-        public ICommonTableSelectionWithAlias View(ViewName viewName)
-        {
-            return new CommonTableSelectionWithAliasInJoin<TEndType>(tableSource.View(viewName), EndClosure);
-        }
-
-        public ICommonSubqueryWithAlias Subquery(Microsoft.SqlServer.TransactSql.ScriptDom.QueryExpression query)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryOperand<IEndSubquery<ICommonSubqueryWithAlias>> Subquery()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ICommonDerivedTableWithAlias DerivedTable(Expression<Func<object>>[][] values)
-        {
-            throw new NotImplementedException();
-        }
     }
+
 }

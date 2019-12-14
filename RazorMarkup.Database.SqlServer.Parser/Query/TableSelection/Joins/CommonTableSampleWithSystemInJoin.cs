@@ -1,25 +1,21 @@
 ﻿using System;
 using RazorMarkup.Database.SqlServer.Parser.TableSelection;
+using RazorMarkup.Database.SqlServer.Parser.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
 {
-    internal class CommonTableSampleWithSystemInJoin<TEndType> : CommonTableSampleInJoin<TEndType>,
-        ICommonTableSampleWithSystem
+    internal class CommonTableSampleWithSystemInJoin<TJoinEndType, TCommonJoinEndType> :
+        AbstractCommonTableSampleWithSystemInJoin<
+            TJoinEndType,
+            ITableSampleWithSystemInJoin<TJoinEndType>,
+            ITableSelectionWithRepeatableInJoin<TJoinEndType>,
+            ITableSampleInJoin<TJoinEndType>,
+            TCommonJoinEndType,
+            CommonTableSelectionWithRepeatableInJoin<TJoinEndType, TCommonJoinEndType>,
+            CommonTableSampleInJoin<TJoinEndType, TCommonJoinEndType>>
+        where TCommonJoinEndType : ISource<TJoinEndType>, ICommonTableSelectionWithJoin, new()
     {
-        private readonly ITableSampleWithSystemInJoin<TEndType> tableSampleWithSystem;
-
-        public CommonTableSampleWithSystemInJoin(
-            ITableSampleWithSystemInJoin<TEndType> tableSampleWithSystem,
-            Func<TEndType, ICommonTableSelectionWithJoin> endClosure)
-            : base(tableSampleWithSystem, endClosure)
-        {
-            this.tableSampleWithSystem = tableSampleWithSystem;
-        }
-
-        public ICommonTableSample System()
-        {
-            return new CommonTableSampleInJoin<TEndType>(tableSampleWithSystem.System(), EndClosure);
-        }
     }
+
 }

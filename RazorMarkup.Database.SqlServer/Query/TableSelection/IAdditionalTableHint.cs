@@ -7,7 +7,9 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
             ITableSelectionWithAlias<TEndType>,
             ISubqueryWithAlias<TEndType>,
             IDerivedTableWithAlias<TEndType>,
-            ITableSelectionWithAdditionalTableHint<TEndType>>
+            ITableSelectionWithAdditionalTableHint<TEndType>>,
+        ITableHint<TEndType>,
+        ITableSource<TEndType>
     {
     }
 }

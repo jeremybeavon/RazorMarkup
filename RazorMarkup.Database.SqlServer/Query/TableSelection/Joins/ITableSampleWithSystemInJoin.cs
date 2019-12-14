@@ -5,7 +5,8 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
     public interface ITableSampleWithSystemInJoin<TJoinEndType> :
         ICommonTableSampleWithSystem<
             ITableSelectionWithRepeatableInJoin<TJoinEndType>,
-            ITableSampleInJoin<TJoinEndType>>
+            ITableSampleInJoin<TJoinEndType>>,
+        ITableSampleInJoin<TJoinEndType>
     {
     }
 }

@@ -9,7 +9,8 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
             ITableSourceInJoin<TJoinEndType>,
             IPivotClauseInJoin<TJoinEndType>,
             IUnpivotClauseInJoin<TJoinEndType>,
-            ITableHintInJoin<TJoinEndType>>
+            ITableHintInJoin<TJoinEndType>>,
+        ITableSelectionWithJoinInJoin<TJoinEndType>
     {
     }
 }

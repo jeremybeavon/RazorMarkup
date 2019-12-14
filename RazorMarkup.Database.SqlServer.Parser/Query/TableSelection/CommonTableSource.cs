@@ -7,45 +7,15 @@ using RazorMarkup.Database.SqlServer.Query.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {
-    internal class CommonTableSource<TEndType> : ICommonTableSource
+    internal class CommonTableSource<TEndType> :
+        AbstractCommonTableSource<
+            ITableSource<TEndType>,
+            ITableSelectionWithAlias<TEndType>,
+            ISubqueryWithAlias<TEndType>,
+            IDerivedTableWithAlias<TEndType>,
+            CommonTableSelectionWithAlias<TEndType>,
+            CommonSubqueryWithAlias<TEndType>,
+            CommonDerivedTableWithAlias<TEndType>>
     {
-        private readonly ITableSource<TEndType> tableSource;
-
-        public CommonTableSource(ITableSource<TEndType> tableSource)
-        {
-            this.tableSource = tableSource;
-        }
-
-        public ICommonTableSelectionWithAlias Table(TableName tableName)
-        {
-            return new CommonTableSelectionWithAlias<TEndType>(tableSource.Table(tableName));
-        }
-
-        public ICommonTableSelectionWithAlias View(ViewName viewName)
-        {
-            return new CommonTableSelectionWithAlias<TEndType>(tableSource.View(viewName));
-        }
-
-        public ICommonSubqueryWithAlias Subquery(QueryExpression query)
-        {
-            return new CommonSubqueryWithAlias<TEndType>(CreateSubquery(query));
-        }
-
-
-        public IQueryOperand<IEndSubquery<ICommonSubqueryWithAlias>> Subquery()
-        {
-            throw new NotSupportedException();
-        }
-
-        public ICommonDerivedTableWithAlias DerivedTable(Expression<Func<object>>[][] values)
-        {
-            return new CommonDerviedTableWithAlias<TEndType>(tableSource.DerivedTable(values));
-        }
-
-        private ISubqueryWithAlias<TEndType> CreateSubquery(QueryExpression query)
-        {
-            return query.AcceptWithResult(
-                new QueryOperandVisitor<IEndSubquery<ISubqueryWithAlias<TEndType>>>(tableSource.Subquery())).End().Subquery();
-        }
     }
 }

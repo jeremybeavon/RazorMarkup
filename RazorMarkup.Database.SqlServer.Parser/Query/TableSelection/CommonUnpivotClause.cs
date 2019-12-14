@@ -3,18 +3,11 @@ using RazorMarkup.Database.SqlServer.Query.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection
 {
-    internal class CommonUnpivotClause<TEndType> : ICommonUnpivotClause
+    internal class CommonUnpivotClause<TEndType> :
+        AbstractCommonUnpivotClause<
+            IUnpivotClause<TEndType>,
+            IUnpivotClauseIn<TEndType>,
+            CommonUnpivotClauseIn<TEndType>>
     {
-        private readonly IUnpivotClause<TEndType> unpivotClause;
-
-        public CommonUnpivotClause(IUnpivotClause<TEndType> unpivotClause)
-        {
-            this.unpivotClause = unpivotClause;
-        }
-
-        public ICommonUnpivotClauseIn For(ColumnName columnName)
-        {
-            return new CommonUnpivotClauseIn<TEndType>(unpivotClause.For(columnName));
-        }
     }
 }
