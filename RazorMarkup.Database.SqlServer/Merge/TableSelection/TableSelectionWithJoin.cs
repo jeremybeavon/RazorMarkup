@@ -1,14 +1,14 @@
-﻿using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
+﻿using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
+using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.TableSelection;
-using System.Linq.Expressions;
 using System;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     internal class TableSelectionWithJoin :
         CommonTableSelectionWithJoin<
-            ITableSourceInJoin<ITableSelectionWithJoin>,
+            ITableSourceInJoinWithTableSelection,
             ITableSource,
             IPivotClause,
             IUnpivotClause,
@@ -30,9 +30,9 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
             return new TableSelectionWithJoin(statement);
         }
 
-        public static ITableSourceInJoin<ITableSelectionWithJoin> CreateTableSourceInJoin(FromClauseBuilder statement)
+        public static ITableSourceInJoinWithTableSelection CreateTableSourceInJoin(FromClauseBuilder statement)
         {
-            return new TableSourceInJoin<ITableSelectionWithJoin>(statement, Create(statement));
+            return new TableSourceInJoin(statement, Create(statement));
         }
 
         public IMergeWhen On(Expression<Func<bool>> searchCondition)

@@ -11,7 +11,7 @@ namespace RazorMarkup.Database.SqlServer.Merge
 
         public ITableSource Using()
         {
-            MergeFromClauseBuilder fromClause = new MergeFromClauseBuilder(ExpressionBuilder, Statement);
+            MergeFromClauseBuilder fromClause = new(ExpressionBuilder, Statement);
             Statement.UsingClause = fromClause;
             Statement.Append((IMergeUsing input) => input.Using());
             return new TableSource(fromClause);

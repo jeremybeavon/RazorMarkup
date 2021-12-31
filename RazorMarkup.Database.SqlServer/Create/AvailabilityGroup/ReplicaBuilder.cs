@@ -16,7 +16,7 @@ namespace RazorMarkup.Database.SqlServer.Create.AvailabilityGroup
         public string AvailabilityMode { get; set; }
 
         public string FailoverMode { get; set; }
-        
+
         public int? BackupPriority { get; set; }
 
         public string SecondaryRoleAllowConnections { get; set; }

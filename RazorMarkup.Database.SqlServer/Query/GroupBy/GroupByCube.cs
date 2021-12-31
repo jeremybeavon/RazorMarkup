@@ -12,7 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             this.cubeClosure = cubeClosure;
         }
-        
+
         public IGroupByCube<TEndCubeType> And(Expression<Func<object>> groupingExpression)
         {
             Statement.Groupings.Add(new ExpressionBuilder<object>(groupingExpression));

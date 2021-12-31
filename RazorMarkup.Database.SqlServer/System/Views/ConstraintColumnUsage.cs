@@ -4,20 +4,20 @@ namespace RazorMarkup.Database.SqlServer.System.Views
 {
     public sealed class ConstraintColumnUsage
     {
-        public static readonly ViewName ViewName = new ViewName("INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE");
-        
-        public static readonly Column<SqlNVarchar> ColumnName = new Column<SqlNVarchar>("COLUMN_NAME");
-        
-        public static readonly Column<SqlNVarchar> ConstraintCatalog = new Column<SqlNVarchar>("CONSTRAINT_CATALOG");
-        
-        public static readonly Column<SqlSysname> ConstraintName = new Column<SqlSysname>("CONSTRAINT_NAME");
-        
-        public static readonly Column<SqlNVarchar> ConstraintSchema = new Column<SqlNVarchar>("CONSTRAINT_SCHEMA");
-        
-        public static readonly Column<SqlNVarchar> TableCatalog = new Column<SqlNVarchar>("TABLE_CATALOG");
-        
-        public static readonly Column<SqlSysname> TableName = new Column<SqlSysname>("TABLE_NAME");
-        
-        public static readonly Column<SqlNVarchar> TableSchema = new Column<SqlNVarchar>("TABLE_SCHEMA");
+        public static readonly ViewName ViewName = new("INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE");
+
+        public static readonly Column<SqlNVarchar> ColumnName = new("COLUMN_NAME");
+
+        public static readonly Column<SqlNVarchar> ConstraintCatalog = new("CONSTRAINT_CATALOG");
+
+        public static readonly Column<SqlSysname> ConstraintName = new("CONSTRAINT_NAME");
+
+        public static readonly Column<SqlNVarchar> ConstraintSchema = new("CONSTRAINT_SCHEMA");
+
+        public static readonly Column<SqlNVarchar> TableCatalog = new("TABLE_CATALOG");
+
+        public static readonly Column<SqlSysname> TableName = new("TABLE_NAME");
+
+        public static readonly Column<SqlNVarchar> TableSchema = new("TABLE_SCHEMA");
     }
 }

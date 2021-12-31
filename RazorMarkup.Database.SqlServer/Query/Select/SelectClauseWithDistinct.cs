@@ -12,7 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
 
         public SelectClauseWithDistinct(ExpressionBuilder expressionBuilder, TEndType endClosure)
             : base(new SelectClauseBuilder(expressionBuilder), endClosure)
-        { 
+        {
         }
 
         public ISelectClauseWithTop<TEndType> All()

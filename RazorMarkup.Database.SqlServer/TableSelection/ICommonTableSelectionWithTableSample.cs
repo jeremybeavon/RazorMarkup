@@ -7,7 +7,17 @@
         TUnpivotClause,
         TTableHint,
         TTableSampleWithSystem> :
-        ICommonTableSelectionWithTableHint<TTableSourceInJoin, TTableSource, TPivotClause, TUnpivotClause, TTableHint>
+        ICommonTableSelectionWithTableSample<TTableSource, TPivotClause, TUnpivotClause, TTableHint, TTableSampleWithSystem>
+    {
+    }
+
+    public interface ICommonTableSelectionWithTableSample<
+        TTableSource,
+        TPivotClause,
+        TUnpivotClause,
+        TTableHint,
+        TTableSampleWithSystem> :
+        ICommonTableSelectionWithTableHint<TTableSource, TPivotClause, TUnpivotClause, TTableHint>
     {
         TTableSampleWithSystem TableSample();
     }

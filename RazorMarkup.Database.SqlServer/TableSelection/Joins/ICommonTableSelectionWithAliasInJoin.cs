@@ -2,7 +2,6 @@
 {
     public interface ICommonTableSelectionWithAliasInJoin<
         TJoinEndType,
-        TTableSourceInJoin,
         TTableSource,
         TPivotClause,
         TUnpivotClause,
@@ -10,7 +9,6 @@
         TTableSampleWithSystem,
         TTableSelectionWithTableSample> :
         ICommonTableSelectionWithAlias<
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,

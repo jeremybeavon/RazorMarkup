@@ -36,7 +36,7 @@
         {
             throw new NotInExpressionException();
         }
-        
+
         public static implicit operator SqlNVarchar(SqlBinary value)
         {
             throw new NotInExpressionException();

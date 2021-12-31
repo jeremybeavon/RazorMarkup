@@ -17,7 +17,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
     {
         public TableSelectionWithTableSampleInJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
             : this(statement, joinClosure, new TableSelectionInJoinFactory<TJoinEndType>(joinClosure))
-            {
+        {
         }
 
         private TableSelectionWithTableSampleInJoin(

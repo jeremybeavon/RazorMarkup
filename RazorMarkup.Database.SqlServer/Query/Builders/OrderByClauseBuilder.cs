@@ -18,10 +18,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 
         public IList<OrderByColumnBuilder> Columns { get; private set; }
 
-        public OrderByColumnBuilder LastColumn
-        {
-            get { return Columns[Columns.Count - 1]; }
-        }
+        public OrderByColumnBuilder LastColumn => Columns[Columns.Count - 1];
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {

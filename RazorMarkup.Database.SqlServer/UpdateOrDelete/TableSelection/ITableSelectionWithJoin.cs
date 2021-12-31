@@ -2,15 +2,19 @@
 
 namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 {
+    public interface ITableSourceInJoinWithTableSelection : ITableSourceInJoin<ITableSelectionWithJoin>
+    {
+    }
+
     public interface ITableSelectionWithJoin : IEndFromClause
     {
-        ITableSourceInJoin<ITableSelectionWithJoin> InnerJoin();
+        ITableSourceInJoinWithTableSelection InnerJoin();
 
-        ITableSourceInJoin<ITableSelectionWithJoin> LeftJoin();
+        ITableSourceInJoinWithTableSelection LeftJoin();
 
-        ITableSourceInJoin<ITableSelectionWithJoin> RightJoin();
+        ITableSourceInJoinWithTableSelection RightJoin();
 
-        ITableSourceInJoin<ITableSelectionWithJoin> FullJoin();
+        ITableSourceInJoinWithTableSelection FullJoin();
 
         ITableSource CrossJoin();
 
@@ -19,5 +23,5 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
         ITableSource OuterApplyJoin();
 
         IPivotClause Pivot();
-    } 
+    }
 }

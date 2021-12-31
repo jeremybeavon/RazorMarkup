@@ -1,5 +1,5 @@
-﻿using System;
-using RazorMarkup.Database.SqlServer.Alter.BrokerPriority;
+﻿using RazorMarkup.Database.SqlServer.Alter.BrokerPriority;
+using System;
 
 namespace RazorMarkup.Database.SqlServer.Alter
 {

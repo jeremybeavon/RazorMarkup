@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using System;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Drop.Index
 {
@@ -15,10 +15,7 @@ namespace RazorMarkup.Database.SqlServer.Drop.Index
 
         public string TableOrViewName { get; set; }
 
-        public bool HasOptions
-        {
-            get { return MaxDegreeOfParallelism != null || Online != null || MoveTo != null || FilestreamOn != null; }
-        }
+        public bool HasOptions => MaxDegreeOfParallelism != null || Online != null || MoveTo != null || FilestreamOn != null;
 
         public Expression<Func<Integer>> MaxDegreeOfParallelism { get; set; }
 

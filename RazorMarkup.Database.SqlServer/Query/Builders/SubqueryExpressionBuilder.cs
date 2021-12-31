@@ -19,7 +19,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
                 }
 
                 Initialize(() => SqlSubquery.Select());
-                SubqueryBuilder builder = new SubqueryBuilder(ExpressionBuilder);
+                SubqueryBuilder builder = new(ExpressionBuilder);
                 builder.Select.NextClause = new SelectClauseBuilder(ExpressionBuilder);
                 NextClause = builder;
                 return builder;
@@ -36,7 +36,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
                 }
 
                 Initialize(() => SqlSubquery.BeginOperatorGroup());
-                QueryOperatorGroupBuilder builder = new QueryOperatorGroupBuilder(ExpressionBuilder);
+                QueryOperatorGroupBuilder builder = new(ExpressionBuilder);
                 NextClause = builder;
                 return builder;
             }

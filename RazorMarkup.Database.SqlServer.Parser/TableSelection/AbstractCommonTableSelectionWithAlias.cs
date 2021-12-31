@@ -33,7 +33,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
             TCommonTableHint,
             TCommonTableSampleWithSystem>,
         ICommonTableSelectionWithAlias
-        where TTableSelectionWithAlias : ICommonTableSelectionWithAlias<TTableSourceInJoin, TTableSource, TPivotClause, TUnpivotClause, TTableHint, TTableSampleWithSystem, TTableSelectionWithTableSample>
+        where TTableSelectionWithAlias : ICommonTableSelectionWithAlias<TTableSource, TPivotClause, TUnpivotClause, TTableHint, TTableSampleWithSystem, TTableSelectionWithTableSample>
         where TCommonTableSourceInJoin : ISource<TTableSourceInJoin>, ICommonTableSource, new()
         where TCommonTableSource : ISource<TTableSource>, ICommonTableSource, new()
         where TCommonPivotClause : ISource<TPivotClause>, ICommonPivotClause, new()

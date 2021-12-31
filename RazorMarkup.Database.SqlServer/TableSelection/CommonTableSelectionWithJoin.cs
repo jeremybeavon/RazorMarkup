@@ -1,8 +1,8 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection
 {
@@ -15,7 +15,6 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
         AbstractStatement<FromClauseBuilder>,
         ICommonTableSelectionWithJoin<TTableSourceInJoin, TTableSource, TPivotClause, TUnpivotClause>
         where TCommonTableSelectionWithJoin : ICommonTableSelectionWithJoin<
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause>
@@ -41,142 +40,102 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
 
         public TTableSourceInJoin InnerJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.InnerJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("INNER", nameof(InnerJoin));
         }
 
         public TTableSourceInJoin InnerLoopJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER LOOP"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.InnerLoopJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("INNER LOOP", nameof(InnerLoopJoin));
         }
 
         public TTableSourceInJoin InnerHashJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER HASH"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.InnerHashJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("INNER HASH", nameof(InnerHashJoin));
         }
 
         public TTableSourceInJoin InnerMergeJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER MERGE"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.InnerMergeJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("INNER MERGE", nameof(InnerMergeJoin));
         }
 
         public TTableSourceInJoin InnerRemoteJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER REMOTE"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.InnerRemoteJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("INNER REMOTE", nameof(InnerRemoteJoin));
         }
 
         public TTableSourceInJoin LeftJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.LeftJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("LEFT", nameof(LeftJoin));
         }
 
         public TTableSourceInJoin LeftLoopJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT LOOP"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.LeftLoopJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("LEFT LOOP", nameof(LeftLoopJoin));
         }
 
         public TTableSourceInJoin LeftHashJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT HASH"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.LeftHashJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("LEFT HASH", nameof(LeftHashJoin));
         }
 
         public TTableSourceInJoin LeftMergeJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT MERGE"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.LeftMergeJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("LEFT MERGE", nameof(LeftMergeJoin));
         }
 
         public TTableSourceInJoin LeftRemoteJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT REMOTE"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.LeftRemoteJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("LEFT REMOTE", nameof(LeftRemoteJoin));
         }
 
         public TTableSourceInJoin RightJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.RightJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("RIGHT", nameof(RightJoin));
         }
 
         public TTableSourceInJoin RightLoopJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT LOOP"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.RightLoopJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("RIGHT LOOP", nameof(RightLoopJoin));
         }
 
         public TTableSourceInJoin RightHashJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT HASH"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.RightHashJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("RIGHT HASH", nameof(RightHashJoin));
         }
 
         public TTableSourceInJoin RightMergeJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT MERGE"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.RightMergeJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("RIGHT MERGE", nameof(RightMergeJoin));
         }
 
         public TTableSourceInJoin RightRemoteJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT REMOTE"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.RightRemoteJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("RIGHT REMOTE", nameof(RightRemoteJoin));
         }
 
         public TTableSourceInJoin FullJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.FullJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("FULL", nameof(FullJoin));
         }
 
         public TTableSourceInJoin FullLoopJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL LOOP"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.FullLoopJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("FULL LOOP", nameof(FullLoopJoin));
         }
 
         public TTableSourceInJoin FullHashJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL HASH"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.FullHashJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("FULL HASH", nameof(FullHashJoin));
         }
 
         public TTableSourceInJoin FullMergeJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL MERGE"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.FullMergeJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("FULL MERGE", nameof(FullMergeJoin));
         }
 
         public TTableSourceInJoin FullRemoteJoin()
         {
-            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL REMOTE"));
-            Statement.Append((TCommonTableSelectionWithJoin input) => input.FullRemoteJoin());
-            return tableSourceInJoinBuilder(Statement);
+            return Join("FULL REMOTE", nameof(FullRemoteJoin));
         }
 
         public TTableSource CrossJoin()
@@ -233,5 +192,16 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
             Statement.Append((IEndJoin<TJoinEndType> input) => input.On(null), searchCondition);
             return JoinClosure;
         }*/
+
+        private TTableSourceInJoin Join(string joinType, string methodName)
+        {
+            Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, joinType));
+            ParameterExpression parameter = Expression.Parameter(typeof(TCommonTableSelectionWithJoin));
+            var lambda = Expression.Lambda<Func<TCommonTableSelectionWithJoin, TTableSourceInJoin>>(
+                Expression.Call(parameter, typeof(TCommonTableSelectionWithJoin).GetMethod(methodName)),
+                parameter);
+            Statement.Append(lambda);
+            return tableSourceInJoinBuilder(Statement);
+        }
     }
 }

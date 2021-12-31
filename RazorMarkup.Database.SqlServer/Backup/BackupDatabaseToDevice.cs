@@ -17,13 +17,13 @@ namespace RazorMarkup.Database.SqlServer.Backup
 
         private List<BackupDevice> BackupDevices =>
             isMirror ? Statement.BackupMirrors.Last() : Statement.BackupDevices;
-        
+
         public IBackupDatabaseToAnd<TOptions> Disk(string physicalDeviceName)
         {
             Statement.Append(
                 (IBackupDatabaseToDevice<TOptions> input) => input.Disk((string)null),
                 new RawStatementBuilder(physicalDeviceName));
-            BackupDevice backupDevice = new BackupDevice()
+            BackupDevice backupDevice = new()
             {
                 DeviceType = "DISK",
                 Name = physicalDeviceName,
@@ -38,7 +38,7 @@ namespace RazorMarkup.Database.SqlServer.Backup
             Statement.Append(
                 (IBackupDatabaseToDevice<TOptions> input) => input.Disk((VariableName)null),
                 physicalDeviceNameVariable);
-            BackupDevice backupDevice = new BackupDevice()
+            BackupDevice backupDevice = new()
             {
                 DeviceType = "DISK",
                 Variable = physicalDeviceNameVariable,
@@ -53,7 +53,7 @@ namespace RazorMarkup.Database.SqlServer.Backup
             Statement.Append(
                 (IBackupDatabaseToDevice<TOptions> input) => input.Tape((string)null),
                 new RawStatementBuilder(physicalDeviceName));
-            BackupDevice backupDevice = new BackupDevice()
+            BackupDevice backupDevice = new()
             {
                 DeviceType = "TAPE",
                 Name = physicalDeviceName,
@@ -68,7 +68,7 @@ namespace RazorMarkup.Database.SqlServer.Backup
             Statement.Append(
                 (IBackupDatabaseToDevice<TOptions> input) => input.Tape((VariableName)null),
                 physicalDeviceNameVariable);
-            BackupDevice backupDevice = new BackupDevice()
+            BackupDevice backupDevice = new()
             {
                 DeviceType = "TAPE",
                 Variable = physicalDeviceNameVariable,
@@ -83,7 +83,7 @@ namespace RazorMarkup.Database.SqlServer.Backup
             Statement.Append(
                 (IBackupDatabaseToDevice<TOptions> input) => input.Url((string)null),
                 new RawStatementBuilder(physicalDeviceName));
-            BackupDevice backupDevice = new BackupDevice()
+            BackupDevice backupDevice = new()
             {
                 DeviceType = "URL",
                 Name = physicalDeviceName,
@@ -98,7 +98,7 @@ namespace RazorMarkup.Database.SqlServer.Backup
             Statement.Append(
                 (IBackupDatabaseToDevice<TOptions> input) => input.Url((VariableName)null),
                 physicalDeviceNameVariable);
-            BackupDevice backupDevice = new BackupDevice()
+            BackupDevice backupDevice = new()
             {
                 DeviceType = "URL",
                 Variable = physicalDeviceNameVariable,

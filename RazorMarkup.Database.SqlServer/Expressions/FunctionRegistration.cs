@@ -33,14 +33,13 @@ namespace RazorMarkup.Database.SqlServer.Expressions
 
         private static MethodInfo[] ToMethods(Expression<Func<object>>[] methodExpressions)
         {
-            List<MethodInfo> methods = new List<MethodInfo>();
+            List<MethodInfo> methods = new();
             foreach (Expression<Func<object>> expression in methodExpressions)
             {
                 MethodCallExpression methodExpression = expression.Body as MethodCallExpression;
                 if (methodExpression == null)
                 {
-                    UnaryExpression convertExpression = expression.Body as UnaryExpression;
-                    if (convertExpression != null)
+                    if (expression.Body is UnaryExpression convertExpression)
                     {
                         methodExpression = convertExpression.Operand as MethodCallExpression;
                     }

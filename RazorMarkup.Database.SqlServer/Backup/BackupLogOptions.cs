@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using System;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Backup
 {
@@ -12,7 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Backup
         {
             Options = this;
         }
-        
+
         public IBackupDatabaseOptionsAnd<IBackupLogOptions> NoRecovery()
         {
             Statement.Append((IBackupLogOptions input) => input.NoRecovery());

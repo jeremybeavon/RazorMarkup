@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Query.CommonTableExpressions;
 using RazorMarkup.Database.SqlServer.Query.Select;
+using System.Linq;
 
 namespace RazorMarkup.Database.SqlServer.Query
 {
@@ -28,7 +28,7 @@ namespace RazorMarkup.Database.SqlServer.Query
         public ICommonTableExpression<ICommonTableExpressionEnd<IEndCommonTableExpression>> With(TableAlias tableName, params ColumnAlias[] columnNames)
         {
             Append((IQueryStatements input) => input.With(null), (new ISqlString[] { tableName }).Concat(columnNames).ToArray());
-            WithClauseBuilder statement = new WithClauseBuilder(ExpressionBuilder, tableName, columnNames);
+            WithClauseBuilder statement = new(ExpressionBuilder, tableName, columnNames);
             return new CommonTableExpression<ICommonTableExpressionEnd<IEndCommonTableExpression>>(
                 statement,
                 new CommonTableExpressionEnd(statement, new EndQuery(this))).AsNextClause(this);

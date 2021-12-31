@@ -27,7 +27,7 @@ namespace RazorMarkup.Database.SqlServer.Merge
             {
                 sqlBuilder.Append("WHEN MATCHED");
             }
-            
+
             if (ClauseSearchCondition != null)
             {
                 sqlBuilder.Append(" AND ");

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using RazorMarkup.Database.SqlServer.Types;
+﻿using RazorMarkup.Database.SqlServer.Types;
+using System.Collections.Generic;
 
 namespace RazorMarkup.Database.SqlServer.System.Procedures
 {
@@ -19,14 +19,14 @@ namespace RazorMarkup.Database.SqlServer.System.Procedures
             OrderedParameters[0]
         };
 
-        public static readonly Parameter<SqlNVarchar> TableName = new Parameter<SqlNVarchar>(OrderedParameters[0]);
+        public static readonly Parameter<SqlNVarchar> TableName = new(OrderedParameters[0]);
 
-        public static readonly Parameter<SqlNVarchar> TableOwner = new Parameter<SqlNVarchar>(OrderedParameters[1]);
+        public static readonly Parameter<SqlNVarchar> TableOwner = new(OrderedParameters[1]);
 
-        public static readonly Parameter<SqlSysname> TableQualifer = new Parameter<SqlSysname>(OrderedParameters[2]);
+        public static readonly Parameter<SqlSysname> TableQualifer = new(OrderedParameters[2]);
 
-        public static readonly Parameter<SqlNVarchar> ColumnName = new Parameter<SqlNVarchar>(OrderedParameters[3]);
+        public static readonly Parameter<SqlNVarchar> ColumnName = new(OrderedParameters[3]);
 
-        public static readonly Parameter<SqlInt> OdbcVersion = new Parameter<SqlInt>(OrderedParameters[4]);
+        public static readonly Parameter<SqlInt> OdbcVersion = new(OrderedParameters[4]);
     }
 }

@@ -14,14 +14,8 @@
 
         public ProcedureName Name { get; private set; }
 
-        public TParameters Parameters
-        {
-            get { throw new NotInExpressionException(); }
-        }
+        public TParameters Parameters => throw new NotInExpressionException();
 
-        public TOutput Output
-        {
-            get { throw new NotInExpressionException(); }
-        }
+        public TOutput Output => throw new NotInExpressionException();
     }
 }

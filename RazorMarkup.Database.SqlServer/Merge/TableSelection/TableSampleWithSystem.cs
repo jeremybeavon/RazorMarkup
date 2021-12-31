@@ -7,7 +7,7 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
         CommonTableSampleWithSystem<
             ITableSample,
             ITableSelectionWithRepeatable,
-            ITableSampleWithSystem>,   
+            ITableSampleWithSystem>,
         ITableSampleWithSystem
     {
         public TableSampleWithSystem(FromClauseBuilder statement)

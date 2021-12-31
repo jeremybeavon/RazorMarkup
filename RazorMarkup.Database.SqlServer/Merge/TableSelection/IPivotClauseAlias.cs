@@ -4,7 +4,7 @@ using RazorMarkup.Database.SqlServer.TableSelection;
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     public interface IPivotClauseAlias : ICommonPivotClauseAlias<
-        ITableSourceInJoin<ITableSelectionWithJoin>,
+        ITableSourceInJoinWithTableSelection,
         ITableSource,
         IPivotClause,
         IUnpivotClause,

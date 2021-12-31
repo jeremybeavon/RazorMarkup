@@ -18,7 +18,7 @@ namespace RazorMarkup.Database.SqlServer.Merge
 
         public ISetClause UpdateSet()
         {
-            SetClauseBuilder setClauseBuilder = new SetClauseBuilder(ExpressionBuilder);
+            SetClauseBuilder setClauseBuilder = new(ExpressionBuilder);
             Statement.LastMatchedClause.SetClauses.Add(setClauseBuilder);
             Statement.Append((IMergeMatched input) => input.UpdateSet());
             return new SetClause(setClauseBuilder);

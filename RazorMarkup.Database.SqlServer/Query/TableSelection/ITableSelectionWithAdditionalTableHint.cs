@@ -5,7 +5,6 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
     public interface ITableSelectionWithAdditionalTableHint<TEndType> :
         ICommonTableSelectionWithAdditionalTableHint<
-            ITableSourceInJoin<ITableSelectionWithJoin<TEndType>>,
             ITableSource<TEndType>,
             IPivotClause<TEndType>,
             IUnpivotClause<TEndType>,

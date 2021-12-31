@@ -19,20 +19,11 @@ namespace RazorMarkup.Database.SqlServer.Expressions.Functions
 
         public IList<int> ParameterIndexSortOrder { get; private set; }
 
-        private int FirstArgumentIndex
-        {
-            get { return ParameterIndexSortOrder.Count == 0 ? 0 : ParameterIndexSortOrder[0]; }
-        }
+        private int FirstArgumentIndex => ParameterIndexSortOrder.Count == 0 ? 0 : ParameterIndexSortOrder[0];
 
-        private IEnumerable<AbstractStatementTextBuilder> OrderedArguments
-        {
-            get
-            {
-                return ParameterIndexSortOrder.Count == 0 ?
+        private IEnumerable<AbstractStatementTextBuilder> OrderedArguments => ParameterIndexSortOrder.Count == 0 ?
                     Arguments.Skip(1) :
                     ParameterIndexSortOrder.Skip(1).Select(index => Arguments[index]);
-            }
-        }
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {

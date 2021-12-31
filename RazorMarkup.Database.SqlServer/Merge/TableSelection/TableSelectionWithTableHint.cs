@@ -8,7 +8,7 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     internal class TableSelectionWithTableHint :
         CommonTableSelectionWithTableHint<
-            ITableSourceInJoin<ITableSelectionWithJoin>,
+            ITableSourceInJoinWithTableSelection,
             ITableSource,
             IPivotClause,
             IUnpivotClause,

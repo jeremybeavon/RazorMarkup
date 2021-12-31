@@ -4,48 +4,48 @@ namespace RazorMarkup.Database.SqlServer.System.Views
 {
     public sealed class SpatialIndexes
     {
-        public static readonly ViewName ViewName = new ViewName("sys.spatial_indexes");
-        
-        public static readonly Column<SqlBit> AllowPageLocks = new Column<SqlBit>("allow_page_locks");
-        
-        public static readonly Column<SqlBit> AllowRowLocks = new Column<SqlBit>("allow_row_locks");
-        
-        public static readonly Column<SqlInt> DataSpaceId = new Column<SqlInt>("data_space_id");
-        
-        public static readonly Column<SqlTinyInt> FillFactor = new Column<SqlTinyInt>("fill_factor");
-        
-        public static readonly Column<SqlNVarchar> FilterDefinition = new Column<SqlNVarchar>("filter_definition");
-        
-        public static readonly Column<SqlBit> HasFilter = new Column<SqlBit>("has_filter");
-        
-        public static readonly Column<SqlBit> IgnoreDupKey = new Column<SqlBit>("ignore_dup_key");
-        
-        public static readonly Column<SqlInt> IndexId = new Column<SqlInt>("index_id");
-        
-        public static readonly Column<SqlBit> IsDisabled = new Column<SqlBit>("is_disabled");
-        
-        public static readonly Column<SqlBit> IsHypothetical = new Column<SqlBit>("is_hypothetical");
-        
-        public static readonly Column<SqlBit> IsPadded = new Column<SqlBit>("is_padded");
-        
-        public static readonly Column<SqlBit> IsPrimaryKey = new Column<SqlBit>("is_primary_key");
-        
-        public static readonly Column<SqlBit> IsUnique = new Column<SqlBit>("is_unique");
-        
-        public static readonly Column<SqlBit> IsUniqueConstraint = new Column<SqlBit>("is_unique_constraint");
-        
-        public static readonly Column<SqlSysname> Name = new Column<SqlSysname>("name");
-        
-        public static readonly Column<SqlInt> ObjectId = new Column<SqlInt>("object_id");
-        
-        public static readonly Column<SqlInt> SpatialIndexType = new Column<SqlInt>("spatial_index_type");
-        
-        public static readonly Column<SqlNVarchar> SpatialIndexTypeDesc = new Column<SqlNVarchar>("spatial_index_type_desc");
-        
-        public static readonly Column<SqlNVarchar> TessellationScheme = new Column<SqlNVarchar>("tessellation_scheme");
-        
-        public static readonly Column<SqlTinyInt> Type = new Column<SqlTinyInt>("type");
-        
-        public static readonly Column<SqlNVarchar> TypeDesc = new Column<SqlNVarchar>("type_desc");
+        public static readonly ViewName ViewName = new("sys.spatial_indexes");
+
+        public static readonly Column<SqlBit> AllowPageLocks = new("allow_page_locks");
+
+        public static readonly Column<SqlBit> AllowRowLocks = new("allow_row_locks");
+
+        public static readonly Column<SqlInt> DataSpaceId = new("data_space_id");
+
+        public static readonly Column<SqlTinyInt> FillFactor = new("fill_factor");
+
+        public static readonly Column<SqlNVarchar> FilterDefinition = new("filter_definition");
+
+        public static readonly Column<SqlBit> HasFilter = new("has_filter");
+
+        public static readonly Column<SqlBit> IgnoreDupKey = new("ignore_dup_key");
+
+        public static readonly Column<SqlInt> IndexId = new("index_id");
+
+        public static readonly Column<SqlBit> IsDisabled = new("is_disabled");
+
+        public static readonly Column<SqlBit> IsHypothetical = new("is_hypothetical");
+
+        public static readonly Column<SqlBit> IsPadded = new("is_padded");
+
+        public static readonly Column<SqlBit> IsPrimaryKey = new("is_primary_key");
+
+        public static readonly Column<SqlBit> IsUnique = new("is_unique");
+
+        public static readonly Column<SqlBit> IsUniqueConstraint = new("is_unique_constraint");
+
+        public static readonly Column<SqlSysname> Name = new("name");
+
+        public static readonly Column<SqlInt> ObjectId = new("object_id");
+
+        public static readonly Column<SqlInt> SpatialIndexType = new("spatial_index_type");
+
+        public static readonly Column<SqlNVarchar> SpatialIndexTypeDesc = new("spatial_index_type_desc");
+
+        public static readonly Column<SqlNVarchar> TessellationScheme = new("tessellation_scheme");
+
+        public static readonly Column<SqlTinyInt> Type = new("type");
+
+        public static readonly Column<SqlNVarchar> TypeDesc = new("type_desc");
     }
 }

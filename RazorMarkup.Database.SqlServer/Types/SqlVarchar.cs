@@ -146,7 +146,7 @@
         {
             throw new NotInExpressionException();
         }
-        
+
         public static implicit operator SqlText(SqlVarchar value)
         {
             throw new NotInExpressionException();

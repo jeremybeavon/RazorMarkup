@@ -8,7 +8,7 @@ namespace RazorMarkup.Database.SqlServer.Merge.SetClauses
             : base(statement, SetClauseAnd.Create, SetValue.Create)
         {
         }
-        
+
         public static ISetVariable Create(SetClauseBuilder statement)
         {
             return new SetVariable(statement);

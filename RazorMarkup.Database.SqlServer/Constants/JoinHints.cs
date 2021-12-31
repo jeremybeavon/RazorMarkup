@@ -1,6 +1,6 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Constants
 {
-    class JoinHints
+    internal class JoinHints
     {
     }
 }

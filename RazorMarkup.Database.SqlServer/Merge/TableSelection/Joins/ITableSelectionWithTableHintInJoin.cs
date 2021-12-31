@@ -5,7 +5,6 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
     public interface ITableSelectionWithTableHintInJoin<TJoinEndType> :
         ICommonTableSelectionWithTableHintInJoin<
             TJoinEndType,
-            ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
             ITableSourceInJoin<TJoinEndType>,
             IPivotClauseInJoin<TJoinEndType>,
             IUnpivotClauseInJoin<TJoinEndType>,

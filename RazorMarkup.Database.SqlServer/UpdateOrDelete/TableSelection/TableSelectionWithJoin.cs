@@ -1,6 +1,6 @@
-﻿using System;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Joins;
+using System;
 
 namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 {
@@ -11,28 +11,28 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
         {
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin> InnerJoin()
+        public ITableSourceInJoinWithTableSelection InnerJoin()
         {
             Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "INNER"));
-            return new TableSourceInJoin<ITableSelectionWithJoin>(Statement, this);
+            return new TableSourceInJoin(Statement, this);
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin> LeftJoin()
+        public ITableSourceInJoinWithTableSelection LeftJoin()
         {
             Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "LEFT"));
-            return new TableSourceInJoin<ITableSelectionWithJoin>(Statement, this);
+            return new TableSourceInJoin(Statement, this);
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin> RightJoin()
+        public ITableSourceInJoinWithTableSelection RightJoin()
         {
             Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "RIGHT"));
-            return new TableSourceInJoin<ITableSelectionWithJoin>(Statement, this);
+            return new TableSourceInJoin(Statement, this);
         }
 
-        public ITableSourceInJoin<ITableSelectionWithJoin> FullJoin()
+        public ITableSourceInJoinWithTableSelection FullJoin()
         {
             Statement.Statements.Add(new JoinQueryBuilder(ExpressionBuilder, "FULL"));
-            return new TableSourceInJoin<ITableSelectionWithJoin>(Statement, this);
+            return new TableSourceInJoin(Statement, this);
         }
 
         public ITableSource CrossJoin()

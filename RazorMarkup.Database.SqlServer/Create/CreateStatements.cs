@@ -1,5 +1,4 @@
-﻿using System;
-using RazorMarkup.Database.SqlServer.Create.Aggregate;
+﻿using RazorMarkup.Database.SqlServer.Create.Aggregate;
 using RazorMarkup.Database.SqlServer.Create.Assembly;
 using RazorMarkup.Database.SqlServer.Create.AvailabilityGroup;
 using RazorMarkup.Database.SqlServer.Create.BrokerPriority;
@@ -24,6 +23,7 @@ using RazorMarkup.Database.SqlServer.Create.Type;
 using RazorMarkup.Database.SqlServer.Create.User;
 using RazorMarkup.Database.SqlServer.Create.WorkloadGroup;
 using RazorMarkup.Database.SqlServer.Create.XmlIndex;
+using System;
 
 namespace RazorMarkup.Database.SqlServer.Create
 {

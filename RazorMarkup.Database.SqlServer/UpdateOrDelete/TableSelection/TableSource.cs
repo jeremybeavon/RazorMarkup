@@ -11,16 +11,20 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 
         public ITableSelectionWithAlias Table(TableName tableName)
         {
-            TableQueryBuilder builder = new TableQueryBuilder(ExpressionBuilder);
-            builder.TableName = tableName.ToSqlString();
+            TableQueryBuilder builder = new(ExpressionBuilder)
+            {
+                TableName = tableName.ToSqlString()
+            };
             Statement.Statements.Add(builder);
             return new TableSelectionWithAlias(Statement);
         }
 
         public ITableSelectionWithAlias View(ViewName viewName)
         {
-            TableQueryBuilder builder = new TableQueryBuilder(ExpressionBuilder);
-            builder.TableName = viewName.ToSqlString();
+            TableQueryBuilder builder = new(ExpressionBuilder)
+            {
+                TableName = viewName.ToSqlString()
+            };
             Statement.Statements.Add(builder);
             return new TableSelectionWithAlias(Statement);
         }

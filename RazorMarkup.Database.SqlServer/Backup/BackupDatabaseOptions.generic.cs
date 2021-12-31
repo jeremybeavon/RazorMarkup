@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using System;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Backup
 {
@@ -195,7 +195,7 @@ namespace RazorMarkup.Database.SqlServer.Backup
             Statement.Rewind = true;
             return new BackupDatabaseOptionsAnd<TOptions>(Statement, Options);
         }
-        
+
         public IBackupDatabaseOptionsAnd<TOptions> Skip()
         {
             Statement.Append((IBackupDatabaseOptions<TOptions> input) => input.Skip());

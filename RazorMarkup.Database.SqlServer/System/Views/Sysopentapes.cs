@@ -4,8 +4,8 @@ namespace RazorMarkup.Database.SqlServer.System.Views
 {
     public sealed class SysOpenTapes
     {
-        public static readonly ViewName ViewName = new ViewName("sys.sysopentapes");
-        
-        public static readonly Column<SqlNVarchar> Opentape = new Column<SqlNVarchar>("openTape");
+        public static readonly ViewName ViewName = new("sys.sysopentapes");
+
+        public static readonly Column<SqlNVarchar> Opentape = new("openTape");
     }
 }

@@ -16,7 +16,7 @@
             Statement.Append(
                 (IBackupDatabaseTo<TOptions> input) => input.To((string)null),
                 new RawStatementBuilder(logicalDeviceName));
-            BackupDevice backupDevice = new BackupDevice()
+            BackupDevice backupDevice = new()
             {
                 Name = logicalDeviceName
             };
@@ -29,7 +29,7 @@
             Statement.Append(
                 (IBackupDatabaseTo<TOptions> input) => input.To((VariableName)null),
                 logicalDeviceNameVariable);
-            BackupDevice backupDevice = new BackupDevice()
+            BackupDevice backupDevice = new()
             {
                 Variable = logicalDeviceNameVariable
             };

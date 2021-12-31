@@ -4,16 +4,16 @@ namespace RazorMarkup.Database.SqlServer.System.Views
 {
     public sealed class RegisteredSearchPropertyLists
     {
-        public static readonly ViewName ViewName = new ViewName("sys.registered_search_property_lists");
-        
-        public static readonly Column<SqlDateTime> CreateDate = new Column<SqlDateTime>("create_date");
-        
-        public static readonly Column<SqlDateTime> ModifyDate = new Column<SqlDateTime>("modify_date");
-        
-        public static readonly Column<SqlSysname> Name = new Column<SqlSysname>("name");
-        
-        public static readonly Column<SqlInt> PrincipalId = new Column<SqlInt>("principal_id");
-        
-        public static readonly Column<SqlInt> PropertyListId = new Column<SqlInt>("property_list_id");
+        public static readonly ViewName ViewName = new("sys.registered_search_property_lists");
+
+        public static readonly Column<SqlDateTime> CreateDate = new("create_date");
+
+        public static readonly Column<SqlDateTime> ModifyDate = new("modify_date");
+
+        public static readonly Column<SqlSysname> Name = new("name");
+
+        public static readonly Column<SqlInt> PrincipalId = new("principal_id");
+
+        public static readonly Column<SqlInt> PropertyListId = new("property_list_id");
     }
 }

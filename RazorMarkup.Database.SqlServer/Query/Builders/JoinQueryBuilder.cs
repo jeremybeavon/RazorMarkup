@@ -9,7 +9,7 @@
         }
 
         public string JoinType { get; private set; }
-        
+
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {
             sqlBuilder.AppendIndent();

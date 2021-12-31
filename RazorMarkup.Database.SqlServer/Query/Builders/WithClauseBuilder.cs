@@ -15,10 +15,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 
         public IList<CommonTableExpressionBuilder> CommonTableExpressions { get; private set; }
 
-        public CommonTableExpressionBuilder LastExpression
-        {
-            get { return CommonTableExpressions[CommonTableExpressions.Count - 1]; }
-        }
+        public CommonTableExpressionBuilder LastExpression => CommonTableExpressions[CommonTableExpressions.Count - 1];
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {

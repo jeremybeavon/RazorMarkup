@@ -1,73 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7DD4E19A-F32E-4111-9A32-6BB280597008}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RazorMarkup.Database</RootNamespace>
-    <AssemblyName>RazorMarkup.Database</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\RazorMarkup\RazorMarkup.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AbstractStatement.cs" />
-    <Compile Include="AbstractStatementBuilder.cs" />
-    <Compile Include="AbstractStatementTextBuilder.cs" />
-    <Compile Include="ExpressionBuilder.cs" />
-    <Compile Include="IntegerLiteral.cs" />
-    <Compile Include="ISqlString.cs" />
-    <Compile Include="NotInExpressionException.cs" />
-    <Compile Include="RawStatementBuilder.cs" />
-    <Compile Include="SqlBuilder.cs" />
-    <Compile Include="SqlString.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlString.generic.cs" />
-    <Compile Include="SqlStringArray.cs" />
-    <Compile Include="SqlStringExtensions.cs" />
-    <Compile Include="StatementBuilderFactory.cs" />
-    <Compile Include="StringLiteral.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RazorMarkup\RazorMarkup.csproj">
-      <Project>{36373b5c-a4cc-40b1-9a9d-c54eac326e7e}</Project>
-      <Name>RazorMarkup</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

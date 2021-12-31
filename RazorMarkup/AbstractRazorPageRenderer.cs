@@ -1,7 +1,7 @@
-﻿using System;
+﻿using RazorEngineCore;
+using System;
 using System.Collections.Generic;
 using System.Web;
-using Westwind.RazorHosting;
 
 namespace RazorMarkup
 {
@@ -11,20 +11,17 @@ namespace RazorMarkup
 
         public string Render(IRazorPage razorPage)
         {
-            RazorEngine razorEngine = new RazorEngine();
-            razorEngine.Configuration.CompileToMemory = true;
+            RazorEngine razorEngine = new();
+            string text = razorEngine.Compile(razorPage.Text, ConfigureRazorEngine).Run();
+            return HttpUtility.HtmlDecode(text);
+        }
+
+        private void ConfigureRazorEngine(IRazorEngineCompilationOptionsBuilder options)
+        {
             foreach (Type referencedType in ReferencedTypes)
             {
-                razorEngine.AddAssemblyFromType(referencedType);
+                options.AddAssemblyReference(referencedType);
             }
-
-            string text = razorEngine.RenderTemplate(razorPage.Text);
-            if (!string.IsNullOrWhiteSpace(razorEngine.ErrorMessage))
-            {
-                throw new CompilationException(razorEngine.ErrorMessage);
-            }
-           
-            return HttpUtility.HtmlDecode(text);
         }
     }
 }

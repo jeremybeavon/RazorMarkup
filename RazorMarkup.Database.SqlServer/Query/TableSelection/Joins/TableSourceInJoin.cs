@@ -3,7 +3,7 @@ using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 {
-    internal class TableSourceInJoin<TJoinEndType> : 
+    internal class TableSourceInJoin<TJoinEndType> :
         CommonTableSource<
             ITableSelectionWithAliasInJoin<TJoinEndType>,
             ISubqueryWithAliasInJoin<TJoinEndType>,

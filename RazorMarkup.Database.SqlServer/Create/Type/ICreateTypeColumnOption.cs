@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Create.Type.Columns;
+using System;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Create.Type.Columns;
 
 namespace RazorMarkup.Database.SqlServer.Create.Type
 {

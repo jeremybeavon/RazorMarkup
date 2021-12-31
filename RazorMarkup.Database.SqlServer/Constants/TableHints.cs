@@ -1,6 +1,6 @@
 ﻿namespace RazorMarkup.Database.SqlServer.Constants
 {
-    class TableHints
+    internal class TableHints
     {
     }
 }

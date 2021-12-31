@@ -6,7 +6,7 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     internal class TableSelectionWithRepeatable :
         CommonTableSelectionWithRepeatable<
-            ITableSourceInJoin<ITableSelectionWithJoin>,
+            ITableSourceInJoinWithTableSelection,
             ITableSource,
             IPivotClause,
             IUnpivotClause,

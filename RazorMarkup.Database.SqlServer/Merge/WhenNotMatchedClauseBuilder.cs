@@ -5,7 +5,7 @@ namespace RazorMarkup.Database.SqlServer.Merge
 {
     internal sealed class WhenNotMatchedClauseBuilder : AbstractWhenClauseBuilder
     {
-        public WhenNotMatchedClauseBuilder(ExpressionBuilder expressionBuilder) 
+        public WhenNotMatchedClauseBuilder(ExpressionBuilder expressionBuilder)
             : base(expressionBuilder)
         {
         }

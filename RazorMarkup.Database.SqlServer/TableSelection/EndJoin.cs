@@ -6,7 +6,7 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
 {
     internal sealed class EndJoin<TJoinEndType> : AbstractStatement<FromClauseBuilder>, IEndJoin<TJoinEndType>
     {
-        private TJoinEndType joinClosure;
+        private readonly TJoinEndType joinClosure;
 
         public EndJoin(FromClauseBuilder statement, TJoinEndType joinClosure)
             : base(statement)

@@ -11,5 +11,5 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
             IUnpivotClause<TEndType>>,
         IEndFromClause<TEndType>
     {
-    } 
+    }
 }

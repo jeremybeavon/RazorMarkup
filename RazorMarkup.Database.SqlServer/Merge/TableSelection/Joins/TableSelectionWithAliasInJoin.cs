@@ -13,6 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
             ITableHintInJoin<TJoinEndType>,
             ITableSampleWithSystemInJoin<TJoinEndType>,
             ITableSelectionWithTableSampleInJoin<TJoinEndType>,
+            ITableSelectionWithAliasInJoin<TJoinEndType>,
             ITableSelectionWithAliasInJoin<TJoinEndType>>,
         ITableSelectionWithAliasInJoin<TJoinEndType>
     {

@@ -13,13 +13,17 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
 
         public AbstractStatementBuilder NextClause
         {
-            get { return nextClause; }
+            get => nextClause;
             set
             {
                 if (nextClause == null)
+                {
                     nextClause = value;
+                }
                 else
+                {
                     throw new InvalidOperationException("NextClause cannot be set more than once.");
+                }
             }
         }
 

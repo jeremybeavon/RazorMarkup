@@ -51,8 +51,7 @@ namespace RazorMarkup
 
         protected override Expression VisitBinary(BinaryExpression node)
         {
-            Action<InternalTextBuilder> textBuilderAction;
-            if (binaryExpressions.TryGetValue(node.NodeType, out textBuilderAction))
+            if (binaryExpressions.TryGetValue(node.NodeType, out Action<InternalTextBuilder> textBuilderAction))
             {
                 Visit(node.Left);
                 textBuilderAction(textBuilder);

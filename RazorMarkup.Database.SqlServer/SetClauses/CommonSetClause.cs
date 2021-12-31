@@ -3,7 +3,7 @@
 namespace RazorMarkup.Database.SqlServer.SetClauses
 {
     internal abstract class CommonSetClause<TSetColumn, TSetVariable> :
-        AbstractStatement<SetClauseBuilder>, 
+        AbstractStatement<SetClauseBuilder>,
         ICommonSetClause<TSetColumn, TSetVariable>
     {
         private readonly Func<SetClauseBuilder, TSetColumn> setColumnBuilder;

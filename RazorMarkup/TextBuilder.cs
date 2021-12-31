@@ -19,26 +19,23 @@ namespace RazorMarkup
 
         public static string DefaultIndentText
         {
-            get { return InternalTextBuilder.DefaultIndentText; }
-            set { InternalTextBuilder.DefaultIndentText = value; }
+            get => InternalTextBuilder.DefaultIndentText;
+            set => InternalTextBuilder.DefaultIndentText = value;
         }
 
         public static bool DisableIndentation
-        { 
-            get { return InternalTextBuilder.DisableIndentation; }
-            set { InternalTextBuilder.DisableIndentation = value; }
+        {
+            get => InternalTextBuilder.DisableIndentation;
+            set => InternalTextBuilder.DisableIndentation = value;
         }
 
-        public string IndentText 
+        public string IndentText
         {
-            get { return textBuilder.IndentText; }
-            set { textBuilder.IndentText = value; }
+            get => textBuilder.IndentText;
+            set => textBuilder.IndentText = value;
         }
 
-        public int Indent
-        {
-            get { return textBuilder.Indent; }
-        }
+        public int Indent => textBuilder.Indent;
 
         public ITextBuilder Append(string text)
         {
@@ -57,7 +54,7 @@ namespace RazorMarkup
             textBuilder.IncrementIndent();
             return new DisposableIndent(textBuilder);
         }
-        
+
         public override string ToString()
         {
             return textBuilder.ToString();
@@ -65,7 +62,7 @@ namespace RazorMarkup
 
         private sealed class DisposableIndent : IDisposable
         {
-            private InternalTextBuilder textBuilder;
+            private readonly InternalTextBuilder textBuilder;
 
             public DisposableIndent(InternalTextBuilder textBuilder)
             {

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query;
+﻿using RazorMarkup.Database.SqlServer.Query;
 using RazorMarkup.Database.SqlServer.Query.Builders;
+using System;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection
 {
@@ -32,8 +32,10 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
 
         public TTableSelectionWithAlias Table(TableName tableName)
         {
-            TableQueryBuilder builder = new TableQueryBuilder(ExpressionBuilder);
-            builder.TableName = tableName.ToSqlString();
+            TableQueryBuilder builder = new(ExpressionBuilder)
+            {
+                TableName = tableName.ToSqlString()
+            };
             Statement.Statements.Add(builder);
             Statement.Append((TCommonTableSource input) => input.Table(null), tableName);
             return tableSelectionWithAliasBuilder(Statement);
@@ -41,8 +43,10 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
 
         public TTableSelectionWithAlias View(ViewName viewName)
         {
-            TableQueryBuilder builder = new TableQueryBuilder(ExpressionBuilder);
-            builder.TableName = viewName.ToSqlString();
+            TableQueryBuilder builder = new(ExpressionBuilder)
+            {
+                TableName = viewName.ToSqlString()
+            };
             Statement.Statements.Add(builder);
             Statement.Append((TCommonTableSource input) => input.View(null), viewName);
             return tableSelectionWithAliasBuilder(Statement);
@@ -51,7 +55,7 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
         public IQueryOperand<IEndSubquery<TSubqueryWithAlias>> Subquery()
         {
             Statement.Append((TCommonTableSource input) => input.Subquery());
-            SubqueryBuilder builder = new SubqueryBuilder(ExpressionBuilder);
+            SubqueryBuilder builder = new(ExpressionBuilder);
             Statement.Statements.Add(builder);
             IEndSubquery<TSubqueryWithAlias> endSubquery = new EndCommonSubquery<TSubqueryWithAlias>(
                 builder,
@@ -63,8 +67,10 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
         public TDerivedTableWithAlias DerivedTable(Expression<Func<object>>[][] values)
         {
             Statement.Append((TCommonTableSource input) => input.DerivedTable(null), new DerivedTableExpression(values));
-            DerivedTableBuilder builder = new DerivedTableBuilder(ExpressionBuilder);
-            builder.Values = values;
+            DerivedTableBuilder builder = new(ExpressionBuilder)
+            {
+                Values = values
+            };
             Statement.Statements.Add(builder);
             return derivedTableWithAliasBuilder(Statement, builder);
         }

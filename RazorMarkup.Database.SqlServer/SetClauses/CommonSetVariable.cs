@@ -3,7 +3,7 @@
 namespace RazorMarkup.Database.SqlServer.SetClauses
 {
     internal abstract class CommonSetVariable<TSetClauseAnd, TSetValue> :
-        CommonSetValue<TSetClauseAnd>, 
+        CommonSetValue<TSetClauseAnd>,
         ICommonSetVariable<TSetClauseAnd, TSetValue>
     {
         private readonly Func<SetClauseBuilder, TSetValue> setValueBuilder;
@@ -20,7 +20,7 @@ namespace RazorMarkup.Database.SqlServer.SetClauses
         public TSetValue Equals(ColumnName columnName)
         {
             Statement.CurrentSetClause.ColumnName = columnName.ToSqlString();
-            Statement.Append((ICommonSetVariable<TSetClauseAnd, TSetValue> input) => input.Equals((ColumnName)null), columnName);
+            Statement.Append((ICommonSetVariable<TSetClauseAnd, TSetValue> input) => input.Equals(null), columnName);
             return setValueBuilder(Statement);
         }
     }

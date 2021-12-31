@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using System;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Samples
 {

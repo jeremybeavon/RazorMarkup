@@ -56,7 +56,7 @@
             Statement.Append(
                 (IAlterBrokerPrioritySet input) => input.RemoteServiceName(null),
                 new RawStatementBuilder(remoteServiceName));
-            Statement.RemoteServiceName = remoteServiceName;
+            Statement.RemoteServiceName = $"'{remoteServiceName}'";
             return new AlterBrokerPrioritySetAnd(Statement);
         }
     }

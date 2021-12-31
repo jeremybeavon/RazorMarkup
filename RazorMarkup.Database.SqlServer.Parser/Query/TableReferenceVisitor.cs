@@ -56,21 +56,21 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
             ICommonTableSelectionWithJoin firstTable = node.FirstTableReference.AcceptWithResult(
                 new TableReferenceVisitor(tableSource));
             ICommonTableSource secondTableSource = null;
-            switch (node.QualifiedJoinType)
-            {
-                case QualifiedJoinType.Inner:
-                    secondTableSource = BuildInnerJoin(firstTable, node.JoinHint);
-                    break;
-                case QualifiedJoinType.LeftOuter:
-                    secondTableSource = BuildLeftJoin(firstTable, node.JoinHint);
-                    break;
-                case QualifiedJoinType.RightOuter:
-                    secondTableSource = BuildRightJoin(firstTable, node.JoinHint);
-                    break;
-                case QualifiedJoinType.FullOuter:
-                    secondTableSource = BuildFullJoin(firstTable, node.JoinHint);
-                    break;
-            }
+            //switch (node.QualifiedJoinType)
+            //{
+            //    case QualifiedJoinType.Inner:
+            //        secondTableSource = BuildInnerJoin(firstTable, node.JoinHint);
+            //        break;
+            //    case QualifiedJoinType.LeftOuter:
+            //        secondTableSource = BuildLeftJoin(firstTable, node.JoinHint);
+            //        break;
+            //    case QualifiedJoinType.RightOuter:
+            //        secondTableSource = BuildRightJoin(firstTable, node.JoinHint);
+            //        break;
+            //    case QualifiedJoinType.FullOuter:
+            //        secondTableSource = BuildFullJoin(firstTable, node.JoinHint);
+            //        break;
+            //}
 
             ICommonTableSelectionWithJoin secondTable = node.SecondTableReference.AcceptWithResult(
                 new TableReferenceVisitor(secondTableSource));
@@ -224,80 +224,80 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
             }
         }
 
-        private static ICommonTableSource BuildInnerJoin(ICommonTableSelectionWithJoin firstTable, JoinHint joinHint)
-        {
-            switch (joinHint)
-            {
-                case JoinHint.None:
-                    return firstTable.InnerJoin();
-                case JoinHint.Loop:
-                    return firstTable.InnerLoopJoin();
-                case JoinHint.Hash:
-                    return firstTable.InnerHashJoin();
-                case JoinHint.Merge:
-                    return firstTable.InnerMergeJoin();
-                case JoinHint.Remote:
-                    return firstTable.InnerRemoteJoin();
-                default:
-                    return null;
-            }
-        }
+        //private static ICommonTableSource BuildInnerJoin(ICommonTableSelectionWithJoin firstTable, JoinHint joinHint)
+        //{
+        //    switch (joinHint)
+        //    {
+        //        case JoinHint.None:
+        //            return firstTable.InnerJoin();
+        //        case JoinHint.Loop:
+        //            return firstTable.InnerLoopJoin();
+        //        case JoinHint.Hash:
+        //            return firstTable.InnerHashJoin();
+        //        case JoinHint.Merge:
+        //            return firstTable.InnerMergeJoin();
+        //        case JoinHint.Remote:
+        //            return firstTable.InnerRemoteJoin();
+        //        default:
+        //            return null;
+        //    }
+        //}
 
-        private static ICommonTableSource BuildLeftJoin(ICommonTableSelectionWithJoin firstTable, JoinHint joinHint)
-        {
-            switch (joinHint)
-            {
-                case JoinHint.None:
-                    return firstTable.LeftJoin();
-                case JoinHint.Loop:
-                    return firstTable.LeftLoopJoin();
-                case JoinHint.Hash:
-                    return firstTable.LeftHashJoin();
-                case JoinHint.Merge:
-                    return firstTable.LeftMergeJoin();
-                case JoinHint.Remote:
-                    return firstTable.LeftRemoteJoin();
-                default:
-                    return null;
-            }
-        }
+        //private static ICommonTableSource BuildLeftJoin(ICommonTableSelectionWithJoin firstTable, JoinHint joinHint)
+        //{
+        //    switch (joinHint)
+        //    {
+        //        case JoinHint.None:
+        //            return firstTable.LeftJoin();
+        //        case JoinHint.Loop:
+        //            return firstTable.LeftLoopJoin();
+        //        case JoinHint.Hash:
+        //            return firstTable.LeftHashJoin();
+        //        case JoinHint.Merge:
+        //            return firstTable.LeftMergeJoin();
+        //        case JoinHint.Remote:
+        //            return firstTable.LeftRemoteJoin();
+        //        default:
+        //            return null;
+        //    }
+        //}
 
-        private static ICommonTableSource BuildRightJoin(ICommonTableSelectionWithJoin firstTable, JoinHint joinHint)
-        {
-            switch (joinHint)
-            {
-                case JoinHint.None:
-                    return firstTable.RightJoin();
-                case JoinHint.Loop:
-                    return firstTable.RightLoopJoin();
-                case JoinHint.Hash:
-                    return firstTable.RightHashJoin();
-                case JoinHint.Merge:
-                    return firstTable.RightMergeJoin();
-                case JoinHint.Remote:
-                    return firstTable.RightRemoteJoin();
-                default:
-                    return null;
-            }
-        }
+        //private static ICommonTableSource BuildRightJoin(ICommonTableSelectionWithJoin firstTable, JoinHint joinHint)
+        //{
+        //    switch (joinHint)
+        //    {
+        //        case JoinHint.None:
+        //            return firstTable.RightJoin();
+        //        case JoinHint.Loop:
+        //            return firstTable.RightLoopJoin();
+        //        case JoinHint.Hash:
+        //            return firstTable.RightHashJoin();
+        //        case JoinHint.Merge:
+        //            return firstTable.RightMergeJoin();
+        //        case JoinHint.Remote:
+        //            return firstTable.RightRemoteJoin();
+        //        default:
+        //            return null;
+        //    }
+        //}
 
-        private static ICommonTableSource BuildFullJoin(ICommonTableSelectionWithJoin firstTable, JoinHint joinHint)
-        {
-            switch (joinHint)
-            {
-                case JoinHint.None:
-                    return firstTable.FullJoin();
-                case JoinHint.Loop:
-                    return firstTable.FullLoopJoin();
-                case JoinHint.Hash:
-                    return firstTable.FullHashJoin();
-                case JoinHint.Merge:
-                    return firstTable.FullMergeJoin();
-                case JoinHint.Remote:
-                    return firstTable.FullRemoteJoin();
-                default:
-                    return null;
-            }
-        }
+        //private static ICommonTableSource BuildFullJoin(ICommonTableSelectionWithJoin firstTable, JoinHint joinHint)
+        //{
+        //    switch (joinHint)
+        //    {
+        //        case JoinHint.None:
+        //            return firstTable.FullJoin();
+        //        case JoinHint.Loop:
+        //            return firstTable.FullLoopJoin();
+        //        case JoinHint.Hash:
+        //            return firstTable.FullHashJoin();
+        //        case JoinHint.Merge:
+        //            return firstTable.FullMergeJoin();
+        //        case JoinHint.Remote:
+        //            return firstTable.FullRemoteJoin();
+        //        default:
+        //            return null;
+        //    }
+        //}
     }
 }

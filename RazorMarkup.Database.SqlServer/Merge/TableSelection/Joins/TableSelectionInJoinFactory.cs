@@ -78,9 +78,10 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins
         public ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> CreateTableSourceInJoin(
             FromClauseBuilder statement)
         {
-            return new TableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>(
-                statement,
-                new TableSelectionWithJoinInJoin<TJoinEndType>(statement, joinClosure));
+            throw new global::System.NotImplementedException();
+            //return new TableSourceInJoin<TJoinEndType>(
+            //    statement,
+            //    new TableSelectionWithJoinInJoin<TJoinEndType>(statement, joinClosure));
         }
 
         public IUnpivotClauseInJoin<TJoinEndType> CreateUnpivotClause(FromClauseBuilder statement)

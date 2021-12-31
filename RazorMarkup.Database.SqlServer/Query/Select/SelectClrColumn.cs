@@ -1,7 +1,7 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.Query.Select
 {
@@ -45,7 +45,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
             ExpressionBuilder<object>[] parameterBuilders = parameters.Select(parameter => parameter.ToExpressionBuilder()).ToArray();
             string parameterText = string.Join(", ", parameterBuilders.Select(parameter => parameter.ToSqlString()));
             Statement.Columns.Last().ColumnName += "." + method.ToSqlString() + "(" + parameterText + ")";
-            SqlStringArray parameterExpressions = new SqlStringArray(typeof(Expression<Func<object>>), parameterBuilders);
+            SqlStringArray parameterExpressions = new(typeof(Expression<Func<object>>), parameterBuilders);
             Statement.Append((ISelectClrColumn<TEndType> input) => input.Method(null), method, parameterExpressions);
             return this;
         }
@@ -55,7 +55,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
             ExpressionBuilder<object>[] parameterBuilders = parameters.Select(parameter => parameter.ToExpressionBuilder()).ToArray();
             string parameterText = string.Join(", ", parameterBuilders.Select(parameter => parameter.ToSqlString()));
             Statement.Columns.Last().ColumnName += "::" + method.ToSqlString() + "(" + parameterText + ")";
-            SqlStringArray parameterExpressions = new SqlStringArray(typeof(Expression<Func<object>>), parameterBuilders);
+            SqlStringArray parameterExpressions = new(typeof(Expression<Func<object>>), parameterBuilders);
             Statement.Append((ISelectClrColumn<TEndType> input) => input.StaticMethod(null), method, parameterExpressions);
             return this;
         }

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -32,18 +32,13 @@ namespace RazorMarkup.Database.SqlServer
             this.outputDirectory = outputDirectory;
         }
 
-        private static string SystemViewQuery
-        {
-            get
-            {
-                return @"
+        private static string SystemViewQuery => @"
                     SELECT schemas.name, system_views.name, system_columns.name, types.name
                     FROM sys.schemas
                     INNER JOIN sys.system_views ON schemas.schema_id = system_views.schema_id
                     INNER JOIN sys.system_columns ON system_columns.object_id = system_views.object_id
                     INNER JOIN sys.types ON types.user_type_id = system_columns.user_type_id
-                    ORDER BY schemas.name, system_views.name, system_columns.name";
-                /*return Sql.Query().Select()
+                    ORDER BY schemas.name, system_views.name, system_columns.name";/*return Sql.Query().Select()
                     .Column(new ColumnName("schemas.name")).And()
                     .Column(new ColumnName("system_views.name")).And()
                     .Column(new ColumnName("system_columns.name")).And()
@@ -59,8 +54,6 @@ namespace RazorMarkup.Database.SqlServer
                     .And(() => new ColumnName("system_views.name"))
                     .And(() => new ColumnName("system_columns.column_id"))
                     .End().Query().ToSqlString();*/
-            }
-        }
 
         public static void GenerateSystemViews(string connectionString, string namespaceName, string outputDirectory)
         {
@@ -84,19 +77,13 @@ namespace RazorMarkup.Database.SqlServer
 
         private void GenerateCode(string connectionString, string commandText)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using SqlConnection connection = new(connectionString);
+            connection.Open();
+            using SqlCommand command = new(commandText, connection);
+            using SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(commandText, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            GenerateColumn(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
-                        }
-                    }
-                }
+                GenerateColumn(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
             }
         }
 

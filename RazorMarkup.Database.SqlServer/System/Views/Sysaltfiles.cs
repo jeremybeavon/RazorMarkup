@@ -4,26 +4,26 @@ namespace RazorMarkup.Database.SqlServer.System.Views
 {
     public sealed class SysAltFiles
     {
-        public static readonly ViewName ViewName = new ViewName("sys.sysaltfiles");
-        
-        public static readonly Column<SqlSmallInt> Dbid = new Column<SqlSmallInt>("dbid");
-        
-        public static readonly Column<SqlSmallInt> Fileid = new Column<SqlSmallInt>("fileid");
-        
-        public static readonly Column<SqlNVarchar> Filename = new Column<SqlNVarchar>("filename");
-        
-        public static readonly Column<SqlSmallInt> Groupid = new Column<SqlSmallInt>("groupid");
-        
-        public static readonly Column<SqlInt> Growth = new Column<SqlInt>("growth");
-        
-        public static readonly Column<SqlInt> Maxsize = new Column<SqlInt>("maxsize");
-        
-        public static readonly Column<SqlSysname> Name = new Column<SqlSysname>("name");
-        
-        public static readonly Column<SqlInt> Perf = new Column<SqlInt>("perf");
-        
-        public static readonly Column<SqlInt> Size = new Column<SqlInt>("size");
-        
-        public static readonly Column<SqlInt> Status = new Column<SqlInt>("status");
+        public static readonly ViewName ViewName = new("sys.sysaltfiles");
+
+        public static readonly Column<SqlSmallInt> Dbid = new("dbid");
+
+        public static readonly Column<SqlSmallInt> Fileid = new("fileid");
+
+        public static readonly Column<SqlNVarchar> Filename = new("filename");
+
+        public static readonly Column<SqlSmallInt> Groupid = new("groupid");
+
+        public static readonly Column<SqlInt> Growth = new("growth");
+
+        public static readonly Column<SqlInt> Maxsize = new("maxsize");
+
+        public static readonly Column<SqlSysname> Name = new("name");
+
+        public static readonly Column<SqlInt> Perf = new("perf");
+
+        public static readonly Column<SqlInt> Size = new("size");
+
+        public static readonly Column<SqlInt> Status = new("status");
     }
 }

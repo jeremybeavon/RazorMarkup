@@ -25,7 +25,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
             TCommonPivotClause,
             TCommonUnpivotClause>,
         ICommonTableSelectionWithAdditionalTableHint
-        where TTableSelectionWithAdditionalTableHint : ICommonTableSelectionWithAdditionalTableHint<TTableSourceInJoin, TTableSource, TPivotClause, TUnpivotClause, TAdditionalTableHint>
+        where TTableSelectionWithAdditionalTableHint : ICommonTableSelectionWithAdditionalTableHint<TTableSource, TPivotClause, TUnpivotClause, TAdditionalTableHint>
         where TCommonTableSourceInJoin : ISource<TTableSourceInJoin>, ICommonTableSource, new()
         where TCommonTableSource : ISource<TTableSource>, ICommonTableSource, new()
         where TCommonPivotClause : ISource<TPivotClause>, ICommonPivotClause, new()

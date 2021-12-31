@@ -13,7 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         {
             this.rollupClosure = rollupClosure;
         }
-       
+
         public IGroupByRollup<TEndRollupType> And(Expression<Func<object>> groupingExpression)
         {
             Statement.Groupings.Add(new ExpressionBuilder<object>(groupingExpression));

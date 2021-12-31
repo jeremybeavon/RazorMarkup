@@ -4,7 +4,7 @@
     {
         public string ToSqlString()
         {
-            SqlBuilder sqlBuilder = new SqlBuilder();
+            SqlBuilder sqlBuilder = new();
             ToSqlString(sqlBuilder);
             return sqlBuilder.ToSqlString();
         }

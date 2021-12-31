@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using System.Collections.Generic;
 using System.Linq;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
@@ -72,7 +72,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
             if (Columns.Count > 1)
             {
                 using (sqlBuilder.IncrementIndent())
-                { 
+                {
                     foreach (AbstractStatementTextBuilder column in Columns.Skip(1))
                     {
                         sqlBuilder.Append(",").AppendIndent();

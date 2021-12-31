@@ -33,7 +33,7 @@
         {
             Statement.Options.Add(new OptionBuilder() { AutomatedBackupPreference = "SECONDARY_ONLY" });
             Statement.Append((ICreateAvailabilityGroupAutomatedBackupPreference input) => input.SecondaryOnly());
-            return new CreateAvailabilityGroupWithAnd(Statement); 
+            return new CreateAvailabilityGroupWithAnd(Statement);
         }
     }
 }

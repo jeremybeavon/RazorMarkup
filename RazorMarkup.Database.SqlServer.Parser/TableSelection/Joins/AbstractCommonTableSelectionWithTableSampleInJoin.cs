@@ -1,4 +1,5 @@
-﻿using RazorMarkup.Database.SqlServer.TableSelection.Joins;
+﻿using RazorMarkup.Database.SqlServer.TableSelection;
+using RazorMarkup.Database.SqlServer.TableSelection.Joins;
 using System;
 using System.Linq.Expressions;
 
@@ -34,7 +35,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.TableSelection.Joins
             TCommonUnpivotClause,
             TCommonTableHint,
             TCommonTableSampleWithSystem>
-        where TTableSelectionWithTableSample : ICommonTableSelectionWithTableSampleInJoin<TJoinEndType,TTableSourceInJoin, TTableSource, TPivotClause, TUnpivotClause, TTableHint, TTableSampleWithSystem>
+        where TTableSelectionWithTableSample : ICommonTableSelectionWithTableSampleInJoin<TJoinEndType, TTableSource, TPivotClause, TUnpivotClause, TTableHint, TTableSampleWithSystem>
         where TCommonJoinEndType : ISource<TJoinEndType>, ICommonTableSelectionWithJoin, new()
         where TCommonTableSourceInJoin : ISource<TTableSourceInJoin>, ICommonTableSource, new()
         where TCommonTableSource : ISource<TTableSource>, ICommonTableSource, new()

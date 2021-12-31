@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.Composition;
-using RazorMarkup.Database.SqlServer.Constants;
+﻿using RazorMarkup.Database.SqlServer.Constants;
 using RazorMarkup.Database.SqlServer.Types;
+using System.ComponentModel.Composition;
 
 namespace RazorMarkup.Database.SqlServer.Expressions.Functions
 {

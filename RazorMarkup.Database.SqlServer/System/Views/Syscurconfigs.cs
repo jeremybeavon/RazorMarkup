@@ -4,14 +4,14 @@ namespace RazorMarkup.Database.SqlServer.System.Views
 {
     public sealed class SysCurConfigs
     {
-        public static readonly ViewName ViewName = new ViewName("sys.syscurconfigs");
-        
-        public static readonly Column<SqlNVarchar> Comment = new Column<SqlNVarchar>("comment");
-        
-        public static readonly Column<SqlSmallInt> Config = new Column<SqlSmallInt>("config");
-        
-        public static readonly Column<SqlSmallInt> Status = new Column<SqlSmallInt>("status");
-        
-        public static readonly Column<SqlInt> Value = new Column<SqlInt>("value");
+        public static readonly ViewName ViewName = new("sys.syscurconfigs");
+
+        public static readonly Column<SqlNVarchar> Comment = new("comment");
+
+        public static readonly Column<SqlSmallInt> Config = new("config");
+
+        public static readonly Column<SqlSmallInt> Status = new("status");
+
+        public static readonly Column<SqlInt> Value = new("value");
     }
 }

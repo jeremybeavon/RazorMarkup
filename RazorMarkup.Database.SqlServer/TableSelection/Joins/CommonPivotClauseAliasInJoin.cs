@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using System;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection.Joins
 {
@@ -21,13 +21,11 @@ namespace RazorMarkup.Database.SqlServer.TableSelection.Joins
             TCommonPivotClauseAlias>,
         ICommonPivotClauseAliasInJoin<
             TJoinEndType,
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,
             TTableSelectionWithJoin>
         where TCommonPivotClauseAlias : ICommonPivotClauseAlias<
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,

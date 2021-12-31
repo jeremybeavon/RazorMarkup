@@ -1,267 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{49768143-D5BC-4657-A579-DC85DBC66E3A}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RazorMarkup.Database.SqlServer.Parser</RootNamespace>
-    <AssemblyName>RazorMarkup.Database.SqlServer.Parser</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Microsoft.SqlServer.TransactSql.ScriptDom, Version=13.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.SqlServer.TransactSql.ScriptDom.13.0.1700.77\lib\net40\Microsoft.SqlServer.TransactSql.ScriptDom.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Compile Remove="Merge\TableSelection\**" />
+    <Compile Remove="Query\TableSelection\Joins\**" />
+    <EmbeddedResource Remove="Merge\TableSelection\**" />
+    <EmbeddedResource Remove="Query\TableSelection\Joins\**" />
+    <None Remove="Merge\TableSelection\**" />
+    <None Remove="Query\TableSelection\Joins\**" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="AbstractSqlVisitor.cs" />
-    <Compile Include="BooleanExpressionExtensions.cs" />
-    <Compile Include="ColumnReferenceExpressionExtensions.cs" />
-    <Compile Include="DataTypeReferenceExtensions.cs" />
-    <Compile Include="DropIndexOptionVisitor.cs" />
-    <Compile Include="DropIndexVisitor.cs" />
-    <Compile Include="IdentifierOrValueExpressionExtensions.cs" />
-    <Compile Include="Merge\TableSelection\AdditionalCommonTableHint.cs" />
-    <Compile Include="Merge\TableSelection\CommonDerivedTableWithAlias.cs" />
-    <Compile Include="Merge\TableSelection\CommonPivotClause.cs" />
-    <Compile Include="Merge\TableSelection\CommonPivotClauseAlias.cs" />
-    <Compile Include="Merge\TableSelection\CommonPivotClauseIn.cs" />
-    <Compile Include="Merge\TableSelection\CommonSubqueryWithAlias.cs" />
-    <Compile Include="Merge\TableSelection\CommonTableHint.cs" />
-    <Compile Include="Merge\TableSelection\CommonTableSample.cs" />
-    <Compile Include="Merge\TableSelection\CommonTableSampleWithSystem.cs" />
-    <Compile Include="Merge\TableSelection\CommonTableSelectionWithAdditionalTableHint.cs" />
-    <Compile Include="Merge\TableSelection\CommonTableSelectionWithAlias.cs" />
-    <Compile Include="Merge\TableSelection\CommonTableSelectionWithJoin.cs" />
-    <Compile Include="Merge\TableSelection\CommonTableSelectionWithRepeatable.cs" />
-    <Compile Include="Merge\TableSelection\CommonTableSelectionWithTableHint.cs" />
-    <Compile Include="Merge\TableSelection\CommonTableSelectionWithTableSample.cs" />
-    <Compile Include="Merge\TableSelection\CommonTableSource.cs" />
-    <Compile Include="Merge\TableSelection\CommonUnpivotClause.cs" />
-    <Compile Include="Merge\TableSelection\CommonUnpivotClauseAlias.cs" />
-    <Compile Include="Merge\TableSelection\CommonUnpivotClauseIn.cs" />
-    <Compile Include="Merge\TableSelection\Joins\AdditionalCommonTableHintInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonDerivedTableWithAliasInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonPivotClauseAliasInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonPivotClauseInInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonPivotClauseInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonSubqueryWithAliasInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonTableHintInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonTableSampleInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonTableSampleWithSystemInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonTableSelectionWithAdditionalTableHintInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonTableSelectionWithAliasInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonTableSelectionWithJoinInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonTableSelectionWithRepeatableInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonTableSelectionWithTableHintInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonTableSelectionWithTableSampleInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonTableSourceInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonUnpivotClauseAliasInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonUnpivotClauseInInJoin.cs" />
-    <Compile Include="Merge\TableSelection\Joins\CommonUnpivotClauseInJoin.cs" />
-    <Compile Include="MultiPartIdentifierExtensions.cs" />
-    <Compile Include="ObsoleteException.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Query\EmptyForClause.cs" />
-    <Compile Include="Query\EmptyGroupByClause.cs" />
-    <Compile Include="Query\EmptyHavingClause.cs" />
-    <Compile Include="Query\EmptyOffsetClause.cs" />
-    <Compile Include="Query\EmptyOrderByClause.cs" />
-    <Compile Include="Query\EmptyFromClause.cs" />
-    <Compile Include="Query\EmptyWhereClause.cs" />
-    <Compile Include="Query\ForClauseVisitor.cs" />
-    <Compile Include="Query\FromClauseVisitor.cs" />
-    <Compile Include="Query\GroupBy\AbstractGroupBy.cs" />
-    <Compile Include="Query\GroupBy\GroupByAnd.cs" />
-    <Compile Include="Query\GroupBy\GroupByClause.cs" />
-    <Compile Include="Query\GroupBy\GroupByCube.cs" />
-    <Compile Include="Query\GroupBy\GroupByCubeFunction.cs" />
-    <Compile Include="Query\GroupBy\GroupByFunction.cs" />
-    <Compile Include="Query\GroupBy\GroupByFunctionType.cs" />
-    <Compile Include="Query\GroupBy\GroupByGroup.cs" />
-    <Compile Include="Query\GroupBy\GroupByGroupingSets.cs" />
-    <Compile Include="Query\GroupBy\GroupByGroupingSetsFunction.cs" />
-    <Compile Include="Query\GroupBy\GroupByRollup.cs" />
-    <Compile Include="Query\GroupBy\GroupByRollupFunction.cs" />
-    <Compile Include="Query\GroupBy\GroupingSpecificationExtensions.cs" />
-    <Compile Include="Query\GroupBy\ICommonGroupBy.cs" />
-    <Compile Include="Query\GroupingSpecificationVisitor.cs" />
-    <Compile Include="Query\QueryExpressionExtensions.cs" />
-    <Compile Include="Query\QueryOperandVisitor.cs" />
-    <Compile Include="Query\SelectClauseVisitor.cs" />
-    <Compile Include="Query\TableReferenceVisitor.cs" />
-    <Compile Include="Query\TableSelection\Joins\AdditionalCommonTableHintInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonUnpivotClauseAliasInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonPivotClauseAliasInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonUnpivotClauseInInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonPivotClauseInInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonUnpivotClauseInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonPivotClauseInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonSubqueryWithAliasInJoin.cs" />
-    <Compile Include="TableSelection\AbstractAdditionalCommonTableHint.cs" />
-    <Compile Include="TableSelection\AbstractCommonTableSelectionWithAdditionalTableHint.cs" />
-    <Compile Include="TableSelection\AbstractCommonSubqueryWithAlias.cs" />
-    <Compile Include="TableSelection\AbstractCommonTableHint.cs" />
-    <Compile Include="TableSelection\AbstractCommonTableSampleWithSystem.cs" />
-    <Compile Include="TableSelection\AbstractCommonTableSample.cs" />
-    <Compile Include="TableSelection\AbstractCommonTableSelectionWithRepeatable.cs" />
-    <Compile Include="TableSelection\AbstractCommonUnpivotClauseAlias.cs" />
-    <Compile Include="TableSelection\AbstractCommonPivotClauseAlias.cs" />
-    <Compile Include="TableSelection\AbstractCommonUnpivotClauseIn.cs" />
-    <Compile Include="TableSelection\AbstractCommonPivotClauseIn.cs" />
-    <Compile Include="TableSelection\AbstractCommonUnpivotClause.cs" />
-    <Compile Include="TableSelection\AbstractCommonTableSelectionWithAlias.cs" />
-    <Compile Include="TableSelection\AbstractCommonTableSelectionWithTableSample.cs" />
-    <Compile Include="TableSelection\AbstractCommonTableSelectionWithTableHint.cs" />
-    <Compile Include="TableSelection\AbstractSource.cs" />
-    <Compile Include="Query\TableSelection\AdditionalCommonTableHint.cs" />
-    <Compile Include="Query\TableSelection\CommonDerivedTableWithAlias.cs" />
-    <Compile Include="Query\TableSelection\CommonPivotClause.cs" />
-    <Compile Include="Query\TableSelection\CommonPivotClauseAlias.cs" />
-    <Compile Include="Query\TableSelection\CommonPivotClauseIn.cs" />
-    <Compile Include="Query\TableSelection\CommonSubqueryWithAlias.cs" />
-    <Compile Include="Query\TableSelection\CommonTableHint.cs" />
-    <Compile Include="Query\TableSelection\CommonTableSample.cs" />
-    <Compile Include="Query\TableSelection\CommonTableSampleWithSystem.cs" />
-    <Compile Include="Query\TableSelection\CommonTableSelectionWithAdditionalTableHint.cs" />
-    <Compile Include="Query\TableSelection\CommonTableSelectionWithAlias.cs" />
-    <Compile Include="Query\TableSelection\CommonTableSelectionWithJoin.cs" />
-    <Compile Include="Query\TableSelection\CommonTableSelectionWithRepeatable.cs" />
-    <Compile Include="Query\TableSelection\CommonTableSelectionWithTableHint.cs" />
-    <Compile Include="Query\TableSelection\CommonTableSelectionWithTableSample.cs" />
-    <Compile Include="Query\TableSelection\CommonTableSource.cs" />
-    <Compile Include="Query\TableSelection\CommonUnpivotClause.cs" />
-    <Compile Include="Query\TableSelection\CommonUnpivotClauseAlias.cs" />
-    <Compile Include="Query\TableSelection\CommonUnpivotClauseIn.cs" />
-    <Compile Include="TableSelection\AbstractCommonPivotClause.cs" />
-    <Compile Include="TableSelection\AbstractCommonDerviedTableWithAlias.cs" />
-    <Compile Include="TableSelection\AbstractCommonTableSelectionWithJoin.cs" />
-    <Compile Include="TableSelection\ISource.cs" />
-    <Compile Include="TableSelection\ISource.generic.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonDerivedTableWithAliasInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonTableHintInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonTableSampleInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonTableSampleWithSystemInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithAdditionalTableHintInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithAliasInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithJoinInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithRepeatableInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithTableHintInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonTableSelectionWithTableSampleInJoin.cs" />
-    <Compile Include="Query\TableSelection\Joins\CommonTableSourceInJoin.cs" />
-    <Compile Include="Query\WithClauseBuilder.cs" />
-    <Compile Include="ScalarExpressionExtensions.cs" />
-    <Compile Include="SchemaObjectNameExtensions.cs" />
-    <Compile Include="SqlDataTypeOptionExtensions.cs" />
-    <Compile Include="SqlExpressionVisitor.cs" />
-    <Compile Include="SqlSourceCodeBuilder.cs" />
-    <Compile Include="SqlSourceCodeVisitor.Backup.cs" />
-    <Compile Include="SqlSourceCodeVisitor.Create.cs" />
-    <Compile Include="SqlSourceCodeVisitor.Alter.cs" />
-    <Compile Include="SqlSourceCodeVisitor.cs" />
-    <Compile Include="SqlSourceCodeVisitor.Drop.cs" />
-    <Compile Include="SqlSourceCodeVisitor.Merge.cs" />
-    <Compile Include="SqlSourceCodeVisitor.Set.cs" />
-    <Compile Include="TableSelection\AbstractCommonTableSource.cs" />
-    <Compile Include="TableSelection\ICommonAdditionalTableHint.cs" />
-    <Compile Include="TableSelection\ICommonDerivedTableWithAlias.cs" />
-    <Compile Include="TableSelection\ICommonPivotClause.cs" />
-    <Compile Include="TableSelection\ICommonPivotClauseAlias.cs" />
-    <Compile Include="TableSelection\ICommonPivotClauseIn.cs" />
-    <Compile Include="TableSelection\ICommonSubqueryWithAlias.cs" />
-    <Compile Include="TableSelection\ICommonTableSelectionWithAlias.cs" />
-    <Compile Include="TableSelection\ICommonTableSelectionWithJoin.cs" />
-    <Compile Include="TableSelection\ICommonTableSelectionWithTableHint.cs" />
-    <Compile Include="TableSelection\ICommonTableSelectionWithTableSample.cs" />
-    <Compile Include="TableSelection\ICommonTableSource.cs" />
-    <Compile Include="TableSelection\ICommonUnpivotClause.cs" />
-    <Compile Include="TableSelection\ICommonUnpivotClauseAlias.cs" />
-    <Compile Include="TableSelection\ICommonUnpivotClauseIn.cs" />
-    <Compile Include="TableSelection\ICommonTableSample.cs" />
-    <Compile Include="TableSelection\ICommonTableSampleWithSystem.cs" />
-    <Compile Include="TableSelection\ICommonTableSelectionWithRepeatable.cs" />
-    <Compile Include="TableSelection\ICommonTableHint.cs" />
-    <Compile Include="TableSelection\ICommonTableSelectionWithAdditionalTableHint.cs" />
-    <Compile Include="TableSelection\Joins\AbstractAdditionalCommonTableHintInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonDerviedTableWithAliasInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonTableSelectionWithAdditionalTableHintInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonTableSelectionWithRepeatableInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonUnpivotClauseInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonUnpivotClauseInInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonUnpivotClauseAliasInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonPivotClauseAliasInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonPivotClauseInInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonPivotClauseInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonSubqueryWithAliasInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonTableHintInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonTableSampleInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonTableSampleWithSystemInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonTableSelectionWithAliasInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonTableSelectionWithJoinInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonTableSelectionWithTableHintInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonTableSelectionWithTableSampleInJoin.cs" />
-    <Compile Include="TableSelection\Joins\AbstractCommonTableSourceInJoin.cs" />
-    <Compile Include="TSqlFragmentExtensions.cs" />
+    <Compile Remove="SqlSourceCodeVisitor.Merge.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="SqlSourceCodeVisitor.CreateAvailabilityGroup.cs" />
+    <PackageReference Include="Microsoft.SqlServer.DacFx" Version="150.5282.3" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\RazorMarkup\RazorMarkup.csproj">
-      <Project>{36373b5c-a4cc-40b1-9a9d-c54eac326e7e}</Project>
-      <Name>RazorMarkup</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RazorMarkup.Database.SqlServer\RazorMarkup.Database.SqlServer.csproj">
-      <Project>{38cadd81-4103-497c-a213-efc3eac6a190}</Project>
-      <Name>RazorMarkup.Database.SqlServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RazorMarkup.Database\RazorMarkup.Database.csproj">
-      <Project>{7dd4e19a-f32e-4111-9a32-6bb280597008}</Project>
-      <Name>RazorMarkup.Database</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\RazorMarkup.Database.SqlServer\RazorMarkup.Database.SqlServer.csproj" />
+    <ProjectReference Include="..\RazorMarkup.Database\RazorMarkup.Database.csproj" />
+    <ProjectReference Include="..\RazorMarkup\RazorMarkup.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="Merge\" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

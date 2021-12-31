@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Query.CommonTableExpressions;
+using System.Linq;
 
 namespace RazorMarkup.Database.SqlServer.Merge
 {
@@ -16,7 +16,7 @@ namespace RazorMarkup.Database.SqlServer.Merge
             params ColumnAlias[] columnNames)
         {
             Statement.Append((IMergeStatement input) => input.With(null), (new ISqlString[] { tableName }).Concat(columnNames).ToArray());
-            WithClauseBuilder withClause = new WithClauseBuilder(ExpressionBuilder, tableName, columnNames);
+            WithClauseBuilder withClause = new(ExpressionBuilder, tableName, columnNames);
             Statement.WithClause = withClause;
             return new CommonTableExpression<ICommonTableExpressionEnd<IEndMergeCommonTableExpression>>(
                 withClause,

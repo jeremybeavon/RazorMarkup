@@ -4,7 +4,7 @@ namespace RazorMarkup.Database.SqlServer.SetClauses
 {
     internal sealed class SetColumnOrVariableBuilder : AbstractStatementBuilder
     {
-        public SetColumnOrVariableBuilder(ExpressionBuilder expressionBuilder) 
+        public SetColumnOrVariableBuilder(ExpressionBuilder expressionBuilder)
             : base(expressionBuilder)
         {
             Operator = "=";

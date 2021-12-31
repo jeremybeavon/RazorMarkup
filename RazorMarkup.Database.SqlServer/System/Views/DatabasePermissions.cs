@@ -4,26 +4,26 @@ namespace RazorMarkup.Database.SqlServer.System.Views
 {
     public sealed class DatabasePermissions
     {
-        public static readonly ViewName ViewName = new ViewName("sys.database_permissions");
-        
-        public static readonly Column<SqlTinyInt> Class = new Column<SqlTinyInt>("class");
-        
-        public static readonly Column<SqlNVarchar> ClassDesc = new Column<SqlNVarchar>("class_desc");
-        
-        public static readonly Column<SqlInt> GranteePrincipalId = new Column<SqlInt>("grantee_principal_id");
-        
-        public static readonly Column<SqlInt> GrantorPrincipalId = new Column<SqlInt>("grantor_principal_id");
-        
-        public static readonly Column<SqlInt> MajorId = new Column<SqlInt>("major_id");
-        
-        public static readonly Column<SqlInt> MinorId = new Column<SqlInt>("minor_id");
-        
-        public static readonly Column<SqlNVarchar> PermissionName = new Column<SqlNVarchar>("permission_name");
-        
-        public static readonly Column<SqlChar> State = new Column<SqlChar>("state");
-        
-        public static readonly Column<SqlNVarchar> StateDesc = new Column<SqlNVarchar>("state_desc");
-        
-        public static readonly Column<SqlChar> Type = new Column<SqlChar>("type");
+        public static readonly ViewName ViewName = new("sys.database_permissions");
+
+        public static readonly Column<SqlTinyInt> Class = new("class");
+
+        public static readonly Column<SqlNVarchar> ClassDesc = new("class_desc");
+
+        public static readonly Column<SqlInt> GranteePrincipalId = new("grantee_principal_id");
+
+        public static readonly Column<SqlInt> GrantorPrincipalId = new("grantor_principal_id");
+
+        public static readonly Column<SqlInt> MajorId = new("major_id");
+
+        public static readonly Column<SqlInt> MinorId = new("minor_id");
+
+        public static readonly Column<SqlNVarchar> PermissionName = new("permission_name");
+
+        public static readonly Column<SqlChar> State = new("state");
+
+        public static readonly Column<SqlNVarchar> StateDesc = new("state_desc");
+
+        public static readonly Column<SqlChar> Type = new("type");
     }
 }

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using RazorMarkup.Database.SqlServer.Types;
+﻿using RazorMarkup.Database.SqlServer.Types;
+using System.Collections.Generic;
 
 namespace RazorMarkup.Database.SqlServer.System.Procedures
 {
@@ -11,6 +11,6 @@ namespace RazorMarkup.Database.SqlServer.System.Procedures
         };
 
         public static readonly Parameter<SqlInt, ServerInfoAttribute> AttributeId =
-            new Parameter<SqlInt, ServerInfoAttribute>(OrderedParameters[0]);
+            new(OrderedParameters[0]);
     }
 }

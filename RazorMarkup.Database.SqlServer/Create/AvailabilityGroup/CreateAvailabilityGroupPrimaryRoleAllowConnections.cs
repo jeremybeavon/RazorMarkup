@@ -5,7 +5,7 @@ namespace RazorMarkup.Database.SqlServer.Create.AvailabilityGroup
     internal sealed class CreateAvailabilityGroupPrimaryRoleAllowConnections : AbstractStatement<CreateAvailabilityGroupStatementBuilder>,
         ICreateAvailabilityGroupPrimaryRoleAllowConnections
     {
-        public CreateAvailabilityGroupPrimaryRoleAllowConnections(CreateAvailabilityGroupStatementBuilder statement) 
+        public CreateAvailabilityGroupPrimaryRoleAllowConnections(CreateAvailabilityGroupStatementBuilder statement)
             : base(statement)
         {
         }

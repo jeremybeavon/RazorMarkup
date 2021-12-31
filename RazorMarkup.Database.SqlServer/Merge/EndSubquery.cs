@@ -1,6 +1,6 @@
-﻿using RazorMarkup.Database.SqlServer.Query.Builders;
-using RazorMarkup.Database.SqlServer.Merge.TableSelection;
+﻿using RazorMarkup.Database.SqlServer.Merge.TableSelection;
 using RazorMarkup.Database.SqlServer.Query;
+using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.Merge
 {

@@ -1,9 +1,20 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using System;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection
 {
+    public interface ICommonTableSelectionWithRepeatable<
+        TTableSource,
+        TPivotClause,
+        TUnpivotClause,
+        TTableHint,
+        TTableSelectionWithTableHint> :
+        ICommonTableSelectionWithTableHint<TTableSource, TPivotClause, TUnpivotClause, TTableHint>
+    {
+        TTableSelectionWithTableHint WithRepeatSeed(Expression<Func<Integer>> repeatSeed);
+    }
+
     public interface ICommonTableSelectionWithRepeatable<
         TTableSourceInJoin,
         TTableSource,
@@ -11,8 +22,7 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
         TUnpivotClause,
         TTableHint,
         TTableSelectionWithTableHint> :
-        ICommonTableSelectionWithTableHint<TTableSourceInJoin, TTableSource, TPivotClause, TUnpivotClause, TTableHint>
+        ICommonTableSelectionWithRepeatable<TTableSource, TPivotClause, TUnpivotClause, TTableHint, TTableSelectionWithTableHint>
     {
-        TTableSelectionWithTableHint WithRepeatSeed(Expression<Func<Integer>> repeatSeed);
     }
 }

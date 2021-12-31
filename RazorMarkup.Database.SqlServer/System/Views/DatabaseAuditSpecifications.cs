@@ -4,18 +4,18 @@ namespace RazorMarkup.Database.SqlServer.System.Views
 {
     public sealed class DatabaseAuditSpecifications
     {
-        public static readonly ViewName ViewName = new ViewName("sys.database_audit_specifications");
-        
-        public static readonly Column<SqlUniqueIdentifier> AuditGuid = new Column<SqlUniqueIdentifier>("audit_guid");
-        
-        public static readonly Column<SqlDateTime> CreateDate = new Column<SqlDateTime>("create_date");
-        
-        public static readonly Column<SqlInt> DatabaseSpecificationId = new Column<SqlInt>("database_specification_id");
-        
-        public static readonly Column<SqlBit> IsStateEnabled = new Column<SqlBit>("is_state_enabled");
-        
-        public static readonly Column<SqlDateTime> ModifyDate = new Column<SqlDateTime>("modify_date");
-        
-        public static readonly Column<SqlSysname> Name = new Column<SqlSysname>("name");
+        public static readonly ViewName ViewName = new("sys.database_audit_specifications");
+
+        public static readonly Column<SqlUniqueIdentifier> AuditGuid = new("audit_guid");
+
+        public static readonly Column<SqlDateTime> CreateDate = new("create_date");
+
+        public static readonly Column<SqlInt> DatabaseSpecificationId = new("database_specification_id");
+
+        public static readonly Column<SqlBit> IsStateEnabled = new("is_state_enabled");
+
+        public static readonly Column<SqlDateTime> ModifyDate = new("modify_date");
+
+        public static readonly Column<SqlSysname> Name = new("name");
     }
 }

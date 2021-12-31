@@ -11,7 +11,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
         AbstractCommonTableSelectionWithRepeatableInJoin<
             TJoinEndType,
             ITableSelectionWithRepeatableInJoin<TJoinEndType>,
-            ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
+            ITableSourceInJoinWithTableSelectionInJoin<TJoinEndType>,
             ITableSourceInJoin<TJoinEndType>,
             IPivotClauseInJoin<TJoinEndType>,
             IUnpivotClauseInJoin<TJoinEndType>,

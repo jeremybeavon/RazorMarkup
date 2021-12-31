@@ -11,14 +11,13 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
         TTableHint,
         TCommonTableSelectionWithTableHint> :
         CommonTableSelectionWithJoin<
-            TTableSourceInJoin, 
+            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,
             TCommonTableSelectionWithTableHint>,
-        ICommonTableSelectionWithTableHint<TTableSourceInJoin, TTableSource, TPivotClause, TUnpivotClause, TTableHint>
+        ICommonTableSelectionWithTableHint<TTableSource, TPivotClause, TUnpivotClause, TTableHint>
         where TCommonTableSelectionWithTableHint : ICommonTableSelectionWithTableHint<
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,

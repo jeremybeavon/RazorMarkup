@@ -5,7 +5,7 @@ namespace RazorMarkup.Database.SqlServer.Merge
     internal sealed class EndMergeCommonTableExpression : MergeClause,
         IEndMergeCommonTableExpression
     {
-        public EndMergeCommonTableExpression(MergeStatementBuilder statement) 
+        public EndMergeCommonTableExpression(MergeStatementBuilder statement)
             : base(statement)
         {
         }

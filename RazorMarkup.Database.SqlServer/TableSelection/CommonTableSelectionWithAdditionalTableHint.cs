@@ -1,5 +1,5 @@
-﻿using System;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using System;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection
 {
@@ -17,13 +17,11 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
             TUnpivotClause,
             TCommonTableSelectionWithAdditionalTableHint>,
         ICommonTableSelectionWithAdditionalTableHint<
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,
             TAdditionalTableHint>
         where TCommonTableSelectionWithAdditionalTableHint : ICommonTableSelectionWithAdditionalTableHint<
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,

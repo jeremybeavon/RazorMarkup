@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using System;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Joins
 {
@@ -12,10 +12,7 @@ namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection.Joins
         {
         }
 
-        private ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> TableSource
-        {
-            get { return new TableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>(Statement, this); }
-        }
+        private ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> TableSource => throw new global::System.NotImplementedException(); //new TableSourceInJoin2<TJoinEndType>(Statement, this);
 
         public ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> InnerJoin()
         {

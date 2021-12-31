@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using RazorMarkup.Database.SqlServer.Types;
+﻿using RazorMarkup.Database.SqlServer.Types;
+using System.Collections.Generic;
 
 namespace RazorMarkup.Database.SqlServer.System.Procedures
 {
@@ -15,16 +15,16 @@ namespace RazorMarkup.Database.SqlServer.System.Procedures
             new ParameterName("fktable_qualifier")
         };
 
-        public static readonly Parameter<SqlSysname> PrimaryKeyTableName = new Parameter<SqlSysname>(OrderedParameters[0]);
+        public static readonly Parameter<SqlSysname> PrimaryKeyTableName = new(OrderedParameters[0]);
 
-        public static readonly Parameter<SqlSysname> PrimaryKeyTableOwner = new Parameter<SqlSysname>(OrderedParameters[1]);
+        public static readonly Parameter<SqlSysname> PrimaryKeyTableOwner = new(OrderedParameters[1]);
 
-        public static readonly Parameter<SqlSysname> PrimaryKeyTableQualifer = new Parameter<SqlSysname>(OrderedParameters[2]);
+        public static readonly Parameter<SqlSysname> PrimaryKeyTableQualifer = new(OrderedParameters[2]);
 
-        public static readonly Parameter<SqlSysname> ForeignKeyTableName = new Parameter<SqlSysname>(OrderedParameters[3]);
+        public static readonly Parameter<SqlSysname> ForeignKeyTableName = new(OrderedParameters[3]);
 
-        public static readonly Parameter<SqlSysname> ForeignKeyTableOwner = new Parameter<SqlSysname>(OrderedParameters[4]);
+        public static readonly Parameter<SqlSysname> ForeignKeyTableOwner = new(OrderedParameters[4]);
 
-        public static readonly Parameter<SqlSysname> ForeignKeyTableQualifer = new Parameter<SqlSysname>(OrderedParameters[5]);
+        public static readonly Parameter<SqlSysname> ForeignKeyTableQualifer = new(OrderedParameters[5]);
     }
 }

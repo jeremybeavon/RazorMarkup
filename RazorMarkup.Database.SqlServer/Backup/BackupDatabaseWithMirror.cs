@@ -18,7 +18,7 @@ namespace RazorMarkup.Database.SqlServer.Backup
             Statement.Append(
                 (IBackupDatabaseWithMirror<TOptions> input) => input.MirrorTo((string)null),
                 new RawStatementBuilder(logicalDeviceName));
-            BackupDevice backupDevice = new BackupDevice()
+            BackupDevice backupDevice = new()
             {
                 Name = logicalDeviceName
             };
@@ -31,7 +31,7 @@ namespace RazorMarkup.Database.SqlServer.Backup
             Statement.Append(
                 (IBackupDatabaseToAnd<TOptions> input) => input.And((VariableName)null),
                 logicalDeviceNameVariable);
-            BackupDevice backupDevice = new BackupDevice()
+            BackupDevice backupDevice = new()
             {
                 Variable = logicalDeviceNameVariable
             };

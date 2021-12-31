@@ -4,12 +4,12 @@ namespace RazorMarkup.Database.SqlServer.System.Views
 {
     public sealed class SysCursorRefs
     {
-        public static readonly ViewName ViewName = new ViewName("sys.syscursorrefs");
-        
-        public static readonly Column<SqlInt> CursorHandl = new Column<SqlInt>("cursor_handl");
-        
-        public static readonly Column<SqlTinyInt> CursorScope = new Column<SqlTinyInt>("cursor_scope");
-        
-        public static readonly Column<SqlNVarchar> ReferenceName = new Column<SqlNVarchar>("reference_name");
+        public static readonly ViewName ViewName = new("sys.syscursorrefs");
+
+        public static readonly Column<SqlInt> CursorHandl = new("cursor_handl");
+
+        public static readonly Column<SqlTinyInt> CursorScope = new("cursor_scope");
+
+        public static readonly Column<SqlNVarchar> ReferenceName = new("reference_name");
     }
 }

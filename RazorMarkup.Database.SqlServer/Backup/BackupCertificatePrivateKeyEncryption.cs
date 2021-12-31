@@ -7,7 +7,7 @@
             : base(input)
         {
         }
-        
+
         public IBackupCertificatePrivateKeyDecryption AndEncryptionByPassword(string encryptionPassword)
         {
             Statement.Append(

@@ -7,7 +7,7 @@ namespace RazorMarkup
     {
         private static string defaultIndentText;
         private readonly StringBuilder textBuilder;
-        private Stack<string> currentIndentText;
+        private readonly Stack<string> currentIndentText;
 
         public InternalTextBuilder()
         {
@@ -25,8 +25,8 @@ namespace RazorMarkup
 
         public static string DefaultIndentText
         {
-            get { return defaultIndentText ?? string.Empty.PadLeft(4); }
-            set { defaultIndentText = value; }
+            get => defaultIndentText ?? string.Empty.PadLeft(4);
+            set => defaultIndentText = value;
         }
 
         public static bool DisableIndentation { get; set; }

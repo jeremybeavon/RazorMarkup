@@ -4,18 +4,18 @@ namespace RazorMarkup.Database.SqlServer.System.Views
 {
     public sealed class XmlSchemaCollections
     {
-        public static readonly ViewName ViewName = new ViewName("sys.xml_schema_collections");
-        
-        public static readonly Column<SqlDateTime> CreateDate = new Column<SqlDateTime>("create_date");
-        
-        public static readonly Column<SqlDateTime> ModifyDate = new Column<SqlDateTime>("modify_date");
-        
-        public static readonly Column<SqlSysname> Name = new Column<SqlSysname>("name");
-        
-        public static readonly Column<SqlInt> PrincipalId = new Column<SqlInt>("principal_id");
-        
-        public static readonly Column<SqlInt> SchemaId = new Column<SqlInt>("schema_id");
-        
-        public static readonly Column<SqlInt> XmlCollectionId = new Column<SqlInt>("xml_collection_id");
+        public static readonly ViewName ViewName = new("sys.xml_schema_collections");
+
+        public static readonly Column<SqlDateTime> CreateDate = new("create_date");
+
+        public static readonly Column<SqlDateTime> ModifyDate = new("modify_date");
+
+        public static readonly Column<SqlSysname> Name = new("name");
+
+        public static readonly Column<SqlInt> PrincipalId = new("principal_id");
+
+        public static readonly Column<SqlInt> SchemaId = new("schema_id");
+
+        public static readonly Column<SqlInt> XmlCollectionId = new("xml_collection_id");
     }
 }

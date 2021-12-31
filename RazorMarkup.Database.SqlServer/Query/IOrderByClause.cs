@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Query.OrderBy;
+using System;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.OrderBy;
 
 namespace RazorMarkup.Database.SqlServer.Query
 {

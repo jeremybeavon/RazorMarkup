@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using System.Linq;
 
 namespace RazorMarkup.Database.SqlServer.UpdateOrDelete.TableSelection
 {

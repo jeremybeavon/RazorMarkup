@@ -17,8 +17,8 @@ namespace RazorMarkup
 
         public string InitialIndent
         {
-            get { return initialIndent; }
-            set { initialIndent = value ?? string.Empty; }
+            get => initialIndent;
+            set => initialIndent = value ?? string.Empty;
         }
 
         public IDictionary<MethodInfo, IndentChange> MethodsOnNewLine { get; private set; }
@@ -28,7 +28,7 @@ namespace RazorMarkup
             MethodCallExpression methodCall = method.Body as MethodCallExpression;
             if (methodCall == null)
             {
-                throw new ArgumentException("expression must be method call", "method");
+                throw new ArgumentException("expression must be method call", nameof(method));
             }
         }
     }

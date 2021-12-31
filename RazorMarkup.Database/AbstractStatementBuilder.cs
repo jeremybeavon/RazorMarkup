@@ -12,14 +12,11 @@ namespace RazorMarkup.Database
             this.expressionBuilder = expressionBuilder;
         }
 
-        public ExpressionBuilder ExpressionBuilder
-        {
-            get { return expressionBuilder; }
-        }
+        public ExpressionBuilder ExpressionBuilder => expressionBuilder;
 
         public Expression ToExpression()
         {
-            return expressionBuilder == null ? null : expressionBuilder.ToExpression();
+            return expressionBuilder?.ToExpression();
         }
 
         public void Initialize<TResult>(Expression<Func<TResult>> expression, params ISqlString[] parameters)

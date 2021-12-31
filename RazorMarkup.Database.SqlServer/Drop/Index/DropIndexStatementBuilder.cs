@@ -13,10 +13,7 @@ namespace RazorMarkup.Database.SqlServer.Drop.Index
 
         public IList<DropSingleIndexStatementBuilder> Indexes { get; private set; }
 
-        public DropSingleIndexStatementBuilder CurrentIndex
-        {
-            get { return Indexes.Last(); }
-        }
+        public DropSingleIndexStatementBuilder CurrentIndex => Indexes.Last();
 
         public override void ToSqlString(SqlBuilder sqlBuilder)
         {

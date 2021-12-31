@@ -8,8 +8,24 @@
         TTableHint,
         TTableSampleWithSystem,
         TTableSelectionWithTableSample> :
+        ICommonTableSelectionWithAlias<
+            TTableSource,
+            TPivotClause,
+            TUnpivotClause,
+            TTableHint,
+            TTableSampleWithSystem,
+            TTableSelectionWithTableSample>
+    {
+    }
+
+    public interface ICommonTableSelectionWithAlias<
+        TTableSource,
+        TPivotClause,
+        TUnpivotClause,
+        TTableHint,
+        TTableSampleWithSystem,
+        TTableSelectionWithTableSample> :
         ICommonTableSelectionWithTableSample<
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,

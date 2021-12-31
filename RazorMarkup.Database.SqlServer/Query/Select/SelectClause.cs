@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using System;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.Query.Select
 {
@@ -57,7 +57,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Select
         public ISelectClauseAnd<TEndType> Column(ColumnAlias columnAlias, Expression<Func<object>> expression)
         {
             Statement.Columns.Add(new SelectColumnBuilder(expression, columnAlias.ToSqlString()));
-            ExpressionBuilder<object> expressionBuilder = new ExpressionBuilder<object>(expression);
+            ExpressionBuilder<object> expressionBuilder = new(expression);
             Statement.Append((ISelectClause<TEndType> input) => input.Column(null, null), columnAlias, expressionBuilder);
             return new SelectClauseAnd<TEndType>(Statement, EndClosure);
         }

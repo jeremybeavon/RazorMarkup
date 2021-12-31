@@ -12,10 +12,7 @@ namespace RazorMarkup.Database
 
         protected TStatementBuilder Statement { get; private set; }
 
-        protected ExpressionBuilder ExpressionBuilder
-        {
-            get { return Statement.ExpressionBuilder; }
-        }
+        protected ExpressionBuilder ExpressionBuilder => Statement.ExpressionBuilder;
 
         public Expression ToExpression()
         {

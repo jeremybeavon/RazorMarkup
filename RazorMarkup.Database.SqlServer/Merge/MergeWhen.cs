@@ -23,7 +23,7 @@
 
         public IMergeWhenNotMatchedBySourceAnd WhenNotMatchedBySource()
         {
-            WhenMatchedClauseBuilder clause = new WhenMatchedClauseBuilder(ExpressionBuilder)
+            WhenMatchedClauseBuilder clause = new(ExpressionBuilder)
             {
                 IsNotMatchedBySource = true
             };
@@ -34,7 +34,7 @@
 
         public IMergeWhenNotMatchedByTargetAnd WhenNotMatchedByTarget()
         {
-            WhenNotMatchedClauseBuilder clause = new WhenNotMatchedClauseBuilder(ExpressionBuilder)
+            WhenNotMatchedClauseBuilder clause = new(ExpressionBuilder)
             {
                 IncludeByTarget = true
             };

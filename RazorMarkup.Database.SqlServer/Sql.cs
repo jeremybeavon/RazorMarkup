@@ -1,13 +1,13 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Alter;
+﻿using RazorMarkup.Database.SqlServer.Alter;
 using RazorMarkup.Database.SqlServer.Backup;
 using RazorMarkup.Database.SqlServer.Create;
 using RazorMarkup.Database.SqlServer.Drop;
-using RazorMarkup.Database.SqlServer.Merge;
+//using RazorMarkup.Database.SqlServer.Merge;
 using RazorMarkup.Database.SqlServer.Options;
 using RazorMarkup.Database.SqlServer.Query;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using System;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer
 {
@@ -94,10 +94,10 @@ namespace RazorMarkup.Database.SqlServer
             return new SqlString(labelName.ToSqlString() + ":", () => Label(null), labelName);
         }
 
-        public static IMergeStatement Merge()
-        {
-            return new MergeStatement();
-        }
+        //public static IMergeStatement Merge()
+        //{
+        //    return new MergeStatement();
+        //}
 
         public static ISqlString Print(Expression<Func<Text>> expression)
         {

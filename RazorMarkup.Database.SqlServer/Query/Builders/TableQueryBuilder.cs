@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using RazorMarkup.Database.SqlServer.Types.Wrappers;
+﻿using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using System.Collections.Generic;
 
 namespace RazorMarkup.Database.SqlServer.Query.Builders
 {
@@ -33,7 +33,7 @@ namespace RazorMarkup.Database.SqlServer.Query.Builders
             WriteTableSample(sqlBuilder);
             WriteTableHints(sqlBuilder);
         }
-        
+
         private void WriteAlias(SqlBuilder sqlBuilder)
         {
             if (!string.IsNullOrWhiteSpace(TableAlias))

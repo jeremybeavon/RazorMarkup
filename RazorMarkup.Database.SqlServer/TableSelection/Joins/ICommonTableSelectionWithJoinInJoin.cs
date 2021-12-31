@@ -2,11 +2,10 @@
 {
     public interface ICommonTableSelectionWithJoinInJoin<
         TJoinEndType,
-        TTableSourceInJoin,
         TTableSource,
         TPivotClause,
         TUnpivotClause> :
-        ICommonTableSelectionWithJoin<TTableSourceInJoin, TTableSource, TPivotClause, TUnpivotClause>,
+        ICommonTableSelectionWithJoin<TTableSource, TPivotClause, TUnpivotClause>,
         IEndJoin<TJoinEndType>
     {
     }

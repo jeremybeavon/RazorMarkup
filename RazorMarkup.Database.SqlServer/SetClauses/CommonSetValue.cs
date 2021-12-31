@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 namespace RazorMarkup.Database.SqlServer.SetClauses
 {
     internal abstract class CommonSetValue<TSetClauseAnd> :
-        AbstractStatement<SetClauseBuilder>, 
+        AbstractStatement<SetClauseBuilder>,
         ICommonSetValue<TSetClauseAnd>
     {
         private readonly Func<SetClauseBuilder, TSetClauseAnd> setClauseAndBuilder;

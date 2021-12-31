@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using System;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection
 {
@@ -28,7 +28,6 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
             TTableHint,
             TTableSelectionWithTableHint>
         where TCommonTableSelectionWithRepeatable : ICommonTableSelectionWithRepeatable<
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,
@@ -46,7 +45,7 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
             Func<FromClauseBuilder, TTableHint> tableHintBuilder,
             Func<FromClauseBuilder, TTableSelectionWithTableHint> tableSelectionWithTableHintBuilder)
             : base(
-                  statement, 
+                  statement,
                   tableSourceInJoinBuilder,
                   tableSourceBuilder,
                   pivotClauseBuilder,

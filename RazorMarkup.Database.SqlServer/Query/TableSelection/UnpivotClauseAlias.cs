@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.Builders;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.Query.For;
 using RazorMarkup.Database.SqlServer.Query.GroupBy;
 using RazorMarkup.Database.SqlServer.Query.OrderBy;
 using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.TableSelection;
+using System;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {

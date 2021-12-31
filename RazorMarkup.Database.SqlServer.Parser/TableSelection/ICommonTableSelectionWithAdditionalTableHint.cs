@@ -5,7 +5,6 @@ namespace RazorMarkup.Database.SqlServer.Parser.TableSelection
     internal interface ICommonTableSelectionWithAdditionalTableHint :
         ICommonTableSelectionWithAdditionalTableHint<
             ICommonTableSource,
-            ICommonTableSource,
             ICommonPivotClause,
             ICommonUnpivotClause,
             ICommonAdditionalTableHint>,

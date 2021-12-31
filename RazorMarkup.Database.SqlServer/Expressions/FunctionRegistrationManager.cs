@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Expressions.Functions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
@@ -9,7 +10,7 @@ namespace RazorMarkup.Database.SqlServer.Expressions
 {
     public sealed class FunctionRegistrationManager : IFunctionRegistrationManager
     {
-        public static readonly FunctionRegistrationManager Instance = new FunctionRegistrationManager();
+        public static readonly FunctionRegistrationManager Instance = new();
 
         private readonly IDictionary<MethodInfo, Func<AbstractStatementBuilder>> functionBuilders;
         private readonly IDictionary<string, IList<MethodInfo>> functionMethods;
@@ -18,9 +19,13 @@ namespace RazorMarkup.Database.SqlServer.Expressions
         {
             functionBuilders = new Dictionary<MethodInfo, Func<AbstractStatementBuilder>>();
             functionMethods = new Dictionary<string, IList<MethodInfo>>();
-            AggregateCatalog catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new AssemblyCatalog(typeof(IFunctionRegistrations).Assembly));
-            new CompositionContainer(catalog).ComposeParts(this);
+            //AggregateCatalog catalog = new();
+            //catalog.Catalogs.Add(new AssemblyCatalog(typeof(IFunctionRegistrations).Assembly));
+            //new CompositionContainer(catalog).ComposeParts(this);
+            Registrations = new IFunctionRegistrations[]
+            {
+                new DataTypeFunctionRegistrations()
+            };
             foreach (IFunctionRegistrations functionRegistrations in Registrations)
             {
                 functionRegistrations.RegisterFunctions(this);
@@ -32,8 +37,7 @@ namespace RazorMarkup.Database.SqlServer.Expressions
 
         public void Register(FunctionRegistration functionRegistration)
         {
-            IList<MethodInfo> methods;
-            if (!functionMethods.TryGetValue(functionRegistration.FunctionName, out methods))
+            if (!functionMethods.TryGetValue(functionRegistration.FunctionName, out IList<MethodInfo> methods))
             {
                 methods = new List<MethodInfo>();
                 functionMethods.Add(functionRegistration.FunctionName, methods);
@@ -49,10 +53,9 @@ namespace RazorMarkup.Database.SqlServer.Expressions
         public AbstractStatementBuilder GetFunctionBuilder(MethodInfo method)
         {
             MethodInfo searchMethod = method.IsGenericMethod ? method.GetGenericMethodDefinition() : method;
-            Func<AbstractStatementBuilder> functionBuilder;
-            if (!functionBuilders.TryGetValue(searchMethod, out functionBuilder))
+            if (!functionBuilders.TryGetValue(searchMethod, out Func<AbstractStatementBuilder> functionBuilder))
             {
-                throw new ArgumentException(method.Name + "was not found.", "method");
+                throw new ArgumentException(method.Name + "was not found.", nameof(method));
             }
 
             return functionBuilder();
@@ -60,10 +63,9 @@ namespace RazorMarkup.Database.SqlServer.Expressions
 
         public MethodInfo GetMethod(string functionName, int parameterCount)
         {
-            IList<MethodInfo> methods;
-            if (!functionMethods.TryGetValue(functionName, out methods))
+            if (!functionMethods.TryGetValue(functionName, out IList<MethodInfo> methods))
             {
-                throw new ArgumentException(functionName + " was not found.", "functionName");
+                throw new ArgumentException(functionName + " was not found.", nameof(functionName));
             }
 
             return methods.First(method => IsMatch(method, parameterCount));

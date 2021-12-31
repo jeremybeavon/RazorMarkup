@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.UpdateOrDelete.Output;
+using System;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.UpdateOrDelete.Output;
 
 namespace RazorMarkup.Database.SqlServer.UpdateOrDelete
 {

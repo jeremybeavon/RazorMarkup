@@ -10,10 +10,7 @@ namespace RazorMarkup.Database.SqlServer.Create.AvailabilityGroup
         {
         }
 
-        private ReplicaBuilder Replica
-        {
-            get { return Statement.Replicas.Last(); }
-        }
+        private ReplicaBuilder Replica => Statement.Replicas.Last();
 
         public ICreateAvailabilityGroupAvailabilityMode AvailabilityMode()
         {

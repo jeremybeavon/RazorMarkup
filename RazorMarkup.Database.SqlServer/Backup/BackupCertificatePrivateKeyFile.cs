@@ -7,7 +7,7 @@
             : base(input)
         {
         }
-        
+
         public IBackupCertificatePrivateKeyEncryption File(string pathToPrivateKeyFile)
         {
             Statement.Append(

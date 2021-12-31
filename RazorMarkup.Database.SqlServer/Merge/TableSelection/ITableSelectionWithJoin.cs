@@ -3,13 +3,17 @@ using RazorMarkup.Database.SqlServer.TableSelection;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
-    public interface ITableSelectionWithJoin : 
+    public interface ITableSourceInJoinWithTableSelection : ITableSourceInJoin<ITableSelectionWithJoin>
+    {
+    }
+
+    public interface ITableSelectionWithJoin :
         ICommonTableSelectionWithJoin<
-            ITableSourceInJoin<ITableSelectionWithJoin>,
+            ITableSourceInJoinWithTableSelection,
             ITableSource,
             IPivotClause,
             IUnpivotClause>,
         IEndFromClause
     {
-    } 
+    }
 }

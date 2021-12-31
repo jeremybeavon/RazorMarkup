@@ -205,7 +205,7 @@ namespace RazorMarkup.Database.SqlServer
         {
             throw new NotInExpressionException();
         }
-        
+
         public static SqlBigInt Sign(this SqlBigInt value)
         {
             throw new NotInExpressionException();
@@ -215,12 +215,12 @@ namespace RazorMarkup.Database.SqlServer
         {
             throw new NotInExpressionException();
         }
-        
+
         public static SqlInt Sign(this SqlSmallInt value)
         {
             throw new NotInExpressionException();
         }
-        
+
         public static SqlInt Sign(this SqlTinyInt value)
         {
             throw new NotInExpressionException();

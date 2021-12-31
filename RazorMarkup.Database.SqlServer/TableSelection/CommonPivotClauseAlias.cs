@@ -23,7 +23,6 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
             TUnpivotClause,
             TTableSelectionWithJoin>
         where TCommonPivotClauseAlias : ICommonPivotClauseAlias<
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,

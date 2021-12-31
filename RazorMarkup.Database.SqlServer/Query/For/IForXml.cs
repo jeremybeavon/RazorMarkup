@@ -3,7 +3,7 @@
     public interface IForXml<TEndType> : IHideObjectMethods
     {
         IRawOrAutoDirectives<TEndType> Raw();
-        
+
         IRawOrAutoDirectives<TEndType> Raw(string elementName);
 
         IRawOrAutoDirectives<TEndType> Auto();

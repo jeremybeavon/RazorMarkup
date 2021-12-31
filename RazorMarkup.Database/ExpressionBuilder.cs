@@ -47,7 +47,7 @@ namespace RazorMarkup.Database
                 MethodCallExpression methodCall = expression.Body as MethodCallExpression;
                 if (methodCall == null)
                 {
-                    throw new ArgumentException("createFunc must be method call if parameters are given", "expression");
+                    throw new ArgumentException("createFunc must be method call if parameters are given", nameof(expression));
                 }
 
                 IEnumerable<Expression> parameterExpressions = parameters.Select(parameter => parameter.ToExpression());
@@ -65,7 +65,7 @@ namespace RazorMarkup.Database
             MethodCallExpression methodCall = expression.Body as MethodCallExpression;
             if (methodCall == null)
             {
-                throw new ArgumentException("createFunc must be method call if parameters are given", "expression");
+                throw new ArgumentException("createFunc must be method call if parameters are given", nameof(expression));
             }
 
             IEnumerable<Expression> parameterExpressions = parameters.Select(parameter => parameter.ToExpression());
@@ -80,7 +80,7 @@ namespace RazorMarkup.Database
             MethodCallExpression methodCall = expression.Body as MethodCallExpression;
             if (methodCall == null)
             {
-                throw new ArgumentException("createFunc must be method call if parameters are given", "expression");
+                throw new ArgumentException("createFunc must be method call if parameters are given", nameof(expression));
             }
 
             return Expression.Call(instance, methodCall.Method, Expression.Quote(parameter));
@@ -93,7 +93,7 @@ namespace RazorMarkup.Database
             MethodCallExpression methodCall = expression.Body as MethodCallExpression;
             if (methodCall == null)
             {
-                throw new ArgumentException("createFunc must be method call if parameters are given", "expression");
+                throw new ArgumentException("createFunc must be method call if parameters are given", nameof(expression));
             }
 
             return Expression.Call(methodCall.Object, methodCall.Method, Expression.Quote(parameter));

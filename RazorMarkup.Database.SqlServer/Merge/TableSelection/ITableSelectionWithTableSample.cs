@@ -5,7 +5,7 @@ namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     public interface ITableSelectionWithTableSample :
         ICommonTableSelectionWithTableSample<
-            ITableSourceInJoin<ITableSelectionWithJoin>,
+            ITableSourceInJoinWithTableSelection,
             ITableSource,
             IPivotClause,
             IUnpivotClause,

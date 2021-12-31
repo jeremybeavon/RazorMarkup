@@ -7,7 +7,7 @@
             : base(input)
         {
         }
-        
+
         public IBackupCertificatePrivateKeyFile WithPrivateKey()
         {
             Statement.Append((IBackupCertificateWithPrivateKey input) => input.WithPrivateKey());

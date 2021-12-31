@@ -4,10 +4,10 @@ namespace RazorMarkup.Database.SqlServer.System.Views
 {
     public sealed class ServerPrincipalCredentials
     {
-        public static readonly ViewName ViewName = new ViewName("sys.server_principal_credentials");
-        
-        public static readonly Column<SqlInt> CredentialId = new Column<SqlInt>("credential_id");
-        
-        public static readonly Column<SqlInt> PrincipalId = new Column<SqlInt>("principal_id");
+        public static readonly ViewName ViewName = new("sys.server_principal_credentials");
+
+        public static readonly Column<SqlInt> CredentialId = new("credential_id");
+
+        public static readonly Column<SqlInt> PrincipalId = new("principal_id");
     }
 }

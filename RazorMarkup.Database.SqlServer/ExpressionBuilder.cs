@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Expressions;
+using System;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Expressions;
 
 namespace RazorMarkup.Database.SqlServer
 {

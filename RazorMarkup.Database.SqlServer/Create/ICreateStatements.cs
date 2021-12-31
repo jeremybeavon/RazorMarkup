@@ -97,7 +97,7 @@ namespace RazorMarkup.Database.SqlServer.Create
         ICreateServerAuditSpecificationStatement ServerAuditSpecification(ServerAuditSpecificationName serverAuditSpecificationName);
 
         ICreateServerRoleStatement ServerRole(ServerRoleName serverRoleName);
-        
+
         ICreateServiceStatement Service(ServiceName serviceName);
 
         ICreateSynonymStatement Synonym(SchemaName schemaName, SynonymName synonymName);

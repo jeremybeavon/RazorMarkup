@@ -19,7 +19,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection
         ITableSelectionWithJoin<TEndType>
     {
         private readonly EndFromClause<TEndType> endFromClause;
-        
+
         public TableSelectionWithJoin(FromClauseBuilder statement, TEndType endClosure)
             : this(statement, new TableSelectionFactory<TEndType>(endClosure))
         {

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 namespace RazorMarkup.Database.SqlServer.SetClauses
 {
     internal abstract class CommonSetColumn<TSetClauseAnd, TSetFieldOrProperty> :
-        CommonSetValue<TSetClauseAnd>, 
+        CommonSetValue<TSetClauseAnd>,
         ICommonSetColumn<TSetClauseAnd, TSetFieldOrProperty>
     {
         private readonly Func<SetClauseBuilder, TSetClauseAnd> setClauseAndBuilder;
@@ -35,7 +35,7 @@ namespace RazorMarkup.Database.SqlServer.SetClauses
                 .Select(parameter => new ExpressionBuilder<object>(parameter))
                 .ToArray();
             Statement.CurrentSetClause.MethodArguments.AddRange(parameterBuilders);
-            SqlStringArray parameterExpressions = new SqlStringArray(typeof(Expression<Func<object>>), parameterBuilders);
+            SqlStringArray parameterExpressions = new(typeof(Expression<Func<object>>), parameterBuilders);
             Statement.Append(
                 (ICommonSetColumn<TSetClauseAnd, TSetFieldOrProperty> input) => input.Method(null),
                 methodName,

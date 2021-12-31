@@ -9,7 +9,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
         AbstractCommonUnpivotClauseAliasInJoin<
             TJoinEndType,
             IUnpivotClauseAliasInJoin<TJoinEndType>,
-            ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
+            ITableSourceInJoinWithTableSelectionInJoin<TJoinEndType>,
             ITableSourceInJoin<TJoinEndType>,
             IPivotClauseInJoin<TJoinEndType>,
             IUnpivotClauseInJoin<TJoinEndType>,

@@ -55,7 +55,7 @@ namespace RazorMarkup.Database.SqlServer.Alter.BrokerPriority
                     sqlBuilder.Append(",");
                     sqlBuilder.AppendIndent();
                 }
-                
+
                 sqlBuilder.Append(optionName);
                 sqlBuilder.Append(" = ");
                 sqlBuilder.Append(optionValue);

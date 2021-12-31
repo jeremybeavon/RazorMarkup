@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using RazorMarkup.Database.SqlServer.Types;
+﻿using RazorMarkup.Database.SqlServer.Types;
+using System.Collections.Generic;
 
 namespace RazorMarkup.Database.SqlServer.System.Procedures
 {
@@ -12,10 +12,10 @@ namespace RazorMarkup.Database.SqlServer.System.Procedures
             new ParameterName("pktable_qualifier")
         };
 
-        public static readonly Parameter<SqlSysname> TableName = new Parameter<SqlSysname>(OrderedParameters[0]);
+        public static readonly Parameter<SqlSysname> TableName = new(OrderedParameters[0]);
 
-        public static readonly Parameter<SqlSysname> TableOwner = new Parameter<SqlSysname>(OrderedParameters[1]);
+        public static readonly Parameter<SqlSysname> TableOwner = new(OrderedParameters[1]);
 
-        public static readonly Parameter<SqlSysname> TableQualifer = new Parameter<SqlSysname>(OrderedParameters[2]);
+        public static readonly Parameter<SqlSysname> TableQualifer = new(OrderedParameters[2]);
     }
 }

@@ -7,7 +7,7 @@
             : base(statement)
         {
         }
-        
+
         public ICreateEventNotificationFor WithFanIn()
         {
             Statement.WithFanIn = true;

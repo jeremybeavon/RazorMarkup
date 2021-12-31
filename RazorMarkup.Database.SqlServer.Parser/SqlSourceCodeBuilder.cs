@@ -17,7 +17,7 @@ namespace RazorMarkup.Database.SqlServer.Parser
                 TSqlFragment fragment = parser.Parse(reader, out errors);
                 if (errors != null && errors.Count != 0)
                 {
-                    throw new InvalidOperationException("Parse errors: " + string.Join(", ", errors.Select(error => error.Message)));
+                    throw new InvalidOperationException($"Parse errors: {string.Join(", ", errors.Select(error => error.Message))}; Statement: {text}");
                 }
 
                 SqlSourceCodeVisitor visitor = new SqlSourceCodeVisitor();

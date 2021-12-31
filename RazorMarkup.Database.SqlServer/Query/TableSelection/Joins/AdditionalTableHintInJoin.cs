@@ -26,5 +26,6 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
                   factory.CreateTableSelectionWithAdditionalTableHint)
         {
         }
+
     }
 }

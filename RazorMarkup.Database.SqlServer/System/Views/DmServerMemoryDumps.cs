@@ -4,12 +4,12 @@ namespace RazorMarkup.Database.SqlServer.System.Views
 {
     public sealed class DmServerMemoryDumps
     {
-        public static readonly ViewName ViewName = new ViewName("sys.dm_server_memory_dumps");
-        
-        public static readonly Column<SqlDateTimeOffset> CreationTime = new Column<SqlDateTimeOffset>("creation_time");
-        
-        public static readonly Column<SqlNVarchar> Filename = new Column<SqlNVarchar>("filename");
-        
-        public static readonly Column<SqlBigInt> SizeInBytes = new Column<SqlBigInt>("size_in_bytes");
+        public static readonly ViewName ViewName = new("sys.dm_server_memory_dumps");
+
+        public static readonly Column<SqlDateTimeOffset> CreationTime = new("creation_time");
+
+        public static readonly Column<SqlNVarchar> Filename = new("filename");
+
+        public static readonly Column<SqlBigInt> SizeInBytes = new("size_in_bytes");
     }
 }

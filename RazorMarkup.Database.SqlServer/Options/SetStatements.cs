@@ -1,7 +1,7 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Expressions;
+﻿using RazorMarkup.Database.SqlServer.Expressions;
 using RazorMarkup.Database.SqlServer.Types.Wrappers;
+using System;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Options
 {
@@ -89,7 +89,7 @@ namespace RazorMarkup.Database.SqlServer.Options
 
         public ISqlString Language(Expression<Func<LiteralText>> language)
         {
-            SqlBuilder sqlBuilder = new SqlBuilder("SET LANGUAGE ");
+            SqlBuilder sqlBuilder = new("SET LANGUAGE ");
             new SqlExpressionBuilder(sqlBuilder).Visit(language.Body);
             return SqlString.Create(sqlBuilder.ToSqlString(), () => Sql.Set().Language(language), language);
         }

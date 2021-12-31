@@ -7,7 +7,7 @@
             : base(statement)
         {
         }
-        
+
         public ICreateCredentialForCryptographicProvider Secret(string secret)
         {
             Statement.Secret = secret;

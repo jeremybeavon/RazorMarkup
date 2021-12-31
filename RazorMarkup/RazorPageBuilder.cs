@@ -8,7 +8,7 @@ namespace RazorMarkup
     {
         public static IRazorPage ToRazorPage(string fileName, params ISourceCode[] sourceCode)
         {
-            StringBuilder textBuilder = new StringBuilder();
+            StringBuilder textBuilder = new();
             foreach (string usingReference in GetUsingReferences(sourceCode))
             {
                 textBuilder.AppendFormat("@using {0}", usingReference).AppendLine();

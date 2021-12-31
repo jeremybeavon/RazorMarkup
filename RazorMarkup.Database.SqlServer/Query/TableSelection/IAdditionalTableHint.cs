@@ -2,7 +2,7 @@
 
 namespace RazorMarkup.Database.SqlServer.Query.TableSelection
 {
-    public interface IAdditionalTableHint<TEndType> : 
+    public interface IAdditionalTableHint<TEndType> :
         IAdditionalCommonTableHint<
             ITableSelectionWithAlias<TEndType>,
             ISubqueryWithAlias<TEndType>,

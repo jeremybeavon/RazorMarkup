@@ -51,7 +51,8 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
 
         public ITableSelectionWithAliasInJoin<TJoinEndType> CreateTableSelectionWithAlias(FromClauseBuilder statement)
         {
-            return new TableSelectionWithAliasInJoin<TJoinEndType>(statement, joinClosure);
+            throw new global::System.NotImplementedException();
+            //return new TableSelectionWithAliasInJoin<TJoinEndType>(statement, joinClosure);
         }
 
         public ITableSelectionWithJoinInJoin<TJoinEndType> CreateTableSelectionWithJoin(
@@ -78,9 +79,10 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
         public ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>> CreateTableSourceInJoin(
             FromClauseBuilder statement)
         {
-            return new TableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>(
-                statement,
-                new TableSelectionWithJoinInJoin<TJoinEndType>(statement, joinClosure));
+            throw new global::System.NotImplementedException();
+            //return new TableSourceInJoin2<TJoinEndType>(
+            //    statement,
+            //    new TableSelectionWithJoinInJoin<TJoinEndType>(statement, joinClosure));
         }
 
         public IUnpivotClauseInJoin<TJoinEndType> CreateUnpivotClause(FromClauseBuilder statement)

@@ -75,7 +75,7 @@ namespace RazorMarkup.Database.SqlServer.Tests
         {
             const string expectedResult = @"ALTER BROKER PRIORITY TestConversation
     FOR CONVERSATION
-    SET (REMOTE_SERVICE_NAME = RemoteService)";
+    SET (REMOTE_SERVICE_NAME = 'RemoteService')";
             Sql.Alter()
                 .BrokerPriority(new ConversationPriorityName("TestConversation"))
                 .ForConversation()

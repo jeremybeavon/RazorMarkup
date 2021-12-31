@@ -8,7 +8,7 @@
             : base(input, options)
         {
         }
-        
+
         public TOptions With()
         {
             Statement.Append((IBackupDatabaseWithOptions<TOptions> input) => input.With());

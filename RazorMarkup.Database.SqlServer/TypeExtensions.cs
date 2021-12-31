@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Types;
+using System;
 using System.Collections.Generic;
-using RazorMarkup.Database.SqlServer.Types;
 
 namespace RazorMarkup.Database.SqlServer
 {

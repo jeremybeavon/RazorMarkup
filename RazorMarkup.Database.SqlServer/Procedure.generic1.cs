@@ -14,9 +14,6 @@
 
         public ProcedureName Name { get; private set; }
 
-        public TOutput Output
-        {
-            get { throw new NotInExpressionException(); }
-        }
+        public TOutput Output => throw new NotInExpressionException();
     }
 }

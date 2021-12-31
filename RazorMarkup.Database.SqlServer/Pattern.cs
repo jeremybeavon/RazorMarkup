@@ -45,7 +45,7 @@ namespace RazorMarkup.Database.SqlServer
         {
             return new Pattern().ThenNotOneOf(validCharacters);
         }
-        
+
         public IPattern ThenText(string text)
         {
             textBuilder.Append("text");

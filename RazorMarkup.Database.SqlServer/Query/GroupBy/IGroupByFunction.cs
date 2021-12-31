@@ -12,7 +12,7 @@ namespace RazorMarkup.Database.SqlServer.Query.GroupBy
         IGroupByRollup<IGroupByAnd<TEndType>> Rollup(Expression<Func<object>> groupingExpression);
 
         IGroupByRollupFunction<IGroupByAnd<TEndType>> Rollup();
-        
+
         IGroupByGroupingSets<TEndType> GroupingSets(Expression<Func<object>> groupingExpression);
 
         IGroupByGroupingSetsFunction<TEndType> GroupingSets();

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Expressions.Functions;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Expressions.Functions;
 
 namespace RazorMarkup.Database.SqlServer.Expressions
 {
@@ -41,8 +41,7 @@ namespace RazorMarkup.Database.SqlServer.Expressions
 
         protected override Expression VisitBinary(BinaryExpression node)
         {
-            Action<SqlBuilder> sqlBuilderAction;
-            if (binaryExpressions.TryGetValue(node.NodeType, out sqlBuilderAction))
+            if (binaryExpressions.TryGetValue(node.NodeType, out Action<SqlBuilder> sqlBuilderAction))
             {
                 Visit(node.Left);
                 sqlBuilderAction(sqlBuilder);

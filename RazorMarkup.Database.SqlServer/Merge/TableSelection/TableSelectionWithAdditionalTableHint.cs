@@ -1,14 +1,14 @@
-﻿using System;
-using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
+﻿using RazorMarkup.Database.SqlServer.Merge.TableSelection.Joins;
 using RazorMarkup.Database.SqlServer.Query.Builders;
 using RazorMarkup.Database.SqlServer.TableSelection;
+using System;
+using System.Linq.Expressions;
 
 namespace RazorMarkup.Database.SqlServer.Merge.TableSelection
 {
     internal sealed class TableSelectionWithAdditionalTableHint :
         CommonTableSelectionWithAdditionalTableHint<
-            ITableSourceInJoin<ITableSelectionWithJoin>,
+            ITableSourceInJoinWithTableSelection,
             ITableSource,
             IPivotClause,
             IUnpivotClause,

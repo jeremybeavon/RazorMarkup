@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RazorMarkup.Database.SqlServer.Query.Builders;
+using System;
 using System.Linq.Expressions;
-using RazorMarkup.Database.SqlServer.Query.Builders;
 
 namespace RazorMarkup.Database.SqlServer.TableSelection.Joins
 {
@@ -13,6 +13,7 @@ namespace RazorMarkup.Database.SqlServer.TableSelection.Joins
         TTableHint,
         TTableSampleWithSystem,
         TTableSelectionWithTableSample,
+        TCommonTableSelectionWithTableSourceInJoin,
         TCommonTableSelectionWithAlias> :
         CommonTableSelectionWithAlias<
             TTableSourceInJoin,
@@ -25,7 +26,6 @@ namespace RazorMarkup.Database.SqlServer.TableSelection.Joins
             TCommonTableSelectionWithAlias>,
         ICommonTableSelectionWithAliasInJoin<
             TJoinEndType,
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,

@@ -8,7 +8,7 @@
         {
             Statement.Initialize(() => Sql.Backup().Certificate(null), certificateName);
         }
-        
+
         public IBackupCertificatePrivateKeyEncryption File(string pathToPrivateKeyFile)
         {
             Statement.Append(

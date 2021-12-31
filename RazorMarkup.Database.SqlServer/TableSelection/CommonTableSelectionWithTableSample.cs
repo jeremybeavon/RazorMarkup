@@ -19,14 +19,12 @@ namespace RazorMarkup.Database.SqlServer.TableSelection
             TTableHint,
             TCommonTableSelectionWithTableSample>,
         ICommonTableSelectionWithTableSample<
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,
             TTableHint,
             TTableSampleWithSystem>
         where TCommonTableSelectionWithTableSample : ICommonTableSelectionWithTableSample<
-            TTableSourceInJoin,
             TTableSource,
             TPivotClause,
             TUnpivotClause,

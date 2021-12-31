@@ -4,10 +4,25 @@ using RazorMarkup.Database.SqlServer.Query.TableSelection.Joins;
 
 namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
 {
-    internal class CommonTableSourceInJoin<TJoinEndType, TCommonJoinEndType> : 
+    internal class CommonTableSourceInJoin<TJoinEndType, TCommonJoinEndType> :
         AbstractCommonTableSourceInJoin<
             TJoinEndType,
             ITableSourceInJoin<TJoinEndType>,
+            ITableSelectionWithAliasInJoin<TJoinEndType>,
+            ISubqueryWithAliasInJoin<TJoinEndType>,
+            IDerivedTableWithAliasInJoin<TJoinEndType>,
+            TCommonJoinEndType,
+            CommonTableSelectionWithAliasInJoin<TJoinEndType, TCommonJoinEndType>,
+            CommonSubqueryWithAliasInJoin<TJoinEndType, TCommonJoinEndType>,
+            CommonDerivedTableWithAliasInJoin<TJoinEndType, TCommonJoinEndType>>
+        where TCommonJoinEndType : ISource<TJoinEndType>, ICommonTableSelectionWithJoin, new()
+    {
+    }
+
+    internal class CommonTableSourceInJoin3<TJoinEndType, TCommonJoinEndType> : 
+        AbstractCommonTableSourceInJoin<
+            TJoinEndType,
+            ITableSourceInJoinWithTableSelectionInJoin<TJoinEndType>, //ITableSourceInJoin<TJoinEndType>,
             ITableSelectionWithAliasInJoin<TJoinEndType>,
             ISubqueryWithAliasInJoin<TJoinEndType>,
             IDerivedTableWithAliasInJoin<TJoinEndType>,

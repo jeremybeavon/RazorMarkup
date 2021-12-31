@@ -8,7 +8,7 @@
             : base(statement, options)
         {
         }
-        
+
         public IBackupDatabaseEncryptionAlgorithm<TOptions> Algorithm()
         {
             Statement.Append((IBackupDatabaseEncryptionWithAlgorithm<TOptions> input) => input.Algorithm());

@@ -8,7 +8,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
         AbstractCommonTableSelectionWithJoinInJoin<
             TJoinEndType,
             ITableSelectionWithJoinInJoin<TJoinEndType>,
-            ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
+            ITableSourceInJoinWithTableSelectionInJoin<TJoinEndType>,
             ITableSourceInJoin<TJoinEndType>,
             IPivotClauseInJoin<TJoinEndType>,
             IUnpivotClauseInJoin<TJoinEndType>,
@@ -16,7 +16,7 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query.TableSelection.Joins
             CommonTableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>, CommonTableSelectionWithJoinInJoin<TJoinEndType, TCommonJoinEndType>>,
             CommonTableSourceInJoin<TJoinEndType, TCommonJoinEndType>,
             CommonPivotClauseInJoin<TJoinEndType, TCommonJoinEndType>,
-            CommonUnpivotClauseInJoin<TJoinEndType, TCommonJoinEndType>>
+            CommonUnpivotClauseInJoin<TJoinEndType, TCommonJoinEndType>
         where TCommonJoinEndType : ISource<TJoinEndType>, ICommonTableSelectionWithJoin, new()
     {
     } 

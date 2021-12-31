@@ -6,7 +6,7 @@ namespace RazorMarkup.Database.SqlServer.Query.TableSelection.Joins
     internal class TableSelectionWithAliasInJoin<TJoinEndType> :
         CommonTableSelectionWithAliasInJoin<
             TJoinEndType,
-            ITableSourceInJoin<ITableSelectionWithJoinInJoin<TJoinEndType>>,
+            ITableSourceInJoin<ITableSelectionWithJoinInJoin2<TJoinEndType>>,
             ITableSourceInJoin<TJoinEndType>,
             IPivotClauseInJoin<TJoinEndType>,
             IUnpivotClauseInJoin<TJoinEndType>,

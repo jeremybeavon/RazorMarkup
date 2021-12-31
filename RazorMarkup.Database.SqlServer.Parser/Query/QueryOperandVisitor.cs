@@ -60,7 +60,9 @@ namespace RazorMarkup.Database.SqlServer.Parser.Query
             ISelectClause<TEndType> selectClause = BuildSelectClauseWithTop(selectClauseWithTop, node);
             ISelectClauseWithInto<TEndType> selectClauseWithInto = BuildSelectClause(selectClause, node);
             ISelectClauseWithFrom<TEndType> selectClauseWithFrom = BuildSelectClauseWithInto(selectClauseWithInto);
-            IEndFromClause<TEndType> endFormClause = BuildFromClause(selectClauseWithFrom, node);
+            IEndFromClause<TEndType> endFormClause = node.FromClause == null ?
+                new EmptyFromClause<TEndType>(selectClauseWithFrom) :
+                node.FromClause.AcceptWithResult(new FromClauseVisitor<TEndType>(selectClauseWithFrom.From()));
             IEndWhereClause<TEndType> endWhereClause = BuildWhereClause(endFormClause, node);
             IEndGroupByClause<TEndType> endGroupByClause = BuildGroupByClause(endWhereClause, node);
             IEndHavingClause<TEndType> endHavingClause = BuildHavingClause(endGroupByClause, node);

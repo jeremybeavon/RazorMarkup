@@ -101,7 +101,7 @@ namespace RazorMarkup.Database.SqlServer.Create.AvailabilityGroup
                         sqlBuilder.Append("') ");
                     }
                 }
-                else 
+                else
                 {
                     IpAddresses[0].ToSqlString(sqlBuilder);
                     foreach (IpAddressBuilder ipAddress in IpAddresses.Skip(1))
